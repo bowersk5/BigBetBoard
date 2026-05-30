@@ -54,6 +54,14 @@
         </label>
       </section>
 
+      <section class="consensus-section">
+        <div class="section-heading">
+          <h2>Most common picks</h2>
+          <p id="consensusIntro">Comparing expert picks across Covers, Pickswise, and Action Network.</p>
+        </div>
+        <div id="consensusList" class="consensus-list"></div>
+      </section>
+
       <section>
         <div class="section-heading">
           <h2 id="listTitle">Best expert picks</h2>
@@ -80,6 +88,23 @@
           <span class="analyst"></span>
           <span class="starts"></span>
         </footer>
+      </article>
+    </template>
+
+    <template id="consensusTemplate">
+      <article class="consensus-card">
+        <div class="pick-topline">
+          <span class="matchup"></span>
+          <span class="agreement"></span>
+        </div>
+        <h3 class="selection"></h3>
+        <div class="meta-row">
+          <span class="market"></span>
+          <span class="source-count"></span>
+          <span class="pick-count"></span>
+        </div>
+        <p class="source-list"></p>
+        <p class="example-list"></p>
       </article>
     </template>
 

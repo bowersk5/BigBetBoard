@@ -170,7 +170,17 @@ select {
   gap: 14px;
 }
 
-.pick-card {
+.consensus-section {
+  margin-bottom: 30px;
+}
+
+.consensus-list {
+  display: grid;
+  gap: 12px;
+}
+
+.pick-card,
+.consensus-card {
   display: grid;
   min-height: 315px;
   gap: 14px;
@@ -179,6 +189,11 @@ select {
   border-radius: 8px;
   background: #ffffff;
   box-shadow: 0 14px 30px rgba(23, 32, 42, 0.06);
+}
+
+.consensus-card {
+  min-height: auto;
+  border-left: 5px solid #0f6b46;
 }
 
 .pick-topline,
@@ -218,10 +233,21 @@ select {
   color: #0f6b46 !important;
 }
 
-.analysis {
+.analysis,
+.source-list,
+.example-list {
   margin-bottom: 0;
   color: #334755;
   line-height: 1.5;
+}
+
+.source-list {
+  font-weight: 700;
+}
+
+.example-list {
+  color: #587084;
+  font-size: 0.9rem;
 }
 
 .empty {

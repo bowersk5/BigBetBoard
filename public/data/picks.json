@@ -2,42 +2,8 @@
   "title": "Free MLB Picks & Predictions - Today’s Best Expert MLB Bets",
   "intro": "Get free expert MLB picks for every game on May 30, 2026. With over 25 years of betting experience, our analysts help you find the best value.",
   "sourceUrl": "https://www.covers.com/picks/mlb",
-  "generatedAt": "2026-05-30T18:15:11.133Z",
+  "generatedAt": "2026-05-30T18:25:03.493Z",
   "games": [
-    {
-      "away": "DET",
-      "home": "CHW",
-      "matchup": "DET @ CHW",
-      "startsAt": "Sat, May 30 • 2:10 PM ET",
-      "expertPicks": 2,
-      "computerPicks": 10,
-      "picks": [
-        {
-          "id": "det-chw-total-o7-5-110-pick-made-5-hours-ago",
-          "market": "Total",
-          "selection": "o7.5 (-110)",
-          "odds": "o7.5 -113",
-          "made": "5 hours ago",
-          "analyst": "Eric Rosales",
-          "rating": 0,
-          "projection": "",
-          "analysis": "The Over has cashed in three of the last four starts of Tigers' starter Framber Valdez, and the White Sox have been one of the hottest-hitting teams at home.",
-          "source": "Covers"
-        },
-        {
-          "id": "det-chw-best-bets-moneyline-moneyline-chw-108-pick-made-5-hours-ago",
-          "market": "Best Bets,Moneyline",
-          "selection": "Moneyline CHW (+108)",
-          "odds": "+100",
-          "made": "5 hours ago",
-          "analyst": "Eric Rosales",
-          "rating": 0,
-          "projection": "",
-          "analysis": "The White Sox have won four of the last six head-to-head meetings with the Tigers, and have absolutely owned left-handed pitchers like Framber Valdez.",
-          "source": "Covers"
-        }
-      ]
-    },
     {
       "away": "KC",
       "home": "TEX",
@@ -47,11 +13,11 @@
       "computerPicks": 10,
       "picks": [
         {
-          "id": "kc-tex-total-o7-5-115-pick-made-1-hours-ago",
+          "id": "kc-tex-total-o7-5-115-pick-made-2-hours-ago",
           "market": "Total",
           "selection": "o7.5 (-115)",
           "odds": "o7.5 -120",
-          "made": "1 hours ago",
+          "made": "2 hours ago",
           "analyst": "Shawn Krest",
           "rating": 0,
           "projection": "",
@@ -140,7 +106,7 @@
           "id": "min-pit-game-prop-yrfi-nrfi-no-109-pick-made-5-hours-ago",
           "market": "Game Prop",
           "selection": "YRFI/NRFI (No: -109)",
-          "odds": "-120",
+          "odds": "-110",
           "made": "5 hours ago",
           "analyst": "Quinn Allen",
           "rating": 0,
@@ -196,7 +162,7 @@
           "id": "mia-nym-total-u7-0-105-pick-made-4-hours-ago",
           "market": "Total",
           "selection": "u7.0 (-105)",
-          "odds": "u7.0 -102",
+          "odds": "u7.5 -137",
           "made": "4 hours ago",
           "analyst": "Todd Cordell",
           "rating": 0,
@@ -227,11 +193,11 @@
       "computerPicks": 10,
       "picks": [
         {
-          "id": "atl-cin-total-home-runs-eugenio-suarez-o0-5-total-home-runs-402-pick-made-2-hour",
+          "id": "atl-cin-total-home-runs-eugenio-suarez-o0-5-total-home-runs-402-pick-made-3-hour",
           "market": "Total Home Runs",
           "selection": "Eugenio Suarez o0.5 Total Home Runs (+402)",
           "odds": "o0.5 +410",
-          "made": "2 hours ago",
+          "made": "3 hours ago",
           "analyst": "Quinn Allen",
           "rating": 0,
           "projection": "",
@@ -239,11 +205,11 @@
           "source": "Covers"
         },
         {
-          "id": "atl-cin-total-home-runs-matt-olson-o0-5-total-home-runs-254-pick-made-2-hours-ag",
+          "id": "atl-cin-total-home-runs-matt-olson-o0-5-total-home-runs-254-pick-made-3-hours-ag",
           "market": "Total Home Runs",
           "selection": "Matt Olson o0.5 Total Home Runs (+254)",
-          "odds": "o0.5 +270",
-          "made": "2 hours ago",
+          "odds": "o0.5 +280",
+          "made": "3 hours ago",
           "analyst": "Quinn Allen",
           "rating": 0,
           "projection": "",
@@ -261,11 +227,11 @@
       "computerPicks": 10,
       "picks": [
         {
-          "id": "chc-stl-total-u8-5-130-pick-made-an-hour-ago",
+          "id": "chc-stl-total-u8-5-130-pick-made-1-hours-ago",
           "market": "Total",
           "selection": "u8.5 (-130)",
           "odds": "u8.0 -110",
-          "made": "an hour ago",
+          "made": "1 hours ago",
           "analyst": "Shawn Krest",
           "rating": 0,
           "projection": "",
@@ -295,11 +261,11 @@
       "computerPicks": 10,
       "picks": [
         {
-          "id": "nyy-ath-total-home-runs-ben-rice-o0-5-total-home-runs-336-pick-made-2-hours-ago",
+          "id": "nyy-ath-total-home-runs-ben-rice-o0-5-total-home-runs-336-pick-made-3-hours-ago",
           "market": "Total Home Runs",
           "selection": "Ben Rice o0.5 Total Home Runs (+336)",
-          "odds": "o0.5 +330",
-          "made": "2 hours ago",
+          "odds": "o0.5 +320",
+          "made": "3 hours ago",
           "analyst": "Quinn Allen",
           "rating": 0,
           "projection": "",
@@ -382,7 +348,7 @@
       "matchup": "TB @ NYY",
       "startsAt": "Tue, Sep 22 • 1:05 PM ET",
       "expertPicks": 3,
-      "computerPicks": 7,
+      "computerPicks": 8,
       "picks": [
         {
           "id": "tb-nyy-total-home-runs-junior-caminero-o0-5-total-home-runs-401-pick-made-7-days",
@@ -413,43 +379,11 @@
   ],
   "picks": [
     {
-      "id": "det-chw-total-o7-5-110-pick-made-5-hours-ago",
-      "market": "Total",
-      "selection": "o7.5 (-110)",
-      "odds": "o7.5 -113",
-      "made": "5 hours ago",
-      "analyst": "Eric Rosales",
-      "rating": 0,
-      "projection": "",
-      "analysis": "The Over has cashed in three of the last four starts of Tigers' starter Framber Valdez, and the White Sox have been one of the hottest-hitting teams at home.",
-      "source": "Covers",
-      "matchup": "DET @ CHW",
-      "startsAt": "Sat, May 30 • 2:10 PM ET",
-      "away": "DET",
-      "home": "CHW"
-    },
-    {
-      "id": "det-chw-best-bets-moneyline-moneyline-chw-108-pick-made-5-hours-ago",
-      "market": "Best Bets,Moneyline",
-      "selection": "Moneyline CHW (+108)",
-      "odds": "+100",
-      "made": "5 hours ago",
-      "analyst": "Eric Rosales",
-      "rating": 0,
-      "projection": "",
-      "analysis": "The White Sox have won four of the last six head-to-head meetings with the Tigers, and have absolutely owned left-handed pitchers like Framber Valdez.",
-      "source": "Covers",
-      "matchup": "DET @ CHW",
-      "startsAt": "Sat, May 30 • 2:10 PM ET",
-      "away": "DET",
-      "home": "CHW"
-    },
-    {
-      "id": "kc-tex-total-o7-5-115-pick-made-1-hours-ago",
+      "id": "kc-tex-total-o7-5-115-pick-made-2-hours-ago",
       "market": "Total",
       "selection": "o7.5 (-115)",
       "odds": "o7.5 -120",
-      "made": "1 hours ago",
+      "made": "2 hours ago",
       "analyst": "Shawn Krest",
       "rating": 0,
       "projection": "",
@@ -528,7 +462,7 @@
       "id": "min-pit-game-prop-yrfi-nrfi-no-109-pick-made-5-hours-ago",
       "market": "Game Prop",
       "selection": "YRFI/NRFI (No: -109)",
-      "odds": "-120",
+      "odds": "-110",
       "made": "5 hours ago",
       "analyst": "Quinn Allen",
       "rating": 0,
@@ -576,7 +510,7 @@
       "id": "mia-nym-total-u7-0-105-pick-made-4-hours-ago",
       "market": "Total",
       "selection": "u7.0 (-105)",
-      "odds": "u7.0 -102",
+      "odds": "u7.5 -137",
       "made": "4 hours ago",
       "analyst": "Todd Cordell",
       "rating": 0,
@@ -605,11 +539,11 @@
       "home": "NYM"
     },
     {
-      "id": "atl-cin-total-home-runs-eugenio-suarez-o0-5-total-home-runs-402-pick-made-2-hour",
+      "id": "atl-cin-total-home-runs-eugenio-suarez-o0-5-total-home-runs-402-pick-made-3-hour",
       "market": "Total Home Runs",
       "selection": "Eugenio Suarez o0.5 Total Home Runs (+402)",
       "odds": "o0.5 +410",
-      "made": "2 hours ago",
+      "made": "3 hours ago",
       "analyst": "Quinn Allen",
       "rating": 0,
       "projection": "",
@@ -621,11 +555,11 @@
       "home": "CIN"
     },
     {
-      "id": "atl-cin-total-home-runs-matt-olson-o0-5-total-home-runs-254-pick-made-2-hours-ag",
+      "id": "atl-cin-total-home-runs-matt-olson-o0-5-total-home-runs-254-pick-made-3-hours-ag",
       "market": "Total Home Runs",
       "selection": "Matt Olson o0.5 Total Home Runs (+254)",
-      "odds": "o0.5 +270",
-      "made": "2 hours ago",
+      "odds": "o0.5 +280",
+      "made": "3 hours ago",
       "analyst": "Quinn Allen",
       "rating": 0,
       "projection": "",
@@ -637,11 +571,11 @@
       "home": "CIN"
     },
     {
-      "id": "chc-stl-total-u8-5-130-pick-made-an-hour-ago",
+      "id": "chc-stl-total-u8-5-130-pick-made-1-hours-ago",
       "market": "Total",
       "selection": "u8.5 (-130)",
       "odds": "u8.0 -110",
-      "made": "an hour ago",
+      "made": "1 hours ago",
       "analyst": "Shawn Krest",
       "rating": 0,
       "projection": "",
@@ -669,11 +603,11 @@
       "home": "STL"
     },
     {
-      "id": "nyy-ath-total-home-runs-ben-rice-o0-5-total-home-runs-336-pick-made-2-hours-ago",
+      "id": "nyy-ath-total-home-runs-ben-rice-o0-5-total-home-runs-336-pick-made-3-hours-ago",
       "market": "Total Home Runs",
       "selection": "Ben Rice o0.5 Total Home Runs (+336)",
-      "odds": "o0.5 +330",
-      "made": "2 hours ago",
+      "odds": "o0.5 +320",
+      "made": "3 hours ago",
       "analyst": "Quinn Allen",
       "rating": 0,
       "projection": "",
@@ -799,36 +733,20 @@
       "home": "STL"
     },
     {
-      "id": "kc-tex-total-o7-5-115-pick-made-1-hours-ago",
+      "id": "chc-stl-total-u8-5-130-pick-made-1-hours-ago",
       "market": "Total",
-      "selection": "o7.5 (-115)",
-      "odds": "o7.5 -120",
+      "selection": "u8.5 (-130)",
+      "odds": "u8.0 -110",
       "made": "1 hours ago",
       "analyst": "Shawn Krest",
       "rating": 0,
       "projection": "",
-      "analysis": "Kansas City has the worst bullpen WHIP in baseball and the third-worst ERA. The pen allowed four homers in the last three games, posting an 8.71 ERA. The Rangers have been better in relief, but Texas allowed 5+ five times in the last eight games.",
+      "analysis": "The Cardinals' six-run outburst on Friday looks like an anomaly. Nelson Velasquez, called up earlier in the day, hit St. Louis' first home run this week. He's a platoon slugger, however, who'll likely be on the bench against a right-hander. That leaves the Cardinals' batters who have produced 0 or 1 runs in five of the last 10 games.",
       "source": "Covers",
-      "matchup": "KC @ TEX",
-      "startsAt": "Sat, May 30 • 4:05 PM ET",
-      "away": "KC",
-      "home": "TEX"
-    },
-    {
-      "id": "det-chw-best-bets-moneyline-moneyline-chw-108-pick-made-5-hours-ago",
-      "market": "Best Bets,Moneyline",
-      "selection": "Moneyline CHW (+108)",
-      "odds": "+100",
-      "made": "5 hours ago",
-      "analyst": "Eric Rosales",
-      "rating": 0,
-      "projection": "",
-      "analysis": "The White Sox have won four of the last six head-to-head meetings with the Tigers, and have absolutely owned left-handed pitchers like Framber Valdez.",
-      "source": "Covers",
-      "matchup": "DET @ CHW",
-      "startsAt": "Sat, May 30 • 2:10 PM ET",
-      "away": "DET",
-      "home": "CHW"
+      "matchup": "CHC @ STL",
+      "startsAt": "Sat, May 30 • 7:15 PM ET",
+      "away": "CHC",
+      "home": "STL"
     },
     {
       "id": "kc-tex-spread-tex-1-5-172-pick-made-2-hours-ago",
@@ -863,11 +781,11 @@
       "home": "BAL"
     },
     {
-      "id": "atl-cin-total-home-runs-eugenio-suarez-o0-5-total-home-runs-402-pick-made-2-hour",
+      "id": "atl-cin-total-home-runs-eugenio-suarez-o0-5-total-home-runs-402-pick-made-3-hour",
       "market": "Total Home Runs",
       "selection": "Eugenio Suarez o0.5 Total Home Runs (+402)",
       "odds": "o0.5 +410",
-      "made": "2 hours ago",
+      "made": "3 hours ago",
       "analyst": "Quinn Allen",
       "rating": 0,
       "projection": "",
@@ -879,11 +797,11 @@
       "home": "CIN"
     },
     {
-      "id": "atl-cin-total-home-runs-matt-olson-o0-5-total-home-runs-254-pick-made-2-hours-ag",
+      "id": "atl-cin-total-home-runs-matt-olson-o0-5-total-home-runs-254-pick-made-3-hours-ag",
       "market": "Total Home Runs",
       "selection": "Matt Olson o0.5 Total Home Runs (+254)",
-      "odds": "o0.5 +270",
-      "made": "2 hours ago",
+      "odds": "o0.5 +280",
+      "made": "3 hours ago",
       "analyst": "Quinn Allen",
       "rating": 0,
       "projection": "",
@@ -895,11 +813,11 @@
       "home": "CIN"
     },
     {
-      "id": "nyy-ath-total-home-runs-ben-rice-o0-5-total-home-runs-336-pick-made-2-hours-ago",
+      "id": "nyy-ath-total-home-runs-ben-rice-o0-5-total-home-runs-336-pick-made-3-hours-ago",
       "market": "Total Home Runs",
       "selection": "Ben Rice o0.5 Total Home Runs (+336)",
-      "odds": "o0.5 +330",
-      "made": "2 hours ago",
+      "odds": "o0.5 +320",
+      "made": "3 hours ago",
       "analyst": "Quinn Allen",
       "rating": 0,
       "projection": "",
@@ -909,13 +827,29 @@
       "startsAt": "Sat, May 30 • 10:05 PM ET",
       "away": "NYY",
       "home": "ATH"
+    },
+    {
+      "id": "phi-lad-best-bets-moneyline-moneyline-phi-108-pick-made-2-hours-ago",
+      "market": "Best Bets,Moneyline",
+      "selection": "Moneyline PHI (+108)",
+      "odds": "+108",
+      "made": "2 hours ago",
+      "analyst": "JD Yonke",
+      "rating": 0,
+      "projection": "",
+      "analysis": "Roki Sasaki allows loud contact (11th percentile barrel rate, 11th percentile hard-hit rate), which is a concern against a Philadelphia lineup with the fifth-highest hard-hit rate (35.6%) in the last 20 days. His four-seamer has been crushed (.348 xBA, .614 xSLG), and Philadelphia (fourth-most WAR against fastballs) will be happy to oblige.",
+      "source": "Covers",
+      "matchup": "PHI @ LAD",
+      "startsAt": "Sat, May 30 • 10:10 PM ET",
+      "away": "PHI",
+      "home": "LAD"
     }
   ],
   "counts": {
-    "games": 13,
-    "picks": 23,
-    "expertPicks": 23,
+    "games": 12,
+    "picks": 21,
+    "expertPicks": 21,
     "computerPicks": 0
   },
-  "fetchedAt": "2026-05-30T18:15:11.133Z"
+  "fetchedAt": "2026-05-30T18:25:03.494Z"
 }

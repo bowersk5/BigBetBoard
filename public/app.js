@@ -1,6 +1,7 @@
 const state = {
   picks: [],
   bestPicks: [],
+  consensus: [],
   markets: new Set(),
   view: "best",
   query: "",
@@ -18,30 +19,45 @@ const els = {
   listTitle: document.querySelector("#listTitle"),
   intro: document.querySelector("#intro"),
   pickList: document.querySelector("#pickList"),
-  template: document.querySelector("#pickTemplate")
+  consensusIntro: document.querySelector("#consensusIntro"),
+  consensusList: document.querySelector("#consensusList"),
+  template: document.querySelector("#pickTemplate"),
+  consensusTemplate: document.querySelector("#consensusTemplate")
 };
 
 async function loadPicks(refresh = false) {
   setLoading(true);
   try {
-    const response = await fetch(picksUrl(refresh));
+    const [picksResponse, consensusResponse] = await Promise.all([
+      fetch(picksUrl(refresh)),
+      fetch(consensusUrl(refresh))
+    ]);
+    const response = picksResponse;
     const data = await response.json();
+    const consensusData = await consensusResponse.json();
 
     if (!response.ok) {
       throw new Error(data.detail || data.error || "Unable to load picks.");
     }
+    if (!consensusResponse.ok) {
+      throw new Error(consensusData.detail || consensusData.error || "Unable to compare picks.");
+    }
 
     state.picks = data.picks || [];
     state.bestPicks = data.bestPicks || [];
+    state.consensus = consensusData.consensus || [];
     state.markets = new Set(state.picks.map((pick) => pick.market).filter(Boolean));
     els.fetchedAt.textContent = formatDate(data.fetchedAt || data.generatedAt);
     els.gameCount.textContent = data.counts?.games ?? 0;
     els.pickCount.textContent = data.counts?.picks ?? 0;
     els.intro.textContent = data.intro || "";
+    els.consensusIntro.textContent = consensusSummary(consensusData);
     renderMarketOptions();
+    renderConsensus();
     renderPicks();
   } catch (error) {
     els.pickList.innerHTML = `<div class="empty">Could not load today’s Covers picks. ${escapeHtml(error.message)}</div>`;
+    els.consensusList.innerHTML = `<div class="empty">Could not compare picks. ${escapeHtml(error.message)}</div>`;
   } finally {
     setLoading(false);
   }
@@ -56,6 +72,17 @@ function picksUrl(refresh = false) {
   }
 
   return `data/picks.json${cacheBust}`;
+}
+
+function consensusUrl(refresh = false) {
+  const isLocalServer = ["localhost", "127.0.0.1", ""].includes(window.location.hostname);
+  const cacheBust = refresh ? `?t=${Date.now()}` : "";
+
+  if (isLocalServer) {
+    return `/api/consensus${refresh ? "?refresh=1" : ""}`;
+  }
+
+  return `data/consensus.json${cacheBust}`;
 }
 
 function renderMarketOptions() {
@@ -103,9 +130,47 @@ function renderPicks() {
   });
 }
 
+function renderConsensus() {
+  const common = state.consensus.filter((pick) => pick.sourceCount > 1).slice(0, 8);
+  const fallback = state.consensus.slice(0, 8);
+  const picks = common.length ? common : fallback;
+  els.consensusList.innerHTML = "";
+
+  if (!picks.length) {
+    els.consensusList.innerHTML = '<div class="empty">No consensus picks are available right now.</div>';
+    return;
+  }
+
+  picks.forEach((pick) => {
+    const node = els.consensusTemplate.content.cloneNode(true);
+    node.querySelector(".matchup").textContent = pick.matchup;
+    node.querySelector(".agreement").textContent = `${pick.agreement} sources`;
+    node.querySelector(".selection").textContent = pick.selection;
+    node.querySelector(".market").textContent = pick.market;
+    node.querySelector(".source-count").textContent = `${pick.sourceCount} sites`;
+    node.querySelector(".pick-count").textContent = `${pick.pickCount} experts`;
+    node.querySelector(".source-list").textContent = pick.sources.map((source) => source.name).join(", ");
+    node.querySelector(".example-list").textContent = sampleExamples(pick.examples);
+    els.consensusList.append(node);
+  });
+}
+
 function setLoading(isLoading) {
   els.refreshButton.disabled = isLoading;
   els.refreshButton.textContent = isLoading ? "Loading" : "Refresh";
+}
+
+function consensusSummary(data) {
+  const sources = (data.sources || []).filter((source) => !source.error && source.picks > 0);
+  const sourceNames = sources.map((source) => source.name).join(", ");
+  return `Comparing ${data.counts?.picks || 0} expert picks from ${sourceNames || "available sources"}.`;
+}
+
+function sampleExamples(examples = []) {
+  return examples
+    .slice(0, 4)
+    .map((example) => `${example.source}${example.expert ? ` (${example.expert})` : ""}${example.odds ? ` ${example.odds}` : ""}`)
+    .join(" • ");
 }
 
 function formatDate(value) {

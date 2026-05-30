@@ -1,10 +1,12 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { parseCoversMlbPicks } from "../src/coversParser.js";
+import { fetchMlbConsensus } from "../src/consensus.js";
 
 const sourceUrl = "https://www.covers.com/picks/mlb";
 const outputDir = join(process.cwd(), "public", "data");
 const outputFile = join(outputDir, "picks.json");
+const consensusFile = join(outputDir, "consensus.json");
 
 async function main() {
   const response = await fetch(sourceUrl, {
@@ -29,7 +31,10 @@ async function main() {
 
   await mkdir(outputDir, { recursive: true });
   await writeFile(outputFile, `${JSON.stringify(payload, null, 2)}\n`);
+  const consensus = await fetchMlbConsensus();
+  await writeFile(consensusFile, `${JSON.stringify(consensus, null, 2)}\n`);
   console.log(`Wrote ${payload.counts.picks} expert picks to ${outputFile}`);
+  console.log(`Wrote ${consensus.counts.consensus} consensus groups to ${consensusFile}`);
 }
 
 main().catch((error) => {

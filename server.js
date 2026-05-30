@@ -3,6 +3,7 @@ import { readFile } from "node:fs/promises";
 import { extname, join, normalize } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseCoversMlbPicks } from "./src/coversParser.js";
+import { fetchMlbConsensus } from "./src/consensus.js";
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 const publicDir = join(__dirname, "public");
@@ -11,7 +12,8 @@ const port = Number(process.env.PORT || 3000);
 const cache = {
   dateKey: null,
   fetchedAt: null,
-  payload: null
+  payload: null,
+  consensus: null
 };
 
 const mimeTypes = {
@@ -63,6 +65,19 @@ async function fetchDailyPicks(force = false) {
   return cache.payload;
 }
 
+async function fetchDailyConsensus(force = false) {
+  const key = todayKey();
+
+  if (!force && cache.dateKey === key && cache.consensus) {
+    return cache.consensus;
+  }
+
+  const payload = await fetchMlbConsensus();
+  cache.dateKey = key;
+  cache.consensus = payload;
+  return payload;
+}
+
 async function serveStatic(pathname, res) {
   const safePath = normalize(pathname === "/" ? "/index.html" : pathname).replace(/^(\.\.[/\\])+/, "");
   const filePath = join(publicDir, safePath);
@@ -100,6 +115,24 @@ const server = createServer(async (req, res) => {
         error: "Unable to fetch Covers MLB picks right now.",
         detail: error.message,
         sourceUrl
+      }));
+    }
+    return;
+  }
+
+  if (url.pathname === "/api/consensus") {
+    try {
+      const data = await fetchDailyConsensus(url.searchParams.get("refresh") === "1");
+      res.writeHead(200, {
+        "content-type": "application/json; charset=utf-8",
+        "cache-control": "no-store"
+      });
+      res.end(JSON.stringify(data));
+    } catch (error) {
+      res.writeHead(502, { "content-type": "application/json; charset=utf-8" });
+      res.end(JSON.stringify({
+        error: "Unable to compare MLB picks right now.",
+        detail: error.message
       }));
     }
     return;
