@@ -1,0 +1,15 @@
+{
+  "name": "covers-daily-mlb-picks",
+  "version": "1.0.0",
+  "description": "Daily MLB picks dashboard sourced from Covers.",
+  "type": "module",
+  "scripts": {
+    "build:pages": "node scripts/generateStaticData.js",
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

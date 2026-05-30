@@ -1,0 +1,147 @@
+const state = {
+  picks: [],
+  bestPicks: [],
+  markets: new Set(),
+  view: "best",
+  query: "",
+  market: ""
+};
+
+const els = {
+  refreshButton: document.querySelector("#refreshButton"),
+  fetchedAt: document.querySelector("#fetchedAt"),
+  gameCount: document.querySelector("#gameCount"),
+  pickCount: document.querySelector("#pickCount"),
+  searchInput: document.querySelector("#searchInput"),
+  marketSelect: document.querySelector("#marketSelect"),
+  viewSelect: document.querySelector("#viewSelect"),
+  listTitle: document.querySelector("#listTitle"),
+  intro: document.querySelector("#intro"),
+  pickList: document.querySelector("#pickList"),
+  template: document.querySelector("#pickTemplate")
+};
+
+async function loadPicks(refresh = false) {
+  setLoading(true);
+  try {
+    const response = await fetch(picksUrl(refresh));
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.detail || data.error || "Unable to load picks.");
+    }
+
+    state.picks = data.picks || [];
+    state.bestPicks = data.bestPicks || [];
+    state.markets = new Set(state.picks.map((pick) => pick.market).filter(Boolean));
+    els.fetchedAt.textContent = formatDate(data.fetchedAt || data.generatedAt);
+    els.gameCount.textContent = data.counts?.games ?? 0;
+    els.pickCount.textContent = data.counts?.picks ?? 0;
+    els.intro.textContent = data.intro || "";
+    renderMarketOptions();
+    renderPicks();
+  } catch (error) {
+    els.pickList.innerHTML = `<div class="empty">Could not load today’s Covers picks. ${escapeHtml(error.message)}</div>`;
+  } finally {
+    setLoading(false);
+  }
+}
+
+function picksUrl(refresh = false) {
+  const isLocalServer = ["localhost", "127.0.0.1", ""].includes(window.location.hostname);
+  const cacheBust = refresh ? `?t=${Date.now()}` : "";
+
+  if (isLocalServer) {
+    return `/api/picks${refresh ? "?refresh=1" : ""}`;
+  }
+
+  return `data/picks.json${cacheBust}`;
+}
+
+function renderMarketOptions() {
+  const current = els.marketSelect.value;
+  els.marketSelect.innerHTML = '<option value="">All markets</option>';
+  [...state.markets].sort().forEach((market) => {
+    const option = document.createElement("option");
+    option.value = market;
+    option.textContent = market;
+    els.marketSelect.append(option);
+  });
+  els.marketSelect.value = current;
+}
+
+function renderPicks() {
+  const base = state.view === "best" ? state.bestPicks : state.picks;
+  const query = state.query.toLowerCase();
+  const filtered = base.filter((pick) => {
+    const haystack = `${pick.matchup} ${pick.market} ${pick.selection} ${pick.analyst}`.toLowerCase();
+    const matchesQuery = !query || haystack.includes(query);
+    const matchesMarket = !state.market || pick.market === state.market;
+    return matchesQuery && matchesMarket;
+  });
+
+  els.listTitle.textContent = state.view === "best" ? "Best expert picks" : "All expert picks";
+  els.pickList.innerHTML = "";
+
+  if (!filtered.length) {
+    els.pickList.innerHTML = '<div class="empty">No picks match the current filters.</div>';
+    return;
+  }
+
+  filtered.forEach((pick) => {
+    const node = els.template.content.cloneNode(true);
+    node.querySelector(".matchup").textContent = pick.matchup;
+    node.querySelector(".made").textContent = pick.made || "Fresh today";
+    node.querySelector(".selection").textContent = pick.selection;
+    node.querySelector(".market").textContent = pick.market;
+    node.querySelector(".odds").textContent = pick.odds ? `Best odds ${pick.odds}` : "Odds unavailable";
+    node.querySelector(".rating").textContent = "Expert";
+    node.querySelector(".analysis").textContent = pick.analysis || "Open the source for the full write-up.";
+    node.querySelector(".analyst").textContent = pick.analyst || pick.source || "Covers";
+    node.querySelector(".starts").textContent = pick.startsAt || "";
+    els.pickList.append(node);
+  });
+}
+
+function setLoading(isLoading) {
+  els.refreshButton.disabled = isLoading;
+  els.refreshButton.textContent = isLoading ? "Loading" : "Refresh";
+}
+
+function formatDate(value) {
+  if (!value) {
+    return "Unknown";
+  }
+  return new Intl.DateTimeFormat(undefined, {
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit"
+  }).format(new Date(value));
+}
+
+function escapeHtml(value) {
+  return value.replace(/[&<>"']/g, (char) => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    "\"": "&quot;",
+    "'": "&#39;"
+  })[char]);
+}
+
+els.refreshButton.addEventListener("click", () => loadPicks(true));
+els.searchInput.addEventListener("input", (event) => {
+  state.query = event.target.value;
+  renderPicks();
+});
+els.marketSelect.addEventListener("change", (event) => {
+  state.market = event.target.value;
+  renderPicks();
+});
+els.viewSelect.addEventListener("change", (event) => {
+  state.view = event.target.value;
+  renderPicks();
+});
+
+loadPicks();

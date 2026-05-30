@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Covers Daily MLB Picks</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Daily expert MLB board</p>
+        <h1>Covers Picks</h1>
+      </div>
+      <div class="actions">
+        <a class="source-link" href="https://www.covers.com/picks/mlb" target="_blank" rel="noreferrer">Source</a>
+        <button id="refreshButton" type="button" aria-label="Refresh picks">Refresh</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="status-band" aria-live="polite">
+        <div>
+          <span class="label">Fetched</span>
+          <strong id="fetchedAt">Loading</strong>
+        </div>
+        <div>
+          <span class="label">Games</span>
+          <strong id="gameCount">0</strong>
+        </div>
+        <div>
+          <span class="label">Expert picks</span>
+          <strong id="pickCount">0</strong>
+        </div>
+      </section>
+
+      <section class="controls" aria-label="Pick filters">
+        <label>
+          Search
+          <input id="searchInput" type="search" placeholder="Team, analyst, market">
+        </label>
+        <label>
+          Market
+          <select id="marketSelect">
+            <option value="">All markets</option>
+          </select>
+        </label>
+        <label>
+          View
+          <select id="viewSelect">
+            <option value="best">Best ranked</option>
+            <option value="all">All expert picks</option>
+          </select>
+        </label>
+      </section>
+
+      <section>
+        <div class="section-heading">
+          <h2 id="listTitle">Best expert picks</h2>
+          <p id="intro"></p>
+        </div>
+        <div id="pickList" class="pick-grid"></div>
+      </section>
+    </main>
+
+    <template id="pickTemplate">
+      <article class="pick-card">
+        <div class="pick-topline">
+          <span class="matchup"></span>
+          <span class="made"></span>
+        </div>
+        <h3 class="selection"></h3>
+        <div class="meta-row">
+          <span class="market"></span>
+          <span class="odds"></span>
+          <span class="rating"></span>
+        </div>
+        <p class="analysis"></p>
+        <footer>
+          <span class="analyst"></span>
+          <span class="starts"></span>
+        </footer>
+      </article>
+    </template>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
