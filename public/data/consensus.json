@@ -1,582 +1,218 @@
 {
-  "generatedAt": "2026-05-30T18:25:03.820Z",
+  "generatedAt": "2026-05-31T13:22:26.997Z",
   "sources": [
     {
       "id": "covers",
       "name": "Covers",
       "url": "https://www.covers.com/picks/mlb",
       "error": null,
-      "picks": 11
+      "picks": 3
     },
     {
       "id": "pickswise",
       "name": "Pickswise",
       "url": "https://www.pickswise.com/mlb/picks/",
       "error": null,
-      "picks": 15
+      "picks": 6
     },
     {
       "id": "action",
       "name": "Action Network",
       "url": "https://www.actionnetwork.com/mlb/picks/",
       "error": null,
-      "picks": 24
+      "picks": 9
     }
   ],
   "picks": [
     {
-      "matchup": "KC @ TEX",
-      "startsAt": "Sat, May 30 • 4:05 PM ET",
+      "matchup": "DET @ CHW",
+      "startsAt": "Sun, May 31 • 2:10 PM ET",
       "market": "Total",
       "selection": "Over 7.5",
-      "odds": "o7.5 -120",
-      "expert": "Shawn Krest",
-      "analysis": "Kansas City has the worst bullpen WHIP in baseball and the third-worst ERA. The pen allowed four homers in the last three games, posting an 8.71 ERA. The Rangers have been better in relief, but Texas allowed 5+ five times in the last eight games.",
-      "key": "KC @ TEX|Total|Over 7.5",
+      "odds": "o8.0 +100",
+      "expert": "Eric Rosales",
+      "analysis": "The White Sox have an Over record of 8-2-0 in their last 10 games.",
+      "key": "DET @ CHW|Total|Over 7.5",
       "sourceId": "covers",
       "source": "Covers",
       "url": "https://www.covers.com/picks/mlb"
     },
     {
-      "matchup": "KC @ TEX",
-      "startsAt": "Sat, May 30 • 4:05 PM ET",
+      "matchup": "DET @ CHW",
+      "startsAt": "Sun, May 31 • 2:10 PM ET",
       "market": "Run Line",
-      "selection": "TEX -1.5",
-      "odds": "+1.5 -194",
-      "expert": "Shawn Krest",
-      "analysis": "The Royals have been losing big all season. K.C.'s runline and moneyline records are the same, meaning that giving up the 1.5 runs against them isn't a big risk. While starter Seth Lugo started the year strong, May was rough, posting a 5.27 ERA and 1.683 WHIP in five starts.",
-      "key": "KC @ TEX|Run Line|TEX -1.5",
+      "selection": "CHW -1.5",
+      "odds": "-1.5 +164",
+      "expert": "Eric Rosales",
+      "analysis": "The White Sox have won five of seven against the Tigets, with four of those wins coming by at least two runs.",
+      "key": "DET @ CHW|Run Line|CHW -1.5",
       "sourceId": "covers",
       "source": "Covers",
       "url": "https://www.covers.com/picks/mlb"
     },
     {
-      "matchup": "MIN @ PIT",
-      "startsAt": "Sat, May 30 • 4:05 PM ET",
-      "market": "Prop",
-      "selection": "YRFI/NRFI (No: -109)",
-      "odds": "-120",
-      "expert": "Quinn Allen",
-      "analysis": "Mitch Keller and Bailey Ober have been among the most reliable first-inning pitchers in baseball this season. Keller owns a 9-2 NRFI record and hasn't allowed a first-inning run in three straight starts, while Ober is 10-1 and has gone nine consecutive outings without trouble. Both offenses also struggle early.",
-      "key": "MIN @ PIT|Prop|yrfi/nrfi (no: -109)",
+      "matchup": "NYY @ ATH",
+      "startsAt": "Sun, May 31 • 4:05 PM ET",
+      "market": "Run Line",
+      "selection": "NYY -1.5",
+      "odds": "-1.5 -102",
+      "expert": "Phil Naessens",
+      "analysis": "Will Warren's optimized release slot helps his 3,005-RPM sweeper generate elite horizontal movement, making it a tough matchup for Oakland's lineup. With New York's bullpen leading MLB in rolling groundball rate, play Yankees -1.5 to -105.",
+      "key": "NYY @ ATH|Run Line|NYY -1.5",
       "sourceId": "covers",
       "source": "Covers",
       "url": "https://www.covers.com/picks/mlb"
     },
     {
-      "matchup": "MIL @ HOU",
-      "startsAt": "Sat, May 30 • 4:10 PM ET",
-      "market": "Prop",
-      "selection": "YRFI/NRFI (No: -103)",
-      "odds": "-105",
-      "expert": "Quinn Allen",
-      "analysis": "Neither lineup has done much damage in the first inning lately, making this NRFI appealing. Brandon Sproat hasn't allowed a first-inning run in five straight starts, while Peter Lambert owns a 6-1 NRFI record and a sub-4.00 ERA. Milwaukee is hitting just .205 in opening frames this season.",
-      "key": "MIL @ HOU|Prop|yrfi/nrfi (no: -103)",
-      "sourceId": "covers",
-      "source": "Covers",
-      "url": "https://www.covers.com/picks/mlb"
-    },
-    {
-      "matchup": "MIA @ NYM",
-      "startsAt": "Sat, May 30 • 4:10 PM ET",
-      "market": "Total",
-      "selection": "Under 7",
-      "odds": "u7.0 -102",
-      "expert": "Todd Cordell",
-      "analysis": "The Miami Marlins are tied for 27th in home runs and have posted an ISO of .117 against right-handed pitching this month, ranking them 29th in the majors.",
-      "key": "MIA @ NYM|Total|Under 7",
-      "sourceId": "covers",
-      "source": "Covers",
-      "url": "https://www.covers.com/picks/mlb"
-    },
-    {
-      "matchup": "MIA @ NYM",
-      "startsAt": "Sat, May 30 • 4:10 PM ET",
+      "matchup": "TOR @ BAL",
+      "startsAt": 1780244100,
       "market": "Moneyline",
-      "selection": "NYM Moneyline",
+      "selection": "BAL Moneyline",
       "odds": "-130",
-      "expert": "Todd Cordell",
-      "analysis": "The New York Mets have the pitching advantage with Christian Scott taking the bump. He owns a 2.8 FIP and 3.0 ERA over the past month despite a .328 batting average on balls put in play, which should drop moving forward.",
-      "key": "MIA @ NYM|Moneyline|NYM",
-      "sourceId": "covers",
-      "source": "Covers",
-      "url": "https://www.covers.com/picks/mlb"
-    },
-    {
-      "matchup": "CHC @ STL",
-      "startsAt": "Sat, May 30 • 7:15 PM ET",
-      "market": "Total",
-      "selection": "Under 8.5",
-      "odds": "u8.0 -110",
-      "expert": "Shawn Krest",
-      "analysis": "The Cardinals' six-run outburst on Friday looks like an anomaly. Nelson Velasquez, called up earlier in the day, hit St. Louis' first home run this week. He's a platoon slugger, however, who'll likely be on the bench against a right-hander. That leaves the Cardinals' batters who have produced 0 or 1 runs in five of the last 10 games.",
-      "key": "CHC @ STL|Total|Under 8.5",
-      "sourceId": "covers",
-      "source": "Covers",
-      "url": "https://www.covers.com/picks/mlb"
-    },
-    {
-      "matchup": "CHC @ STL",
-      "startsAt": "Sat, May 30 • 7:15 PM ET",
-      "market": "Run Line",
-      "selection": "CHC -1.5",
-      "odds": "-1.5 +130",
-      "expert": "Shawn Krest",
-      "analysis": "A converted reliever, Brown started his last four, never allowing more than three runs. All Brown's stuff ranks in the top third of MLB, including a 99th-percentile breaking ball. He'll face St. Louis, which scored two runs in three games before Friday. The Cardinals start Kyle Leahy, who ranks in the bottom third in every pitch and is worse than 92% of MLB pitchers in overall run value.",
-      "key": "CHC @ STL|Run Line|CHC -1.5",
-      "sourceId": "covers",
-      "source": "Covers",
-      "url": "https://www.covers.com/picks/mlb"
-    },
-    {
-      "matchup": "PHI @ LAD",
-      "startsAt": "Sat, May 30 • 10:10 PM ET",
-      "market": "Total",
-      "selection": "Under 8.5",
-      "odds": "u8.5 -112",
-      "expert": "JD Yonke",
-      "analysis": "Jesus Luzardo has superb underlying metrics and strong prior results against LA's lineup (.168 AVG, .558 OPS). Both pens have been dominant (Philadelphia 2.07 SIERA, LA 2.96 FIP in the last 20 days) and are very well rested.",
-      "key": "PHI @ LAD|Total|Under 8.5",
-      "sourceId": "covers",
-      "source": "Covers",
-      "url": "https://www.covers.com/picks/mlb"
-    },
-    {
-      "matchup": "PHI @ LAD",
-      "startsAt": "Sat, May 30 • 10:10 PM ET",
-      "market": "Moneyline",
-      "selection": "PHI Moneyline",
-      "odds": "+108",
-      "expert": "JD Yonke",
-      "analysis": "Roki Sasaki allows loud contact (11th percentile barrel rate, 11th percentile hard-hit rate), which is a concern against a Philadelphia lineup with the fifth-highest hard-hit rate (35.6%) in the last 20 days. His four-seamer has been crushed (.348 xBA, .614 xSLG), and Philadelphia (fourth-most WAR against fastballs) will be happy to oblige.",
-      "key": "PHI @ LAD|Moneyline|PHI",
-      "sourceId": "covers",
-      "source": "Covers",
-      "url": "https://www.covers.com/picks/mlb"
-    },
-    {
-      "matchup": "TB @ NYY",
-      "startsAt": "Tue, Sep 22 • 1:05 PM ET",
-      "market": "Moneyline",
-      "selection": "TB Moneyline",
-      "odds": "",
-      "expert": "Aisha Quiñones",
-      "analysis": "Drew Rasmussen vs. the New York Yankees is a mismatch on paper - the righty is 4-1 with a 1.03 ERA and 51 punchouts in eight career games against New York. Coming off a thrilling comeback win on Friday, the division-leading Tampa Bay Rays are primed to keep the foot on the gas behind their dynamic arm to create more separation in the AL East.",
-      "key": "TB @ NYY|Moneyline|TB",
-      "sourceId": "covers",
-      "source": "Covers",
-      "url": "https://www.covers.com/picks/mlb"
-    },
-    {
-      "matchup": "KC @ TEX",
-      "startsAt": 1780171500,
-      "market": "Moneyline",
-      "selection": "TEX Moneyline",
-      "odds": "-125",
       "expert": "Pickswise",
-      "analysis": "The Texas Rangers will look to keep their offense rolling after a dominant 9-1 victory over the Royals on Friday night. Kansas City’s offense has been difficult to trust lately, averaging just 2.3 runs per game while batting .203 over its last 10 games. It hasn’t just been the offense that’s struggled either, as the Royals have posted a 5.46 team ERA during that stretch. The Rangers have been much more productive lately, averaging 4.7 runs per game while hitting .240 and carrying a slightly better 4.31 ERA. Taking the mound for the Royals will be Seth Lugo, who enters with a 2-4 record, 3.74 ERA and 1.38 WHIP. For the Rangers, Kumar Rocker will get the nod, entering with a 2-5 record, 3.96 ERA and 1.36 WHIP. It’s tough to back either starter in this spot, but if Rocker runs into trouble early, Texas has a significant advantage in the bullpen. The Rangers relievers own a solid 3.11 ERA compared to Kansas City’s 5.08 bullpen ERA. While I’m not entirely confident in Rocker, I do trust this Rangers bullpen and offense a lot more than the Royals right now. Look for the Rangers to get the job done at home as the Royals struggles continue. Royals vs Rangers prediction: Texas Rangers (-125) at the time of publishing. Playable to -135. Bet like a Caesar with this AMAZING new customer offer from Caesars Sportsbook , where you can receive DOUBLE YOUR WINNINGS on 10 straight wagers after making your first $1 bet! Become a Caesars member 👥 using the Caesars promo code PWCONTENT250BM, where you can bet on our Royals vs Rangers picks.",
-      "key": "KC @ TEX|Moneyline|TEX",
+      "analysis": "The Toronto Blue Jays and Baltimore Orioles will finish their series on Sunday afternoon. They are the Peacock game, so be aware of the early start time. The Blue Jays won the first 2 games in this series, but the O’s bounced back on Saturday afternoon with an improbable 9th-inning rally, scoring 5 runs in the final frame to win the game 6-5. Baltimore will look to carry that momentum into Sunday’s series finale, when they will have their ace on the mound. I like how this game sets up for the Orioles, and I am taking them to win on Sunday. Kyle Bradish has been pitching well in May, turning in 4 excellent starts in a row — and against good offenses. In fact, he logged quality starts against the Rays, Yankees and Athletics in that stretch. On the other side, the Blue Jays will go with Spencer Miles, a guy who has spent most of the season in the bullpen but has been forced into the rotation because of all the injuries to Toronto’s staff. Miles has put up good ratios, but he isn’t stretched out, so this becomes somewhat of a bullpen game. I like the way the Baltimore offense is starting to take shape now that most of their hitters are healthy. Give me the orange birds on Sunday. Blue Jays vs Orioles Prediction : Baltimore Orioles ML (-130) available at the time of publishing. Playable to -140 . Sign up for Polymarket RIGHT NOW to get instant access and a $50 trading bonus after you make your first $20 deposit! You can join Polymarket by clicking here and trade on our Blue Jays vs Orioles predictions.",
+      "key": "TOR @ BAL|Moneyline|BAL",
       "sourceId": "pickswise",
       "source": "Pickswise",
       "url": "https://www.pickswise.com/mlb/picks/"
     },
     {
       "matchup": "MIN @ PIT",
-      "startsAt": 1780171500,
-      "market": "Moneyline",
-      "selection": "PIT Moneyline",
-      "odds": "-140",
+      "startsAt": 1780248900,
+      "market": "Total",
+      "selection": "Under 7.5",
+      "odds": "-105",
       "expert": "Pickswise",
-      "analysis": "I favor the Pittsburgh Pirates over the Minnesota Twins when they face off Saturday afternoon. Pittsburgh won Game 1 of this series on Friday thanks to a 2-run walk off home run from Bryan Reynolds in what was an entertaining game with quick offensive starts from both sides and several lead changes. Mitch Keller is set to start for Pittsburgh on Saturday, marking his 12th trip to the mound this season. Through his first 64.1 innings of work, the veteran right-hander has posted a solid 3.64 ERA, and his 3.47 FIP supports that success. Furthermore, Keller has been extremely tough on right-handed batters, which should help against Byron Buxton atop Minnesota’s order. Overall, Minnesota sits 18th in wOBA with a 97 wRC+ against right-handed pitching this season. Bailey Ober is set to start for the Twins for the 12th time this year. Through 62 innings of work, the 6-foot-9 right-hander has posted a 3.92 ERA, though his 4.48 FIP is less encouraging and his recent form is not the sharpest. Ober has allowed 4 home runs in his last 2 starts and at least 1 home run in 5 of his last 6 starts. He ranks 1st percentile in fastball velocity, yet fills the zone with strikes early and often. Meanwhile, Pittsburgh has found success against low-strikeout right-handers. In fact, the Pirates sit 5th in wOBA with a 109 wRC+ against right-handed pitching. When at home, that wRC+ against righties jumps to 114. Neither bullpen is very good, but I will back the better starter and better lineup in this game. Twins vs Pirates prediction: Pittsburgh Pirates ML (-140) available at time of publishing. Playable to -145. You can bet on our Twins vs Pirates pick with BetMGM , where right now new users can activate your new BetMGM account ⚡ and receive $150 in bonus bets INSTANTLY if your first $10+ wager is a winner!",
-      "key": "MIN @ PIT|Moneyline|PIT",
+      "analysis": "The Minnesota Twins and the Pittsburgh Pirates have given fans a great series at PNC Park, with the home team winning 6-5 and 10-9 across the first 2 game. Those contests included plenty of offensive outbursts, but the recent play of Zebby Matthews and Braxton Ashcroft could provide us with an intriguing pitching matchup in the final game of the series. Matthews has just 3 starts this season, but he looks to be on the way to his best season in his 3-year MLB career — going 6+ innings in each of the appearances and owning a 2.37 ERA. The righty’s underlying numbers are great, as he doesn’t give up a ton of hard contact, and he has great control. It’s a perfect mix for him to put the Twins in a position to take at least 1 of the 3 games from the Pirates and avoid the sweep. Matthews isn’t the only starter in this game with great underlying numbers. Ashcraft’s 2.94 xERA proves that his success this season is no fluke and that the team’s choice to transition him into the rotation full-time was a great decision. The righty allowed just 1 earned run in 6+ innings in each of his past 2 starts. We’ll take the pitching matchup in this game and back the bats to go cold. Twins vs Pirates prediction: Under 7.5 (-105) available at time of publishing. Playable to that number. You can bet on our Twins vs Pirates pick with BetMGM , where right now new users can activate your new BetMGM account ⚡ and receive $150 in bonus bets INSTANTLY if your first $10+ wager is a winner!",
+      "key": "MIN @ PIT|Total|Under 7.5",
       "sourceId": "pickswise",
       "source": "Pickswise",
       "url": "https://www.pickswise.com/mlb/picks/"
     },
     {
       "matchup": "SD @ WAS",
-      "startsAt": 1780171500,
-      "market": "Total",
-      "selection": "Over 7.5",
-      "odds": "-110",
-      "expert": "Pickswise",
-      "analysis": "The Padres and Nationals are set for a Saturday afternoon matchup at Nationals Park in the nation’s capital. After 12 total runs were scored in the opening game of this series on Friday night in San Diego’s 7-5 win, Saturday’s contest could also be of the high-scoring variety. Washington will send right-hander Foster Griffin to the mound, and he is still adjusting to life as a starting pitcher in the big leagues. This is Griffin’s first year as a full-time starter, and he has experienced some ups-and-downs through 2 months of the season. He posted a strong 2.51 ERA in April, but that number has jumped to 4.76 across his 5 starts in May. Given his inconsistencies, look for the Padres to have a strong date at the plate in this one. Michael King will toe the rubber for the visitors. King has been a steady force on the mound this season, as he enters this matchup with a 2.76 ERA and 1.15 WHIP through 11 starts and 62.0 innings of work. However, he has a tough assignment on his hands. The Nationals have been among the best offenses in baseball so far this season, as they enter this matchup ranked 1st in total runs (311) and 4th in OPS (.745). In addition, the Nationals are scoring 5.5 runs per game at home. Washington should also be able to have a successful offensive day, which makes the over the play. Padres vs Nationals prediction: Over 7.5 (-110) available at time of publishing. Playable to -115. You can bet on our Padres vs Nationals pick with BetMGM , where right now new users can activate your new BetMGM account ⚡ and receive $150 in bonus bets INSTANTLY if your first $10+ wager is a winner!",
-      "key": "SD @ WAS|Total|Over 7.5",
-      "sourceId": "pickswise",
-      "source": "Pickswise",
-      "url": "https://www.pickswise.com/mlb/picks/"
-    },
-    {
-      "matchup": "TOR @ BAL",
-      "startsAt": 1780171500,
+      "startsAt": 1780248900,
       "market": "Moneyline",
-      "selection": "TOR Moneyline",
-      "odds": "-122",
+      "selection": "SD Moneyline",
+      "odds": "-130",
       "expert": "Pickswise",
-      "analysis": "I find Saturday’s matchup between the Toronto Blue Jays and the Baltimore Orioles to be a compelling spot. I do my handicapping before looking at betting lines, and then I try to locate the best value from there. I initially circled the under for this matchup but was surprised to see the total already at 7.5. That is a low mark, in my opinion, so I will instead pivot to a side. Trey Yesavage is coming off his worst outing of the season. He has only made 6 starts so far, but he allowed 5 earned runs across 6.2 innings against the Marlins last time out. His first 5 starts had been very strong, allowing just 3 combined earned runs in that sample. Baltimore is a solid offense against right-handed pitching, especially in their home park, but I am a fan of Yesavage and his profile. He ranks as one of the premier pitchers when it comes to suppressing hard contact, and his strikeout numbers are terrific as well. Brandon Young is also pitching well entering this game on Saturday, as he has a 2.91 ERA across his first 21.2 innings this month. Baltimore is 4-0 in those games thanks to some solid run support, but Young is showing some concerning signs. His 11 walks to 17 strikeouts in that span is not a great ratio, and on the season his K-BB% sits at just 6.1%. Young struggles to keep the ball on the ground and that is concerning with the hard contact he allows. I side with Toronto at current pricing. Blue Jays vs Orioles prediction: Toronto Blue Jays ML (-122) available at time of publishing. Playable to -125. You can bet on our Blue Jays vs Orioles pick with BetMGM , where right now new users can activate your new BetMGM account ⚡ and receive $150 in bonus bets INSTANTLY if your first $10+ wager is a winner!",
-      "key": "TOR @ BAL|Moneyline|TOR",
+      "analysis": "It isn’t exactly shaping up to be a pitcher’s duel on Sunday afternoon when the San Diego Padres visit the Washington Nationals for their final game of the series, but that isn’t a massive difference from the rest of the series, as the teams combined for 25 runs over the first 2 games. Griffin Canning didn’t make his season debut until May after missing the first month and a half on the injured list, and he immediately made an impact with a solid 5-inning outing. However, that has been his only great performance of the season thus far, allowing 6 runs in back-to-back games after his first start, and then 3 runs in back-to-back games heading into this matchup. Despite the inflated 7.54 ERA, he hasn’t been quite as bad as those numbers suggest, owning a 4.58 xERA. Zack Littell had a rough stretch through April, but the righty has seen his ERA drop considerably in May, allowing just 6 earned runs through 24.2 innings. While Canning’s xERA paints him in a better light, Littell’s suggests that there could be a regression to the mean coming after escaping danger in May, as he owns a 6.57 xERA compared to his 5.23 ERA. The starter’s xERA puts him in the bottom 3% of the entire MLB. This starting pitcher matchup is a bit scary, with both showing some inconsistencies. However, the underlying numbers and the bullpen advantage for San Diego makes me lean the Padres in this one. Padres vs Nationals prediction: San Diego Padres ML (-130) available at time of publishing. Playable to that number. If you’re looking for a new sportsbook, check out bet365 , the world’s #1 sportsbook. They have an amazing sign-up offer where you can INSTANTLY receive $200 in bonus bets from a $10 wager, regardless of whether that bet wins or loses! There’s no catch, it’s really that simple. Join Bet365 right now ⏰ in time to fade or follow our experts’ Padres vs Nationals predictions.",
+      "key": "SD @ WAS|Moneyline|SD",
       "sourceId": "pickswise",
       "source": "Pickswise",
       "url": "https://www.pickswise.com/mlb/picks/"
     },
     {
       "matchup": "BOS @ CLE",
-      "startsAt": 1780171800,
+      "startsAt": 1780249200,
       "market": "Moneyline",
-      "selection": "CLE Moneyline",
-      "odds": "-130",
+      "selection": "BOS Moneyline",
+      "odds": "-115",
       "expert": "Pickswise",
-      "analysis": "The Red Sox fell behind early on Friday night, surrendering 4 first-inning runs to the Guardians, and never fully recovering in a 4-3 loss. Boston will look to even the series on Saturday when they hand the ball to one of their most reliable arms, Sonny Gray. Gray enters with a 5-1 record, 3.27 ERA and 1.20 WHIP this season. Cleveland will hand the ball to left-hander Parker Messick, who enters with a 6-1 record, 2.24 ERA and a 1.04 WHIP. On paper, this is a fantastic pitching matchup. Gray has been excellent for Boston, but Messick has been one of the most consistent starters in baseball this season. The biggest concern for Messick is that Boston has hit left-handed pitching well all year, batting .274 against southpaws. The Red Sox have also been swinging hot bats lately, averaging 4.6 runs per game while hitting .290 over their last 10. The Guardians offense is averaging only 2.6 runs and hitting .224 in that same span. However, Cleveland’s success this season has been built around strong pitching, and Messick has been a major reason why. While Boston’s offense presents a challenge, the Guardians have done a great job at limiting scoring opportunities, and we saw that last night. With Cleveland holding the edge on the mound and Boston losing six of their last 10 games, I like Cleveland to get the job done at home. Red Sox vs Guardians prediction: Cleveland Guardians ML (-130) at the time of publishing. Playable to -140. Sign up for Polymarket RIGHT NOW to get instant access and a $50 trading bonus after you make your first $20 deposit! You can join Polymarket by clicking here and trade on our Red Sox vs Guardians predictions.",
-      "key": "BOS @ CLE|Moneyline|CLE",
+      "analysis": "The Boston Red Sox offense finally came to life Saturday, erupting for 9 runs on 11 hits in a convincing win over the Cleveland Guardians. Cleveland struggled to generate offense, managing just 1 run on 6 hits, while committing 4 costly errors. Looking to secure a series win, the Red Sox will hand the ball over to the lefty, Ranger Suarez, who enters with a 2-3 record and a 3.02 ERA. For the Guardians, Tanner Bibee will get the nod, who is winless — holding a 0-7 record with a 4.57 ERA. Boston has been the hotter team offensively over the last 10 games, averaging 5.2 runs per game while batting an impressive .293. As for Cleveland, they’re averaging 2.3 runs per game and hitting .227 in that span. Taking a look at the starting pitchers, Bibee is coming off one of his worst performances of the season against the Nationals, when he gave up 7 runs on 8 hits in 3 innings pitched. However, Suarez wasn’t much better in his last start, giving up 5 runs on 6 hits in 5 innings against the Braves. Taking everything into consideration, the Red Sox offense has shown it is more than capable of producing runs when it matters the most. Given Bibee’s struggles this season, I’m going to lean towards the Red Sox to secure a series win on the road behind Ranger Suarez. Red Sox vs Guardians prediction: Boston Red Sox ML (-115) at the time of publishing. Playable to – 130. Sign up for Polymarket RIGHT NOW to get instant access and a $50 trading bonus after you make your first $20 deposit! You can join Polymarket by clicking here and trade on our Red Sox vs Guardians predictions.",
+      "key": "BOS @ CLE|Moneyline|BOS",
       "sourceId": "pickswise",
       "source": "Pickswise",
       "url": "https://www.pickswise.com/mlb/picks/"
     },
     {
       "matchup": "LAA @ TB",
-      "startsAt": 1780171800,
-      "market": "Moneyline",
-      "selection": "TB Moneyline",
-      "odds": "-165",
-      "expert": "Pickswise",
-      "analysis": "The Tampa Bay Rays, despite losing 4 consecutive games entering this series against the Los Angeles Angels, still sit at the top of the American League East with a sterling 35-19 record. Things haven’t been going as well for the Angels this season, and that continued in the first game of the series on Friday night when Tampa Bay escaped with an 8-5 victory. Angels pitchers have been struggling to keep runs off the board this season, and that could continue on Saturday with Reid Detmers taking the mound. The lefty had an unbelievable outing last time out, striking out 14 and allowing just 1 hit and 1 earned run over 8 innings, but his overall form this season has been rough — including when he allowed 8 earned runs in the outing prior to that dazzling 8-inning performance. Drew Rasmussen has been pitching quite well for the Rays’ stingy staff this season, with his most recent outing being a 7-inning gem against the New York Yankees, allowing just 5 hits and no earned runs over 7 innings. Detmers will be riding high after his last start, but the Rays are one of the best hitting teams against lefties this season, and the Angels’ starter gives no reason to believe he can string together 2 solid outings. Angels vs Rays prediction: Tampa Bay Rays ML (-165) available at time of publishing. Playable to -180. Sign up for Polymarket RIGHT NOW to get instant access and a $50 trading bonus after you make your first $20 deposit! You can join Polymarket by clicking here and trade on our Angels vs Rays predictions.",
-      "key": "LAA @ TB|Moneyline|TB",
-      "sourceId": "pickswise",
-      "source": "Pickswise",
-      "url": "https://www.pickswise.com/mlb/picks/"
-    },
-    {
-      "matchup": "MIA @ NYM",
-      "startsAt": 1780171800,
-      "market": "Total",
-      "selection": "Under 7",
-      "odds": "-105",
-      "expert": "Pickswise",
-      "analysis": "The New York Mets exacted a bit of revenge on the Miami Marlins on Friday night, taking the first game of the series 9-7. The Marlins swept the Mets at home in a 3-game series last week, with New York looking to do the same this weekend. The Mets will send Christian Scott to the mound to attempt to get one step closer to that goal, while the Marlins will counter with Tyler Phillips as he continues to transition into the rotation. Phillips has been performing well for Miami in his last 2 outings, slowly building himself up to more of a starter’s workload. He went at least 3 innings in each of those appearances, allowing just 4 hits and no earned runs over 6.2 combined innings. The Marlins’ bullpen might still need to take the bulk of this game, which is not too concerning considering they are a top-10 group in baseball. Scott is another pitcher that doesn’t go too deep into games but has been performing well for the Mets this season. Both of these pitchers will give their respective teams a solid first half of the game, while New York is another team with a top-10 bullpen. After a run-scoring onslaught in Friday night’s game, expect a bit more of a pitching duel in this matchup. Marlins vs Mets prediction: Under 7 (-105) available at time of publishing. Playable to that number. Sign up for Polymarket RIGHT NOW to get instant access and a $50 trading bonus after you make your first $20 deposit! You can join Polymarket by clicking here and trade on our Marlins vs Mets predictions.",
-      "key": "MIA @ NYM|Total|Under 7",
-      "sourceId": "pickswise",
-      "source": "Pickswise",
-      "url": "https://www.pickswise.com/mlb/picks/"
-    },
-    {
-      "matchup": "MIL @ HOU",
-      "startsAt": 1780171800,
-      "market": "Total",
-      "selection": "Over 8.5",
-      "odds": "-115",
-      "expert": "Pickswise",
-      "analysis": "Brandon Sproat (5.84 ERA, 1.54 WHIP) takes the mound for the Brewers on the road, while Peter Lambert (3.79 ERA, 1.17 WHIP) takes the bump for the hosting Astros. Both pitchers have something in common: they’ve each given up at least 3 earned runs in 3 consecutive starts. While Milwaukee has a solid bullpen in relief late in the game, Sproat has some daunting underlying numbers — falling in the 2nd percentile in pitching run value with a poor 4.81 xERA that ranks 24th percentile. Lambert has slightly better figures, though the Houston bullpen is a major problem, sitting dead last in MLB with a 5.32 combined ERA. Both offenses are above league average in wRC+ and OBP, with the Brewers sitting top-10 in both categories. The pitching matchup in this one calls for plenty of scoring opportunities for both sides, so I have this one going over 8.5 runs. Brewers vs Astros prediction: Over 8.5 (-115) at time of publishing. Now you can bet any of our Brewers vs Astros predictions at FanDuel Sportsbook , which has a great new-customer offer to take advantage of. If you sign up for FanDuel right now, you can get up to $250 in bonus bets if your first $5 wager is a winner! Use this link 🔗 to join FanDuel right now and learn more.",
-      "key": "MIL @ HOU|Total|Over 8.5",
-      "sourceId": "pickswise",
-      "source": "Pickswise",
-      "url": "https://www.pickswise.com/mlb/picks/"
-    },
-    {
-      "matchup": "ATL @ CIN",
-      "startsAt": 1780182900,
-      "market": "Total",
-      "selection": "Over 9.5",
-      "odds": "+100",
-      "expert": "Pickswise",
-      "analysis": "Brady Singer has had a rough go in 2026, pitching to a 6.26 ERA in his first 46 innings of work. Singer is averaging just 4.6 innings per start thanks to opponents having a .980 OPS against him. In fact, Left-handed batters have a 1.105 OPS against him, and Atlanta is projected to have 6 lefty bats in their lineup on Saturday. Singer has one of the more concerning baseball savant pages, as he is filling the zone but allowing a 44.3% hard-hit rate and a 13.0% barrel rate. He has allowed 11 home runs in his last 5 starts alone, and so far in 17 innings this month, he has posted an 8.47 ERA across 4 starts. Atlanta ranks 2nd in baseball in wOBA against right-handed pitching, while posting a wRC+ of 118. Cincinnati has been a productive offense against left-handed pitching this season. Entering Saturday, the Reds have the 6th-best wOBA against lefties, while posting a 109 wRC+. They will face off against veteran southpaw Martin Perez and his 2.70 ERA, which has been welcomed production by Atlanta through 46.2 innings. That said, he could be due for some regression. Both his xERA and FIP are well over a full run higher, and his current 83.7% strand rate is an unsustainable mark. All things considered, I favor the over on the posted game total in this game. Reds vs Braves prediction: Over 9.5 (+100) available at time of publishing. Playable to -110. You can bet on our Reds vs Braves pick at DraftKings Sportsbook , which has thousands of betting options available and a great new customer offer where you can get $300 in bonus bets INSTANTLY if your first $5 bet is a winner! Click here 👈🏼 to sign up for a DraftKings account now.",
-      "key": "ATL @ CIN|Total|Over 9.5",
-      "sourceId": "pickswise",
-      "source": "Pickswise",
-      "url": "https://www.pickswise.com/mlb/picks/"
-    },
-    {
-      "matchup": "CHC @ STL",
-      "startsAt": 1780182900,
-      "market": "Moneyline",
-      "selection": "STL Moneyline",
+      "startsAt": 1780249200,
+      "market": "Run Line",
+      "selection": "TB -1.5",
       "odds": "+115",
       "expert": "Pickswise",
-      "analysis": "Friday’s game between the Cubs and Cardinals got off to quite the start, as each team scored 3 runs in the opening inning. However, it was the Cardinals that outlasted the Cubs over the final 8 innings in a 6-5 win that included 20 combined hits and 4 home runs. The Cubs will look to even the series on Saturday when they send Ben Brown to the mound. Brown hasn’t been a starter all year, but he’s thrown at least 4 innings in each of his last 4 appearances, including 11 innings over his last 2 starts against the Pirates and Brewers. In those 4 appearances, he struck out 23 combined batters and surrendered just 4 earned runs across 19 total innings. Brown even held the hot-hitting Braves scoreless in 4 innings, striking out 7. St. Louis is projected to counter with Kyle Leahy, who had a rough outing last Saturday in Cincinnati. Leahy allowed 5 runs on 7 hits, 2 home runs and 2 walks, making it the 3rd time in his 10 starts that he has allowed at least 4 runs. Despite the poor showing, Leahy still has managed a 2.95 ERA in May thanks in part to just 2 earned runs allowed in 11.1 innings at home this month. I don’t see much of a starting pitching edge either way here, and the offenses both perform similarly against right-handed pitchers, so this game is a toss-up – and it’s priced as such. In fact, it might be a bit heavy in Chicago’s favor. Give me St. Louis at home on the plus-money price. Cubs vs Cardinals prediction: St. Louis Cardinals ML (+115) at the time of publishing. Playable to +105. Bet like a Caesar with this AMAZING new customer offer from Caesars Sportsbook , where you can receive DOUBLE YOUR WINNINGS on 10 straight wagers after making your first $1 bet! Become a Caesars member 👥 using the Caesars promo code PWCONTENT250BM, where you can bet on our Cubs vs Cardinals picks.",
-      "key": "CHC @ STL|Moneyline|STL",
-      "sourceId": "pickswise",
-      "source": "Pickswise",
-      "url": "https://www.pickswise.com/mlb/picks/"
-    },
-    {
-      "matchup": "SF @ COL",
-      "startsAt": 1780189800,
-      "market": "Total",
-      "selection": "Over 11",
-      "odds": "-105",
-      "expert": "Pickswise",
-      "analysis": "Saturday’s pitching matchup between the Giants and Rockies pits San Francisco’s Adrian Houser against Colorado’s Ryan Feltner. Both pitchers have seen their fair share of struggles this season. On one side, Houser owns a 5.30 ERA to go along with a 1.48 WHIP through 10 starts and 52.2 innings. Houser’s home ballpark of Oracle Park is among the most pitcher-friendly stadiums out there, yet he owns a 6.97 ERA and .337 BAA in 4 home starts. On Saturday, he has to pitch at the most hitter-friendly ballpark in baseball at Coors Field. Thus, it’s fair to say Houser enters this contest with plenty of uncertainty. On the other side, Colorado’s Ryan Feltner will be making his first start since April 23 after spending more than a month on the IL with an elbow injury. In 5 starts this season, Feltner owns a 6.30 ERA and opponents boast a solid .903 OPS against him. Neither Houser nor Feltner have been racking up the strikeouts, which means the ball should be put in play early and often. That type of formula tends to result in high-scoring games at Coors Field. Look to the over in this NL West matchup. Giants vs Rockies prediction: Over 11 (-105) available at time of publishing. Playable to -115. You can bet on our Giants vs Rockies pick at DraftKings Sportsbook , which has thousands of betting options available and a great new customer offer where you can get $300 in bonus bets INSTANTLY if your first $5 bet is a winner! Click here 👈🏼 to sign up for a DraftKings account now.",
-      "key": "SF @ COL|Total|Over 11",
+      "analysis": "The Los Angeles Angels and Tampa Bay Rays wrap up a three-game series at Tropicana Field in St. Petersburg, and it’s a rubber game. The Rays picked up an 8-5 win as moderate favorites (-162) on Friday as the Over (8) cashed, while the Halos trounced Tampa 14-3 as moderate underdogs (+144) as the Over (7) easily connected. It was a rare loss for the Rays at home, as they’re 20-6 under the Tropicana roof. It was equally a rare win for the Angels on the road, as they’re just 11-20 away from the Big A. The Angels turn to RHP Jack Kochanowicz (2-3, 4.99 ERA, 1.39 WHIP) for Sunday’s start. He is a 1-1 with a dismal 6.25 ERA in 31 2/3 IP across six road starts, and his biggest issue has been issuing walks. He has 18 walks in six starts away from home. The Rays counter with RHP Shane McClanahan (5-2, 2.52 ERA, 1.04 WHIP), who has exhibited All-Star form through 10 starts and 50 IP. The secret to his success has been keeping the ball in the yard, as he has allowed just two homers. He has had a slight problem with walks, allowing two or more walks in six of his 10 outings, but he has managed to limit the damage. At home, McClanahan is a perfect 4-0 with a 2.10 ERA across 25 2/3 IP in five starts, and teams are hitting just .185 against him there. Rays -1.5 (+115) at time of publishing. Playable to -110.",
+      "key": "LAA @ TB|Run Line|TB -1.5",
       "sourceId": "pickswise",
       "source": "Pickswise",
       "url": "https://www.pickswise.com/mlb/picks/"
     },
     {
       "matchup": "NYY @ ATH",
-      "startsAt": 1780193100,
-      "market": "Moneyline",
-      "selection": "NYY Moneyline",
-      "odds": "-155",
-      "expert": "Pickswise",
-      "analysis": "The New York Yankees continued their hot streak Friday night, defeating the Athletics 8-2 behind an 11-hit performance. Winners of 5 straight, the Yankees will look to keep the momentum rolling when they hand the ball to the left-hander Ryan Weathers, who enters with a 2-2 record, 3.14 ERA and 1.12 WHIP. The last time Weathers faced the A’s, he picked up the loss despite allowing just 1 earned run on 7 hits in 8 innings pitched. For the Athletics, J.T. Ginn will get the nod, entering with a 2-3 record, 3.19 ERA and 1.14 WHIP. The Athletics are batting .239 against lefties this season, and they failed to generate much offense against Weathers in their previous matchup. Meanwhile, the Yankees offense is surging right now, averaging 5.1 runs per game and hitting .279, compared to the A’s at 3.7 runs and .230. It’s too hard to trust the A’s in this spot, and while Ginn has pitched well this season, the Yankees are seeing the ball extremely well right now. Look for the Yankees to keep rolling and pick up another victory on the road. Yankees vs Athletics prediction: New York Yankees ML (-155) at the time of publishing. Playable up to – 175. Sign up for Polymarket RIGHT NOW to get instant access and a $50 trading bonus after you make your first $20 deposit! You can join Polymarket by clicking here and trade on our Yankees vs Athletics predictions.",
-      "key": "NYY @ ATH|Moneyline|NYY",
-      "sourceId": "pickswise",
-      "source": "Pickswise",
-      "url": "https://www.pickswise.com/mlb/picks/"
-    },
-    {
-      "matchup": "ARI @ SEA",
-      "startsAt": 1780193400,
-      "market": "Total",
-      "selection": "Under 7",
-      "odds": "-115",
-      "expert": "Pickswise",
-      "analysis": "The Arizona Diamondbacks and Seattle Mariners have one of the final games on the slate tonight. They battled late into the night on Friday before the Mariners eventually took a 7-6 victory in extra innings. That pushed the Mariners’ winning streak to 4 games, and it ended a 5-game streak for the D-Backs. As we head to Saturday, the Mariners are heavy favorites with Bryan Woo on the mound as he faces Ryne Nelson. There is value in backing the Diamondbacks at a nice plus-money payout, but I am going to go with under 7 in this spot. We don’t usually want to bet an under with Ryne Nelson on the mound, as he is very capable of giving up a big number. However, he has been really strong in the month of May, pitching into the 7th or 8th inning in 4 straight starts, logging quality starts in all of them. He will face a Seattle lineup that has never seen him before, and feels a little thin without Cal Raliegh in the middle of the order. Woo, on the other side, is as reliable as a starter gets. He has had a couple of rough outings this season, but he has more than earned my trust whenever he takes the hill. I think we could be in for a low-scoring grind of a game. The books think so too, and they know we hate betting unders already. Diamondbacks vs Mariners Prediction : Under 7 (-115) available at the time of publishing. Playable at that number . You can bet on our Diamondbacks vs Mariners pick at DraftKings Sportsbook , which has thousands of betting options available and a great new customer offer where you can get $300 in bonus bets INSTANTLY if your first $5 bet is a winner! Click here 👈🏼 to sign up for a DraftKings account now.",
-      "key": "ARI @ SEA|Total|Under 7",
-      "sourceId": "pickswise",
-      "source": "Pickswise",
-      "url": "https://www.pickswise.com/mlb/picks/"
-    },
-    {
-      "matchup": "PHI @ LAD",
-      "startsAt": 1780193400,
-      "market": "Total",
-      "selection": "Under 8.5",
-      "odds": "-115",
-      "expert": "Pickswise",
-      "analysis": "The Philadelphia Phillies and Los Angeles Dodgers square off in what looks like one of the premier matchups on the Saturday slate, but despite the star power on both sides, the value may lie with a lower-scoring game. Philadelphia sends Jesus Luzardo to the mound, and while his 4-4 record and 4.38 ERA do not immediately jump off the page, the left hander still possesses some of the best swing-and-miss stuff in the National League. Luzardo has recorded strikeouts at a high rate throughout the season and has shown the ability to neutralize powerful lineups when his fastball and breaking pitches are working together. The Phillies have also been involved in a large number of lower-scoring games recently, thanks in part to a bullpen that has quietly become one of the more reliable units in the league. The Dodgers counter with Roki Sasaki, who enters 3-3 with a 4.93 ERA. While the surface numbers suggest inconsistency, Sasaki’s electric arsenal continues to give him one of the highest ceilings in baseball. His strikeout ability remains elite, and he has often pitched better than the results indicate when avoiding free passes. Los Angeles remains one of the most dangerous offenses in the league, but the Dodgers have also trended toward lower-scoring games recently, as their pitching staff and bullpen have settled into form. The betting market has shown heavy support for both Los Angeles and the over, but the total remaining at 8.5 despite that action is notable. With both teams carrying strong under trends, 2 pitchers capable of generating swing-and-misses and playoff caliber bullpens available behind them, this matchup sets up as a tightly-contested game in which runs could be much harder to find than the public expects. Phillies vs Dodgers Prediction: Under 8.5 (-115) available at time of publishing. Playable to 8. You can bet on our Phillies vs Dodgers pick at DraftKings Sportsbook , which has thousands of betting options available and a great new customer offer where you can get $300 in bonus bets INSTANTLY if your first $5 bet is a winner! Click here 👈🏼 to sign up for a DraftKings account now.",
-      "key": "PHI @ LAD|Total|Under 8.5",
-      "sourceId": "pickswise",
-      "source": "Pickswise",
-      "url": "https://www.pickswise.com/mlb/picks/"
-    },
-    {
-      "matchup": "DET @ CHW",
-      "startsAt": 1780164600,
-      "market": "Moneyline",
-      "selection": "CHW Moneyline",
-      "odds": "+115",
-      "expert": "Pickswise",
-      "analysis": "The early game on Saturday features the Chicago White Sox vs the Detroit Tigers. On Friday, the White Sox walked off Detroit in the 10th inning, and that was after a 9th-inning rally to force extras. At some point, we need to start taking the White Sox seriously. The Tigers, on the other hand, are cratering hard. They have lost 11 of their last 13 games, and blowing the lead twice in the final 2 innings on Friday is just demoralizing. I have no idea why the White Sox are such plus-money underdogs, but I am happy to see it, and I will be locking that in. The pitching matchup features a pair of lefties, Framber Valdez and Anthony Kay. Both have been pitching well for most of the season, and there is no reason to fade either guy. What does stand out, however, is the slugging percentage of each team vs lefties. Would it surprise you to know that the White Sox have the 4th-best slugging percentage in the league vs LHP? They trail only the Yankees, Dodgers, and Diamondbacks. The Tigers are in the bottom 5 in the same category. Look, the White Sox keep finding ways to win, and the Tigers keep finding ways to lose. Let’s ride the hot team. Tigers vs White Sox Prediction : Chicago White Sox ML (+115) available at the time of publishing. Playable to -110 . Bet like a Caesar with this AMAZING new customer offer from Caesars Sportsbook , where you can receive DOUBLE YOUR WINNINGS on 10 straight wagers after making your first $1 bet! Become a Caesars member 👥 using the Caesars promo code PWCONTENT250BM, where you can bet on our Tigers vs White Sox picks.",
-      "key": "DET @ CHW|Moneyline|CHW",
-      "sourceId": "pickswise",
-      "source": "Pickswise",
-      "url": "https://www.pickswise.com/mlb/picks/"
-    },
-    {
-      "matchup": "DET @ CHW",
-      "startsAt": "2026-05-30T18:10:00.000Z",
-      "market": "Total",
-      "selection": "Under 8",
-      "odds": "-110",
-      "expert": "Sean Zerillo",
-      "analysis": "Bet to 7.5 (-105)",
-      "key": "DET @ CHW|Total|Under 8",
-      "sourceId": "action",
-      "source": "Action Network",
-      "url": "https://www.actionnetwork.com/mlb/picks/"
-    },
-    {
-      "matchup": "DET @ CHW",
-      "startsAt": "2026-05-30T18:10:00.000Z",
-      "market": "Moneyline",
-      "selection": "CHW Moneyline",
-      "odds": "+116",
-      "expert": "Matt Trollo",
-      "analysis": "(FD) Would only play to +110, but including in Saturday's breakdown article. The gist is that there are some red flags in Framber's profile, while Kay has been pitching better. ",
-      "key": "DET @ CHW|Moneyline|CHW",
-      "sourceId": "action",
-      "source": "Action Network",
-      "url": "https://www.actionnetwork.com/mlb/picks/"
-    },
-    {
-      "matchup": "DET @ CHW",
-      "startsAt": "2026-05-30T18:10:00.000Z",
-      "market": "Moneyline",
-      "selection": "CHW Moneyline",
+      "startsAt": 1780257900,
+      "market": "Run Line",
+      "selection": "NYY -1.5",
       "odds": "+105",
-      "expert": "Picks Office",
-      "analysis": "Join Discord for earlier access: https://discord.gg/HjKxYKdSUy\n\nChicago is 30-27 and only 3 games back while Detroit sits 22-36 and 11.5 back in the same division.\nDetroit is 2-8 over its last 10, with 5 of those 8 losses coming by at least 2 runs.\nWith starters still TBD and Detroit carrying 11 listed injuries, I want the plus-money home side.",
-      "key": "DET @ CHW|Moneyline|CHW",
-      "sourceId": "action",
-      "source": "Action Network",
-      "url": "https://www.actionnetwork.com/mlb/picks/"
+      "expert": "Pickswise",
+      "analysis": "The New York Yankees and Athletics play the series finale on Sunday, and it’s a rubber game. The Yankees routed the A’s 8-2 on Friday as moderate favorites on Friday behind LHP Carlos Rodon, while the A’s picked up a 6-4 victory on Saturday as moderate underdogs (+130). The Over cashed both games, just in case you’re considering a same-game parlay (SGP). However, let’s focus on the side for our purposes. The Yankees are 18-14 on the road this season, while the Athletics are just 11-16 in their temporary home in West Sacramento. The Yankees roll with RHP Will Warren (6-1, 3.55 ERA, 1.17 WHIP) for Sunday’s game, and he has actually been much better away from home. Warren is 2-0 with a 2.86 ERA while allowing just a single homer across 22 IP in four starts, and teams are hitting just .229 against him this season on the road. The A’s counter with LHP Jacob Lopez (4-2, 5.73 ERA, 1.77 WHIP). He is 0-1 with a 5.95 ERA across 19 2/3 IP in four home starts, serving up five homers with 13 walks in the span. As such, we’re going with the Yankees to get the job done, and to do so by at least two runs. Yankees -1.5 (+105) at time of publishing. Playable to -110.",
+      "key": "NYY @ ATH|Run Line|NYY -1.5",
+      "sourceId": "pickswise",
+      "source": "Pickswise",
+      "url": "https://www.pickswise.com/mlb/picks/"
     },
     {
-      "matchup": "DET @ CHW",
-      "startsAt": "2026-05-30T18:10:00.000Z",
-      "market": "Prop",
-      "selection": "D.Dingler o1.5 Hits + Runs + RBIs",
-      "odds": "-120",
-      "expert": "Sandy Plashkes",
-      "analysis": "",
-      "key": "DET @ CHW|Prop|d.dingler o1.5 hits + runs + rbis",
-      "sourceId": "action",
-      "source": "Action Network",
-      "url": "https://www.actionnetwork.com/mlb/picks/"
-    },
-    {
-      "matchup": "DET @ CHW",
-      "startsAt": "2026-05-30T18:10:00.000Z",
+      "matchup": "TOR @ BAL",
+      "startsAt": "2026-05-31T16:15:00.000Z",
       "market": "Moneyline",
-      "selection": "DET Moneyline",
-      "odds": "-130",
-      "expert": "Kyle Murray",
-      "analysis": "",
-      "key": "DET @ CHW|Moneyline|DET",
-      "sourceId": "action",
-      "source": "Action Network",
-      "url": "https://www.actionnetwork.com/mlb/picks/"
-    },
-    {
-      "matchup": "DET @ CHW",
-      "startsAt": "2026-05-30T18:10:00.000Z",
-      "market": "Moneyline",
-      "selection": "DET Moneyline",
-      "odds": "-120",
-      "expert": "Brian Bitler",
-      "analysis": "",
-      "key": "DET @ CHW|Moneyline|DET",
-      "sourceId": "action",
-      "source": "Action Network",
-      "url": "https://www.actionnetwork.com/mlb/picks/"
-    },
-    {
-      "matchup": "DET @ CHW",
-      "startsAt": "2026-05-30T18:10:00.000Z",
-      "market": "Prop",
-      "selection": "D.Dingler o1.5 Hits + Runs + RBIs",
-      "odds": "-119",
-      "expert": "RoyalsProps",
-      "analysis": "",
-      "key": "DET @ CHW|Prop|d.dingler o1.5 hits + runs + rbis",
-      "sourceId": "action",
-      "source": "Action Network",
-      "url": "https://www.actionnetwork.com/mlb/picks/"
-    },
-    {
-      "matchup": "DET @ CHW",
-      "startsAt": "2026-05-30T18:10:00.000Z",
-      "market": "Total",
-      "selection": "Under 8",
-      "odds": "-120",
-      "expert": "Frank Ammirante",
-      "analysis": "",
-      "key": "DET @ CHW|Total|Under 8",
-      "sourceId": "action",
-      "source": "Action Network",
-      "url": "https://www.actionnetwork.com/mlb/picks/"
-    },
-    {
-      "matchup": "DET @ CHW",
-      "startsAt": "2026-05-30T18:10:00.000Z",
-      "market": "Moneyline",
-      "selection": "CHW Moneyline",
-      "odds": "+116",
-      "expert": "Adam Kaufman",
-      "analysis": "",
-      "key": "DET @ CHW|Moneyline|CHW",
-      "sourceId": "action",
-      "source": "Action Network",
-      "url": "https://www.actionnetwork.com/mlb/picks/"
-    },
-    {
-      "matchup": "DET @ CHW",
-      "startsAt": "2026-05-30T18:10:00.000Z",
-      "market": "Total",
-      "selection": "Over 7.5",
-      "odds": "-108",
-      "expert": "💰🦡 Jake",
-      "analysis": "",
-      "key": "DET @ CHW|Total|Over 7.5",
-      "sourceId": "action",
-      "source": "Action Network",
-      "url": "https://www.actionnetwork.com/mlb/picks/"
-    },
-    {
-      "matchup": "DET @ CHW",
-      "startsAt": "2026-05-30T18:10:00.000Z",
-      "market": "Total",
-      "selection": "Under 7.5",
-      "odds": "-102",
-      "expert": "Wags Wins",
-      "analysis": "",
-      "key": "DET @ CHW|Total|Under 7.5",
-      "sourceId": "action",
-      "source": "Action Network",
-      "url": "https://www.actionnetwork.com/mlb/picks/"
-    },
-    {
-      "matchup": "KC @ TEX",
-      "startsAt": "2026-05-30T20:05:00.000Z",
-      "market": "Moneyline",
-      "selection": "TEX Moneyline",
-      "odds": "-120",
-      "expert": "Anders",
-      "analysis": "Analysis on Twitter @ Anderspicks",
-      "key": "KC @ TEX|Moneyline|TEX",
-      "sourceId": "action",
-      "source": "Action Network",
-      "url": "https://www.actionnetwork.com/mlb/picks/"
-    },
-    {
-      "matchup": "KC @ TEX",
-      "startsAt": "2026-05-30T20:05:00.000Z",
-      "market": "Moneyline",
-      "selection": "TEX Moneyline",
-      "odds": "-108",
-      "expert": "Anders",
-      "analysis": "Added some more post move",
-      "key": "KC @ TEX|Moneyline|TEX",
-      "sourceId": "action",
-      "source": "Action Network",
-      "url": "https://www.actionnetwork.com/mlb/picks/"
-    },
-    {
-      "matchup": "KC @ TEX",
-      "startsAt": "2026-05-30T20:05:00.000Z",
-      "market": "Total",
-      "selection": "Under 8",
-      "odds": "-115",
+      "selection": "BAL Moneyline",
+      "odds": "-117",
       "expert": "tonysartori99",
       "analysis": "",
-      "key": "KC @ TEX|Total|Under 8",
+      "key": "TOR @ BAL|Moneyline|BAL",
       "sourceId": "action",
       "source": "Action Network",
       "url": "https://www.actionnetwork.com/mlb/picks/"
     },
     {
-      "matchup": "TOR @ BAL",
-      "startsAt": "2026-05-30T20:05:00.000Z",
-      "market": "Total",
-      "selection": "Under 7.5",
-      "odds": "-105",
-      "expert": "The Degenerates",
-      "analysis": "",
-      "key": "TOR @ BAL|Total|Under 7.5",
+      "matchup": "SD @ WAS",
+      "startsAt": "2026-05-31T17:35:00.000Z",
+      "market": "Prop",
+      "selection": "C.Abrams o1.5 Hits + Runs + RBIs",
+      "odds": "-107",
+      "expert": "Ryan Minion",
+      "analysis": "#ACTION ✍️✍️  #MLBLeadoff",
+      "key": "SD @ WAS|Prop|c.abrams o1.5 hits + runs + rbis",
       "sourceId": "action",
       "source": "Action Network",
       "url": "https://www.actionnetwork.com/mlb/picks/"
     },
     {
-      "matchup": "TOR @ BAL",
-      "startsAt": "2026-05-30T20:05:00.000Z",
-      "market": "Total",
-      "selection": "Under 7.5",
-      "odds": "-105",
-      "expert": "Brandon Kravitz",
+      "matchup": "SD @ WAS",
+      "startsAt": "2026-05-31T17:35:00.000Z",
+      "market": "Prop",
+      "selection": "J.Wood o0.5 HR",
+      "odds": "+390",
+      "expert": "Ryan Minion",
+      "analysis": "#ACTION ✍️   #MLBLeadoff",
+      "key": "SD @ WAS|Prop|j.wood o0.5 hr",
+      "sourceId": "action",
+      "source": "Action Network",
+      "url": "https://www.actionnetwork.com/mlb/picks/"
+    },
+    {
+      "matchup": "SD @ WAS",
+      "startsAt": "2026-05-31T17:35:00.000Z",
+      "market": "Moneyline",
+      "selection": "WAS Moneyline",
+      "odds": "+117",
+      "expert": "Brian Bitler",
       "analysis": "",
-      "key": "TOR @ BAL|Total|Under 7.5",
+      "key": "SD @ WAS|Moneyline|WAS",
       "sourceId": "action",
       "source": "Action Network",
       "url": "https://www.actionnetwork.com/mlb/picks/"
     },
     {
       "matchup": "MIN @ PIT",
-      "startsAt": "2026-05-30T20:05:00.000Z",
+      "startsAt": "2026-05-31T17:35:00.000Z",
+      "market": "Total",
+      "selection": "Under 7.5",
+      "odds": "+100",
+      "expert": "Sean Zerillo",
+      "analysis": "Bet to -115",
+      "key": "MIN @ PIT|Total|Under 7.5",
+      "sourceId": "action",
+      "source": "Action Network",
+      "url": "https://www.actionnetwork.com/mlb/picks/"
+    },
+    {
+      "matchup": "MIN @ PIT",
+      "startsAt": "2026-05-31T17:35:00.000Z",
       "market": "Moneyline",
       "selection": "PIT Moneyline",
-      "odds": "-135",
-      "expert": "Austin Pendergrass",
+      "odds": "-155",
+      "expert": "Adam Kaufman",
       "analysis": "",
       "key": "MIN @ PIT|Moneyline|PIT",
       "sourceId": "action",
@@ -584,92 +220,40 @@
       "url": "https://www.actionnetwork.com/mlb/picks/"
     },
     {
-      "matchup": "MIN @ PIT",
-      "startsAt": "2026-05-30T20:05:00.000Z",
-      "market": "Prop",
-      "selection": "B.Lowe To Hit 1+ Home Runs Yes",
-      "odds": "+330",
-      "expert": "Matthew Lopes",
+      "matchup": "ATL @ CIN",
+      "startsAt": "2026-05-31T17:40:00.000Z",
+      "market": "Total",
+      "selection": "Over 8.5",
+      "odds": "-107",
+      "expert": "Brandon Kravitz",
       "analysis": "",
-      "key": "MIN @ PIT|Prop|b.lowe to hit 1+ home runs yes",
+      "key": "ATL @ CIN|Total|Over 8.5",
       "sourceId": "action",
       "source": "Action Network",
       "url": "https://www.actionnetwork.com/mlb/picks/"
     },
     {
-      "matchup": "LAA @ TB",
-      "startsAt": "2026-05-30T20:10:00.000Z",
-      "market": "Prop",
-      "selection": "M.Trout o0.5 HR",
-      "odds": "+400",
-      "expert": "Grant Neiffer",
-      "analysis": "",
-      "key": "LAA @ TB|Prop|m.trout o0.5 hr",
-      "sourceId": "action",
-      "source": "Action Network",
-      "url": "https://www.actionnetwork.com/mlb/picks/"
-    },
-    {
-      "matchup": "LAA @ TB",
-      "startsAt": "2026-05-30T20:10:00.000Z",
-      "market": "Prop",
-      "selection": "J.Adell o0.5 HR",
-      "odds": "+550",
-      "expert": "Grant Neiffer",
-      "analysis": "",
-      "key": "LAA @ TB|Prop|j.adell o0.5 hr",
-      "sourceId": "action",
-      "source": "Action Network",
-      "url": "https://www.actionnetwork.com/mlb/picks/"
-    },
-    {
-      "matchup": "CHC @ STL",
-      "startsAt": "2026-05-30T23:15:00.000Z",
+      "matchup": "MIL @ HOU",
+      "startsAt": "2026-05-31T18:10:00.000Z",
       "market": "Moneyline",
-      "selection": "CHC Moneyline",
-      "odds": "-138",
-      "expert": "Sean Paul",
-      "analysis": "",
-      "key": "CHC @ STL|Moneyline|CHC",
+      "selection": "MIL Moneyline",
+      "odds": "-150",
+      "expert": "Austin Pendergrass",
+      "analysis": "Profit boost play",
+      "key": "MIL @ HOU|Moneyline|MIL",
       "sourceId": "action",
       "source": "Action Network",
       "url": "https://www.actionnetwork.com/mlb/picks/"
     },
     {
       "matchup": "NYY @ ATH",
-      "startsAt": "2026-05-31T02:05:00.000Z",
-      "market": "Run Line",
-      "selection": "NYY -1.5",
-      "odds": "+105",
-      "expert": "Alex Hinton",
-      "analysis": "",
-      "key": "NYY @ ATH|Run Line|NYY -1.5",
-      "sourceId": "action",
-      "source": "Action Network",
-      "url": "https://www.actionnetwork.com/mlb/picks/"
-    },
-    {
-      "matchup": "NYY @ ATH",
-      "startsAt": "2026-05-31T02:05:00.000Z",
+      "startsAt": "2026-05-31T20:05:00.000Z",
       "market": "Prop",
-      "selection": "J.Ginn o2.5 Earned Runs",
-      "odds": "-114",
-      "expert": "Alex Hinton",
-      "analysis": "",
-      "key": "NYY @ ATH|Prop|j.ginn o2.5 earned runs",
-      "sourceId": "action",
-      "source": "Action Network",
-      "url": "https://www.actionnetwork.com/mlb/picks/"
-    },
-    {
-      "matchup": "PHI @ LAD",
-      "startsAt": "2026-05-31T02:10:00.000Z",
-      "market": "Prop",
-      "selection": "R.Sasaki o4.5 Ks",
-      "odds": "-130",
-      "expert": "Doug Ziefel",
-      "analysis": "",
-      "key": "PHI @ LAD|Prop|r.sasaki o4.5 ks",
+      "selection": "A.Judge o0.5 HR",
+      "odds": "+250",
+      "expert": "Derek Carty",
+      "analysis": "THE BAT X is forecasting 0.45 home runs for Aaron Judge. Oddsmakers are implying 0.34 home runs, so I believe there is value here. If you take the over, you'd be projected to win 37% of the time resulting in a 27% ROI with expected value of $27.02 (based on a $100 wager). This play is good down to at least +194.\n\nLove THE BAT X? Get all of Carty's sports betting projections at EV Analytics https://evanalytics.com/subscribe/mlb?ref=zdlkmgz",
+      "key": "NYY @ ATH|Prop|a.judge o0.5 hr",
       "sourceId": "action",
       "source": "Action Network",
       "url": "https://www.actionnetwork.com/mlb/picks/"
@@ -677,69 +261,11 @@
   ],
   "consensus": [
     {
-      "key": "DET @ CHW|Moneyline|CHW",
-      "matchup": "DET @ CHW",
-      "startsAt": 1780164600,
+      "key": "TOR @ BAL|Moneyline|BAL",
+      "matchup": "TOR @ BAL",
+      "startsAt": 1780244100,
       "market": "Moneyline",
-      "selection": "CHW Moneyline",
-      "sourceCount": 2,
-      "pickCount": 4,
-      "sources": [
-        {
-          "id": "pickswise",
-          "name": "Pickswise"
-        },
-        {
-          "id": "action",
-          "name": "Action Network"
-        }
-      ],
-      "experts": [
-        "Pickswise:Pickswise",
-        "Action Network:Matt Trollo",
-        "Action Network:Picks Office",
-        "Action Network:Adam Kaufman"
-      ],
-      "odds": [
-        "+115",
-        "+116",
-        "+105"
-      ],
-      "examples": [
-        {
-          "source": "Pickswise",
-          "expert": "Pickswise",
-          "odds": "+115",
-          "analysis": "The early game on Saturday features the Chicago White Sox vs the Detroit Tigers. On Friday, the White Sox walked off Detroit in the 10th inning, and that was after a 9th-inning rally to force extras. At some point, we need to start taking the White Sox seriously. The Tigers, on the other hand, are cratering hard. They have lost 11 of their last 13 games, and blowing the lead twice in the final 2 innings on Friday is just demoralizing. I have no idea why the White Sox are such plus-money underdogs, but I am happy to see it, and I will be locking that in. The pitching matchup features a pair of lefties, Framber Valdez and Anthony Kay. Both have been pitching well for most of the season, and there is no reason to fade either guy. What does stand out, however, is the slugging percentage of each team vs lefties. Would it surprise you to know that the White Sox have the 4th-best slugging percentage in the league vs LHP? They trail only the Yankees, Dodgers, and Diamondbacks. The Tigers are in the bottom 5 in the same category. Look, the White Sox keep finding ways to win, and the Tigers keep finding ways to lose. Let’s ride the hot team. Tigers vs White Sox Prediction : Chicago White Sox ML (+115) available at the time of publishing. Playable to -110 . Bet like a Caesar with this AMAZING new customer offer from Caesars Sportsbook , where you can receive DOUBLE YOUR WINNINGS on 10 straight wagers after making your first $1 bet! Become a Caesars member 👥 using the Caesars promo code PWCONTENT250BM, where you can bet on our Tigers vs White Sox picks."
-        },
-        {
-          "source": "Action Network",
-          "expert": "Matt Trollo",
-          "odds": "+116",
-          "analysis": "(FD) Would only play to +110, but including in Saturday's breakdown article. The gist is that there are some red flags in Framber's profile, while Kay has been pitching better. "
-        },
-        {
-          "source": "Action Network",
-          "expert": "Picks Office",
-          "odds": "+105",
-          "analysis": "Join Discord for earlier access: https://discord.gg/HjKxYKdSUy\n\nChicago is 30-27 and only 3 games back while Detroit sits 22-36 and 11.5 back in the same division.\nDetroit is 2-8 over its last 10, with 5 of those 8 losses coming by at least 2 runs.\nWith starters still TBD and Detroit carrying 11 listed injuries, I want the plus-money home side."
-        },
-        {
-          "source": "Action Network",
-          "expert": "Adam Kaufman",
-          "odds": "+116",
-          "analysis": ""
-        }
-      ],
-      "agreement": "2/3",
-      "confidence": 204
-    },
-    {
-      "key": "MIN @ PIT|Moneyline|PIT",
-      "matchup": "MIN @ PIT",
-      "startsAt": 1780171500,
-      "market": "Moneyline",
-      "selection": "PIT Moneyline",
+      "selection": "BAL Moneyline",
       "sourceCount": 2,
       "pickCount": 2,
       "sources": [
@@ -754,574 +280,121 @@
       ],
       "experts": [
         "Pickswise:Pickswise",
-        "Action Network:Austin Pendergrass"
-      ],
-      "odds": [
-        "-140",
-        "-135"
-      ],
-      "examples": [
-        {
-          "source": "Pickswise",
-          "expert": "Pickswise",
-          "odds": "-140",
-          "analysis": "I favor the Pittsburgh Pirates over the Minnesota Twins when they face off Saturday afternoon. Pittsburgh won Game 1 of this series on Friday thanks to a 2-run walk off home run from Bryan Reynolds in what was an entertaining game with quick offensive starts from both sides and several lead changes. Mitch Keller is set to start for Pittsburgh on Saturday, marking his 12th trip to the mound this season. Through his first 64.1 innings of work, the veteran right-hander has posted a solid 3.64 ERA, and his 3.47 FIP supports that success. Furthermore, Keller has been extremely tough on right-handed batters, which should help against Byron Buxton atop Minnesota’s order. Overall, Minnesota sits 18th in wOBA with a 97 wRC+ against right-handed pitching this season. Bailey Ober is set to start for the Twins for the 12th time this year. Through 62 innings of work, the 6-foot-9 right-hander has posted a 3.92 ERA, though his 4.48 FIP is less encouraging and his recent form is not the sharpest. Ober has allowed 4 home runs in his last 2 starts and at least 1 home run in 5 of his last 6 starts. He ranks 1st percentile in fastball velocity, yet fills the zone with strikes early and often. Meanwhile, Pittsburgh has found success against low-strikeout right-handers. In fact, the Pirates sit 5th in wOBA with a 109 wRC+ against right-handed pitching. When at home, that wRC+ against righties jumps to 114. Neither bullpen is very good, but I will back the better starter and better lineup in this game. Twins vs Pirates prediction: Pittsburgh Pirates ML (-140) available at time of publishing. Playable to -145. You can bet on our Twins vs Pirates pick with BetMGM , where right now new users can activate your new BetMGM account ⚡ and receive $150 in bonus bets INSTANTLY if your first $10+ wager is a winner!"
-        },
-        {
-          "source": "Action Network",
-          "expert": "Austin Pendergrass",
-          "odds": "-135",
-          "analysis": ""
-        }
-      ],
-      "agreement": "2/3",
-      "confidence": 202
-    },
-    {
-      "key": "KC @ TEX|Moneyline|TEX",
-      "matchup": "KC @ TEX",
-      "startsAt": 1780171500,
-      "market": "Moneyline",
-      "selection": "TEX Moneyline",
-      "sourceCount": 2,
-      "pickCount": 2,
-      "sources": [
-        {
-          "id": "pickswise",
-          "name": "Pickswise"
-        },
-        {
-          "id": "action",
-          "name": "Action Network"
-        }
-      ],
-      "experts": [
-        "Pickswise:Pickswise",
-        "Action Network:Anders"
-      ],
-      "odds": [
-        "-125",
-        "-120",
-        "-108"
-      ],
-      "examples": [
-        {
-          "source": "Pickswise",
-          "expert": "Pickswise",
-          "odds": "-125",
-          "analysis": "The Texas Rangers will look to keep their offense rolling after a dominant 9-1 victory over the Royals on Friday night. Kansas City’s offense has been difficult to trust lately, averaging just 2.3 runs per game while batting .203 over its last 10 games. It hasn’t just been the offense that’s struggled either, as the Royals have posted a 5.46 team ERA during that stretch. The Rangers have been much more productive lately, averaging 4.7 runs per game while hitting .240 and carrying a slightly better 4.31 ERA. Taking the mound for the Royals will be Seth Lugo, who enters with a 2-4 record, 3.74 ERA and 1.38 WHIP. For the Rangers, Kumar Rocker will get the nod, entering with a 2-5 record, 3.96 ERA and 1.36 WHIP. It’s tough to back either starter in this spot, but if Rocker runs into trouble early, Texas has a significant advantage in the bullpen. The Rangers relievers own a solid 3.11 ERA compared to Kansas City’s 5.08 bullpen ERA. While I’m not entirely confident in Rocker, I do trust this Rangers bullpen and offense a lot more than the Royals right now. Look for the Rangers to get the job done at home as the Royals struggles continue. Royals vs Rangers prediction: Texas Rangers (-125) at the time of publishing. Playable to -135. Bet like a Caesar with this AMAZING new customer offer from Caesars Sportsbook , where you can receive DOUBLE YOUR WINNINGS on 10 straight wagers after making your first $1 bet! Become a Caesars member 👥 using the Caesars promo code PWCONTENT250BM, where you can bet on our Royals vs Rangers picks."
-        },
-        {
-          "source": "Action Network",
-          "expert": "Anders",
-          "odds": "-120",
-          "analysis": "Analysis on Twitter @ Anderspicks"
-        },
-        {
-          "source": "Action Network",
-          "expert": "Anders",
-          "odds": "-108",
-          "analysis": "Added some more post move"
-        }
-      ],
-      "agreement": "2/3",
-      "confidence": 202
-    },
-    {
-      "key": "MIA @ NYM|Total|Under 7",
-      "matchup": "MIA @ NYM",
-      "startsAt": "Sat, May 30 • 4:10 PM ET",
-      "market": "Total",
-      "selection": "Under 7",
-      "sourceCount": 2,
-      "pickCount": 2,
-      "sources": [
-        {
-          "id": "covers",
-          "name": "Covers"
-        },
-        {
-          "id": "pickswise",
-          "name": "Pickswise"
-        }
-      ],
-      "experts": [
-        "Covers:Todd Cordell",
-        "Pickswise:Pickswise"
-      ],
-      "odds": [
-        "u7.0 -102",
-        "-105"
-      ],
-      "examples": [
-        {
-          "source": "Covers",
-          "expert": "Todd Cordell",
-          "odds": "u7.0 -102",
-          "analysis": "The Miami Marlins are tied for 27th in home runs and have posted an ISO of .117 against right-handed pitching this month, ranking them 29th in the majors."
-        },
-        {
-          "source": "Pickswise",
-          "expert": "Pickswise",
-          "odds": "-105",
-          "analysis": "The New York Mets exacted a bit of revenge on the Miami Marlins on Friday night, taking the first game of the series 9-7. The Marlins swept the Mets at home in a 3-game series last week, with New York looking to do the same this weekend. The Mets will send Christian Scott to the mound to attempt to get one step closer to that goal, while the Marlins will counter with Tyler Phillips as he continues to transition into the rotation. Phillips has been performing well for Miami in his last 2 outings, slowly building himself up to more of a starter’s workload. He went at least 3 innings in each of those appearances, allowing just 4 hits and no earned runs over 6.2 combined innings. The Marlins’ bullpen might still need to take the bulk of this game, which is not too concerning considering they are a top-10 group in baseball. Scott is another pitcher that doesn’t go too deep into games but has been performing well for the Mets this season. Both of these pitchers will give their respective teams a solid first half of the game, while New York is another team with a top-10 bullpen. After a run-scoring onslaught in Friday night’s game, expect a bit more of a pitching duel in this matchup. Marlins vs Mets prediction: Under 7 (-105) available at time of publishing. Playable to that number. Sign up for Polymarket RIGHT NOW to get instant access and a $50 trading bonus after you make your first $20 deposit! You can join Polymarket by clicking here and trade on our Marlins vs Mets predictions."
-        }
-      ],
-      "agreement": "2/3",
-      "confidence": 202
-    },
-    {
-      "key": "PHI @ LAD|Total|Under 8.5",
-      "matchup": "PHI @ LAD",
-      "startsAt": "Sat, May 30 • 10:10 PM ET",
-      "market": "Total",
-      "selection": "Under 8.5",
-      "sourceCount": 2,
-      "pickCount": 2,
-      "sources": [
-        {
-          "id": "covers",
-          "name": "Covers"
-        },
-        {
-          "id": "pickswise",
-          "name": "Pickswise"
-        }
-      ],
-      "experts": [
-        "Covers:JD Yonke",
-        "Pickswise:Pickswise"
-      ],
-      "odds": [
-        "u8.5 -112",
-        "-115"
-      ],
-      "examples": [
-        {
-          "source": "Covers",
-          "expert": "JD Yonke",
-          "odds": "u8.5 -112",
-          "analysis": "Jesus Luzardo has superb underlying metrics and strong prior results against LA's lineup (.168 AVG, .558 OPS). Both pens have been dominant (Philadelphia 2.07 SIERA, LA 2.96 FIP in the last 20 days) and are very well rested."
-        },
-        {
-          "source": "Pickswise",
-          "expert": "Pickswise",
-          "odds": "-115",
-          "analysis": "The Philadelphia Phillies and Los Angeles Dodgers square off in what looks like one of the premier matchups on the Saturday slate, but despite the star power on both sides, the value may lie with a lower-scoring game. Philadelphia sends Jesus Luzardo to the mound, and while his 4-4 record and 4.38 ERA do not immediately jump off the page, the left hander still possesses some of the best swing-and-miss stuff in the National League. Luzardo has recorded strikeouts at a high rate throughout the season and has shown the ability to neutralize powerful lineups when his fastball and breaking pitches are working together. The Phillies have also been involved in a large number of lower-scoring games recently, thanks in part to a bullpen that has quietly become one of the more reliable units in the league. The Dodgers counter with Roki Sasaki, who enters 3-3 with a 4.93 ERA. While the surface numbers suggest inconsistency, Sasaki’s electric arsenal continues to give him one of the highest ceilings in baseball. His strikeout ability remains elite, and he has often pitched better than the results indicate when avoiding free passes. Los Angeles remains one of the most dangerous offenses in the league, but the Dodgers have also trended toward lower-scoring games recently, as their pitching staff and bullpen have settled into form. The betting market has shown heavy support for both Los Angeles and the over, but the total remaining at 8.5 despite that action is notable. With both teams carrying strong under trends, 2 pitchers capable of generating swing-and-misses and playoff caliber bullpens available behind them, this matchup sets up as a tightly-contested game in which runs could be much harder to find than the public expects. Phillies vs Dodgers Prediction: Under 8.5 (-115) available at time of publishing. Playable to 8. You can bet on our Phillies vs Dodgers pick at DraftKings Sportsbook , which has thousands of betting options available and a great new customer offer where you can get $300 in bonus bets INSTANTLY if your first $5 bet is a winner! Click here 👈🏼 to sign up for a DraftKings account now."
-        }
-      ],
-      "agreement": "2/3",
-      "confidence": 202
-    },
-    {
-      "key": "DET @ CHW|Prop|d.dingler o1.5 hits + runs + rbis",
-      "matchup": "DET @ CHW",
-      "startsAt": "2026-05-30T18:10:00.000Z",
-      "market": "Prop",
-      "selection": "D.Dingler o1.5 Hits + Runs + RBIs",
-      "sourceCount": 1,
-      "pickCount": 2,
-      "sources": [
-        {
-          "id": "action",
-          "name": "Action Network"
-        }
-      ],
-      "experts": [
-        "Action Network:Sandy Plashkes",
-        "Action Network:RoyalsProps"
-      ],
-      "odds": [
-        "-120",
-        "-119"
-      ],
-      "examples": [
-        {
-          "source": "Action Network",
-          "expert": "Sandy Plashkes",
-          "odds": "-120",
-          "analysis": ""
-        },
-        {
-          "source": "Action Network",
-          "expert": "RoyalsProps",
-          "odds": "-119",
-          "analysis": ""
-        }
-      ],
-      "agreement": "1/3",
-      "confidence": 102
-    },
-    {
-      "key": "DET @ CHW|Moneyline|DET",
-      "matchup": "DET @ CHW",
-      "startsAt": "2026-05-30T18:10:00.000Z",
-      "market": "Moneyline",
-      "selection": "DET Moneyline",
-      "sourceCount": 1,
-      "pickCount": 2,
-      "sources": [
-        {
-          "id": "action",
-          "name": "Action Network"
-        }
-      ],
-      "experts": [
-        "Action Network:Kyle Murray",
-        "Action Network:Brian Bitler"
+        "Action Network:tonysartori99"
       ],
       "odds": [
         "-130",
-        "-120"
-      ],
-      "examples": [
-        {
-          "source": "Action Network",
-          "expert": "Kyle Murray",
-          "odds": "-130",
-          "analysis": ""
-        },
-        {
-          "source": "Action Network",
-          "expert": "Brian Bitler",
-          "odds": "-120",
-          "analysis": ""
-        }
-      ],
-      "agreement": "1/3",
-      "confidence": 102
-    },
-    {
-      "key": "TOR @ BAL|Total|Under 7.5",
-      "matchup": "TOR @ BAL",
-      "startsAt": "2026-05-30T20:05:00.000Z",
-      "market": "Total",
-      "selection": "Under 7.5",
-      "sourceCount": 1,
-      "pickCount": 2,
-      "sources": [
-        {
-          "id": "action",
-          "name": "Action Network"
-        }
-      ],
-      "experts": [
-        "Action Network:The Degenerates",
-        "Action Network:Brandon Kravitz"
-      ],
-      "odds": [
-        "-105"
-      ],
-      "examples": [
-        {
-          "source": "Action Network",
-          "expert": "The Degenerates",
-          "odds": "-105",
-          "analysis": ""
-        },
-        {
-          "source": "Action Network",
-          "expert": "Brandon Kravitz",
-          "odds": "-105",
-          "analysis": ""
-        }
-      ],
-      "agreement": "1/3",
-      "confidence": 102
-    },
-    {
-      "key": "DET @ CHW|Total|Under 8",
-      "matchup": "DET @ CHW",
-      "startsAt": "2026-05-30T18:10:00.000Z",
-      "market": "Total",
-      "selection": "Under 8",
-      "sourceCount": 1,
-      "pickCount": 2,
-      "sources": [
-        {
-          "id": "action",
-          "name": "Action Network"
-        }
-      ],
-      "experts": [
-        "Action Network:Sean Zerillo",
-        "Action Network:Frank Ammirante"
-      ],
-      "odds": [
-        "-110",
-        "-120"
-      ],
-      "examples": [
-        {
-          "source": "Action Network",
-          "expert": "Sean Zerillo",
-          "odds": "-110",
-          "analysis": "Bet to 7.5 (-105)"
-        },
-        {
-          "source": "Action Network",
-          "expert": "Frank Ammirante",
-          "odds": "-120",
-          "analysis": ""
-        }
-      ],
-      "agreement": "1/3",
-      "confidence": 102
-    },
-    {
-      "key": "MIN @ PIT|Prop|b.lowe to hit 1+ home runs yes",
-      "matchup": "MIN @ PIT",
-      "startsAt": "2026-05-30T20:05:00.000Z",
-      "market": "Prop",
-      "selection": "B.Lowe To Hit 1+ Home Runs Yes",
-      "sourceCount": 1,
-      "pickCount": 1,
-      "sources": [
-        {
-          "id": "action",
-          "name": "Action Network"
-        }
-      ],
-      "experts": [
-        "Action Network:Matthew Lopes"
-      ],
-      "odds": [
-        "+330"
-      ],
-      "examples": [
-        {
-          "source": "Action Network",
-          "expert": "Matthew Lopes",
-          "odds": "+330",
-          "analysis": ""
-        }
-      ],
-      "agreement": "1/3",
-      "confidence": 101
-    },
-    {
-      "key": "CHC @ STL|Run Line|CHC -1.5",
-      "matchup": "CHC @ STL",
-      "startsAt": "Sat, May 30 • 7:15 PM ET",
-      "market": "Run Line",
-      "selection": "CHC -1.5",
-      "sourceCount": 1,
-      "pickCount": 1,
-      "sources": [
-        {
-          "id": "covers",
-          "name": "Covers"
-        }
-      ],
-      "experts": [
-        "Covers:Shawn Krest"
-      ],
-      "odds": [
-        "-1.5 +130"
-      ],
-      "examples": [
-        {
-          "source": "Covers",
-          "expert": "Shawn Krest",
-          "odds": "-1.5 +130",
-          "analysis": "A converted reliever, Brown started his last four, never allowing more than three runs. All Brown's stuff ranks in the top third of MLB, including a 99th-percentile breaking ball. He'll face St. Louis, which scored two runs in three games before Friday. The Cardinals start Kyle Leahy, who ranks in the bottom third in every pitch and is worse than 92% of MLB pitchers in overall run value."
-        }
-      ],
-      "agreement": "1/3",
-      "confidence": 101
-    },
-    {
-      "key": "CHC @ STL|Moneyline|CHC",
-      "matchup": "CHC @ STL",
-      "startsAt": "2026-05-30T23:15:00.000Z",
-      "market": "Moneyline",
-      "selection": "CHC Moneyline",
-      "sourceCount": 1,
-      "pickCount": 1,
-      "sources": [
-        {
-          "id": "action",
-          "name": "Action Network"
-        }
-      ],
-      "experts": [
-        "Action Network:Sean Paul"
-      ],
-      "odds": [
-        "-138"
-      ],
-      "examples": [
-        {
-          "source": "Action Network",
-          "expert": "Sean Paul",
-          "odds": "-138",
-          "analysis": ""
-        }
-      ],
-      "agreement": "1/3",
-      "confidence": 101
-    },
-    {
-      "key": "BOS @ CLE|Moneyline|CLE",
-      "matchup": "BOS @ CLE",
-      "startsAt": 1780171800,
-      "market": "Moneyline",
-      "selection": "CLE Moneyline",
-      "sourceCount": 1,
-      "pickCount": 1,
-      "sources": [
-        {
-          "id": "pickswise",
-          "name": "Pickswise"
-        }
-      ],
-      "experts": [
-        "Pickswise:Pickswise"
-      ],
-      "odds": [
-        "-130"
+        "-117"
       ],
       "examples": [
         {
           "source": "Pickswise",
           "expert": "Pickswise",
           "odds": "-130",
-          "analysis": "The Red Sox fell behind early on Friday night, surrendering 4 first-inning runs to the Guardians, and never fully recovering in a 4-3 loss. Boston will look to even the series on Saturday when they hand the ball to one of their most reliable arms, Sonny Gray. Gray enters with a 5-1 record, 3.27 ERA and 1.20 WHIP this season. Cleveland will hand the ball to left-hander Parker Messick, who enters with a 6-1 record, 2.24 ERA and a 1.04 WHIP. On paper, this is a fantastic pitching matchup. Gray has been excellent for Boston, but Messick has been one of the most consistent starters in baseball this season. The biggest concern for Messick is that Boston has hit left-handed pitching well all year, batting .274 against southpaws. The Red Sox have also been swinging hot bats lately, averaging 4.6 runs per game while hitting .290 over their last 10. The Guardians offense is averaging only 2.6 runs and hitting .224 in that same span. However, Cleveland’s success this season has been built around strong pitching, and Messick has been a major reason why. While Boston’s offense presents a challenge, the Guardians have done a great job at limiting scoring opportunities, and we saw that last night. With Cleveland holding the edge on the mound and Boston losing six of their last 10 games, I like Cleveland to get the job done at home. Red Sox vs Guardians prediction: Cleveland Guardians ML (-130) at the time of publishing. Playable to -140. Sign up for Polymarket RIGHT NOW to get instant access and a $50 trading bonus after you make your first $20 deposit! You can join Polymarket by clicking here and trade on our Red Sox vs Guardians predictions."
-        }
-      ],
-      "agreement": "1/3",
-      "confidence": 101
-    },
-    {
-      "key": "LAA @ TB|Prop|j.adell o0.5 hr",
-      "matchup": "LAA @ TB",
-      "startsAt": "2026-05-30T20:10:00.000Z",
-      "market": "Prop",
-      "selection": "J.Adell o0.5 HR",
-      "sourceCount": 1,
-      "pickCount": 1,
-      "sources": [
-        {
-          "id": "action",
-          "name": "Action Network"
-        }
-      ],
-      "experts": [
-        "Action Network:Grant Neiffer"
-      ],
-      "odds": [
-        "+550"
-      ],
-      "examples": [
+          "analysis": "The Toronto Blue Jays and Baltimore Orioles will finish their series on Sunday afternoon. They are the Peacock game, so be aware of the early start time. The Blue Jays won the first 2 games in this series, but the O’s bounced back on Saturday afternoon with an improbable 9th-inning rally, scoring 5 runs in the final frame to win the game 6-5. Baltimore will look to carry that momentum into Sunday’s series finale, when they will have their ace on the mound. I like how this game sets up for the Orioles, and I am taking them to win on Sunday. Kyle Bradish has been pitching well in May, turning in 4 excellent starts in a row — and against good offenses. In fact, he logged quality starts against the Rays, Yankees and Athletics in that stretch. On the other side, the Blue Jays will go with Spencer Miles, a guy who has spent most of the season in the bullpen but has been forced into the rotation because of all the injuries to Toronto’s staff. Miles has put up good ratios, but he isn’t stretched out, so this becomes somewhat of a bullpen game. I like the way the Baltimore offense is starting to take shape now that most of their hitters are healthy. Give me the orange birds on Sunday. Blue Jays vs Orioles Prediction : Baltimore Orioles ML (-130) available at the time of publishing. Playable to -140 . Sign up for Polymarket RIGHT NOW to get instant access and a $50 trading bonus after you make your first $20 deposit! You can join Polymarket by clicking here and trade on our Blue Jays vs Orioles predictions."
+        },
         {
           "source": "Action Network",
-          "expert": "Grant Neiffer",
-          "odds": "+550",
+          "expert": "tonysartori99",
+          "odds": "-117",
           "analysis": ""
         }
       ],
-      "agreement": "1/3",
-      "confidence": 101
-    },
-    {
-      "key": "NYY @ ATH|Prop|j.ginn o2.5 earned runs",
-      "matchup": "NYY @ ATH",
-      "startsAt": "2026-05-31T02:05:00.000Z",
-      "market": "Prop",
-      "selection": "J.Ginn o2.5 Earned Runs",
-      "sourceCount": 1,
-      "pickCount": 1,
-      "sources": [
-        {
-          "id": "action",
-          "name": "Action Network"
-        }
-      ],
-      "experts": [
-        "Action Network:Alex Hinton"
-      ],
-      "odds": [
-        "-114"
-      ],
-      "examples": [
-        {
-          "source": "Action Network",
-          "expert": "Alex Hinton",
-          "odds": "-114",
-          "analysis": ""
-        }
-      ],
-      "agreement": "1/3",
-      "confidence": 101
-    },
-    {
-      "key": "LAA @ TB|Prop|m.trout o0.5 hr",
-      "matchup": "LAA @ TB",
-      "startsAt": "2026-05-30T20:10:00.000Z",
-      "market": "Prop",
-      "selection": "M.Trout o0.5 HR",
-      "sourceCount": 1,
-      "pickCount": 1,
-      "sources": [
-        {
-          "id": "action",
-          "name": "Action Network"
-        }
-      ],
-      "experts": [
-        "Action Network:Grant Neiffer"
-      ],
-      "odds": [
-        "+400"
-      ],
-      "examples": [
-        {
-          "source": "Action Network",
-          "expert": "Grant Neiffer",
-          "odds": "+400",
-          "analysis": ""
-        }
-      ],
-      "agreement": "1/3",
-      "confidence": 101
-    },
-    {
-      "key": "MIA @ NYM|Moneyline|NYM",
-      "matchup": "MIA @ NYM",
-      "startsAt": "Sat, May 30 • 4:10 PM ET",
-      "market": "Moneyline",
-      "selection": "NYM Moneyline",
-      "sourceCount": 1,
-      "pickCount": 1,
-      "sources": [
-        {
-          "id": "covers",
-          "name": "Covers"
-        }
-      ],
-      "experts": [
-        "Covers:Todd Cordell"
-      ],
-      "odds": [
-        "-130"
-      ],
-      "examples": [
-        {
-          "source": "Covers",
-          "expert": "Todd Cordell",
-          "odds": "-130",
-          "analysis": "The New York Mets have the pitching advantage with Christian Scott taking the bump. He owns a 2.8 FIP and 3.0 ERA over the past month despite a .328 batting average on balls put in play, which should drop moving forward."
-        }
-      ],
-      "agreement": "1/3",
-      "confidence": 101
+      "agreement": "2/3",
+      "confidence": 202
     },
     {
       "key": "NYY @ ATH|Run Line|NYY -1.5",
       "matchup": "NYY @ ATH",
-      "startsAt": "2026-05-31T02:05:00.000Z",
+      "startsAt": "Sun, May 31 • 4:05 PM ET",
       "market": "Run Line",
       "selection": "NYY -1.5",
+      "sourceCount": 2,
+      "pickCount": 2,
+      "sources": [
+        {
+          "id": "covers",
+          "name": "Covers"
+        },
+        {
+          "id": "pickswise",
+          "name": "Pickswise"
+        }
+      ],
+      "experts": [
+        "Covers:Phil Naessens",
+        "Pickswise:Pickswise"
+      ],
+      "odds": [
+        "-1.5 -102",
+        "+105"
+      ],
+      "examples": [
+        {
+          "source": "Covers",
+          "expert": "Phil Naessens",
+          "odds": "-1.5 -102",
+          "analysis": "Will Warren's optimized release slot helps his 3,005-RPM sweeper generate elite horizontal movement, making it a tough matchup for Oakland's lineup. With New York's bullpen leading MLB in rolling groundball rate, play Yankees -1.5 to -105."
+        },
+        {
+          "source": "Pickswise",
+          "expert": "Pickswise",
+          "odds": "+105",
+          "analysis": "The New York Yankees and Athletics play the series finale on Sunday, and it’s a rubber game. The Yankees routed the A’s 8-2 on Friday as moderate favorites on Friday behind LHP Carlos Rodon, while the A’s picked up a 6-4 victory on Saturday as moderate underdogs (+130). The Over cashed both games, just in case you’re considering a same-game parlay (SGP). However, let’s focus on the side for our purposes. The Yankees are 18-14 on the road this season, while the Athletics are just 11-16 in their temporary home in West Sacramento. The Yankees roll with RHP Will Warren (6-1, 3.55 ERA, 1.17 WHIP) for Sunday’s game, and he has actually been much better away from home. Warren is 2-0 with a 2.86 ERA while allowing just a single homer across 22 IP in four starts, and teams are hitting just .229 against him this season on the road. The A’s counter with LHP Jacob Lopez (4-2, 5.73 ERA, 1.77 WHIP). He is 0-1 with a 5.95 ERA across 19 2/3 IP in four home starts, serving up five homers with 13 walks in the span. As such, we’re going with the Yankees to get the job done, and to do so by at least two runs. Yankees -1.5 (+105) at time of publishing. Playable to -110."
+        }
+      ],
+      "agreement": "2/3",
+      "confidence": 202
+    },
+    {
+      "key": "MIN @ PIT|Total|Under 7.5",
+      "matchup": "MIN @ PIT",
+      "startsAt": 1780248900,
+      "market": "Total",
+      "selection": "Under 7.5",
+      "sourceCount": 2,
+      "pickCount": 2,
+      "sources": [
+        {
+          "id": "pickswise",
+          "name": "Pickswise"
+        },
+        {
+          "id": "action",
+          "name": "Action Network"
+        }
+      ],
+      "experts": [
+        "Pickswise:Pickswise",
+        "Action Network:Sean Zerillo"
+      ],
+      "odds": [
+        "-105",
+        "+100"
+      ],
+      "examples": [
+        {
+          "source": "Pickswise",
+          "expert": "Pickswise",
+          "odds": "-105",
+          "analysis": "The Minnesota Twins and the Pittsburgh Pirates have given fans a great series at PNC Park, with the home team winning 6-5 and 10-9 across the first 2 game. Those contests included plenty of offensive outbursts, but the recent play of Zebby Matthews and Braxton Ashcroft could provide us with an intriguing pitching matchup in the final game of the series. Matthews has just 3 starts this season, but he looks to be on the way to his best season in his 3-year MLB career — going 6+ innings in each of the appearances and owning a 2.37 ERA. The righty’s underlying numbers are great, as he doesn’t give up a ton of hard contact, and he has great control. It’s a perfect mix for him to put the Twins in a position to take at least 1 of the 3 games from the Pirates and avoid the sweep. Matthews isn’t the only starter in this game with great underlying numbers. Ashcraft’s 2.94 xERA proves that his success this season is no fluke and that the team’s choice to transition him into the rotation full-time was a great decision. The righty allowed just 1 earned run in 6+ innings in each of his past 2 starts. We’ll take the pitching matchup in this game and back the bats to go cold. Twins vs Pirates prediction: Under 7.5 (-105) available at time of publishing. Playable to that number. You can bet on our Twins vs Pirates pick with BetMGM , where right now new users can activate your new BetMGM account ⚡ and receive $150 in bonus bets INSTANTLY if your first $10+ wager is a winner!"
+        },
+        {
+          "source": "Action Network",
+          "expert": "Sean Zerillo",
+          "odds": "+100",
+          "analysis": "Bet to -115"
+        }
+      ],
+      "agreement": "2/3",
+      "confidence": 202
+    },
+    {
+      "key": "NYY @ ATH|Prop|a.judge o0.5 hr",
+      "matchup": "NYY @ ATH",
+      "startsAt": "2026-05-31T20:05:00.000Z",
+      "market": "Prop",
+      "selection": "A.Judge o0.5 HR",
       "sourceCount": 1,
       "pickCount": 1,
       "sources": [
@@ -1331,28 +404,28 @@
         }
       ],
       "experts": [
-        "Action Network:Alex Hinton"
+        "Action Network:Derek Carty"
       ],
       "odds": [
-        "+105"
+        "+250"
       ],
       "examples": [
         {
           "source": "Action Network",
-          "expert": "Alex Hinton",
-          "odds": "+105",
-          "analysis": ""
+          "expert": "Derek Carty",
+          "odds": "+250",
+          "analysis": "THE BAT X is forecasting 0.45 home runs for Aaron Judge. Oddsmakers are implying 0.34 home runs, so I believe there is value here. If you take the over, you'd be projected to win 37% of the time resulting in a 27% ROI with expected value of $27.02 (based on a $100 wager). This play is good down to at least +194.\n\nLove THE BAT X? Get all of Carty's sports betting projections at EV Analytics https://evanalytics.com/subscribe/mlb?ref=zdlkmgz"
         }
       ],
       "agreement": "1/3",
       "confidence": 101
     },
     {
-      "key": "NYY @ ATH|Moneyline|NYY",
-      "matchup": "NYY @ ATH",
-      "startsAt": 1780193100,
+      "key": "BOS @ CLE|Moneyline|BOS",
+      "matchup": "BOS @ CLE",
+      "startsAt": 1780249200,
       "market": "Moneyline",
-      "selection": "NYY Moneyline",
+      "selection": "BOS Moneyline",
       "sourceCount": 1,
       "pickCount": 1,
       "sources": [
@@ -1365,56 +438,56 @@
         "Pickswise:Pickswise"
       ],
       "odds": [
-        "-155"
+        "-115"
       ],
       "examples": [
         {
           "source": "Pickswise",
           "expert": "Pickswise",
-          "odds": "-155",
-          "analysis": "The New York Yankees continued their hot streak Friday night, defeating the Athletics 8-2 behind an 11-hit performance. Winners of 5 straight, the Yankees will look to keep the momentum rolling when they hand the ball to the left-hander Ryan Weathers, who enters with a 2-2 record, 3.14 ERA and 1.12 WHIP. The last time Weathers faced the A’s, he picked up the loss despite allowing just 1 earned run on 7 hits in 8 innings pitched. For the Athletics, J.T. Ginn will get the nod, entering with a 2-3 record, 3.19 ERA and 1.14 WHIP. The Athletics are batting .239 against lefties this season, and they failed to generate much offense against Weathers in their previous matchup. Meanwhile, the Yankees offense is surging right now, averaging 5.1 runs per game and hitting .279, compared to the A’s at 3.7 runs and .230. It’s too hard to trust the A’s in this spot, and while Ginn has pitched well this season, the Yankees are seeing the ball extremely well right now. Look for the Yankees to keep rolling and pick up another victory on the road. Yankees vs Athletics prediction: New York Yankees ML (-155) at the time of publishing. Playable up to – 175. Sign up for Polymarket RIGHT NOW to get instant access and a $50 trading bonus after you make your first $20 deposit! You can join Polymarket by clicking here and trade on our Yankees vs Athletics predictions."
+          "odds": "-115",
+          "analysis": "The Boston Red Sox offense finally came to life Saturday, erupting for 9 runs on 11 hits in a convincing win over the Cleveland Guardians. Cleveland struggled to generate offense, managing just 1 run on 6 hits, while committing 4 costly errors. Looking to secure a series win, the Red Sox will hand the ball over to the lefty, Ranger Suarez, who enters with a 2-3 record and a 3.02 ERA. For the Guardians, Tanner Bibee will get the nod, who is winless — holding a 0-7 record with a 4.57 ERA. Boston has been the hotter team offensively over the last 10 games, averaging 5.2 runs per game while batting an impressive .293. As for Cleveland, they’re averaging 2.3 runs per game and hitting .227 in that span. Taking a look at the starting pitchers, Bibee is coming off one of his worst performances of the season against the Nationals, when he gave up 7 runs on 8 hits in 3 innings pitched. However, Suarez wasn’t much better in his last start, giving up 5 runs on 6 hits in 5 innings against the Braves. Taking everything into consideration, the Red Sox offense has shown it is more than capable of producing runs when it matters the most. Given Bibee’s struggles this season, I’m going to lean towards the Red Sox to secure a series win on the road behind Ranger Suarez. Red Sox vs Guardians prediction: Boston Red Sox ML (-115) at the time of publishing. Playable to – 130. Sign up for Polymarket RIGHT NOW to get instant access and a $50 trading bonus after you make your first $20 deposit! You can join Polymarket by clicking here and trade on our Red Sox vs Guardians predictions."
         }
       ],
       "agreement": "1/3",
       "confidence": 101
     },
     {
-      "key": "SF @ COL|Total|Over 11",
-      "matchup": "SF @ COL",
-      "startsAt": 1780189800,
-      "market": "Total",
-      "selection": "Over 11",
+      "key": "SD @ WAS|Prop|c.abrams o1.5 hits + runs + rbis",
+      "matchup": "SD @ WAS",
+      "startsAt": "2026-05-31T17:35:00.000Z",
+      "market": "Prop",
+      "selection": "C.Abrams o1.5 Hits + Runs + RBIs",
       "sourceCount": 1,
       "pickCount": 1,
       "sources": [
         {
-          "id": "pickswise",
-          "name": "Pickswise"
+          "id": "action",
+          "name": "Action Network"
         }
       ],
       "experts": [
-        "Pickswise:Pickswise"
+        "Action Network:Ryan Minion"
       ],
       "odds": [
-        "-105"
+        "-107"
       ],
       "examples": [
         {
-          "source": "Pickswise",
-          "expert": "Pickswise",
-          "odds": "-105",
-          "analysis": "Saturday’s pitching matchup between the Giants and Rockies pits San Francisco’s Adrian Houser against Colorado’s Ryan Feltner. Both pitchers have seen their fair share of struggles this season. On one side, Houser owns a 5.30 ERA to go along with a 1.48 WHIP through 10 starts and 52.2 innings. Houser’s home ballpark of Oracle Park is among the most pitcher-friendly stadiums out there, yet he owns a 6.97 ERA and .337 BAA in 4 home starts. On Saturday, he has to pitch at the most hitter-friendly ballpark in baseball at Coors Field. Thus, it’s fair to say Houser enters this contest with plenty of uncertainty. On the other side, Colorado’s Ryan Feltner will be making his first start since April 23 after spending more than a month on the IL with an elbow injury. In 5 starts this season, Feltner owns a 6.30 ERA and opponents boast a solid .903 OPS against him. Neither Houser nor Feltner have been racking up the strikeouts, which means the ball should be put in play early and often. That type of formula tends to result in high-scoring games at Coors Field. Look to the over in this NL West matchup. Giants vs Rockies prediction: Over 11 (-105) available at time of publishing. Playable to -115. You can bet on our Giants vs Rockies pick at DraftKings Sportsbook , which has thousands of betting options available and a great new customer offer where you can get $300 in bonus bets INSTANTLY if your first $5 bet is a winner! Click here 👈🏼 to sign up for a DraftKings account now."
+          "source": "Action Network",
+          "expert": "Ryan Minion",
+          "odds": "-107",
+          "analysis": "#ACTION ✍️✍️  #MLBLeadoff"
         }
       ],
       "agreement": "1/3",
       "confidence": 101
     },
     {
-      "key": "KC @ TEX|Total|Over 7.5",
-      "matchup": "KC @ TEX",
-      "startsAt": "Sat, May 30 • 4:05 PM ET",
-      "market": "Total",
-      "selection": "Over 7.5",
+      "key": "DET @ CHW|Run Line|CHW -1.5",
+      "matchup": "DET @ CHW",
+      "startsAt": "Sun, May 31 • 2:10 PM ET",
+      "market": "Run Line",
+      "selection": "CHW -1.5",
       "sourceCount": 1,
       "pickCount": 1,
       "sources": [
@@ -1424,48 +497,79 @@
         }
       ],
       "experts": [
-        "Covers:Shawn Krest"
+        "Covers:Eric Rosales"
       ],
       "odds": [
-        "o7.5 -120"
+        "-1.5 +164"
       ],
       "examples": [
         {
           "source": "Covers",
-          "expert": "Shawn Krest",
-          "odds": "o7.5 -120",
-          "analysis": "Kansas City has the worst bullpen WHIP in baseball and the third-worst ERA. The pen allowed four homers in the last three games, posting an 8.71 ERA. The Rangers have been better in relief, but Texas allowed 5+ five times in the last eight games."
+          "expert": "Eric Rosales",
+          "odds": "-1.5 +164",
+          "analysis": "The White Sox have won five of seven against the Tigets, with four of those wins coming by at least two runs."
         }
       ],
       "agreement": "1/3",
       "confidence": 101
     },
     {
-      "key": "SD @ WAS|Total|Over 7.5",
+      "key": "SD @ WAS|Prop|j.wood o0.5 hr",
       "matchup": "SD @ WAS",
-      "startsAt": 1780171500,
-      "market": "Total",
-      "selection": "Over 7.5",
+      "startsAt": "2026-05-31T17:35:00.000Z",
+      "market": "Prop",
+      "selection": "J.Wood o0.5 HR",
       "sourceCount": 1,
       "pickCount": 1,
       "sources": [
         {
-          "id": "pickswise",
-          "name": "Pickswise"
+          "id": "action",
+          "name": "Action Network"
         }
       ],
       "experts": [
-        "Pickswise:Pickswise"
+        "Action Network:Ryan Minion"
       ],
       "odds": [
-        "-110"
+        "+390"
       ],
       "examples": [
         {
-          "source": "Pickswise",
-          "expert": "Pickswise",
-          "odds": "-110",
-          "analysis": "The Padres and Nationals are set for a Saturday afternoon matchup at Nationals Park in the nation’s capital. After 12 total runs were scored in the opening game of this series on Friday night in San Diego’s 7-5 win, Saturday’s contest could also be of the high-scoring variety. Washington will send right-hander Foster Griffin to the mound, and he is still adjusting to life as a starting pitcher in the big leagues. This is Griffin’s first year as a full-time starter, and he has experienced some ups-and-downs through 2 months of the season. He posted a strong 2.51 ERA in April, but that number has jumped to 4.76 across his 5 starts in May. Given his inconsistencies, look for the Padres to have a strong date at the plate in this one. Michael King will toe the rubber for the visitors. King has been a steady force on the mound this season, as he enters this matchup with a 2.76 ERA and 1.15 WHIP through 11 starts and 62.0 innings of work. However, he has a tough assignment on his hands. The Nationals have been among the best offenses in baseball so far this season, as they enter this matchup ranked 1st in total runs (311) and 4th in OPS (.745). In addition, the Nationals are scoring 5.5 runs per game at home. Washington should also be able to have a successful offensive day, which makes the over the play. Padres vs Nationals prediction: Over 7.5 (-110) available at time of publishing. Playable to -115. You can bet on our Padres vs Nationals pick with BetMGM , where right now new users can activate your new BetMGM account ⚡ and receive $150 in bonus bets INSTANTLY if your first $10+ wager is a winner!"
+          "source": "Action Network",
+          "expert": "Ryan Minion",
+          "odds": "+390",
+          "analysis": "#ACTION ✍️   #MLBLeadoff"
+        }
+      ],
+      "agreement": "1/3",
+      "confidence": 101
+    },
+    {
+      "key": "MIL @ HOU|Moneyline|MIL",
+      "matchup": "MIL @ HOU",
+      "startsAt": "2026-05-31T18:10:00.000Z",
+      "market": "Moneyline",
+      "selection": "MIL Moneyline",
+      "sourceCount": 1,
+      "pickCount": 1,
+      "sources": [
+        {
+          "id": "action",
+          "name": "Action Network"
+        }
+      ],
+      "experts": [
+        "Action Network:Austin Pendergrass"
+      ],
+      "odds": [
+        "-150"
+      ],
+      "examples": [
+        {
+          "source": "Action Network",
+          "expert": "Austin Pendergrass",
+          "odds": "-150",
+          "analysis": "Profit boost play"
         }
       ],
       "agreement": "1/3",
@@ -1474,102 +578,9 @@
     {
       "key": "DET @ CHW|Total|Over 7.5",
       "matchup": "DET @ CHW",
-      "startsAt": "2026-05-30T18:10:00.000Z",
+      "startsAt": "Sun, May 31 • 2:10 PM ET",
       "market": "Total",
       "selection": "Over 7.5",
-      "sourceCount": 1,
-      "pickCount": 1,
-      "sources": [
-        {
-          "id": "action",
-          "name": "Action Network"
-        }
-      ],
-      "experts": [
-        "Action Network:💰🦡 Jake"
-      ],
-      "odds": [
-        "-108"
-      ],
-      "examples": [
-        {
-          "source": "Action Network",
-          "expert": "💰🦡 Jake",
-          "odds": "-108",
-          "analysis": ""
-        }
-      ],
-      "agreement": "1/3",
-      "confidence": 101
-    },
-    {
-      "key": "MIL @ HOU|Total|Over 8.5",
-      "matchup": "MIL @ HOU",
-      "startsAt": 1780171800,
-      "market": "Total",
-      "selection": "Over 8.5",
-      "sourceCount": 1,
-      "pickCount": 1,
-      "sources": [
-        {
-          "id": "pickswise",
-          "name": "Pickswise"
-        }
-      ],
-      "experts": [
-        "Pickswise:Pickswise"
-      ],
-      "odds": [
-        "-115"
-      ],
-      "examples": [
-        {
-          "source": "Pickswise",
-          "expert": "Pickswise",
-          "odds": "-115",
-          "analysis": "Brandon Sproat (5.84 ERA, 1.54 WHIP) takes the mound for the Brewers on the road, while Peter Lambert (3.79 ERA, 1.17 WHIP) takes the bump for the hosting Astros. Both pitchers have something in common: they’ve each given up at least 3 earned runs in 3 consecutive starts. While Milwaukee has a solid bullpen in relief late in the game, Sproat has some daunting underlying numbers — falling in the 2nd percentile in pitching run value with a poor 4.81 xERA that ranks 24th percentile. Lambert has slightly better figures, though the Houston bullpen is a major problem, sitting dead last in MLB with a 5.32 combined ERA. Both offenses are above league average in wRC+ and OBP, with the Brewers sitting top-10 in both categories. The pitching matchup in this one calls for plenty of scoring opportunities for both sides, so I have this one going over 8.5 runs. Brewers vs Astros prediction: Over 8.5 (-115) at time of publishing. Now you can bet any of our Brewers vs Astros predictions at FanDuel Sportsbook , which has a great new-customer offer to take advantage of. If you sign up for FanDuel right now, you can get up to $250 in bonus bets if your first $5 wager is a winner! Use this link 🔗 to join FanDuel right now and learn more."
-        }
-      ],
-      "agreement": "1/3",
-      "confidence": 101
-    },
-    {
-      "key": "ATL @ CIN|Total|Over 9.5",
-      "matchup": "ATL @ CIN",
-      "startsAt": 1780182900,
-      "market": "Total",
-      "selection": "Over 9.5",
-      "sourceCount": 1,
-      "pickCount": 1,
-      "sources": [
-        {
-          "id": "pickswise",
-          "name": "Pickswise"
-        }
-      ],
-      "experts": [
-        "Pickswise:Pickswise"
-      ],
-      "odds": [
-        "+100"
-      ],
-      "examples": [
-        {
-          "source": "Pickswise",
-          "expert": "Pickswise",
-          "odds": "+100",
-          "analysis": "Brady Singer has had a rough go in 2026, pitching to a 6.26 ERA in his first 46 innings of work. Singer is averaging just 4.6 innings per start thanks to opponents having a .980 OPS against him. In fact, Left-handed batters have a 1.105 OPS against him, and Atlanta is projected to have 6 lefty bats in their lineup on Saturday. Singer has one of the more concerning baseball savant pages, as he is filling the zone but allowing a 44.3% hard-hit rate and a 13.0% barrel rate. He has allowed 11 home runs in his last 5 starts alone, and so far in 17 innings this month, he has posted an 8.47 ERA across 4 starts. Atlanta ranks 2nd in baseball in wOBA against right-handed pitching, while posting a wRC+ of 118. Cincinnati has been a productive offense against left-handed pitching this season. Entering Saturday, the Reds have the 6th-best wOBA against lefties, while posting a 109 wRC+. They will face off against veteran southpaw Martin Perez and his 2.70 ERA, which has been welcomed production by Atlanta through 46.2 innings. That said, he could be due for some regression. Both his xERA and FIP are well over a full run higher, and his current 83.7% strand rate is an unsustainable mark. All things considered, I favor the over on the posted game total in this game. Reds vs Braves prediction: Over 9.5 (+100) available at time of publishing. Playable to -110. You can bet on our Reds vs Braves pick at DraftKings Sportsbook , which has thousands of betting options available and a great new customer offer where you can get $300 in bonus bets INSTANTLY if your first $5 bet is a winner! Click here 👈🏼 to sign up for a DraftKings account now."
-        }
-      ],
-      "agreement": "1/3",
-      "confidence": 101
-    },
-    {
-      "key": "PHI @ LAD|Moneyline|PHI",
-      "matchup": "PHI @ LAD",
-      "startsAt": "Sat, May 30 • 10:10 PM ET",
-      "market": "Moneyline",
-      "selection": "PHI Moneyline",
       "sourceCount": 1,
       "pickCount": 1,
       "sources": [
@@ -1579,28 +590,28 @@
         }
       ],
       "experts": [
-        "Covers:JD Yonke"
+        "Covers:Eric Rosales"
       ],
       "odds": [
-        "+108"
+        "o8.0 +100"
       ],
       "examples": [
         {
           "source": "Covers",
-          "expert": "JD Yonke",
-          "odds": "+108",
-          "analysis": "Roki Sasaki allows loud contact (11th percentile barrel rate, 11th percentile hard-hit rate), which is a concern against a Philadelphia lineup with the fifth-highest hard-hit rate (35.6%) in the last 20 days. His four-seamer has been crushed (.348 xBA, .614 xSLG), and Philadelphia (fourth-most WAR against fastballs) will be happy to oblige."
+          "expert": "Eric Rosales",
+          "odds": "o8.0 +100",
+          "analysis": "The White Sox have an Over record of 8-2-0 in their last 10 games."
         }
       ],
       "agreement": "1/3",
       "confidence": 101
     },
     {
-      "key": "PHI @ LAD|Prop|r.sasaki o4.5 ks",
-      "matchup": "PHI @ LAD",
-      "startsAt": "2026-05-31T02:10:00.000Z",
-      "market": "Prop",
-      "selection": "R.Sasaki o4.5 Ks",
+      "key": "ATL @ CIN|Total|Over 8.5",
+      "matchup": "ATL @ CIN",
+      "startsAt": "2026-05-31T17:40:00.000Z",
+      "market": "Total",
+      "selection": "Over 8.5",
       "sourceCount": 1,
       "pickCount": 1,
       "sources": [
@@ -1610,16 +621,16 @@
         }
       ],
       "experts": [
-        "Action Network:Doug Ziefel"
+        "Action Network:Brandon Kravitz"
       ],
       "odds": [
-        "-130"
+        "-107"
       ],
       "examples": [
         {
           "source": "Action Network",
-          "expert": "Doug Ziefel",
-          "odds": "-130",
+          "expert": "Brandon Kravitz",
+          "odds": "-107",
           "analysis": ""
         }
       ],
@@ -1627,11 +638,73 @@
       "confidence": 101
     },
     {
-      "key": "CHC @ STL|Moneyline|STL",
-      "matchup": "CHC @ STL",
-      "startsAt": 1780182900,
+      "key": "MIN @ PIT|Moneyline|PIT",
+      "matchup": "MIN @ PIT",
+      "startsAt": "2026-05-31T17:35:00.000Z",
       "market": "Moneyline",
-      "selection": "STL Moneyline",
+      "selection": "PIT Moneyline",
+      "sourceCount": 1,
+      "pickCount": 1,
+      "sources": [
+        {
+          "id": "action",
+          "name": "Action Network"
+        }
+      ],
+      "experts": [
+        "Action Network:Adam Kaufman"
+      ],
+      "odds": [
+        "-155"
+      ],
+      "examples": [
+        {
+          "source": "Action Network",
+          "expert": "Adam Kaufman",
+          "odds": "-155",
+          "analysis": ""
+        }
+      ],
+      "agreement": "1/3",
+      "confidence": 101
+    },
+    {
+      "key": "SD @ WAS|Moneyline|SD",
+      "matchup": "SD @ WAS",
+      "startsAt": 1780248900,
+      "market": "Moneyline",
+      "selection": "SD Moneyline",
+      "sourceCount": 1,
+      "pickCount": 1,
+      "sources": [
+        {
+          "id": "pickswise",
+          "name": "Pickswise"
+        }
+      ],
+      "experts": [
+        "Pickswise:Pickswise"
+      ],
+      "odds": [
+        "-130"
+      ],
+      "examples": [
+        {
+          "source": "Pickswise",
+          "expert": "Pickswise",
+          "odds": "-130",
+          "analysis": "It isn’t exactly shaping up to be a pitcher’s duel on Sunday afternoon when the San Diego Padres visit the Washington Nationals for their final game of the series, but that isn’t a massive difference from the rest of the series, as the teams combined for 25 runs over the first 2 games. Griffin Canning didn’t make his season debut until May after missing the first month and a half on the injured list, and he immediately made an impact with a solid 5-inning outing. However, that has been his only great performance of the season thus far, allowing 6 runs in back-to-back games after his first start, and then 3 runs in back-to-back games heading into this matchup. Despite the inflated 7.54 ERA, he hasn’t been quite as bad as those numbers suggest, owning a 4.58 xERA. Zack Littell had a rough stretch through April, but the righty has seen his ERA drop considerably in May, allowing just 6 earned runs through 24.2 innings. While Canning’s xERA paints him in a better light, Littell’s suggests that there could be a regression to the mean coming after escaping danger in May, as he owns a 6.57 xERA compared to his 5.23 ERA. The starter’s xERA puts him in the bottom 3% of the entire MLB. This starting pitcher matchup is a bit scary, with both showing some inconsistencies. However, the underlying numbers and the bullpen advantage for San Diego makes me lean the Padres in this one. Padres vs Nationals prediction: San Diego Padres ML (-130) available at time of publishing. Playable to that number. If you’re looking for a new sportsbook, check out bet365 , the world’s #1 sportsbook. They have an amazing sign-up offer where you can INSTANTLY receive $200 in bonus bets from a $10 wager, regardless of whether that bet wins or loses! There’s no catch, it’s really that simple. Join Bet365 right now ⏰ in time to fade or follow our experts’ Padres vs Nationals predictions."
+        }
+      ],
+      "agreement": "1/3",
+      "confidence": 101
+    },
+    {
+      "key": "LAA @ TB|Run Line|TB -1.5",
+      "matchup": "LAA @ TB",
+      "startsAt": 1780249200,
+      "market": "Run Line",
+      "selection": "TB -1.5",
       "sourceCount": 1,
       "pickCount": 1,
       "sources": [
@@ -1651,171 +724,18 @@
           "source": "Pickswise",
           "expert": "Pickswise",
           "odds": "+115",
-          "analysis": "Friday’s game between the Cubs and Cardinals got off to quite the start, as each team scored 3 runs in the opening inning. However, it was the Cardinals that outlasted the Cubs over the final 8 innings in a 6-5 win that included 20 combined hits and 4 home runs. The Cubs will look to even the series on Saturday when they send Ben Brown to the mound. Brown hasn’t been a starter all year, but he’s thrown at least 4 innings in each of his last 4 appearances, including 11 innings over his last 2 starts against the Pirates and Brewers. In those 4 appearances, he struck out 23 combined batters and surrendered just 4 earned runs across 19 total innings. Brown even held the hot-hitting Braves scoreless in 4 innings, striking out 7. St. Louis is projected to counter with Kyle Leahy, who had a rough outing last Saturday in Cincinnati. Leahy allowed 5 runs on 7 hits, 2 home runs and 2 walks, making it the 3rd time in his 10 starts that he has allowed at least 4 runs. Despite the poor showing, Leahy still has managed a 2.95 ERA in May thanks in part to just 2 earned runs allowed in 11.1 innings at home this month. I don’t see much of a starting pitching edge either way here, and the offenses both perform similarly against right-handed pitchers, so this game is a toss-up – and it’s priced as such. In fact, it might be a bit heavy in Chicago’s favor. Give me St. Louis at home on the plus-money price. Cubs vs Cardinals prediction: St. Louis Cardinals ML (+115) at the time of publishing. Playable to +105. Bet like a Caesar with this AMAZING new customer offer from Caesars Sportsbook , where you can receive DOUBLE YOUR WINNINGS on 10 straight wagers after making your first $1 bet! Become a Caesars member 👥 using the Caesars promo code PWCONTENT250BM, where you can bet on our Cubs vs Cardinals picks."
+          "analysis": "The Los Angeles Angels and Tampa Bay Rays wrap up a three-game series at Tropicana Field in St. Petersburg, and it’s a rubber game. The Rays picked up an 8-5 win as moderate favorites (-162) on Friday as the Over (8) cashed, while the Halos trounced Tampa 14-3 as moderate underdogs (+144) as the Over (7) easily connected. It was a rare loss for the Rays at home, as they’re 20-6 under the Tropicana roof. It was equally a rare win for the Angels on the road, as they’re just 11-20 away from the Big A. The Angels turn to RHP Jack Kochanowicz (2-3, 4.99 ERA, 1.39 WHIP) for Sunday’s start. He is a 1-1 with a dismal 6.25 ERA in 31 2/3 IP across six road starts, and his biggest issue has been issuing walks. He has 18 walks in six starts away from home. The Rays counter with RHP Shane McClanahan (5-2, 2.52 ERA, 1.04 WHIP), who has exhibited All-Star form through 10 starts and 50 IP. The secret to his success has been keeping the ball in the yard, as he has allowed just two homers. He has had a slight problem with walks, allowing two or more walks in six of his 10 outings, but he has managed to limit the damage. At home, McClanahan is a perfect 4-0 with a 2.10 ERA across 25 2/3 IP in five starts, and teams are hitting just .185 against him there. Rays -1.5 (+115) at time of publishing. Playable to -110."
         }
       ],
       "agreement": "1/3",
       "confidence": 101
     },
     {
-      "key": "TB @ NYY|Moneyline|TB",
-      "matchup": "TB @ NYY",
-      "startsAt": "Tue, Sep 22 • 1:05 PM ET",
+      "key": "SD @ WAS|Moneyline|WAS",
+      "matchup": "SD @ WAS",
+      "startsAt": "2026-05-31T17:35:00.000Z",
       "market": "Moneyline",
-      "selection": "TB Moneyline",
-      "sourceCount": 1,
-      "pickCount": 1,
-      "sources": [
-        {
-          "id": "covers",
-          "name": "Covers"
-        }
-      ],
-      "experts": [
-        "Covers:Aisha Quiñones"
-      ],
-      "odds": [],
-      "examples": [
-        {
-          "source": "Covers",
-          "expert": "Aisha Quiñones",
-          "odds": "",
-          "analysis": "Drew Rasmussen vs. the New York Yankees is a mismatch on paper - the righty is 4-1 with a 1.03 ERA and 51 punchouts in eight career games against New York. Coming off a thrilling comeback win on Friday, the division-leading Tampa Bay Rays are primed to keep the foot on the gas behind their dynamic arm to create more separation in the AL East."
-        }
-      ],
-      "agreement": "1/3",
-      "confidence": 101
-    },
-    {
-      "key": "LAA @ TB|Moneyline|TB",
-      "matchup": "LAA @ TB",
-      "startsAt": 1780171800,
-      "market": "Moneyline",
-      "selection": "TB Moneyline",
-      "sourceCount": 1,
-      "pickCount": 1,
-      "sources": [
-        {
-          "id": "pickswise",
-          "name": "Pickswise"
-        }
-      ],
-      "experts": [
-        "Pickswise:Pickswise"
-      ],
-      "odds": [
-        "-165"
-      ],
-      "examples": [
-        {
-          "source": "Pickswise",
-          "expert": "Pickswise",
-          "odds": "-165",
-          "analysis": "The Tampa Bay Rays, despite losing 4 consecutive games entering this series against the Los Angeles Angels, still sit at the top of the American League East with a sterling 35-19 record. Things haven’t been going as well for the Angels this season, and that continued in the first game of the series on Friday night when Tampa Bay escaped with an 8-5 victory. Angels pitchers have been struggling to keep runs off the board this season, and that could continue on Saturday with Reid Detmers taking the mound. The lefty had an unbelievable outing last time out, striking out 14 and allowing just 1 hit and 1 earned run over 8 innings, but his overall form this season has been rough — including when he allowed 8 earned runs in the outing prior to that dazzling 8-inning performance. Drew Rasmussen has been pitching quite well for the Rays’ stingy staff this season, with his most recent outing being a 7-inning gem against the New York Yankees, allowing just 5 hits and no earned runs over 7 innings. Detmers will be riding high after his last start, but the Rays are one of the best hitting teams against lefties this season, and the Angels’ starter gives no reason to believe he can string together 2 solid outings. Angels vs Rays prediction: Tampa Bay Rays ML (-165) available at time of publishing. Playable to -180. Sign up for Polymarket RIGHT NOW to get instant access and a $50 trading bonus after you make your first $20 deposit! You can join Polymarket by clicking here and trade on our Angels vs Rays predictions."
-        }
-      ],
-      "agreement": "1/3",
-      "confidence": 101
-    },
-    {
-      "key": "KC @ TEX|Run Line|TEX -1.5",
-      "matchup": "KC @ TEX",
-      "startsAt": "Sat, May 30 • 4:05 PM ET",
-      "market": "Run Line",
-      "selection": "TEX -1.5",
-      "sourceCount": 1,
-      "pickCount": 1,
-      "sources": [
-        {
-          "id": "covers",
-          "name": "Covers"
-        }
-      ],
-      "experts": [
-        "Covers:Shawn Krest"
-      ],
-      "odds": [
-        "+1.5 -194"
-      ],
-      "examples": [
-        {
-          "source": "Covers",
-          "expert": "Shawn Krest",
-          "odds": "+1.5 -194",
-          "analysis": "The Royals have been losing big all season. K.C.'s runline and moneyline records are the same, meaning that giving up the 1.5 runs against them isn't a big risk. While starter Seth Lugo started the year strong, May was rough, posting a 5.27 ERA and 1.683 WHIP in five starts."
-        }
-      ],
-      "agreement": "1/3",
-      "confidence": 101
-    },
-    {
-      "key": "TOR @ BAL|Moneyline|TOR",
-      "matchup": "TOR @ BAL",
-      "startsAt": 1780171500,
-      "market": "Moneyline",
-      "selection": "TOR Moneyline",
-      "sourceCount": 1,
-      "pickCount": 1,
-      "sources": [
-        {
-          "id": "pickswise",
-          "name": "Pickswise"
-        }
-      ],
-      "experts": [
-        "Pickswise:Pickswise"
-      ],
-      "odds": [
-        "-122"
-      ],
-      "examples": [
-        {
-          "source": "Pickswise",
-          "expert": "Pickswise",
-          "odds": "-122",
-          "analysis": "I find Saturday’s matchup between the Toronto Blue Jays and the Baltimore Orioles to be a compelling spot. I do my handicapping before looking at betting lines, and then I try to locate the best value from there. I initially circled the under for this matchup but was surprised to see the total already at 7.5. That is a low mark, in my opinion, so I will instead pivot to a side. Trey Yesavage is coming off his worst outing of the season. He has only made 6 starts so far, but he allowed 5 earned runs across 6.2 innings against the Marlins last time out. His first 5 starts had been very strong, allowing just 3 combined earned runs in that sample. Baltimore is a solid offense against right-handed pitching, especially in their home park, but I am a fan of Yesavage and his profile. He ranks as one of the premier pitchers when it comes to suppressing hard contact, and his strikeout numbers are terrific as well. Brandon Young is also pitching well entering this game on Saturday, as he has a 2.91 ERA across his first 21.2 innings this month. Baltimore is 4-0 in those games thanks to some solid run support, but Young is showing some concerning signs. His 11 walks to 17 strikeouts in that span is not a great ratio, and on the season his K-BB% sits at just 6.1%. Young struggles to keep the ball on the ground and that is concerning with the hard contact he allows. I side with Toronto at current pricing. Blue Jays vs Orioles prediction: Toronto Blue Jays ML (-122) available at time of publishing. Playable to -125. You can bet on our Blue Jays vs Orioles pick with BetMGM , where right now new users can activate your new BetMGM account ⚡ and receive $150 in bonus bets INSTANTLY if your first $10+ wager is a winner!"
-        }
-      ],
-      "agreement": "1/3",
-      "confidence": 101
-    },
-    {
-      "key": "ARI @ SEA|Total|Under 7",
-      "matchup": "ARI @ SEA",
-      "startsAt": 1780193400,
-      "market": "Total",
-      "selection": "Under 7",
-      "sourceCount": 1,
-      "pickCount": 1,
-      "sources": [
-        {
-          "id": "pickswise",
-          "name": "Pickswise"
-        }
-      ],
-      "experts": [
-        "Pickswise:Pickswise"
-      ],
-      "odds": [
-        "-115"
-      ],
-      "examples": [
-        {
-          "source": "Pickswise",
-          "expert": "Pickswise",
-          "odds": "-115",
-          "analysis": "The Arizona Diamondbacks and Seattle Mariners have one of the final games on the slate tonight. They battled late into the night on Friday before the Mariners eventually took a 7-6 victory in extra innings. That pushed the Mariners’ winning streak to 4 games, and it ended a 5-game streak for the D-Backs. As we head to Saturday, the Mariners are heavy favorites with Bryan Woo on the mound as he faces Ryne Nelson. There is value in backing the Diamondbacks at a nice plus-money payout, but I am going to go with under 7 in this spot. We don’t usually want to bet an under with Ryne Nelson on the mound, as he is very capable of giving up a big number. However, he has been really strong in the month of May, pitching into the 7th or 8th inning in 4 straight starts, logging quality starts in all of them. He will face a Seattle lineup that has never seen him before, and feels a little thin without Cal Raliegh in the middle of the order. Woo, on the other side, is as reliable as a starter gets. He has had a couple of rough outings this season, but he has more than earned my trust whenever he takes the hill. I think we could be in for a low-scoring grind of a game. The books think so too, and they know we hate betting unders already. Diamondbacks vs Mariners Prediction : Under 7 (-115) available at the time of publishing. Playable at that number . You can bet on our Diamondbacks vs Mariners pick at DraftKings Sportsbook , which has thousands of betting options available and a great new customer offer where you can get $300 in bonus bets INSTANTLY if your first $5 bet is a winner! Click here 👈🏼 to sign up for a DraftKings account now."
-        }
-      ],
-      "agreement": "1/3",
-      "confidence": 101
-    },
-    {
-      "key": "DET @ CHW|Total|Under 7.5",
-      "matchup": "DET @ CHW",
-      "startsAt": "2026-05-30T18:10:00.000Z",
-      "market": "Total",
-      "selection": "Under 7.5",
+      "selection": "WAS Moneyline",
       "sourceCount": 1,
       "pickCount": 1,
       "sources": [
@@ -1825,141 +745,17 @@
         }
       ],
       "experts": [
-        "Action Network:Wags Wins"
+        "Action Network:Brian Bitler"
       ],
       "odds": [
-        "-102"
+        "+117"
       ],
       "examples": [
         {
           "source": "Action Network",
-          "expert": "Wags Wins",
-          "odds": "-102",
+          "expert": "Brian Bitler",
+          "odds": "+117",
           "analysis": ""
-        }
-      ],
-      "agreement": "1/3",
-      "confidence": 101
-    },
-    {
-      "key": "KC @ TEX|Total|Under 8",
-      "matchup": "KC @ TEX",
-      "startsAt": "2026-05-30T20:05:00.000Z",
-      "market": "Total",
-      "selection": "Under 8",
-      "sourceCount": 1,
-      "pickCount": 1,
-      "sources": [
-        {
-          "id": "action",
-          "name": "Action Network"
-        }
-      ],
-      "experts": [
-        "Action Network:tonysartori99"
-      ],
-      "odds": [
-        "-115"
-      ],
-      "examples": [
-        {
-          "source": "Action Network",
-          "expert": "tonysartori99",
-          "odds": "-115",
-          "analysis": ""
-        }
-      ],
-      "agreement": "1/3",
-      "confidence": 101
-    },
-    {
-      "key": "CHC @ STL|Total|Under 8.5",
-      "matchup": "CHC @ STL",
-      "startsAt": "Sat, May 30 • 7:15 PM ET",
-      "market": "Total",
-      "selection": "Under 8.5",
-      "sourceCount": 1,
-      "pickCount": 1,
-      "sources": [
-        {
-          "id": "covers",
-          "name": "Covers"
-        }
-      ],
-      "experts": [
-        "Covers:Shawn Krest"
-      ],
-      "odds": [
-        "u8.0 -110"
-      ],
-      "examples": [
-        {
-          "source": "Covers",
-          "expert": "Shawn Krest",
-          "odds": "u8.0 -110",
-          "analysis": "The Cardinals' six-run outburst on Friday looks like an anomaly. Nelson Velasquez, called up earlier in the day, hit St. Louis' first home run this week. He's a platoon slugger, however, who'll likely be on the bench against a right-hander. That leaves the Cardinals' batters who have produced 0 or 1 runs in five of the last 10 games."
-        }
-      ],
-      "agreement": "1/3",
-      "confidence": 101
-    },
-    {
-      "key": "MIL @ HOU|Prop|yrfi/nrfi (no: -103)",
-      "matchup": "MIL @ HOU",
-      "startsAt": "Sat, May 30 • 4:10 PM ET",
-      "market": "Prop",
-      "selection": "YRFI/NRFI (No: -103)",
-      "sourceCount": 1,
-      "pickCount": 1,
-      "sources": [
-        {
-          "id": "covers",
-          "name": "Covers"
-        }
-      ],
-      "experts": [
-        "Covers:Quinn Allen"
-      ],
-      "odds": [
-        "-105"
-      ],
-      "examples": [
-        {
-          "source": "Covers",
-          "expert": "Quinn Allen",
-          "odds": "-105",
-          "analysis": "Neither lineup has done much damage in the first inning lately, making this NRFI appealing. Brandon Sproat hasn't allowed a first-inning run in five straight starts, while Peter Lambert owns a 6-1 NRFI record and a sub-4.00 ERA. Milwaukee is hitting just .205 in opening frames this season."
-        }
-      ],
-      "agreement": "1/3",
-      "confidence": 101
-    },
-    {
-      "key": "MIN @ PIT|Prop|yrfi/nrfi (no: -109)",
-      "matchup": "MIN @ PIT",
-      "startsAt": "Sat, May 30 • 4:05 PM ET",
-      "market": "Prop",
-      "selection": "YRFI/NRFI (No: -109)",
-      "sourceCount": 1,
-      "pickCount": 1,
-      "sources": [
-        {
-          "id": "covers",
-          "name": "Covers"
-        }
-      ],
-      "experts": [
-        "Covers:Quinn Allen"
-      ],
-      "odds": [
-        "-120"
-      ],
-      "examples": [
-        {
-          "source": "Covers",
-          "expert": "Quinn Allen",
-          "odds": "-120",
-          "analysis": "Mitch Keller and Bailey Ober have been among the most reliable first-inning pitchers in baseball this season. Keller owns a 9-2 NRFI record and hasn't allowed a first-inning run in three straight starts, while Ober is 10-1 and has gone nine consecutive outings without trouble. Both offenses also struggle early."
         }
       ],
       "agreement": "1/3",
@@ -1969,7 +765,7 @@
   "counts": {
     "sources": 3,
     "activeSources": 3,
-    "picks": 50,
-    "consensus": 38
+    "picks": 18,
+    "consensus": 15
   }
 }
