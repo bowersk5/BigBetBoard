@@ -308,15 +308,6 @@ function readAnalysis(block, analysisHeading) {
   return chunks.join(" ").replace(/\s+/g, " ").trim();
 }
 
-/**
- * Score a pick for ranking purposes.
- *
- * Previously this only awarded a recency boost for "minutes" and
- * the literal string "1 hours", leaving all other hour values at 0.
- * Now it applies a smooth gradient so picks published moments ago
- * rank above picks published several hours ago, which published an
- * hour or two ago rank above much older ones.
- */
 function rankPicks(picks) {
   return [...picks].sort((a, b) => scorePick(b) - scorePick(a));
 }

@@ -417,7 +417,6 @@ select.control-input {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Color the top border by market type — set via JS */
 .pick-card[data-market="Moneyline"]  { border-top: 3px solid var(--green); }
 .pick-card[data-market="Total"]      { border-top: 3px solid var(--amber); }
 .pick-card[data-market="Run Line"],
@@ -490,7 +489,6 @@ select.control-input {
   flex-wrap: wrap;
 }
 
-/* Market badge coloring */
 .market-badge {
   font-family: var(--font-mono);
   font-size: 10px;
@@ -502,20 +500,27 @@ select.control-input {
   border: 1px solid transparent;
 }
 
-/* Assign via data-market on parent .pick-card */
-.pick-card[data-market="Moneyline"]  .market-badge { color: var(--green);  background: var(--green-dim);  border-color: rgba(31,192,94,0.25); }
-.pick-card[data-market="Total"]      .market-badge { color: var(--amber);  background: var(--amber-dim);  border-color: rgba(232,151,42,0.25); }
-.pick-card[data-market="Run Line"]   .market-badge,
-.pick-card[data-market="Spread"]     .market-badge { color: var(--blue);   background: var(--blue-dim);   border-color: rgba(74,173,255,0.25); }
-.pick-card[data-market="Prop"]       .market-badge,
-.pick-card[data-market="Game Prop"]  .market-badge { color: var(--purple); background: var(--purple-dim); border-color: rgba(181,123,255,0.25); }
-
-/* Default for any other market */
 .market-badge {
   color: var(--text-muted);
   background: var(--surface-2);
   border-color: var(--border);
 }
+
+.pick-card[data-market="Moneyline"] .market-badge,
+.consensus-card[data-market="Moneyline"] .market-badge { color: var(--green); background: var(--green-dim); border-color: rgba(31,192,94,0.25); }
+
+.pick-card[data-market="Total"] .market-badge,
+.consensus-card[data-market="Total"] .market-badge { color: var(--amber); background: var(--amber-dim); border-color: rgba(232,151,42,0.25); }
+
+.pick-card[data-market="Run Line"] .market-badge,
+.pick-card[data-market="Spread"] .market-badge,
+.consensus-card[data-market="Run Line"] .market-badge,
+.consensus-card[data-market="Spread"] .market-badge { color: var(--blue); background: var(--blue-dim); border-color: rgba(74,173,255,0.25); }
+
+.pick-card[data-market="Prop"] .market-badge,
+.pick-card[data-market="Game Prop"] .market-badge,
+.consensus-card[data-market="Prop"] .market-badge,
+.consensus-card[data-market="Game Prop"] .market-badge { color: var(--purple); background: var(--purple-dim); border-color: rgba(181,123,255,0.25); }
 
 .odds-badge {
   font-family: var(--font-mono);
@@ -524,9 +529,7 @@ select.control-input {
   color: var(--text-muted);
 }
 
-/* Positive odds = green */
 .odds-badge.positive { color: var(--green); }
-/* Negative odds = amber */
 .odds-badge.negative { color: var(--amber); }
 
 .analysis {
@@ -534,7 +537,6 @@ select.control-input {
   font-size: 13px;
   line-height: 1.65;
   color: var(--text-muted);
-  /* Clamp to ~4 lines */
   display: -webkit-box;
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;

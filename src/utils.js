@@ -1,9 +1,3 @@
-/**
- * Shared utilities used by both coversParser.js and consensus.js.
- * Centralising these here removes the two identical copies that previously
- * lived in each file.
- */
-
 const NAMED_ENTITIES = {
   amp: "&",
   apos: "'",
@@ -19,7 +13,6 @@ const NAMED_ENTITIES = {
   mdash: "\u2014"
 };
 
-/** Decode HTML character references to their Unicode equivalents. */
 export function decodeEntities(value) {
   return `${value}`
     .replace(/&([a-z]+);/gi, (_, entity) => NAMED_ENTITIES[entity.toLowerCase()] ?? `&${entity};`)
@@ -27,7 +20,6 @@ export function decodeEntities(value) {
     .replace(/&#(\d+);/g, (_, dec) => String.fromCharCode(Number(dec)));
 }
 
-/** Fetch a page with browser-like headers. Throws on non-2xx responses. */
 export async function fetchHtml(url) {
   const response = await fetch(url, {
     headers: {

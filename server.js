@@ -4,6 +4,7 @@ import { extname, join, normalize } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseCoversMlbPicks } from "./src/coversParser.js";
 import { fetchMlbConsensus } from "./src/consensus.js";
+import { fetchHtml } from "./src/utils.js";
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 const publicDir = join(__dirname, "public");
@@ -39,19 +40,7 @@ async function fetchDailyPicks(force = false) {
     return cache.payload;
   }
 
-  const response = await fetch(sourceUrl, {
-    headers: {
-      "accept": "text/html,application/xhtml+xml",
-      "accept-language": "en-US,en;q=0.9",
-      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125 Safari/537.36"
-    }
-  });
-
-  if (!response.ok) {
-    throw new Error(`Covers returned ${response.status} ${response.statusText}`);
-  }
-
-  const html = await response.text();
+  const html = await fetchHtml(sourceUrl);
   const parsed = parseCoversMlbPicks(html, sourceUrl);
   cache.dateKey = key;
   cache.fetchedAt = new Date().toISOString();

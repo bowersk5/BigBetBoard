@@ -11,8 +11,6 @@ const consensusFile = join(outputDir, "consensus.json");
 
 async function main() {
   // Fetch the Covers page once and reuse the HTML for both picks and consensus.
-  // Previously the page was fetched twice — once here and again inside
-  // fetchMlbConsensus — which wasted a request and risked inconsistent data.
   const html = await fetchHtml(sourceUrl);
 
   const parsed = parseCoversMlbPicks(html, sourceUrl);

@@ -109,7 +109,6 @@ function renderPicks() {
     const node = els.template.content.cloneNode(true);
     const card = node.querySelector(".pick-card");
 
-    // Set market data attribute for CSS color-coding
     const market = pick.market || "Other";
     card.setAttribute("data-market", market);
     card.style.animationDelay = `${i * 40}ms`;
@@ -120,7 +119,6 @@ function renderPicks() {
     node.querySelector(".selection").textContent = pick.selection;
     node.querySelector(".market").textContent = market;
 
-    // Odds badge: positive = green, negative = amber
     const oddsEl = node.querySelector(".odds");
     const oddsText = pick.odds ? pick.odds : "—";
     oddsEl.textContent = oddsText;
@@ -154,15 +152,11 @@ function renderConsensus() {
   picks.forEach((pick, i) => {
     const node = els.consensusTemplate.content.cloneNode(true);
     const card = node.querySelector(".consensus-card");
+    const market = pick.market || "Other";
     card.style.animationDelay = `${i * 50}ms`;
+    card.setAttribute("data-market", market);
 
-    // Mirror pick-card market badge via data-market on parent for CSS
-    node.querySelector(".market-badge").textContent = pick.market || "";
-    node.querySelector(".market-badge").setAttribute("data-market-type", pick.market || "");
-
-    // Apply market color to market-badge within consensus card
-    applyMarketBadgeColor(node.querySelector(".market-badge"), pick.market);
-
+    node.querySelector(".market-badge").textContent = market;
     node.querySelector(".agreement").textContent = pick.agreement;
     node.querySelector(".selection").textContent = pick.selection;
     node.querySelector(".matchup").textContent = pick.matchup;
@@ -173,25 +167,6 @@ function renderConsensus() {
 
     els.consensusList.append(node);
   });
-}
-
-/** Apply inline market-specific badge styling since consensus cards don't inherit data-market from .pick-card */
-function applyMarketBadgeColor(el, market) {
-  const styles = {
-    "Moneyline": { color: "var(--green)", background: "var(--green-dim)", borderColor: "rgba(31,192,94,0.25)" },
-    "Total":     { color: "var(--amber)", background: "var(--amber-dim)", borderColor: "rgba(232,151,42,0.25)" },
-    "Run Line":  { color: "var(--blue)",  background: "var(--blue-dim)",  borderColor: "rgba(74,173,255,0.25)" },
-    "Spread":    { color: "var(--blue)",  background: "var(--blue-dim)",  borderColor: "rgba(74,173,255,0.25)" },
-    "Prop":      { color: "var(--purple)",background: "var(--purple-dim)",borderColor: "rgba(181,123,255,0.25)" },
-    "Game Prop": { color: "var(--purple)",background: "var(--purple-dim)",borderColor: "rgba(181,123,255,0.25)" }
-  };
-  const s = styles[market];
-  if (s && el) {
-    el.style.color = s.color;
-    el.style.background = s.background;
-    el.style.borderColor = s.borderColor;
-    el.style.border = `1px solid ${s.borderColor}`;
-  }
 }
 
 function setLoading(isLoading) {
@@ -230,12 +205,10 @@ function escapeHtml(value) {
   );
 }
 
-// Inject spin keyframe for loading icon
 const style = document.createElement("style");
 style.textContent = `@keyframes spin { to { transform: rotate(360deg); } }`;
 document.head.append(style);
 
-// Event bindings
 els.refreshButton.addEventListener("click", () => loadPicks(true));
 els.searchInput.addEventListener("input", (e) => { state.query = e.target.value; renderPicks(); });
 els.marketSelect.addEventListener("change", (e) => { state.market = e.target.value; renderPicks(); });
