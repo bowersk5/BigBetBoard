@@ -120,7 +120,7 @@ function consensusUrl(refresh = false) {
 
 function renderMarketOptions() {
   const current = els.marketSelect.value;
-  els.marketSelect.innerHTML = '<option value="">All markets</option>';
+  els.marketSelect.innerHTML = '<option value="">All Markets</option>';
   [...state.markets].sort().forEach((market) => {
     const opt = document.createElement("option");
     opt.value = market;
@@ -152,7 +152,7 @@ function renderPicks() {
 
     const market = pick.market || "Other";
     card.setAttribute("data-market", market);
-    card.style.animationDelay = `${i * 40}ms`;
+    card.style.animationDelay = `${i * 35}ms`;
 
     node.querySelector(".matchup").textContent = pick.matchup;
     node.querySelector(".starts").textContent = pick.startsAt || "";
@@ -208,11 +208,11 @@ function renderConsensus() {
     card.style.animationDelay = `${i * 50}ms`;
     card.setAttribute("data-market", market);
 
-    node.querySelector(".market-badge").textContent = market;
+    node.querySelector(".market").textContent = market;
     node.querySelector(".agreement").textContent = pick.agreement;
     node.querySelector(".selection").textContent = pick.selection;
     node.querySelector(".matchup").textContent = pick.matchup;
-    node.querySelector(".source-count").textContent = pick.sourceCount;
+    node.querySelector(".source-count") && (node.querySelector(".source-count").textContent = pick.sourceCount);
     node.querySelector(".pick-count").textContent = pick.pickCount;
     node.querySelector(".source-list").textContent = pick.sources.map((s) => s.name).join(" · ");
     node.querySelector(".example-list").textContent = sampleExamples(pick.examples);
@@ -224,8 +224,8 @@ function renderConsensus() {
 function setLoading(isLoading) {
   els.refreshButton.disabled = isLoading;
   els.refreshButton.innerHTML = isLoading
-    ? `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="animation:spin 1s linear infinite"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg> Loading`
-    : `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg> Refresh`;
+    ? `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="animation:spin 1s linear infinite"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg> Loading`
+    : `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg> Refresh`;
 }
 
 function consensusSummary(data) {

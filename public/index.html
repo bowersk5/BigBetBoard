@@ -6,156 +6,171 @@
     <title>Daily Expert MLB Board</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Syne:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
 
+    <!-- Ambient background -->
+    <div class="ambient" aria-hidden="true">
+      <div class="ambient-orb ambient-orb--1"></div>
+      <div class="ambient-orb ambient-orb--2"></div>
+      <div class="ambient-orb ambient-orb--3"></div>
+    </div>
+
     <header class="site-header">
       <div class="header-inner">
         <div class="header-brand">
-          <div class="live-badge">
-            <span class="live-dot"></span>
-            <span class="live-label">LIVE</span>
+          <div class="brand-lockup">
+            <div class="brand-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+            </div>
+            <div class="brand-text">
+              <span class="brand-label">Expert MLB Board</span>
+              <h1 class="brand-title">Daily Picks</h1>
+            </div>
           </div>
-          <div>
-            <p class="header-eyebrow">Daily Expert MLB Board</p>
-            <h1 class="header-title">Covers Picks</h1>
+        </div>
+        <div class="header-meta">
+          <div class="pulse-indicator">
+            <span class="pulse-dot"></span>
+            <span class="pulse-text">Live</span>
+          </div>
+          <div class="divider-v"></div>
+          <div class="stat-chip">
+            <span class="stat-chip__label">Games</span>
+            <strong id="gameCount" class="stat-chip__value">—</strong>
+          </div>
+          <div class="stat-chip">
+            <span class="stat-chip__label">Picks</span>
+            <strong id="pickCount" class="stat-chip__value">—</strong>
+          </div>
+          <div class="divider-v"></div>
+          <div class="header-time">
+            <span class="time-label">Updated</span>
+            <strong id="fetchedAt" class="time-value">—</strong>
           </div>
         </div>
         <div class="header-actions">
           <a class="btn-ghost" href="https://www.covers.com/picks/mlb" target="_blank" rel="noreferrer">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             Source
           </a>
           <button id="refreshButton" class="btn-primary" type="button">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
             Refresh
           </button>
         </div>
       </div>
     </header>
 
-    <div class="status-ticker" aria-live="polite">
-      <div class="ticker-inner">
-        <div class="ticker-item">
-          <span class="ticker-label">Updated</span>
-          <strong id="fetchedAt" class="ticker-value">—</strong>
-        </div>
-        <span class="ticker-sep">·</span>
-        <div class="ticker-item">
-          <span class="ticker-label">Games</span>
-          <strong id="gameCount" class="ticker-value">0</strong>
-        </div>
-        <span class="ticker-sep">·</span>
-        <div class="ticker-item">
-          <span class="ticker-label">Expert Picks</span>
-          <strong id="pickCount" class="ticker-value">0</strong>
-        </div>
-        <span class="ticker-sep">·</span>
-        <div class="ticker-item ticker-legend">
-          <span class="dot-ml"></span><span class="ticker-label">ML</span>
-          <span class="dot-total"></span><span class="ticker-label">Total</span>
-          <span class="dot-rl"></span><span class="ticker-label">Run Line</span>
-          <span class="dot-prop"></span><span class="ticker-label">Prop</span>
-        </div>
-      </div>
-    </div>
-
     <main class="main-content">
 
-      <!-- Controls -->
-      <div class="controls-row">
-        <div class="search-wrap">
-          <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input id="searchInput" class="control-input search-input" type="search" placeholder="Team, analyst, market…">
+      <!-- Controls bar -->
+      <div class="controls-bar">
+        <div class="controls-inner">
+          <div class="search-wrap">
+            <svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input id="searchInput" class="control-input search-input" type="search" placeholder="Search teams, analysts, markets…">
+          </div>
+          <div class="select-wrap">
+            <select id="marketSelect" class="control-input control-select">
+              <option value="">All Markets</option>
+            </select>
+            <svg class="select-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="select-wrap">
+            <select id="viewSelect" class="control-input control-select">
+              <option value="best">Best Ranked</option>
+              <option value="all">All Expert Picks</option>
+            </select>
+            <svg class="select-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="market-legend">
+            <span class="legend-item"><span class="legend-dot legend-dot--ml"></span>ML</span>
+            <span class="legend-item"><span class="legend-dot legend-dot--total"></span>Total</span>
+            <span class="legend-item"><span class="legend-dot legend-dot--rl"></span>RL</span>
+            <span class="legend-item"><span class="legend-dot legend-dot--prop"></span>Prop</span>
+          </div>
         </div>
-        <select id="marketSelect" class="control-input">
-          <option value="">All markets</option>
-        </select>
-        <select id="viewSelect" class="control-input">
-          <option value="best">Best ranked</option>
-          <option value="all">All expert picks</option>
-        </select>
       </div>
 
-      <!-- Consensus -->
-      <section class="section">
-        <div class="section-head">
-          <div class="section-head-left">
-            <span class="section-tag">Consensus</span>
-            <h2 class="section-title">Most Common Picks</h2>
-          </div>
-          <p id="consensusIntro" class="section-sub"></p>
-        </div>
-        <div id="consensusList" class="consensus-rail"></div>
-      </section>
+      <div class="page-layout">
 
-      <!-- Picks -->
-      <section class="section">
-        <div class="section-head">
-          <div class="section-head-left">
-            <span class="section-tag">Covers</span>
+        <!-- Consensus sidebar -->
+        <aside class="sidebar">
+          <div class="section-header">
+            <div class="section-header__top">
+              <span class="section-eyebrow">Consensus</span>
+            </div>
+            <h2 class="section-title">Most Agreed Picks</h2>
+            <p id="consensusIntro" class="section-sub"></p>
+          </div>
+          <div id="consensusList" class="consensus-stack"></div>
+        </aside>
+
+        <!-- Main picks -->
+        <section class="picks-section">
+          <div class="section-header">
+            <div class="section-header__top">
+              <span class="section-eyebrow">Covers Experts</span>
+            </div>
             <h2 id="listTitle" class="section-title">Best Expert Picks</h2>
+            <p id="intro" class="section-sub"></p>
           </div>
-          <p id="intro" class="section-sub"></p>
-        </div>
-        <div id="pickList" class="pick-grid"></div>
-      </section>
+          <div id="pickList" class="pick-grid"></div>
+        </section>
 
+      </div>
     </main>
 
     <!-- Pick card template -->
     <template id="pickTemplate">
       <article class="pick-card">
-        <div class="card-header">
-          <div class="card-matchup-row">
-            <span class="matchup"></span>
-            <span class="starts"></span>
+        <div class="pick-card__accent"></div>
+        <div class="pick-card__inner">
+          <div class="pick-card__header">
+            <div class="pick-matchup-row">
+              <span class="pick-matchup matchup"></span>
+              <span class="pick-time starts"></span>
+            </div>
+            <span class="pick-made made"></span>
           </div>
-          <span class="made"></span>
-        </div>
-        <div class="card-body">
-          <h3 class="selection"></h3>
-          <div class="card-meta">
-            <span class="market-badge market"></span>
-            <span class="odds-badge odds"></span>
+          <div class="pick-card__body">
+            <h3 class="pick-selection selection"></h3>
+            <div class="pick-badges">
+              <span class="badge badge--market market"></span>
+              <span class="badge badge--odds odds"></span>
+            </div>
+            <p class="pick-analysis analysis"></p>
           </div>
-          <p class="analysis"></p>
+          <footer class="pick-card__footer">
+            <span class="pick-analyst analyst"></span>
+            <span class="pick-rating rating"></span>
+          </footer>
         </div>
-        <footer class="card-footer">
-          <span class="analyst-name analyst"></span>
-          <span class="rating"></span>
-        </footer>
       </article>
     </template>
 
     <!-- Consensus card template -->
     <template id="consensusTemplate">
       <article class="consensus-card">
-        <div class="consensus-agreement">
-          <span class="agreement"></span>
-          <span class="src-label">sources agree</span>
+        <div class="consensus-card__header">
+          <span class="badge badge--market market"></span>
+          <span class="consensus-agree">
+            <span class="agree-num agreement"></span>
+            <span class="agree-label">sources</span>
+          </span>
         </div>
-        <div class="consensus-body">
-          <h3 class="selection"></h3>
-          <div class="consensus-meta">
-            <span class="market-badge market"></span>
-            <span class="matchup"></span>
-          </div>
-          <p class="source-list"></p>
-          <p class="example-list"></p>
+        <h3 class="consensus-selection selection"></h3>
+        <p class="consensus-matchup matchup"></p>
+        <div class="consensus-meta">
+          <span class="consensus-sources source-list"></span>
+          <span class="consensus-experts">
+            <strong class="pick-count"></strong> experts
+          </span>
         </div>
-        <div class="consensus-counts">
-          <div class="count-pill">
-            <span class="source-count"></span>
-            <span>sites</span>
-          </div>
-          <div class="count-pill">
-            <span class="pick-count"></span>
-            <span>experts</span>
-          </div>
-        </div>
+        <p class="consensus-examples example-list"></p>
       </article>
     </template>
 
