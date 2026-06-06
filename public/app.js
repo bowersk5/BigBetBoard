@@ -51,16 +51,42 @@ async function loadConsensus(refresh = false) {
 
 function consensusUrl(refresh = false) {
   const isLocal = ["localhost", "127.0.0.1", ""].includes(window.location.hostname);
-  const cacheBust = refresh ? `?t=${Date.now()}` : "";
   const params = new URLSearchParams({ sport: state.sport });
   if (refresh) {
     params.set("refresh", "1");
   }
-  return isLocal ? `/api/consensus?${params}` : staticConsensusUrl(cacheBust);
+  if (isLocal) {
+    return `/api/consensus?${params}`;
+  }
+  const cacheBust = refresh ? `?t=${Date.now()}` : "";
+  return staticConsensusUrl(cacheBust);
 }
 
 function staticConsensusUrl(cacheBust = "") {
-  return state.sport === "mlb" ? `data/consensus.json${cacheBust}` : `data/${state.sport}/consensus.json${cacheBust}`;
+  // Resolve relative to the root of the site regardless of which subdirectory
+  // this script is loaded from. The data files are always at:
+  //   data/consensus.json          (MLB)
+  //   data/nba/consensus.json      (NBA)
+  //   data/nhl/consensus.json      (NHL)
+  const base = siteRoot();
+  return state.sport === "mlb"
+    ? `${base}data/consensus.json${cacheBust}`
+    : `${base}data/${state.sport}/consensus.json${cacheBust}`;
+}
+
+/**
+ * Returns an absolute URL prefix pointing at the site root, so data fetches
+ * work identically whether the page is at / or /nba/ or /nhl/.
+ */
+function siteRoot() {
+  const { protocol, host, pathname } = window.location;
+  // pathname is e.g. "/" or "/nba/" or "/DailyExpertMLBBoard/nba/"
+  const parts = pathname.split("/").filter(Boolean);
+  // Drop any trailing sport segment so we get back to the repo root
+  const sportSegments = new Set(["mlb", "nba", "nhl"]);
+  const rootParts = parts.filter((p) => !sportSegments.has(p));
+  const rootPath = rootParts.length ? `/${rootParts.join("/")}/` : "/";
+  return `${protocol}//${host}${rootPath}`;
 }
 
 function renderConsensus() {
@@ -140,16 +166,30 @@ els.refreshButton.addEventListener("click", () => loadConsensus(true));
 
 loadConsensus();
 
+/**
+ * Detect sport from the URL path. Works for both:
+ *   /                     → mlb  (root index.html)
+ *   /nba/                 → nba  (subdirectory page)
+ *   /DailyExpertMLBBoard/nba/  → nba  (GitHub Pages with repo prefix)
+ * Falls back to the ?sport= query param for local dev server.
+ */
 function currentSport() {
-  const pathSport = window.location.pathname.split("/").find((part) => ["mlb", "nba", "nhl"].includes(part));
+  const pathParts = window.location.pathname.split("/").filter(Boolean);
+  const sportFromPath = pathParts.find((part) => ["mlb", "nba", "nhl"].includes(part));
+  if (sportFromPath) return sportFromPath;
+
   const querySport = new URLSearchParams(window.location.search).get("sport");
-  return ["mlb", "nba", "nhl"].includes(querySport) ? querySport : pathSport || "mlb";
+  if (["mlb", "nba", "nhl"].includes(querySport)) return querySport;
+
+  return "mlb";
 }
 
 function renderSportChrome() {
   const sport = sports[state.sport] || sports.mlb;
   els.sportTitle.textContent = `${sport.label} Most Agreed Picks`;
   els.sourceLink.href = sport.sourceUrl;
+
+  // Mark the active tab by matching data-sport-link to the current sport
   els.sportLinks.forEach((link) => {
     const isActive = link.dataset.sportLink === state.sport;
     link.classList.toggle("is-active", isActive);
