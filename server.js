@@ -18,10 +18,13 @@ const mimeTypes = {
   ".json": "application/json; charset=utf-8"
 };
 
-// All path prefixes that should serve index.html (sport landing pages)
-const sportPaths = new Set([
-  ...Object.keys(sports).flatMap((s) => [`/${s}`, `/${s}/`])
-]);
+// All path forms that should serve the SPA shell (with and without trailing slash)
+const sportSlugs = new Set(Object.keys(sports));
+
+function isSportPath(pathname) {
+  const slug = pathname.replace(/^\/|\/$/g, ""); // strip leading/trailing slashes
+  return sportSlugs.has(slug);
+}
 
 function todayKey() {
   return new Intl.DateTimeFormat("en-CA", {
@@ -85,16 +88,12 @@ async function fetchDailyConsensus(sport, force = false) {
 }
 
 async function serveStatic(pathname, res) {
-  // Sport landing pages: /nba, /nba/, /nhl, /nhl/, /mlb, /mlb/ → serve the
-  // subdirectory index.html (which exists on disk for GitHub Pages compatibility)
-  const normalizedPath = pathname.endsWith("/") ? pathname.slice(0, -1) : pathname;
-  if (sportPaths.has(pathname) || sportPaths.has(`${normalizedPath}/`)) {
-    const sport = normalizedPath.replace("/", "") || "mlb";
-    const htmlFile = sport === "mlb"
-      ? join(publicDir, "index.html")
-      : join(publicDir, sport, "index.html");
+  // Sport landing pages (/nba, /nba/, /nhl, /nhl/, /mlb, /mlb/) all serve the
+  // root index.html. app.js reads the sport from window.location at runtime so
+  // no per-sport HTML file is needed on the local dev server.
+  if (pathname === "/" || isSportPath(pathname)) {
     try {
-      const body = await readFile(htmlFile);
+      const body = await readFile(join(publicDir, "index.html"));
       res.writeHead(200, { "content-type": mimeTypes[".html"] });
       res.end(body);
     } catch {
@@ -104,7 +103,8 @@ async function serveStatic(pathname, res) {
     return;
   }
 
-  const safePath = normalize(pathname === "/" ? "/index.html" : pathname).replace(/^(\.\.[/\\])+/, "");
+  // Everything else: CSS, JS, JSON data files, etc.
+  const safePath = normalize(pathname).replace(/^(\.\.[/\\])+/, "");
   const filePath = join(publicDir, safePath);
 
   if (!filePath.startsWith(publicDir)) {
@@ -125,7 +125,7 @@ async function serveStatic(pathname, res) {
 
 const server = createServer(async (req, res) => {
   const url = new URL(req.url, `http://${req.headers.host}`);
-  const sport = sportConfig(url.searchParams.get("sport") || url.pathname.split("/")[1]).id;
+  const sport = sportConfig(url.searchParams.get("sport") || url.pathname.replace(/^\/|\/$/g, "")).id;
 
   if (url.pathname === "/api/picks") {
     try {
