@@ -31,29 +31,47 @@ export const sports = {
 
 const defaultSport = "mlb";
 
+// Sport-agnostic abbreviation aliases.
+// IMPORTANT: only add aliases that are unambiguous across all sports
+// (e.g. ARZ→ARI is safe; CHI is NOT aliased here because it means
+// Bulls in NBA and Blackhawks in NHL, not just Cubs in MLB).
 const teamAliases = {
   ARZ: "ARI",
   AZ: "ARI",
   BKN: "BRK",
   CHA: "CHA",
   CWS: "CHW",
-  CHI: "CHC",
   CLB: "CBJ",
-  LA: "LAD",
-  LAC: "LAC",
   LAK: "LAK",
-  LAL: "LAL",
   MI: "MIA",
   MON: "MTL",
-  NO: "NOP",
   NJ: "NJD",
-  NY: "NYK",
   NYI: "NYI",
   NYR: "NYR",
   PHO: "PHX",
   SFG: "SF",
   UTA: "UTA",
+  VEG: "VGK",  // Covers uses VEG; Pickswise/others use VGK for Vegas Golden Knights
   WSH: "WAS"
+};
+
+// Sport-specific alias overrides applied after the base table.
+// Keyed by sport id, then abbr -> canonical.
+const sportTeamAliases = {
+  mlb: {
+    CHI: "CHC",  // Chicago Cubs (MLB only)
+    LA: "LAD",   // Los Angeles Dodgers (MLB only)
+    NO: "NOP",   // not relevant in MLB but safe
+    NY: "NYY"    // default NY to Yankees in MLB (Mets use NYM)
+  },
+  nba: {
+    NO: "NOP",   // New Orleans Pelicans
+    NY: "NYK",   // New York Knicks
+    GS: "GS"     // Golden State (already correct)
+  },
+  nhl: {
+    NO: "NSH"    // Nashville Predators sometimes abbreviated NO; treat as no-op for safety
+  }
 };
 
 const teamNameAliases = [
@@ -150,14 +168,6 @@ const teamNameAliases = [
   ["jets", "WPG"]
 ];
 
-/**
- * Fetch picks from all sources and build consensus groups.
- *
- * @param {object} [options]
- * @param {string} [options.coversHtml] - Pre-fetched Covers HTML. When provided,
- *   the Covers page is not fetched again, avoiding a duplicate HTTP request when
- *   the caller (e.g. generateStaticData.js) has already fetched it.
- */
 export async function fetchMlbConsensus({ coversHtml } = {}) {
   return fetchConsensus({ sport: "mlb", coversHtml });
 }
@@ -272,7 +282,6 @@ async function fetchSource(source, config) {
   return fetchSourceFromHtml(source, html, config);
 }
 
-/** Build a source result from already-fetched HTML (no network call). */
 function fetchSourceFromHtml(source, html, config) {
   const picks = source.parser(html, config).map((pick) => ({
     ...pick,
@@ -298,7 +307,8 @@ function parseCoversSource(html, config) {
     selection: pick.selection,
     odds: pick.odds,
     expert: pick.analyst,
-    analysis: pick.analysis
+    analysis: pick.analysis,
+    sport: config.id
   })).filter(Boolean);
 }
 
@@ -313,8 +323,8 @@ function parsePickswiseSource(html, config) {
   const picks = [];
 
   for (const game of records) {
-    const away = normalizeTeamAbbr(game.awayTeam?.abbreviation);
-    const home = normalizeTeamAbbr(game.homeTeam?.abbreviation);
+    const away = normalizeTeamAbbr(game.awayTeam?.abbreviation, config.id);
+    const home = normalizeTeamAbbr(game.homeTeam?.abbreviation, config.id);
 
     for (const pick of game.basePicks || []) {
       picks.push(normalizePick({
@@ -327,6 +337,7 @@ function parsePickswiseSource(html, config) {
         analysis: stripHtml(pick.reasoning || ""),
         line: pick.line,
         type: pick.market,
+        sport: config.id,
         home,
         away
       }));
@@ -336,7 +347,7 @@ function parsePickswiseSource(html, config) {
   return picks.filter(Boolean);
 }
 
-function parseActionSource(html) {
+function parseActionSource(html, config) {
   const data = readNextData(html);
   const profiles = data?.props?.pageProps?.initialExpertsResponse?.response?.profiles || [];
   const picks = [];
@@ -344,8 +355,8 @@ function parseActionSource(html) {
   for (const profile of profiles) {
     for (const pick of profile.picks || []) {
       const teams = pick.game?.teams || [];
-      const away = normalizeTeamAbbr(teams.find((team) => team.id === pick.game?.away_team_id)?.abbr);
-      const home = normalizeTeamAbbr(teams.find((team) => team.id === pick.game?.home_team_id)?.abbr);
+      const away = normalizeTeamAbbr(teams.find((team) => team.id === pick.game?.away_team_id)?.abbr, config.id);
+      const home = normalizeTeamAbbr(teams.find((team) => team.id === pick.game?.home_team_id)?.abbr, config.id);
 
       picks.push(normalizePick({
         matchup: `${away} @ ${home}`,
@@ -357,6 +368,7 @@ function parseActionSource(html) {
         analysis: pick.meta?.note || "",
         line: pick.value,
         type: pick.type,
+        sport: config.id,
         home,
         away
       }));
@@ -367,7 +379,8 @@ function parseActionSource(html) {
 }
 
 function normalizePick(raw) {
-  const matchup = normalizeMatchup(raw.matchup, raw.away, raw.home);
+  const sport = raw.sport || "";
+  const matchup = normalizeMatchup(raw.matchup, raw.away, raw.home, sport);
   const [away, home] = matchup.split(" @ ");
   const market = normalizeMarket(raw.market, raw.selection, raw.type);
   const normalized = normalizeSelection({ ...raw, market, away, home });
@@ -414,7 +427,7 @@ function normalizeSelection(raw) {
   const selection = cleanText(raw.selection);
 
   if (raw.market === "Moneyline") {
-    const side = sideFromSelection(selection, raw.type, raw.away, raw.home);
+    const side = sideFromSelection(selection, raw.type, raw.away, raw.home, raw.sport);
     if (!side) {
       return null;
     }
@@ -422,7 +435,7 @@ function normalizeSelection(raw) {
   }
 
   if (raw.market === "Run Line" || raw.market === "Spread") {
-    const side = sideFromSelection(selection, raw.type, raw.away, raw.home);
+    const side = sideFromSelection(selection, raw.type, raw.away, raw.home, raw.sport);
     const line = signedLine(selection.match(/([+-]\d+(?:\.\d+)?)/)?.[1] || raw.line);
     if (!side || !line) {
       return null;
@@ -447,7 +460,7 @@ function normalizeSelection(raw) {
   return { key: selection.toLowerCase(), label: selection };
 }
 
-function sideFromSelection(selection, type = "", away, home) {
+function sideFromSelection(selection, type = "", away, home, sport = "") {
   const typeValue = `${type}`.toLowerCase();
 
   if (typeValue.includes("home")) {
@@ -458,7 +471,7 @@ function sideFromSelection(selection, type = "", away, home) {
   }
 
   const explicit = selection.match(/\b([A-Z]{2,4})\b/)?.[1];
-  const normalized = normalizeTeamAbbr(explicit);
+  const normalized = normalizeTeamAbbr(explicit, sport);
   if ([away, home].includes(normalized)) {
     return normalized;
   }
@@ -466,9 +479,9 @@ function sideFromSelection(selection, type = "", away, home) {
   return teamFromName(selection);
 }
 
-function normalizeMatchup(matchup = "", away, home) {
+function normalizeMatchup(matchup = "", away, home, sport = "") {
   if (away && home) {
-    return `${normalizeTeamAbbr(away)} @ ${normalizeTeamAbbr(home)}`;
+    return `${normalizeTeamAbbr(away, sport)} @ ${normalizeTeamAbbr(home, sport)}`;
   }
 
   const match = matchup.match(/([A-Z]{2,4})\s+@\s+([A-Z]{2,4})/);
@@ -476,12 +489,13 @@ function normalizeMatchup(matchup = "", away, home) {
     return "";
   }
 
-  return `${normalizeTeamAbbr(match[1])} @ ${normalizeTeamAbbr(match[2])}`;
+  return `${normalizeTeamAbbr(match[1], sport)} @ ${normalizeTeamAbbr(match[2], sport)}`;
 }
 
-function normalizeTeamAbbr(value = "") {
+function normalizeTeamAbbr(value = "", sport = "") {
   const upper = `${value}`.toUpperCase().replace(/[^A-Z]/g, "");
-  return teamAliases[upper] || upper;
+  const base = teamAliases[upper] || upper;
+  return (sport && sportTeamAliases[sport]?.[base]) || base;
 }
 
 function teamFromName(value = "") {
@@ -533,5 +547,10 @@ function signedLine(value) {
 
 function readNextData(html) {
   const match = html.match(/<script id="__NEXT_DATA__" type="application\/json">([\s\S]*?)<\/script>/);
-  return match ? JSON.parse(decodeEntities(match[1])) : null;
+  if (!match) return null;
+  try {
+    return JSON.parse(decodeEntities(match[1]));
+  } catch {
+    return null;
+  }
 }

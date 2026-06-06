@@ -1,10 +1,11 @@
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { parseCoversPicks } from "../src/coversParser.js";
 import { fetchConsensus, sports } from "../src/consensus.js";
 import { fetchHtml } from "../src/utils.js";
 
-const outputDir = join(process.cwd(), "public", "data");
+const publicDir = join(process.cwd(), "public");
+const outputDir = join(publicDir, "data");
 
 async function main() {
   await mkdir(outputDir, { recursive: true });
@@ -13,6 +14,14 @@ async function main() {
     const sportDir = config.id === "mlb" ? outputDir : join(outputDir, config.id);
     await mkdir(sportDir, { recursive: true });
     await writeSportData(config, sportDir);
+  }
+
+  // Write per-sport index.html files into public/nba/, public/nhl/, etc. so
+  // GitHub Pages can serve them without server-side routing.
+  for (const config of Object.values(sports)) {
+    if (config.id !== "mlb") {
+      await writeSportHtml(config);
+    }
   }
 }
 
@@ -45,6 +54,36 @@ async function writeSportData(config, sportDir) {
     console.error(`${config.label} consensus fetch failed — writing empty placeholder:`, error.message);
     await writeFile(consensusFile, `${JSON.stringify(emptyConsensus(config), null, 2)}\n`);
   }
+}
+
+async function writeSportHtml(config) {
+  // Read the root index.html and patch it for the subdirectory sport page:
+  //   - Update <title>
+  //   - Update brand-label text
+  //   - Rewrite asset paths from relative to ../relative
+  //   - Rewrite sport tab hrefs to use ../ prefix
+  //   - Update the sourceLink href
+  const rootHtml = await readFile(join(publicDir, "index.html"), "utf8");
+
+  const sportDir = join(publicDir, config.id);
+  await mkdir(sportDir, { recursive: true });
+
+  const label = config.label;
+  const sourceUrl = config.sources.find((s) => s.id === "covers")?.url || `https://www.covers.com/picks/${config.id}`;
+
+  const patched = rootHtml
+    .replace(/<title>Daily Expert MLB Board<\/title>/, `<title>Daily Expert ${label} Board</title>`)
+    .replace(/Expert MLB Board/, `Expert ${label} Board`)
+    .replace(/href="styles\.css"/, `href="../styles.css"`)
+    .replace(/src="app\.js"/, `src="../app.js"`)
+    .replace(/href="https:\/\/www\.covers\.com\/picks\/mlb"/, `href="${sourceUrl}"`)
+    .replace(/href="\.\/"/, `href="../"`)
+    .replace(/href="nba\/"/, `href="../nba/"`)
+    .replace(/href="nhl\/"/, `href="../nhl/"`);
+
+  const outFile = join(sportDir, "index.html");
+  await writeFile(outFile, patched);
+  console.log(`Wrote ${outFile}`);
 }
 
 function emptyConsensus(config) {
