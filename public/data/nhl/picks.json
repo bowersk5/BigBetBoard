@@ -1,0 +1,119 @@
+{
+  "title": "Free NHL Picks & Predictions - Today’s Best NHL Bets",
+  "intro": "",
+  "sourceUrl": "https://www.covers.com/picks/nhl",
+  "generatedAt": "2026-06-06T15:21:38.497Z",
+  "games": [
+    {
+      "away": "CAR",
+      "home": "VEG",
+      "matchup": "CAR @ VEG",
+      "startsAt": "Sat, Jun 6 • 8:00 PM ET",
+      "expertPicks": 6,
+      "computerPicks": 0,
+      "picks": [
+        {
+          "id": "car-veg-points-pavel-dorofeyev-o0-5-points-125-pick-made-2-hours-ago",
+          "market": "Points",
+          "selection": "Pavel Dorofeyev o0.5 Points (-125)",
+          "odds": "o0.5 -115",
+          "made": "2 hours ago",
+          "analyst": "Todd Cordell",
+          "rating": 0,
+          "projection": "",
+          "analysis": "Pavel Dorofeyev ranks second on the team with six chances through two games. Of the seven Golden Knights with at least four opportunities, he is the only guy who hasn’t picked up a point. I like him to get right in Game 3. Playable to -135.",
+          "source": "Covers"
+        },
+        {
+          "id": "car-veg-points-jackson-blake-o0-5-points-115-pick-made-2-hours-ago",
+          "market": "Points",
+          "selection": "Jackson Blake o0.5 Points (-115)",
+          "odds": "o0.5 -110",
+          "made": "2 hours ago",
+          "analyst": "Todd Cordell",
+          "rating": 0,
+          "projection": "",
+          "analysis": "Jackson Blake the entire playoffs in scoring chances during 5-on-5 play and has played almost 10 more minutes than any other Hurricanes forward in that game state. He does a lot of the facilitating for his line and should have plenty of the puck playing primarily against Noah Hanifin's pairing. Betable to -135.",
+          "source": "Covers"
+        }
+      ]
+    }
+  ],
+  "picks": [
+    {
+      "id": "car-veg-points-pavel-dorofeyev-o0-5-points-125-pick-made-2-hours-ago",
+      "market": "Points",
+      "selection": "Pavel Dorofeyev o0.5 Points (-125)",
+      "odds": "o0.5 -115",
+      "made": "2 hours ago",
+      "analyst": "Todd Cordell",
+      "rating": 0,
+      "projection": "",
+      "analysis": "Pavel Dorofeyev ranks second on the team with six chances through two games. Of the seven Golden Knights with at least four opportunities, he is the only guy who hasn’t picked up a point. I like him to get right in Game 3. Playable to -135.",
+      "source": "Covers",
+      "matchup": "CAR @ VEG",
+      "startsAt": "Sat, Jun 6 • 8:00 PM ET",
+      "away": "CAR",
+      "home": "VEG"
+    },
+    {
+      "id": "car-veg-points-jackson-blake-o0-5-points-115-pick-made-2-hours-ago",
+      "market": "Points",
+      "selection": "Jackson Blake o0.5 Points (-115)",
+      "odds": "o0.5 -110",
+      "made": "2 hours ago",
+      "analyst": "Todd Cordell",
+      "rating": 0,
+      "projection": "",
+      "analysis": "Jackson Blake the entire playoffs in scoring chances during 5-on-5 play and has played almost 10 more minutes than any other Hurricanes forward in that game state. He does a lot of the facilitating for his line and should have plenty of the puck playing primarily against Noah Hanifin's pairing. Betable to -135.",
+      "source": "Covers",
+      "matchup": "CAR @ VEG",
+      "startsAt": "Sat, Jun 6 • 8:00 PM ET",
+      "away": "CAR",
+      "home": "VEG"
+    }
+  ],
+  "bestPicks": [
+    {
+      "id": "car-veg-points-pavel-dorofeyev-o0-5-points-125-pick-made-2-hours-ago",
+      "market": "Points",
+      "selection": "Pavel Dorofeyev o0.5 Points (-125)",
+      "odds": "o0.5 -115",
+      "made": "2 hours ago",
+      "analyst": "Todd Cordell",
+      "rating": 0,
+      "projection": "",
+      "analysis": "Pavel Dorofeyev ranks second on the team with six chances through two games. Of the seven Golden Knights with at least four opportunities, he is the only guy who hasn’t picked up a point. I like him to get right in Game 3. Playable to -135.",
+      "source": "Covers",
+      "matchup": "CAR @ VEG",
+      "startsAt": "Sat, Jun 6 • 8:00 PM ET",
+      "away": "CAR",
+      "home": "VEG"
+    },
+    {
+      "id": "car-veg-points-jackson-blake-o0-5-points-115-pick-made-2-hours-ago",
+      "market": "Points",
+      "selection": "Jackson Blake o0.5 Points (-115)",
+      "odds": "o0.5 -110",
+      "made": "2 hours ago",
+      "analyst": "Todd Cordell",
+      "rating": 0,
+      "projection": "",
+      "analysis": "Jackson Blake the entire playoffs in scoring chances during 5-on-5 play and has played almost 10 more minutes than any other Hurricanes forward in that game state. He does a lot of the facilitating for his line and should have plenty of the puck playing primarily against Noah Hanifin's pairing. Betable to -135.",
+      "source": "Covers",
+      "matchup": "CAR @ VEG",
+      "startsAt": "Sat, Jun 6 • 8:00 PM ET",
+      "away": "CAR",
+      "home": "VEG"
+    }
+  ],
+  "counts": {
+    "games": 1,
+    "picks": 2,
+    "expertPicks": 2,
+    "computerPicks": 0
+  },
+  "sport": "nhl",
+  "sportLabel": "NHL",
+  "fetchedAt": "2026-06-06T15:21:38.497Z"
+}

@@ -18,6 +18,11 @@ const mimeTypes = {
   ".json": "application/json; charset=utf-8"
 };
 
+// All path prefixes that should serve index.html (sport landing pages)
+const sportPaths = new Set([
+  ...Object.keys(sports).flatMap((s) => [`/${s}`, `/${s}/`])
+]);
+
 function todayKey() {
   return new Intl.DateTimeFormat("en-CA", {
     timeZone: "America/New_York",
@@ -80,8 +85,26 @@ async function fetchDailyConsensus(sport, force = false) {
 }
 
 async function serveStatic(pathname, res) {
-  const appPath = Object.keys(sports).some((sport) => pathname === `/${sport}`) ? "/index.html" : pathname;
-  const safePath = normalize(appPath === "/" ? "/index.html" : appPath).replace(/^(\.\.[/\\])+/, "");
+  // Sport landing pages: /nba, /nba/, /nhl, /nhl/, /mlb, /mlb/ → serve the
+  // subdirectory index.html (which exists on disk for GitHub Pages compatibility)
+  const normalizedPath = pathname.endsWith("/") ? pathname.slice(0, -1) : pathname;
+  if (sportPaths.has(pathname) || sportPaths.has(`${normalizedPath}/`)) {
+    const sport = normalizedPath.replace("/", "") || "mlb";
+    const htmlFile = sport === "mlb"
+      ? join(publicDir, "index.html")
+      : join(publicDir, sport, "index.html");
+    try {
+      const body = await readFile(htmlFile);
+      res.writeHead(200, { "content-type": mimeTypes[".html"] });
+      res.end(body);
+    } catch {
+      res.writeHead(404, { "content-type": "text/plain; charset=utf-8" });
+      res.end("Not found");
+    }
+    return;
+  }
+
+  const safePath = normalize(pathname === "/" ? "/index.html" : pathname).replace(/^(\.\.[/\\])+/, "");
   const filePath = join(publicDir, safePath);
 
   if (!filePath.startsWith(publicDir)) {

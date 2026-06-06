@@ -1,0 +1,29 @@
+{
+  "sport": "nba",
+  "sportLabel": "NBA",
+  "generatedAt": "2026-06-06T15:21:38.077Z",
+  "sources": [
+    {
+      "id": "covers",
+      "name": "Covers",
+      "url": "https://www.covers.com/picks/nba",
+      "error": null,
+      "picks": 0
+    },
+    {
+      "id": "pickswise",
+      "name": "Pickswise",
+      "url": "https://www.pickswise.com/nba/picks/",
+      "error": null,
+      "picks": 0
+    }
+  ],
+  "picks": [],
+  "consensus": [],
+  "counts": {
+    "sources": 2,
+    "activeSources": 0,
+    "picks": 0,
+    "consensus": 0
+  }
+}
