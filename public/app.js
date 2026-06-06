@@ -1,15 +1,25 @@
 const state = {
+  sport: currentSport(),
   consensus: []
+};
+
+const sports = {
+  mlb: { label: "MLB", sourceUrl: "https://www.covers.com/picks/mlb" },
+  nba: { label: "NBA", sourceUrl: "https://www.covers.com/picks/nba" },
+  nhl: { label: "NHL", sourceUrl: "https://www.covers.com/picks/nhl" }
 };
 
 const els = {
   refreshButton: document.querySelector("#refreshButton"),
+  sourceLink: document.querySelector("#sourceLink"),
   fetchedAt: document.querySelector("#fetchedAt"),
   gameCount: document.querySelector("#gameCount"),
   pickCount: document.querySelector("#pickCount"),
+  sportTitle: document.querySelector("#sportTitle"),
   consensusIntro: document.querySelector("#consensusIntro"),
   consensusList: document.querySelector("#consensusList"),
-  consensusTemplate: document.querySelector("#consensusTemplate")
+  consensusTemplate: document.querySelector("#consensusTemplate"),
+  sportLinks: document.querySelectorAll("[data-sport-link]")
 };
 
 async function loadConsensus(refresh = false) {
@@ -23,7 +33,9 @@ async function loadConsensus(refresh = false) {
     }
 
     state.consensus = consensusData.consensus || [];
+    state.sport = consensusData.sport || state.sport;
 
+    renderSportChrome();
     els.fetchedAt.textContent = formatDate(consensusData.generatedAt);
     els.gameCount.textContent = consensusData.counts?.activeSources ?? 0;
     els.pickCount.textContent = consensusData.counts?.consensus ?? 0;
@@ -40,7 +52,15 @@ async function loadConsensus(refresh = false) {
 function consensusUrl(refresh = false) {
   const isLocal = ["localhost", "127.0.0.1", ""].includes(window.location.hostname);
   const cacheBust = refresh ? `?t=${Date.now()}` : "";
-  return isLocal ? `/api/consensus${refresh ? "?refresh=1" : ""}` : `data/consensus.json${cacheBust}`;
+  const params = new URLSearchParams({ sport: state.sport });
+  if (refresh) {
+    params.set("refresh", "1");
+  }
+  return isLocal ? `/api/consensus?${params}` : staticConsensusUrl(cacheBust);
+}
+
+function staticConsensusUrl(cacheBust = "") {
+  return state.sport === "mlb" ? `data/consensus.json${cacheBust}` : `data/${state.sport}/consensus.json${cacheBust}`;
 }
 
 function renderConsensus() {
@@ -85,7 +105,7 @@ function setLoading(isLoading) {
 function consensusSummary(data) {
   const sources = (data.sources || []).filter((s) => !s.error && s.picks > 0);
   const names = sources.map((s) => s.name).join(", ");
-  return `${data.counts?.picks || 0} expert picks across ${names || "available sources"}.`;
+  return `${data.counts?.picks || 0} ${data.sportLabel || sports[state.sport].label} expert picks across ${names || "available sources"}.`;
 }
 
 function sampleExamples(examples = []) {
@@ -115,6 +135,24 @@ const style = document.createElement("style");
 style.textContent = `@keyframes spin { to { transform: rotate(360deg); } }`;
 document.head.append(style);
 
+renderSportChrome();
 els.refreshButton.addEventListener("click", () => loadConsensus(true));
 
 loadConsensus();
+
+function currentSport() {
+  const pathSport = window.location.pathname.split("/").find((part) => ["mlb", "nba", "nhl"].includes(part));
+  const querySport = new URLSearchParams(window.location.search).get("sport");
+  return ["mlb", "nba", "nhl"].includes(querySport) ? querySport : pathSport || "mlb";
+}
+
+function renderSportChrome() {
+  const sport = sports[state.sport] || sports.mlb;
+  els.sportTitle.textContent = `${sport.label} Most Agreed Picks`;
+  els.sourceLink.href = sport.sourceUrl;
+  els.sportLinks.forEach((link) => {
+    const isActive = link.dataset.sportLink === state.sport;
+    link.classList.toggle("is-active", isActive);
+    link.setAttribute("aria-current", isActive ? "page" : "false");
+  });
+}

@@ -514,6 +514,43 @@ body {
   max-width: 55ch;
 }
 
+.sport-tabs {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 10px;
+  padding: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: rgba(255,255,255,0.03);
+}
+
+.sport-tab {
+  min-width: 52px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--r-sm);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+
+.sport-tab:hover {
+  color: var(--text);
+  background: rgba(255,255,255,0.04);
+}
+
+.sport-tab.is-active {
+  color: var(--gold-light);
+  background: var(--gold-dim);
+}
+
 /* ===================================================
    CONSENSUS
    =================================================== */

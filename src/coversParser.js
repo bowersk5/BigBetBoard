@@ -1,6 +1,6 @@
 import { decodeEntities } from "./utils.js";
 
-const gameLinePattern = /^([A-Z]{2,3})\s+@\s+([A-Z]{2,3})\s+(.+)$/;
+const gameLinePattern = /^([A-Z]{2,4})\s+@\s+([A-Z]{2,4})\s+(.+)$/;
 const marketNames = new Set([
   "Moneyline",
   "Spread",
@@ -19,17 +19,22 @@ const marketNames = new Set([
 ]);
 
 export function parseCoversMlbPicks(html, sourceUrl = "https://www.covers.com/picks/mlb") {
+  return parseCoversPicks(html, { sport: "mlb", sourceUrl });
+}
+
+export function parseCoversPicks(html, { sport = "mlb", sourceUrl = `https://www.covers.com/picks/${sport}` } = {}) {
+  const sportLabel = sport.toUpperCase();
   const title = readTitle(html);
-  const cardGames = parseCardMarkup(html);
+  const cardGames = parseCardMarkup(html, sport);
 
   if (cardGames.length) {
     const picks = flattenPicks(cardGames);
-    return buildPayload({ title, html, sourceUrl, games: cardGames, picks });
+    return buildPayload({ title, html, sourceUrl, games: cardGames, picks, sportLabel });
   }
 
   const text = htmlToLines(html);
-  const introIndex = text.findIndex((line) => line.startsWith("Get free expert and computer MLB picks"));
-  const start = introIndex >= 0 ? Math.max(0, introIndex - 1) : Math.max(0, text.findIndex((line) => line === "MLB Picks"));
+  const introIndex = text.findIndex((line) => line.startsWith(`Get free expert and computer ${sportLabel} picks`));
+  const start = introIndex >= 0 ? Math.max(0, introIndex - 1) : Math.max(0, text.findIndex((line) => line === `${sportLabel} Picks`));
   const end = text.findIndex((line, index) => index > start && line.includes("What are Covers"));
   const lines = text.slice(start, end > start ? end : undefined);
   const games = [];
@@ -77,12 +82,12 @@ export function parseCoversMlbPicks(html, sourceUrl = "https://www.covers.com/pi
     home: game.home
   })));
 
-  return buildPayload({ title, html, sourceUrl, games, picks });
+  return buildPayload({ title, html, sourceUrl, games, picks, sportLabel });
 }
 
-function buildPayload({ title, html, sourceUrl, games, picks }) {
+function buildPayload({ title, html, sourceUrl, games, picks, sportLabel }) {
   const text = htmlToLines(html);
-  const intro = text.find((line) => line.startsWith("Get free expert and computer MLB picks")) || "";
+  const intro = text.find((line) => line.startsWith(`Get free expert and computer ${sportLabel} picks`)) || "";
   const expertGames = games
     .map((game) => ({
       ...game,
@@ -117,17 +122,17 @@ function isTodayExpertPick(pick) {
     !/\d+\s+days?\s+ago/i.test(pick.made || "");
 }
 
-function parseCardMarkup(html) {
+function parseCardMarkup(html, sport) {
   const cards = html.match(/<div id="\d+" class="picks-card[\s\S]*?(?=<div id="\d+" class="picks-card|<h2|$)/g) || [];
 
-  return cards.map(parseGameCard).filter(Boolean);
+  return cards.map((card) => parseGameCard(card, sport)).filter(Boolean);
 }
 
-function parseGameCard(cardHtml) {
+function parseGameCard(cardHtml, sport) {
   const headerHtml = cardHtml.match(/<div class="picks-card-header[\s\S]*?<\/div>\s*<\/div>/i)?.[0] || cardHtml.slice(0, 5000);
   const headerLines = htmlToLines(headerHtml);
-  const logoTeams = [...headerHtml.matchAll(/\/mlb\/([a-z]{2,3})\.svg/gi)].map((match) => match[1].toUpperCase());
-  const teams = logoTeams.length >= 2 ? logoTeams.slice(0, 2) : headerLines.filter((line) => /^[A-Z]{2,3}$/.test(line)).slice(0, 2);
+  const logoTeams = [...headerHtml.matchAll(new RegExp(`/${sport}/([a-z0-9]{2,4})\\.svg`, "gi"))].map((match) => match[1].toUpperCase());
+  const teams = logoTeams.length >= 2 ? logoTeams.slice(0, 2) : headerLines.filter((line) => /^[A-Z]{2,4}$/.test(line)).slice(0, 2);
   const startsAt = headerLines.find((line) => line.includes("•") && line.includes("ET")) || "";
   const counts = htmlToLines(cardHtml.match(/pick-cards-counter-badge[\s\S]*?<\/div>/i)?.[0] || "").join(" ");
   const expert = counts.match(/(\d+)\s+Expert Picks?/i);
@@ -354,7 +359,7 @@ function notNoise(line) {
 }
 
 function readTitle(html) {
-  return decodeEntities(html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1] || "Covers MLB Picks");
+  return decodeEntities(html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1] || "Covers Picks");
 }
 
 function slug(value) {

@@ -1,35 +1,58 @@
-import { parseCoversMlbPicks } from "./coversParser.js";
+import { parseCoversPicks } from "./coversParser.js";
 import { decodeEntities, fetchHtml } from "./utils.js";
 
-const sources = [
-  {
-    id: "covers",
-    name: "Covers",
-    url: "https://www.covers.com/picks/mlb",
-    parser: parseCoversSource
+export const sports = {
+  mlb: {
+    id: "mlb",
+    label: "MLB",
+    sources: [
+      { id: "covers", name: "Covers", url: "https://www.covers.com/picks/mlb", parser: parseCoversSource },
+      { id: "pickswise", name: "Pickswise", url: "https://www.pickswise.com/mlb/picks/", parser: parsePickswiseSource },
+      { id: "action", name: "Action Network", url: "https://www.actionnetwork.com/mlb/picks/", parser: parseActionSource }
+    ]
   },
-  {
-    id: "pickswise",
-    name: "Pickswise",
-    url: "https://www.pickswise.com/mlb/picks/",
-    parser: parsePickswiseSource
+  nba: {
+    id: "nba",
+    label: "NBA",
+    sources: [
+      { id: "covers", name: "Covers", url: "https://www.covers.com/picks/nba", parser: parseCoversSource },
+      { id: "pickswise", name: "Pickswise", url: "https://www.pickswise.com/nba/picks/", parser: parsePickswiseSource }
+    ]
   },
-  {
-    id: "action",
-    name: "Action Network",
-    url: "https://www.actionnetwork.com/mlb/picks/",
-    parser: parseActionSource
+  nhl: {
+    id: "nhl",
+    label: "NHL",
+    sources: [
+      { id: "covers", name: "Covers", url: "https://www.covers.com/picks/nhl", parser: parseCoversSource },
+      { id: "pickswise", name: "Pickswise", url: "https://www.pickswise.com/nhl/picks/", parser: parsePickswiseSource }
+    ]
   }
-];
+};
+
+const defaultSport = "mlb";
 
 const teamAliases = {
   ARZ: "ARI",
   AZ: "ARI",
+  BKN: "BRK",
+  CHA: "CHA",
   CWS: "CHW",
   CHI: "CHC",
+  CLB: "CBJ",
   LA: "LAD",
+  LAC: "LAC",
+  LAK: "LAK",
+  LAL: "LAL",
   MI: "MIA",
+  MON: "MTL",
+  NO: "NOP",
+  NJ: "NJD",
+  NY: "NYK",
+  NYI: "NYI",
+  NYR: "NYR",
+  PHO: "PHX",
   SFG: "SF",
+  UTA: "UTA",
   WSH: "WAS"
 };
 
@@ -63,7 +86,68 @@ const teamNameAliases = [
   ["mariners", "SEA"],
   ["mets", "NYM"],
   ["marlins", "MIA"],
-  ["astros", "HOU"]
+  ["astros", "HOU"],
+  ["hawks", "ATL"],
+  ["celtics", "BOS"],
+  ["nets", "BRK"],
+  ["hornets", "CHA"],
+  ["bulls", "CHI"],
+  ["cavaliers", "CLE"],
+  ["mavericks", "DAL"],
+  ["nuggets", "DEN"],
+  ["pistons", "DET"],
+  ["warriors", "GS"],
+  ["rockets", "HOU"],
+  ["pacers", "IND"],
+  ["clippers", "LAC"],
+  ["lakers", "LAL"],
+  ["grizzlies", "MEM"],
+  ["heat", "MIA"],
+  ["bucks", "MIL"],
+  ["timberwolves", "MIN"],
+  ["pelicans", "NOP"],
+  ["knicks", "NYK"],
+  ["thunder", "OKC"],
+  ["magic", "ORL"],
+  ["76ers", "PHI"],
+  ["sixers", "PHI"],
+  ["suns", "PHX"],
+  ["trail blazers", "POR"],
+  ["kings", "SAC"],
+  ["spurs", "SA"],
+  ["raptors", "TOR"],
+  ["jazz", "UTA"],
+  ["wizards", "WAS"],
+  ["ducks", "ANA"],
+  ["bruins", "BOS"],
+  ["sabres", "BUF"],
+  ["flames", "CGY"],
+  ["hurricanes", "CAR"],
+  ["blackhawks", "CHI"],
+  ["avalanche", "COL"],
+  ["blue jackets", "CBJ"],
+  ["stars", "DAL"],
+  ["red wings", "DET"],
+  ["oilers", "EDM"],
+  ["panthers", "FLA"],
+  ["wild", "MIN"],
+  ["canadiens", "MTL"],
+  ["predators", "NSH"],
+  ["devils", "NJD"],
+  ["islanders", "NYI"],
+  ["rangers", "NYR"],
+  ["senators", "OTT"],
+  ["flyers", "PHI"],
+  ["penguins", "PIT"],
+  ["sharks", "SJ"],
+  ["kraken", "SEA"],
+  ["blues", "STL"],
+  ["lightning", "TB"],
+  ["maple leafs", "TOR"],
+  ["canucks", "VAN"],
+  ["golden knights", "VGK"],
+  ["capitals", "WAS"],
+  ["jets", "WPG"]
 ];
 
 /**
@@ -75,11 +159,16 @@ const teamNameAliases = [
  *   the caller (e.g. generateStaticData.js) has already fetched it.
  */
 export async function fetchMlbConsensus({ coversHtml } = {}) {
+  return fetchConsensus({ sport: "mlb", coversHtml });
+}
+
+export async function fetchConsensus({ sport = defaultSport, coversHtml } = {}) {
+  const config = sportConfig(sport);
   const settled = await Promise.allSettled(
-    sources.map((source) =>
+    config.sources.map((source) =>
       source.id === "covers" && coversHtml
-        ? fetchSourceFromHtml(source, coversHtml)
-        : fetchSource(source)
+        ? fetchSourceFromHtml(source, coversHtml, config)
+        : fetchSource(source, config)
     )
   );
 
@@ -89,18 +178,20 @@ export async function fetchMlbConsensus({ coversHtml } = {}) {
     }
 
     return {
-      id: sources[index].id,
-      name: sources[index].name,
-      url: sources[index].url,
+      id: config.sources[index].id,
+      name: config.sources[index].name,
+      url: config.sources[index].url,
       error: result.reason.message,
       picks: []
     };
   });
 
   const allPicks = sourceResults.flatMap((source) => source.picks);
-  const consensus = buildConsensus(allPicks);
+  const consensus = buildConsensus(allPicks, { totalSources: config.sources.length });
 
   return {
+    sport: config.id,
+    sportLabel: config.label,
     generatedAt: new Date().toISOString(),
     sources: sourceResults.map(({ id, name, url, picks, error }) => ({
       id,
@@ -120,7 +211,7 @@ export async function fetchMlbConsensus({ coversHtml } = {}) {
   };
 }
 
-export function buildConsensus(picks) {
+export function buildConsensus(picks, { totalSources = sports[defaultSport].sources.length } = {}) {
   const grouped = new Map();
 
   for (const pick of picks) {
@@ -166,20 +257,24 @@ export function buildConsensus(picks) {
   return [...grouped.values()]
     .map((pick) => ({
       ...pick,
-      agreement: `${pick.sourceCount}/${sources.length}`,
+      agreement: `${pick.sourceCount}/${totalSources}`,
       confidence: pick.sourceCount * 100 + pick.pickCount
     }))
     .sort((a, b) => b.confidence - a.confidence || b.pickCount - a.pickCount || a.selection.localeCompare(b.selection));
 }
 
-async function fetchSource(source) {
+export function sportConfig(sport = defaultSport) {
+  return sports[sport] || sports[defaultSport];
+}
+
+async function fetchSource(source, config) {
   const html = await fetchHtml(source.url);
-  return fetchSourceFromHtml(source, html);
+  return fetchSourceFromHtml(source, html, config);
 }
 
 /** Build a source result from already-fetched HTML (no network call). */
-function fetchSourceFromHtml(source, html) {
-  const picks = source.parser(html).map((pick) => ({
+function fetchSourceFromHtml(source, html, config) {
+  const picks = source.parser(html, config).map((pick) => ({
     ...pick,
     sourceId: source.id,
     source: source.name,
@@ -194,8 +289,8 @@ function fetchSourceFromHtml(source, html) {
   };
 }
 
-function parseCoversSource(html) {
-  const data = parseCoversMlbPicks(html);
+function parseCoversSource(html, config) {
+  const data = parseCoversPicks(html, { sport: config.id, sourceUrl: sports[config.id].sources.find((source) => source.id === "covers")?.url });
   return data.picks.map((pick) => normalizePick({
     matchup: pick.matchup,
     startsAt: pick.startsAt,
@@ -207,9 +302,14 @@ function parseCoversSource(html) {
   })).filter(Boolean);
 }
 
-function parsePickswiseSource(html) {
+function parsePickswiseSource(html, config) {
   const data = readNextData(html);
-  const records = data?.props?.pageProps?.initialState?.sportPredictionsPicks?.["/mlb/picks/"] || [];
+  const path = `/${config.id}/picks/`;
+  const picksByPath = data?.props?.pageProps?.initialState?.sportPredictionsPicks || {};
+  const records = picksByPath[path] ||
+    picksByPath[path.slice(0, -1)] ||
+    Object.entries(picksByPath).find(([key]) => key.includes(path))?.[1] ||
+    [];
   const picks = [];
 
   for (const game of records) {
@@ -294,13 +394,16 @@ function normalizeMarket(market = "", selection = "", type = "") {
   if (value.includes("money") || value.includes("ml_")) {
     return "Moneyline";
   }
-  if (value.includes("spread") || value.includes("run line")) {
+  if (value.includes("run line")) {
     return "Run Line";
+  }
+  if (value.includes("spread") || value.includes("puck line")) {
+    return "Spread";
   }
   if (value.includes("total") || value.includes("over") || value.includes("under")) {
     return "Total";
   }
-  if (value.includes("prop") || value.includes("custom") || /to hit|hits|rbi|home runs|earned runs|strikeouts|ks/i.test(value)) {
+  if (value.includes("prop") || value.includes("custom") || /to hit|hits|rbi|home runs|earned runs|strikeouts|ks|points|rebounds|assists|goals|shots|saves/i.test(value)) {
     return "Prop";
   }
 
@@ -318,7 +421,7 @@ function normalizeSelection(raw) {
     return { key: side, label: `${side} Moneyline` };
   }
 
-  if (raw.market === "Run Line") {
+  if (raw.market === "Run Line" || raw.market === "Spread") {
     const side = sideFromSelection(selection, raw.type, raw.away, raw.home);
     const line = signedLine(selection.match(/([+-]\d+(?:\.\d+)?)/)?.[1] || raw.line);
     if (!side || !line) {

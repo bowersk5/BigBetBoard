@@ -1,46 +1,62 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
-import { parseCoversMlbPicks } from "../src/coversParser.js";
-import { fetchMlbConsensus } from "../src/consensus.js";
+import { parseCoversPicks } from "../src/coversParser.js";
+import { fetchConsensus, sports } from "../src/consensus.js";
 import { fetchHtml } from "../src/utils.js";
 
-const sourceUrl = "https://www.covers.com/picks/mlb";
 const outputDir = join(process.cwd(), "public", "data");
-const outputFile = join(outputDir, "picks.json");
-const consensusFile = join(outputDir, "consensus.json");
 
 async function main() {
-  // Fetch the Covers page once and reuse the HTML for both picks and consensus.
-  const html = await fetchHtml(sourceUrl);
+  await mkdir(outputDir, { recursive: true });
 
-  const parsed = parseCoversMlbPicks(html, sourceUrl);
+  for (const config of Object.values(sports)) {
+    const sportDir = config.id === "mlb" ? outputDir : join(outputDir, config.id);
+    await mkdir(sportDir, { recursive: true });
+    await writeSportData(config, sportDir);
+  }
+}
+
+async function writeSportData(config, sportDir) {
+  const coversSource = config.sources.find((source) => source.id === "covers");
+  const outputFile = join(sportDir, "picks.json");
+  const consensusFile = join(sportDir, "consensus.json");
+
+  // Fetch the Covers page once and reuse the HTML for both picks and consensus.
+  const html = await fetchHtml(coversSource.url);
+
+  const parsed = parseCoversPicks(html, { sport: config.id, sourceUrl: coversSource.url });
   const payload = {
     ...parsed,
+    sport: config.id,
+    sportLabel: config.label,
     fetchedAt: new Date().toISOString(),
-    sourceUrl
+    sourceUrl: coversSource.url
   };
 
-  await mkdir(outputDir, { recursive: true });
   await writeFile(outputFile, `${JSON.stringify(payload, null, 2)}\n`);
-  console.log(`Wrote ${payload.counts.picks} expert picks to ${outputFile}`);
+  console.log(`Wrote ${payload.counts.picks} ${config.label} expert picks to ${outputFile}`);
 
-  // Consensus is best-effort: a failure from Pickswise or Action Network should
-  // not prevent the main picks page from deploying.
+  // Consensus is best-effort: one unavailable source should not block deploys.
   try {
-    const consensus = await fetchMlbConsensus({ coversHtml: html });
+    const consensus = await fetchConsensus({ sport: config.id, coversHtml: html });
     await writeFile(consensusFile, `${JSON.stringify(consensus, null, 2)}\n`);
-    console.log(`Wrote ${consensus.counts.consensus} consensus groups to ${consensusFile}`);
+    console.log(`Wrote ${consensus.counts.consensus} ${config.label} consensus groups to ${consensusFile}`);
   } catch (error) {
-    console.error("Consensus fetch failed — writing empty placeholder:", error.message);
-    const empty = {
-      generatedAt: new Date().toISOString(),
-      sources: [],
-      picks: [],
-      consensus: [],
-      counts: { sources: 0, activeSources: 0, picks: 0, consensus: 0 }
-    };
-    await writeFile(consensusFile, `${JSON.stringify(empty, null, 2)}\n`);
+    console.error(`${config.label} consensus fetch failed — writing empty placeholder:`, error.message);
+    await writeFile(consensusFile, `${JSON.stringify(emptyConsensus(config), null, 2)}\n`);
   }
+}
+
+function emptyConsensus(config) {
+  return {
+    sport: config.id,
+    sportLabel: config.label,
+    generatedAt: new Date().toISOString(),
+    sources: [],
+    picks: [],
+    consensus: [],
+    counts: { sources: 0, activeSources: 0, picks: 0, consensus: 0 }
+  };
 }
 
 main().catch((error) => {

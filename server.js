@@ -2,20 +2,14 @@ import { createServer } from "node:http";
 import { readFile } from "node:fs/promises";
 import { extname, join, normalize } from "node:path";
 import { fileURLToPath } from "node:url";
-import { parseCoversMlbPicks } from "./src/coversParser.js";
-import { fetchMlbConsensus } from "./src/consensus.js";
+import { parseCoversPicks } from "./src/coversParser.js";
+import { fetchConsensus, sportConfig, sports } from "./src/consensus.js";
 import { fetchHtml } from "./src/utils.js";
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 const publicDir = join(__dirname, "public");
-const sourceUrl = "https://www.covers.com/picks/mlb";
 const port = Number(process.env.PORT || 3000);
-const cache = {
-  dateKey: null,
-  fetchedAt: null,
-  payload: null,
-  consensus: null
-};
+const cache = new Map();
 
 const mimeTypes = {
   ".html": "text/html; charset=utf-8",
@@ -33,42 +27,61 @@ function todayKey() {
   }).format(new Date());
 }
 
-async function fetchDailyPicks(force = false) {
-  const key = todayKey();
-
-  if (!force && cache.dateKey === key && cache.payload) {
-    return cache.payload;
+function cacheForSport(sport) {
+  const config = sportConfig(sport);
+  if (!cache.has(config.id)) {
+    cache.set(config.id, {
+      dateKey: null,
+      fetchedAt: null,
+      payload: null,
+      consensus: null
+    });
   }
-
-  const html = await fetchHtml(sourceUrl);
-  const parsed = parseCoversMlbPicks(html, sourceUrl);
-  cache.dateKey = key;
-  cache.fetchedAt = new Date().toISOString();
-  cache.payload = {
-    ...parsed,
-    fetchedAt: cache.fetchedAt,
-    cachedFor: key,
-    sourceUrl
-  };
-
-  return cache.payload;
+  return { config, entry: cache.get(config.id) };
 }
 
-async function fetchDailyConsensus(force = false) {
+async function fetchDailyPicks(sport, force = false) {
+  const { config, entry } = cacheForSport(sport);
   const key = todayKey();
+  const coversSource = config.sources.find((source) => source.id === "covers");
 
-  if (!force && cache.dateKey === key && cache.consensus) {
-    return cache.consensus;
+  if (!force && entry.dateKey === key && entry.payload) {
+    return entry.payload;
   }
 
-  const payload = await fetchMlbConsensus();
-  cache.dateKey = key;
-  cache.consensus = payload;
+  const html = await fetchHtml(coversSource.url);
+  const parsed = parseCoversPicks(html, { sport: config.id, sourceUrl: coversSource.url });
+  entry.dateKey = key;
+  entry.fetchedAt = new Date().toISOString();
+  entry.payload = {
+    ...parsed,
+    sport: config.id,
+    sportLabel: config.label,
+    fetchedAt: entry.fetchedAt,
+    cachedFor: key,
+    sourceUrl: coversSource.url
+  };
+
+  return entry.payload;
+}
+
+async function fetchDailyConsensus(sport, force = false) {
+  const { config, entry } = cacheForSport(sport);
+  const key = todayKey();
+
+  if (!force && entry.dateKey === key && entry.consensus) {
+    return entry.consensus;
+  }
+
+  const payload = await fetchConsensus({ sport: config.id });
+  entry.dateKey = key;
+  entry.consensus = payload;
   return payload;
 }
 
 async function serveStatic(pathname, res) {
-  const safePath = normalize(pathname === "/" ? "/index.html" : pathname).replace(/^(\.\.[/\\])+/, "");
+  const appPath = Object.keys(sports).some((sport) => pathname === `/${sport}`) ? "/index.html" : pathname;
+  const safePath = normalize(appPath === "/" ? "/index.html" : appPath).replace(/^(\.\.[/\\])+/, "");
   const filePath = join(publicDir, safePath);
 
   if (!filePath.startsWith(publicDir)) {
@@ -89,10 +102,11 @@ async function serveStatic(pathname, res) {
 
 const server = createServer(async (req, res) => {
   const url = new URL(req.url, `http://${req.headers.host}`);
+  const sport = sportConfig(url.searchParams.get("sport") || url.pathname.split("/")[1]).id;
 
   if (url.pathname === "/api/picks") {
     try {
-      const data = await fetchDailyPicks(url.searchParams.get("refresh") === "1");
+      const data = await fetchDailyPicks(sport, url.searchParams.get("refresh") === "1");
       res.writeHead(200, {
         "content-type": "application/json; charset=utf-8",
         "cache-control": "no-store"
@@ -101,9 +115,9 @@ const server = createServer(async (req, res) => {
     } catch (error) {
       res.writeHead(502, { "content-type": "application/json; charset=utf-8" });
       res.end(JSON.stringify({
-        error: "Unable to fetch Covers MLB picks right now.",
+        error: `Unable to fetch Covers ${sportConfig(sport).label} picks right now.`,
         detail: error.message,
-        sourceUrl
+        sourceUrl: sportConfig(sport).sources.find((source) => source.id === "covers")?.url
       }));
     }
     return;
@@ -111,7 +125,7 @@ const server = createServer(async (req, res) => {
 
   if (url.pathname === "/api/consensus") {
     try {
-      const data = await fetchDailyConsensus(url.searchParams.get("refresh") === "1");
+      const data = await fetchDailyConsensus(sport, url.searchParams.get("refresh") === "1");
       res.writeHead(200, {
         "content-type": "application/json; charset=utf-8",
         "cache-control": "no-store"
@@ -120,7 +134,7 @@ const server = createServer(async (req, res) => {
     } catch (error) {
       res.writeHead(502, { "content-type": "application/json; charset=utf-8" });
       res.end(JSON.stringify({
-        error: "Unable to compare MLB picks right now.",
+        error: `Unable to compare ${sportConfig(sport).label} picks right now.`,
         detail: error.message
       }));
     }
@@ -131,5 +145,5 @@ const server = createServer(async (req, res) => {
 });
 
 server.listen(port, () => {
-  console.log(`Covers Daily MLB Picks is running at http://localhost:${port}`);
+  console.log(`Daily Expert Picks is running at http://localhost:${port}`);
 });
