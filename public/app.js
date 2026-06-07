@@ -38,7 +38,6 @@ async function loadConsensus(refresh = false) {
     renderSportChrome();
     els.fetchedAt.textContent = formatDate(consensusData.generatedAt);
     els.gameCount.textContent = consensusData.counts?.activeSources ?? 0;
-    els.pickCount.textContent = consensusData.counts?.consensus ?? 0;
     els.consensusIntro.textContent = consensusSummary(consensusData);
 
     renderConsensus();
@@ -95,6 +94,8 @@ function renderConsensus() {
   const picks = common.length ? common : fallback;
 
   els.consensusList.innerHTML = "";
+  // Update the badge to reflect what's actually rendered, not the raw JSON count
+  els.pickCount.textContent = picks.length;
 
   if (!picks.length) {
     els.consensusList.innerHTML = '<div class="empty">No consensus picks available right now.</div>';
