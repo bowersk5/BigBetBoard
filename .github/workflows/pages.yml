@@ -3,7 +3,10 @@ name: Deploy GitHub Pages
 on:
   workflow_dispatch:
   schedule:
+    # Morning run: 2:30 PM UTC = 10:30 AM ET — catches picks published before noon
     - cron: "30 14 * * *"
+    # Evening run: 10:00 PM UTC = 6:00 PM ET — catches afternoon/early-evening game picks
+    - cron: "0 22 * * *"
   push:
     branches:
       - main
