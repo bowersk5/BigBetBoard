@@ -1,7 +1,7 @@
 {
   "sport": "nba",
   "sportLabel": "NBA",
-  "generatedAt": "2026-06-13T19:57:41.378Z",
+  "generatedAt": "2026-06-13T20:06:50.076Z",
   "sources": [
     {
       "id": "covers",
@@ -118,7 +118,7 @@
       "startsAt": "Sat, Jun 13 • 8:30 PM ET",
       "market": "Prop",
       "selection": "Karl-Anthony Towns o11.5 Total Rebounds",
-      "odds": "o10.5 -139",
+      "odds": "o10.5 -138",
       "expert": "Douglas Farmer",
       "analysis": "Once Towns was back on the court in full on Wednesday, he returned to his effectiveness. He finished with 10 rebounds despite playing less than 26 minutes. He snagged seven boards once free of his shackles in the second half.",
       "made": "yesterday",
@@ -323,13 +323,13 @@
         "Covers:Douglas Farmer"
       ],
       "odds": [
-        "o10.5 -139"
+        "o10.5 -138"
       ],
       "examples": [
         {
           "source": "Covers",
           "expert": "Douglas Farmer",
-          "odds": "o10.5 -139",
+          "odds": "o10.5 -138",
           "analysis": "Once Towns was back on the court in full on Wednesday, he returned to his effectiveness. He finished with 10 rebounds despite playing less than 26 minutes. He snagged seven boards once free of his shackles in the second half."
         }
       ],
