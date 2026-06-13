@@ -542,7 +542,7 @@ function extractOddsFromText(text) {
 
 // ── Shared normalisation helpers ──────────────────────────────────────────────
 
-function normalizePick(raw) {
+export function normalizePick(raw) {
   const sport = raw.sport || "";
   const matchup = normalizeMatchup(raw.matchup, raw.away, raw.home, sport);
   const [away, home] = matchup.split(" @ ");
@@ -566,14 +566,16 @@ function normalizePick(raw) {
 
 function normalizeMarket(market = "", selection = "", type = "") {
   const value = `${market} ${selection} ${type}`.toLowerCase();
+  if (value.includes("parlay")) return "Parlay";
   if (value.includes("money") || value.includes("ml_")) return "Moneyline";
   if (value.includes("run line")) return "Run Line";
   if (value.includes("spread") || value.includes("puck line")) return "Spread";
-  if (value.includes("total") || value.includes("over") || value.includes("under")) return "Total";
   if (value.includes("prop") || value.includes("custom") ||
+      /total (?:points|rebounds|assists|threes|steals|blocks|turnovers|bases|hits|strikeouts|saves)|points scored/i.test(value) ||
       /to hit|hits|rbi|home runs|earned runs|strikeouts|ks|points|rebounds|assists|goals|shots|saves|anytime goal/i.test(value)) {
     return "Prop";
   }
+  if (value.includes("total") || value.includes("over") || value.includes("under")) return "Total";
   return cleanText(market) || "Other";
 }
 
@@ -601,11 +603,12 @@ function normalizeSelection(raw) {
   }
 
   if (raw.market === "Prop") {
-    const label = selection.replace(/\s*[+-]\d+$/, "");
+    const label = stripTrailingOdds(selection);
     return { key: label.toLowerCase(), label };
   }
 
-  return { key: selection.toLowerCase(), label: selection };
+  const label = cleanSelectionLabel(stripTrailingOdds(selection));
+  return { key: label.toLowerCase(), label };
 }
 
 function sideFromSelection(selection, type = "", away, home, sport = "") {
@@ -641,6 +644,28 @@ function teamFromName(value = "") {
 
 function cleanText(value = "") {
   return decodeEntities(`${value}`).replace(/\s+/g, " ").trim();
+}
+
+function stripTrailingOdds(value = "") {
+  return value
+    .replace(/\s*\([+-]\d+\)\s*$/, "")
+    .replace(/\s*[+-]\d+\s*$/, "")
+    .trim();
+}
+
+function cleanSelectionLabel(value = "") {
+  return [
+    "Points Scored",
+    "Total Rebounds",
+    "Total Assists",
+    "Total Points",
+    "Total Threes",
+    "Total Steals",
+    "Total Blocks"
+  ].reduce((text, phrase) => {
+    const repeated = new RegExp(`\\b${phrase}\\s+${phrase}\\b`, "gi");
+    return text.replace(repeated, phrase);
+  }, value);
 }
 
 function stripHtml(value = "") {

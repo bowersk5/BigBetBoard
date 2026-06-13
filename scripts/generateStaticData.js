@@ -1,4 +1,4 @@
-import { mkdir, readFile, writeFile, copyFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { parseCoversPicks } from "../src/coversParser.js";
 import { fetchConsensus, sports } from "../src/consensus.js";
@@ -7,12 +7,8 @@ import { fetchHtml } from "../src/utils.js";
 const publicDir = join(process.cwd(), "public");
 const outputDir = join(publicDir, "data");
 
-// History dir lives outside public/ so it is not deployed to Pages.
-const historyDir = join(process.cwd(), "history");
-
 async function main() {
   await mkdir(outputDir, { recursive: true });
-  await mkdir(historyDir, { recursive: true });
 
   for (const config of Object.values(sports)) {
     const sportDir = config.id === "mlb" ? outputDir : join(outputDir, config.id);
@@ -48,9 +44,6 @@ async function writeSportData(config, sportDir) {
   await writeFile(outputFile, `${JSON.stringify(payload, null, 2)}\n`);
   console.log(`Wrote ${payload.counts.picks} ${config.label} expert picks to ${outputFile}`);
 
-  // Archive a dated snapshot so we can track pick history over time.
-  await archiveSnapshot(config.id, "picks", payload);
-
   // Consensus is best-effort: one unavailable source should not block deploys.
   try {
     const consensus = await fetchConsensus({ sport: config.id, coversHtml: html });
@@ -63,26 +56,10 @@ async function writeSportData(config, sportDir) {
         console.warn(`[health] ${config.label}/${source.name}: ${source.warning}`);
       }
     }
-
-    await archiveSnapshot(config.id, "consensus", consensus);
   } catch (error) {
     console.error(`${config.label} consensus fetch failed — writing empty placeholder:`, error.message);
     await writeFile(consensusFile, `${JSON.stringify(emptyConsensus(config), null, 2)}\n`);
   }
-}
-
-/**
- * Write a dated snapshot to history/<sport>/<YYYY-MM-DD>-<type>.json.
- * These are not deployed — they are committed to the repo so you can track
- * which picks were published each day and eventually compute hit rates.
- */
-async function archiveSnapshot(sportId, type, data) {
-  const date = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
-  const sportHistoryDir = join(historyDir, sportId);
-  await mkdir(sportHistoryDir, { recursive: true });
-  const file = join(sportHistoryDir, `${date}-${type}.json`);
-  await writeFile(file, `${JSON.stringify(data, null, 2)}\n`);
-  console.log(`Archived snapshot → ${file}`);
 }
 
 async function writeSportHtml(config) {

@@ -12,6 +12,9 @@ public/data/nhl/
 public/nba/
 public/nhl/
 
+# Retired archive output
+history/
+
 # Environment
 .env
 .env.local

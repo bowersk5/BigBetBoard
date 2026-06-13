@@ -9,9 +9,8 @@ A zero-dependency Node.js dashboard that aggregates and cross-references daily M
 1. A GitHub Actions workflow runs at **2:30 PM UTC** (10:30 AM ET) and **10:00 PM UTC** (6:00 PM ET) each day.
 2. `scripts/generateStaticData.js` scrapes all configured pick sources, normalises the data, and writes JSON files into `public/data/`.
 3. The script also generates sport subdirectory pages (`public/nba/index.html`, `public/nhl/index.html`) from the root `public/index.html` template.
-4. Dated snapshots of each build are archived to `history/<sport>/YYYY-MM-DD-{picks,consensus}.json` for historical tracking.
-5. The `public/` folder is deployed to GitHub Pages — no server required.
-6. A local dev server (`server.js`) is also available for development; it fetches live data on demand and serves the same frontend.
+4. The `public/` folder is deployed to GitHub Pages — no server required.
+5. A local dev server (`server.js`) is also available for development; it fetches live data on demand and serves the same frontend.
 
 ### Sources
 
@@ -57,10 +56,6 @@ No API keys are required. The app scrapes publicly available web pages.
 
 ```
 ├── .github/workflows/pages.yml  # CI: test → generate → deploy (runs twice daily)
-├── history/                     # Dated pick/consensus snapshots, committed for tracking
-│   ├── mlb/
-│   ├── nba/
-│   └── nhl/
 ├── public/
 │   ├── index.html               # Root page (MLB) — also used as template for sport subpages
 │   ├── styles.css
@@ -71,7 +66,7 @@ No API keys are required. The app scrapes publicly available web pages.
 │       ├── nba/                 # Generated: NBA picks and consensus
 │       └── nhl/                 # Generated: NHL picks and consensus
 ├── scripts/
-│   └── generateStaticData.js    # Build script: generates JSON + sport subpages + history snapshots
+│   └── generateStaticData.js    # Build script: generates JSON + sport subpages
 ├── src/
 │   ├── coversParser.js          # HTML parser for Covers
 │   ├── consensus.js             # Multi-source aggregator with sport-aware normalisation
@@ -101,7 +96,6 @@ The GitHub Actions workflow in `.github/workflows/pages.yml` handles everything:
 - Triggers on push to `main`/`master`, on a daily schedule (10:30 AM ET and 6:00 PM ET), and manually via **Actions → Run workflow**.
 - Runs `npm test` before generating data — a test failure aborts the deploy.
 - Generates JSON data files and per-sport HTML pages (`nba/`, `nhl/`) from the root index template.
-- Archives a dated snapshot of each sport's picks and consensus to `history/` before deploying.
 - Uploads only the `public/` folder to GitHub Pages.
 
 To trigger a one-off refresh without pushing a commit, go to **Actions → Deploy GitHub Pages → Run workflow**.
@@ -117,4 +111,3 @@ To trigger a one-off refresh without pushing a commit, go to **Actions → Deplo
 - **Consensus confidence scoring.** Picks are ranked by: cross-source agreement (primary, +200 per unique source), expert count (secondary, +10 per expert), and recency (+50 if any pick was published in the last 4 hours). A pick agreed on by 2 sources always outranks one with many experts from a single source.
 - **Sport-aware team normalisation.** `src/consensus.js` maintains a base abbreviation alias table plus per-sport overrides (e.g. `CHI` maps to `CHC` in MLB but stays `CHI` for the Bulls in NBA). Covers uses `VEG` for the Vegas Golden Knights; this is aliased to the canonical `VGK` used by other sources.
 - **Generated files are gitignored.** `public/nba/`, `public/nhl/`, and their `data/` subdirectories are rebuilt by CI on every deploy and should not be committed.
-- **History snapshots are committed.** `history/` is intentionally not gitignored. Daily snapshots accumulate in the repo so you can track which picks were published each day and eventually compute analyst hit rates over time.
