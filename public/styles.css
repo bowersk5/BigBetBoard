@@ -1,3 +1,9 @@
+/*
+ * Visual adaptation of Phantom by HTML5 UP.
+ * html5up.net | @ajlkn | CCA 3.0 (html5up.net/license)
+ */
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,700,900");
+
 /* Shared colors, type, spacing, and layout values. */
 :root {
   /* Main page colors. */
@@ -1287,4 +1293,351 @@ body.parlay-open {
   outline: 2px solid rgba(212,148,58,0.5);
   outline-offset: 2px;
   border-radius: var(--r-sm);
+}
+
+/*
+ * Phantom theme layer
+ *
+ * Phantom's CSS targets its own page shell and tile markup. These rules map
+ * its type, color, spacing, buttons, and animated tiles to this dashboard's
+ * existing components without changing the data or interaction layer.
+ */
+:root,
+:root[data-theme="light"] {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f6f6f6;
+  --surface-3: #ededed;
+  --border: rgba(88, 88, 88, 0.16);
+  --border-2: rgba(88, 88, 88, 0.3);
+  --header-bg: rgba(255, 255, 255, 0.96);
+  --drawer-bg: rgba(246, 246, 246, 0.98);
+  --subtle-bg: rgba(88, 88, 88, 0.04);
+  --hover-bg: rgba(242, 132, 158, 0.08);
+  --strong-hover-bg: rgba(242, 132, 158, 0.14);
+  --footer-bg: #f6f6f6;
+  --shadow-strong: rgba(0, 0, 0, 0.14);
+  --shadow-soft: rgba(0, 0, 0, 0.09);
+  --selection-bg: rgba(242, 132, 158, 0.25);
+  --color-scheme: light;
+  --text: #333333;
+  --text-muted: #585858;
+  --text-dim: #8c8c8c;
+  --gold: #f2849e;
+  --gold-light: #ee5f81;
+  --gold-dim: rgba(242, 132, 158, 0.1);
+  --gold-glow: rgba(242, 132, 158, 0.22);
+  --ml: #7bd0c1;
+  --ml-dim: rgba(123, 208, 193, 0.12);
+  --ml-border: rgba(123, 208, 193, 0.42);
+  --total: #f2849e;
+  --total-dim: rgba(242, 132, 158, 0.11);
+  --total-border: rgba(242, 132, 158, 0.4);
+  --rl: #7ecaf6;
+  --rl-dim: rgba(126, 202, 246, 0.12);
+  --rl-border: rgba(126, 202, 246, 0.42);
+  --prop: #ae85ca;
+  --prop-dim: rgba(174, 133, 202, 0.12);
+  --prop-border: rgba(174, 133, 202, 0.42);
+  --font-display: "Source Sans Pro", Helvetica, sans-serif;
+  --font-ui: "Source Sans Pro", Helvetica, sans-serif;
+  --font-mono: "Source Sans Pro", Helvetica, sans-serif;
+  --r-sm: 4px;
+  --r-md: 4px;
+  --r-lg: 4px;
+  --r-xl: 4px;
+  --content-max: 1320px;
+}
+
+:root[data-theme="dark"] {
+  --bg: #202024;
+  --surface: #29292e;
+  --surface-2: #303036;
+  --surface-3: #38383f;
+  --border: rgba(255, 255, 255, 0.1);
+  --border-2: rgba(255, 255, 255, 0.22);
+  --header-bg: rgba(32, 32, 36, 0.96);
+  --drawer-bg: rgba(41, 41, 46, 0.98);
+  --subtle-bg: rgba(255, 255, 255, 0.035);
+  --hover-bg: rgba(242, 132, 158, 0.1);
+  --strong-hover-bg: rgba(242, 132, 158, 0.16);
+  --footer-bg: rgba(255, 255, 255, 0.025);
+  --shadow-strong: rgba(0, 0, 0, 0.42);
+  --shadow-soft: rgba(0, 0, 0, 0.28);
+  --selection-bg: rgba(242, 132, 158, 0.3);
+  --color-scheme: dark;
+  --text: #ffffff;
+  --text-muted: #d3d3d6;
+  --text-dim: #99999f;
+  --gold: #f2849e;
+  --gold-light: #f5a0b4;
+}
+
+body {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.75;
+  letter-spacing: 0;
+}
+
+.ambient { display: none; }
+
+.site-header {
+  position: relative;
+  border-bottom: 0;
+  backdrop-filter: none;
+}
+
+.header-inner {
+  min-height: 8rem;
+  height: auto;
+  padding: 2.25rem clamp(24px, 5vw, 56px) 1.5rem;
+  gap: 2rem;
+}
+
+.brand-lockup { gap: 0.9rem; }
+
+.brand-icon {
+  width: 2.4rem;
+  height: 2.4rem;
+  color: var(--text);
+  background: transparent;
+  border: 2px solid var(--text);
+  transform: rotate(45deg);
+}
+
+.brand-icon svg { transform: rotate(-45deg); }
+
+.brand-label,
+.stat-chip__label,
+.time-label,
+.pulse-text,
+.section-eyebrow,
+.agree-label,
+.badge,
+.market-filter-btn,
+.sport-tab,
+.parlay-title {
+  font-weight: 900;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.brand-title {
+  font-size: 1.35rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.pulse-dot {
+  background: #7bd0c1;
+  box-shadow: none;
+  animation: none;
+}
+
+.pulse-text { color: #48aa99; }
+:root[data-theme="dark"] .pulse-text { color: #7bd0c1; }
+
+.theme-toggle,
+.btn-ghost,
+.btn-primary,
+.market-filter-btn,
+.parlay-add-btn,
+.parlay-clear {
+  border: 0;
+  border-radius: 4px;
+  box-shadow: inset 0 0 0 2px var(--text-muted);
+  background: transparent;
+  color: var(--text-muted);
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.theme-toggle:hover,
+.btn-ghost:hover,
+.market-filter-btn:hover,
+.parlay-add-btn:hover,
+.parlay-clear:hover {
+  color: var(--gold) !important;
+  background: transparent;
+  box-shadow: inset 0 0 0 2px var(--gold);
+}
+
+.btn-primary {
+  color: #ffffff;
+  background: var(--text-muted);
+  box-shadow: none;
+}
+
+.btn-primary:hover {
+  color: #ffffff;
+  background: var(--gold);
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.page-layout {
+  padding: 3.5rem clamp(24px, 5vw, 56px) 7rem;
+}
+
+.section-header { margin-bottom: 2.5rem; }
+
+.section-eyebrow {
+  padding: 0;
+  color: var(--gold);
+  background: transparent;
+  border: 0;
+}
+
+.section-title {
+  max-width: 15ch;
+  margin: 1rem 0 0.35rem;
+  font-size: clamp(2.35rem, 6vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+
+.section-sub {
+  max-width: 70ch;
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+.sport-tabs {
+  gap: 0;
+  margin-top: 1.5rem;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.sport-tab {
+  height: 2.75rem;
+  min-width: 4.75rem;
+  padding: 0 1.2rem;
+  border-radius: 0;
+  border-bottom: 2px solid var(--border);
+}
+
+.sport-tab:hover { color: var(--gold); background: transparent; }
+.sport-tab.is-active {
+  color: var(--gold);
+  background: transparent;
+  border-bottom-color: var(--gold);
+}
+
+.market-filters { gap: 0.65rem; margin-top: 1.5rem; }
+.market-filter-btn { height: 2.4rem; padding: 0 1rem; }
+.market-filter-btn.is-active {
+  color: #ffffff;
+  background: var(--gold);
+  box-shadow: none;
+}
+
+.consensus-stack,
+.pick-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.consensus-card,
+.pick-card {
+  min-height: 20rem;
+  padding: 2rem;
+  border: 0;
+  border-radius: 4px;
+  background: var(--surface-2);
+  box-shadow: none;
+  transition: transform 0.5s ease, box-shadow 0.5s ease, background-color 0.5s ease;
+}
+
+.consensus-card::before {
+  top: 0;
+  right: 0;
+  bottom: auto;
+  width: auto;
+  height: 0.45rem;
+  border-radius: 0;
+}
+
+.consensus-card:hover,
+.pick-card:hover {
+  transform: scale(1.035);
+  border-color: transparent;
+  background: var(--surface);
+  box-shadow: 0 1rem 3rem var(--shadow-soft);
+}
+
+.consensus-card.in-parlay {
+  box-shadow: inset 0 0 0 2px var(--gold), 0 1rem 3rem var(--shadow-soft);
+}
+
+.consensus-card__header { margin-bottom: 2rem; }
+.agree-num { font-size: 2rem; font-weight: 900; }
+
+.consensus-selection,
+.pick-selection {
+  font-size: 1.45rem;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 1.35;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.consensus-matchup,
+.pick-matchup {
+  color: var(--text-muted);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.consensus-meta { margin-top: auto; padding-top: 1.25rem; }
+.consensus-actions { margin-top: 1.25rem; }
+.badge { border-radius: 4px; }
+
+.parlay-drawer {
+  border-top: 0;
+  box-shadow: 0 -0.75rem 2.5rem var(--shadow-soft);
+  backdrop-filter: none;
+}
+
+.parlay-header { padding: 1rem clamp(24px, 5vw, 56px); }
+.parlay-body { padding: 1.5rem clamp(24px, 5vw, 56px); }
+.parlay-leg,
+.parlay-calc { border-radius: 4px; }
+.parlay-leg__selection { font-style: normal; font-weight: 900; }
+
+.empty { border-radius: 4px; padding: 5rem 2rem; }
+
+::selection { background: var(--gold); color: #ffffff; }
+:focus-visible { outline-color: var(--gold); border-radius: 4px; }
+
+@media (max-width: 980px) {
+  .consensus-stack,
+  .pick-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .header-inner { align-items: flex-start; }
+}
+
+@media (max-width: 736px) {
+  .header-inner { padding-top: 1.5rem; }
+  .header-meta { gap: 1rem; }
+  .page-layout { padding-top: 2.5rem; }
+  .consensus-stack,
+  .pick-grid { gap: 1.25rem; }
+  .consensus-card:hover,
+  .pick-card:hover { transform: none; }
+}
+
+@media (max-width: 560px) {
+  .consensus-stack,
+  .pick-grid { grid-template-columns: 1fr; }
+  .section-title { font-size: 2.4rem; }
+  .consensus-card { min-height: 17rem; padding: 1.5rem; }
+  .theme-toggle__text { display: none; }
 }
