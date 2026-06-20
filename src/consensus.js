@@ -808,8 +808,7 @@ function normalizeMarket(market = "", selection = "", type = "") {
   const value = `${market} ${selection} ${type}`.toLowerCase();
   if (value.includes("parlay")) return "Parlay";
   if (value.includes("money") || value.includes("ml_") || value.includes("3-way")) return "Moneyline";
-  if (value.includes("run line")) return "Run Line";
-  if (value.includes("spread") || value.includes("puck line")) return "Spread";
+  if (value.includes("run line") || value.includes("spread") || value.includes("puck line")) return "Spread";
   if (value.includes("prop") || value.includes("custom") ||
       /total (?:points|rebounds|assists|threes|steals|blocks|turnovers|bases|hits|strikeouts|saves)|points scored/i.test(value) ||
       /to hit|hits|rbi|home runs|earned runs|strikeouts|ks|points|rebounds|assists|goals|shots|saves|anytime goal/i.test(value)) {
@@ -829,7 +828,7 @@ function normalizeSelection(raw) {
     return { key: side, label: `${side} Moneyline` };
   }
 
-  if (raw.market === "Run Line" || raw.market === "Spread") {
+  if (raw.market === "Spread") {
     const side = sideFromSelection(selection, raw.type, raw.away, raw.home, raw.sport);
     const line = signedLine(selection.match(/([+-]\d+(?:\.\d+)?)/)?.[1] || raw.line);
     if (!side || !line) return null;

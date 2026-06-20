@@ -129,7 +129,7 @@ function checkStale(generatedAt) {
 
 // Build the market filter buttons from the available picks.
 
-const MARKET_ORDER = ["Moneyline", "Total", "Run Line", "Spread", "Prop", "Parlay"];
+const MARKET_ORDER = ["Moneyline", "Total", "Spread", "Prop", "Parlay"];
 
 function availableMarkets() {
   const seen = new Set(state.consensus.map((p) => p.market));

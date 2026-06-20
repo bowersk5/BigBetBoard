@@ -8,7 +8,7 @@ The production site is generated into `public/` and deployed through GitHub Page
 
 - Separate MLB and 2026 World Cup pages.
 - Consensus cards grouped by matchup, market, and selection.
-- Market views for Moneyline, Total, Run Line, Spread, Prop, and Parlay when those markets are available.
+- Market views for Moneyline, Total, Spread, Prop, and Parlay when those markets are available. Baseball run lines are normalized into Spread.
 - Game start times when supplied by a source.
 - Source agreement, expert counts, odds samples, and expandable analysis.
 - A collapsible parlay slip with combined American odds and estimated payout.

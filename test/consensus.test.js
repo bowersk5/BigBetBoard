@@ -105,7 +105,7 @@ test("parses Pickswise streamed pick rows when __NEXT_DATA__ is absent", () => {
 
   assert.equal(picks.length, 2);
   assert.equal(picks[0].matchup, "LAD @ CHW");
-  assert.equal(picks[0].market, "Run Line");
+  assert.equal(picks[0].market, "Spread");
   assert.equal(picks[0].selection, "LAD -1.5");
   assert.equal(picks[0].odds, "-125");
   assert.equal(picks[1].selection, "ARI Moneyline");
