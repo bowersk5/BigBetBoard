@@ -1,37 +1,52 @@
 # Daily Expert Picks Board
 
-Daily Expert Picks Board is a zero-dependency Node.js app that gathers public betting-pick pages, normalizes the picks across sources, and publishes a static consensus dashboard for MLB and the 2026 World Cup.
+A zero-dependency Node.js dashboard that gathers public betting picks, normalizes them into a shared format, and highlights agreement between sources for MLB and the 2026 World Cup.
 
-The production site is static GitHub Pages output from `public/`. For local development, `server.js` serves the same frontend and fetches fresh source data on demand.
+The production site is generated into `public/` and deployed through GitHub Pages. The local server uses the same frontend while providing live API endpoints for refreshing source data.
 
-## What It Shows
+## Features
 
-- Sport-specific pages for MLB and the 2026 World Cup.
+- Separate MLB and 2026 World Cup pages.
 - Consensus cards grouped by matchup, market, and selection.
-- Game start times shown on consensus cards when the source data provides them.
-- Source agreement, expert counts, sample pick sources, and expandable analysis text.
-- Market filters for moneyline, totals, run line/spread, props, and parlays.
-- A small parlay slip that calculates combined American odds and estimated profit.
-- A stale-data banner when generated data is more than 10 hours old.
+- Market views for Moneyline, Total, Run Line, Spread, Prop, and Parlay when those markets are available.
+- Game start times when supplied by a source.
+- Source agreement, expert counts, odds samples, and expandable analysis.
+- A collapsible parlay slip with combined American odds and estimated payout.
 - Light and dark themes saved in local storage.
+- A stale-data warning after generated data is more than 10 hours old.
 
-## Sources
+There is no combined **All** market view. The first available market opens automatically, and each market displays up to 12 cards. Source-pick totals in `consensus.json` describe the ingestion pool, not the number of cards displayed at once.
 
-Configured sources live in `src/consensus.js`.
+## Sports and Sources
 
-| Sport | Covers | Pickswise | Polymarket | SportsLine | Action Network | The Lines |
-| --- | --- | --- | --- | --- | --- | --- |
-| MLB | Yes | Yes | No | No | Yes | Yes |
-| 2026 World Cup | Yes | Yes | Yes | Yes | No | No |
+Source configuration and parsers live in `src/consensus.js`.
 
-Covers is also used for each sport's standalone `picks.json` payload. The build follows Covers matchup "View Picks" links when a sport page only exposes teaser cards. Polymarket contributes its highest current match-result probability for each World Cup game as a market-consensus pick. SportsLine selections are included when publicly revealed; subscriber-locked cards are not inferred or reproduced.
+### MLB
 
-## Quick Start
+- [Covers](https://www.covers.com/picks/mlb)
+- [Pickswise](https://www.pickswise.com/mlb/picks/)
+- [Action Network](https://www.actionnetwork.com/mlb/picks/)
+- [The Lines](https://www.thelines.com/picks/mlb/)
 
-Requirements:
+### 2026 World Cup
+
+- [Covers](https://www.covers.com/picks/world-cup)
+- [Pickswise](https://www.pickswise.com/world-cup/picks/)
+- [Polymarket](https://polymarket.com/sports/world-cup/games)
+- [SportsLine](https://www.sportsline.com/fifa-wc/picks/experts/)
+
+Covers also supplies each sport's standalone `picks.json` payload. When a Covers page links to expanded matchup picks, the build follows those pages and merges their cards into the league-page results.
+
+Polymarket contributes the highest current match-result probability for each World Cup game. SportsLine contributes only selections revealed in its public payload; subscriber-locked picks are never inferred or reproduced.
+
+## Requirements
 
 - Node.js 20 or newer.
-- No npm install step is required; the project uses Node built-ins and native `fetch`.
+- No dependency installation is required; the project uses Node built-ins and native `fetch`.
+
+## Local Development
+
+Run the tests, generate static data, and start the watch server:
 
 ```bash
 npm test
@@ -39,110 +54,118 @@ npm run build:pages
 npm run dev
 ```
 
-Then open:
+Open [http://localhost:3000](http://localhost:3000).
+
+The server uses port `3000` by default. Set `PORT` to use a different port.
+
+```bash
+PORT=4000 npm start
+```
+
+## Routes
+
+| Route | Description |
+| --- | --- |
+| `/` | MLB dashboard |
+| `/world-cup/` | 2026 World Cup dashboard |
+| `/api/picks?sport=mlb` | Live Covers MLB payload |
+| `/api/picks?sport=world-cup` | Live Covers World Cup payload |
+| `/api/consensus?sport=mlb` | Live multi-source MLB consensus |
+| `/api/consensus?sport=world-cup` | Live multi-source World Cup consensus |
+
+Add `refresh=1` to an API URL to bypass the local server's daily in-memory cache.
 
 ```text
-http://localhost:3000
+/api/consensus?sport=world-cup&refresh=1
 ```
 
-Useful routes:
+## npm Scripts
 
-- `/` - MLB page.
-- `/world-cup/` - 2026 World Cup page.
-- `/api/picks?sport=mlb|world-cup` - live Covers picks payload.
-- `/api/consensus?sport=mlb|world-cup` - live consensus payload.
+| Command | Purpose |
+| --- | --- |
+| `npm test` | Run the Node test suite |
+| `npm run build:pages` | Fetch sources and generate the static GitHub Pages output |
+| `npm start` | Start the local server |
+| `npm run dev` | Start the local server with Node watch mode |
 
-Add `refresh=1` to either API route to bypass the in-memory daily cache during local development.
+## How Consensus Works
 
-## Scripts
+Every source pick is normalized to a shared shape containing:
 
-```bash
-npm test
-```
+- matchup
+- start time
+- market
+- selection
+- odds
+- expert
+- analysis
+- source
 
-Runs the Node test suite.
+Normalized picks sharing the same matchup, market, and selection become one consensus entry. Confidence ranking favors:
 
-```bash
-npm run build:pages
-```
+1. Agreement across unique sources.
+2. Agreement across unique experts.
+3. A small recency bonus for picks published within four hours.
 
-Generates static JSON data under `public/data/` and writes the static World Cup page under `public/world-cup/`.
+When a market contains cross-source agreement, the UI prioritizes those entries. If none agree, it falls back to the highest-ranked single-source entries. A maximum of 12 cards is rendered for the selected market.
 
-```bash
-npm start
-```
+## Generated Data
 
-Starts the local server with live data fetching.
-
-```bash
-npm run dev
-```
-
-Starts the local server with Node's watch mode.
-
-The server uses `PORT`, defaulting to `3000`.
-
-## Static Build Output
-
-The generated static site uses these data files:
+`npm run build:pages` writes:
 
 ```text
 public/data/picks.json
 public/data/consensus.json
 public/data/world-cup/picks.json
 public/data/world-cup/consensus.json
+public/world-cup/index.html
 ```
 
-Generated data and generated sport subpages are gitignored by convention:
+The root data files belong to MLB. World Cup output lives under `public/data/world-cup/`.
 
-- `public/data/picks.json`
-- `public/data/consensus.json`
-- `public/data/world-cup/`
-- `public/world-cup/`
+### `picks.json`
 
-The old `history/` archive workflow is retired and should not be reintroduced unless the project explicitly needs snapshots again.
-
-## Data Model
-
-Each sport gets two JSON payloads.
-
-`picks.json` contains Covers-only data:
+The Covers-only payload contains:
 
 - `sport` and `sportLabel`
-- `fetchedAt`
-- `sourceUrl`
+- `fetchedAt` and `sourceUrl`
 - `games`
 - `picks`
 - `bestPicks`
 - `counts`
 
-Important Covers counts:
+Count fields have distinct meanings:
 
-- `counts.expertPicks` and `counts.picks` are the expert-pick totals listed by Covers.
-- `counts.parsedPicks` is the number of current expert cards parsed into the payload.
-- `counts.computerPicks` is the listed Covers computer-pick total when present.
+- `expertPicks` and `picks`: expert picks listed by Covers.
+- `parsedPicks`: current expert cards successfully parsed.
+- `computerPicks`: computer picks listed by Covers, when present.
 
-`consensus.json` contains normalized picks from every configured source:
+The listed and parsed totals can differ when Covers exposes only teaser cards or changes its markup.
+
+### `consensus.json`
+
+The multi-source payload contains:
 
 - `sport` and `sportLabel`
 - `generatedAt`
-- `sources`
-- `picks`
-- `consensus`
-- `counts`
+- source status, errors, warnings, and parsed counts
+- all normalized source `picks`
+- grouped and ranked `consensus` entries
+- aggregate `counts`
 
-Consensus entries are grouped by normalized matchup, market, and selection. Confidence scoring favors cross-source agreement first, then expert count, then recency.
+These aggregate counts describe processed data. They are not intended to equal the number of visible cards in one selected market.
 
-## Project Structure
+Generated data and the World Cup subpage are ignored by Git because CI rebuilds them for deployment. The retired `history/` snapshot workflow must not be reintroduced unless archival output becomes an explicit requirement.
+
+## Project Layout
 
 ```text
 .
 ├── .github/workflows/pages.yml
 ├── public/
-│   ├── index.html
 │   ├── app.js
-│   ├── styles.css
-│   └── data/
+│   ├── index.html
+│   └── styles.css
 ├── scripts/
 │   └── generateStaticData.js
 ├── src/
@@ -156,40 +179,35 @@ Consensus entries are grouped by normalized matchup, market, and selection. Conf
 └── server.js
 ```
 
-Key files:
-
-- `public/index.html` is the root MLB page and the template used to generate the World Cup subpage.
-- `public/app.js` loads static JSON on GitHub Pages and live API JSON on localhost.
-- `scripts/generateStaticData.js` performs the static build for GitHub Pages.
-- `src/consensus.js` defines sports, sources, source parsers, normalization, and consensus scoring.
-- `src/coversParser.js` parses Covers league pages and wrapped expanded matchup pages.
-- `src/utils.js` contains shared fetch and HTML utility helpers.
-- `server.js` serves static files locally and exposes live API routes.
+- `public/index.html` is the MLB page and template for generated sport subpages.
+- `public/app.js` selects the current sport, loads data, renders market filters, and manages the parlay and theme controls.
+- `scripts/generateStaticData.js` fetches sources and produces deployable static files.
+- `src/consensus.js` defines sports, source parsers, normalization, and consensus ranking.
+- `src/coversParser.js` handles Covers league and expanded matchup markup.
+- `src/utils.js` provides shared HTML and network helpers.
+- `server.js` serves static assets and the local live-data APIs.
 
 ## Deployment
 
-GitHub Pages deployment is handled by `.github/workflows/pages.yml`.
-
-The workflow runs:
+`.github/workflows/pages.yml` deploys the site:
 
 - On pushes to `main` or `master`.
-- Manually through `workflow_dispatch`.
-- Twice daily on schedule:
-  - `2:30 PM UTC` / `10:30 AM ET`
-  - `10:00 PM UTC` / `6:00 PM ET`
+- On manual `workflow_dispatch` runs.
+- Daily at `2:30 PM UTC` / `10:30 AM ET`.
+- Daily at `10:00 PM UTC` / `6:00 PM ET`.
 
-The workflow:
+The workflow uses Node 22, runs the test suite, generates fresh static data, uploads `public/`, and deploys it to GitHub Pages.
 
-1. Checks out the repo.
-2. Sets up Node 22.
-3. Runs `npm test`.
-4. Runs `npm run build:pages`.
-5. Uploads the `public/` directory to GitHub Pages.
+## Parser Maintenance
 
-## Development Notes
+These sources publish HTML for human-facing sites rather than stable public APIs, so parser maintenance is expected.
 
-- This app scrapes public HTML, so source parser changes are expected whenever a source site changes markup.
-- Each source request uses a timeout through `AbortController`.
-- Covers matchup pages are merged back into the original league-page HTML with wrapper comments before parsing.
-- If consensus generation fails for a sport during the static build, the script still writes the Covers `picks.json` payload and writes an empty consensus placeholder.
-- Sport-specific team aliases live in `src/consensus.js` so source-specific World Cup country abbreviations normalize consistently.
+When a source count looks wrong:
+
+1. Compare the live source page with its parser output.
+2. Check both `picks.json` and `consensus.json`.
+3. Review source `error` and `warning` fields.
+4. Run `npm test`.
+5. Run `npm run build:pages` and verify the generated sport page.
+
+The build isolates source failures where possible. A failed consensus source should not prevent Covers-only `picks.json` from being written, and a sport-level consensus failure produces an empty placeholder rather than aborting every output file.
