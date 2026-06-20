@@ -1,7 +1,7 @@
 const state = {
   sport: currentSport(),
   consensus: [],
-  activeMarket: "all",
+  activeMarket: "",
   // Each parlay item stores: key, selection, matchup, market, and odds.
   parlay: [],
   theme: currentTheme()
@@ -129,21 +129,23 @@ function checkStale(generatedAt) {
 
 // Build the market filter buttons from the available picks.
 
-const MARKET_ORDER = ["all", "Moneyline", "Total", "Run Line", "Spread", "Prop", "Parlay"];
+const MARKET_ORDER = ["Moneyline", "Total", "Run Line", "Spread", "Prop", "Parlay"];
 
 function availableMarkets() {
   const seen = new Set(state.consensus.map((p) => p.market));
-  return MARKET_ORDER.filter((m) => m === "all" || seen.has(m));
+  return MARKET_ORDER.filter((market) => seen.has(market));
 }
 
 function renderMarketFilters() {
   if (!els.marketFilters) return;
   const markets = availableMarkets();
+  if (!markets.includes(state.activeMarket)) {
+    state.activeMarket = markets[0] || "";
+  }
 
   els.marketFilters.innerHTML = markets.map((m) => {
     const active = state.activeMarket === m ? " is-active" : "";
-    const label = m === "all" ? "All" : m;
-    return `<button class="market-filter-btn${active}" data-market="${m}">${label}</button>`;
+    return `<button class="market-filter-btn${active}" data-market="${m}">${m}</button>`;
   }).join("");
 
   els.marketFilters.querySelectorAll("[data-market]").forEach((btn) => {
@@ -161,12 +163,12 @@ function renderMarketFilters() {
 
 function renderConsensus() {
   const filtered = state.consensus
-    .filter((p) => state.activeMarket === "all" || p.market === state.activeMarket)
+    .filter((p) => p.market === state.activeMarket)
     .filter((p) => p.sourceCount > 1 || state.consensus.filter((x) => x.sourceCount > 1).length === 0)
     .slice(0, 12);
 
   const fallback = state.consensus
-    .filter((p) => state.activeMarket === "all" || p.market === state.activeMarket)
+    .filter((p) => p.market === state.activeMarket)
     .slice(0, 12);
 
   const picks = filtered.length ? filtered : fallback;
@@ -371,16 +373,9 @@ function consensusSummary(data, picksData = null) {
   const unavailableNote = unavailable.length
     ? ` ${unavailable.map((s) => s.name).join(", ")} currently ${unavailable.length === 1 ? "has" : "have"} no public selections.`
     : "";
-  const listedPicks = picksData?.counts?.expertPicks;
-  const coversPicks = picksData?.counts?.parsedPicks ?? 0;
-  const normalizedPicks = data.counts?.picks ?? coversPicks;
   const sportLabel = data.sportLabel || sports[state.sport].label;
 
-  if (listedPicks && listedPicks !== coversPicks) {
-    return `${listedPicks} ${sportLabel} expert picks listed on Covers (${coversPicks} parsed); ${normalizedPicks} normalized picks across ${names || "available sources"}.${unavailableNote}`;
-  }
-
-  return `${normalizedPicks} normalized ${sportLabel} picks across ${names || "available sources"}.${unavailableNote}`;
+  return `Comparing ${sportLabel} picks from ${names || "available sources"}.${unavailableNote}`;
 }
 
 function sampleExamples(examples = []) {
