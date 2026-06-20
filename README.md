@@ -1,12 +1,12 @@
 # Daily Expert Picks Board
 
-Daily Expert Picks Board is a zero-dependency Node.js app that gathers public betting-pick pages, normalizes the picks across sources, and publishes a static consensus dashboard for MLB, NBA, and NHL.
+Daily Expert Picks Board is a zero-dependency Node.js app that gathers public betting-pick pages, normalizes the picks across sources, and publishes a static consensus dashboard for MLB and the 2026 World Cup.
 
 The production site is static GitHub Pages output from `public/`. For local development, `server.js` serves the same frontend and fetches fresh source data on demand.
 
 ## What It Shows
 
-- Sport-specific pages for MLB, NBA, and NHL.
+- Sport-specific pages for MLB and the 2026 World Cup.
 - Consensus cards grouped by matchup, market, and selection.
 - Game start times shown on consensus cards when the source data provides them.
 - Source agreement, expert counts, sample pick sources, and expandable analysis text.
@@ -19,13 +19,12 @@ The production site is static GitHub Pages output from `public/`. For local deve
 
 Configured sources live in `src/consensus.js`.
 
-| Sport | Covers | Pickswise | Action Network | The Lines |
-| --- | --- | --- | --- | --- |
-| MLB | Yes | Yes | Yes | Yes |
-| NBA | Yes | Yes | No | Yes |
-| NHL | Yes | Yes | No | Yes |
+| Sport | Covers | Pickswise | Polymarket | SportsLine | Action Network | The Lines |
+| --- | --- | --- | --- | --- | --- | --- |
+| MLB | Yes | Yes | No | No | Yes | Yes |
+| 2026 World Cup | Yes | Yes | Yes | Yes | No | No |
 
-Covers is also used for the standalone `picks.json` payload. The build follows Covers matchup "View Picks" links when the league page only exposes teaser cards.
+Covers is also used for each sport's standalone `picks.json` payload. The build follows Covers matchup "View Picks" links when a sport page only exposes teaser cards. Polymarket contributes its highest current match-result probability for each World Cup game as a market-consensus pick. SportsLine selections are included when publicly revealed; subscriber-locked cards are not inferred or reproduced.
 
 ## Quick Start
 
@@ -49,10 +48,9 @@ http://localhost:3000
 Useful routes:
 
 - `/` - MLB page.
-- `/nba/` - NBA page.
-- `/nhl/` - NHL page.
-- `/api/picks?sport=mlb|nba|nhl` - live Covers picks payload.
-- `/api/consensus?sport=mlb|nba|nhl` - live consensus payload.
+- `/world-cup/` - 2026 World Cup page.
+- `/api/picks?sport=mlb|world-cup` - live Covers picks payload.
+- `/api/consensus?sport=mlb|world-cup` - live consensus payload.
 
 Add `refresh=1` to either API route to bypass the in-memory daily cache during local development.
 
@@ -68,7 +66,7 @@ Runs the Node test suite.
 npm run build:pages
 ```
 
-Generates static JSON data under `public/data/` and writes static sport pages under `public/nba/` and `public/nhl/`.
+Generates static JSON data under `public/data/` and writes the static World Cup page under `public/world-cup/`.
 
 ```bash
 npm start
@@ -91,20 +89,16 @@ The generated static site uses these data files:
 ```text
 public/data/picks.json
 public/data/consensus.json
-public/data/nba/picks.json
-public/data/nba/consensus.json
-public/data/nhl/picks.json
-public/data/nhl/consensus.json
+public/data/world-cup/picks.json
+public/data/world-cup/consensus.json
 ```
 
 Generated data and generated sport subpages are gitignored by convention:
 
 - `public/data/picks.json`
 - `public/data/consensus.json`
-- `public/data/nba/`
-- `public/data/nhl/`
-- `public/nba/`
-- `public/nhl/`
+- `public/data/world-cup/`
+- `public/world-cup/`
 
 The old `history/` archive workflow is retired and should not be reintroduced unless the project explicitly needs snapshots again.
 
@@ -164,7 +158,7 @@ Consensus entries are grouped by normalized matchup, market, and selection. Conf
 
 Key files:
 
-- `public/index.html` is the root MLB page and the template used to generate NBA/NHL subpages.
+- `public/index.html` is the root MLB page and the template used to generate the World Cup subpage.
 - `public/app.js` loads static JSON on GitHub Pages and live API JSON on localhost.
 - `scripts/generateStaticData.js` performs the static build for GitHub Pages.
 - `src/consensus.js` defines sports, sources, source parsers, normalization, and consensus scoring.
@@ -198,4 +192,4 @@ The workflow:
 - Each source request uses a timeout through `AbortController`.
 - Covers matchup pages are merged back into the original league-page HTML with wrapper comments before parsing.
 - If consensus generation fails for a sport during the static build, the script still writes the Covers `picks.json` payload and writes an empty consensus placeholder.
-- Sport-specific team aliases live in `src/consensus.js` so shared abbreviations can normalize differently across MLB, NBA, and NHL.
+- Sport-specific team aliases live in `src/consensus.js` so source-specific World Cup country abbreviations normalize consistently.

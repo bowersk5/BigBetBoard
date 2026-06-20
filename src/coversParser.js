@@ -3,8 +3,12 @@ import { decodeEntities } from "./utils.js";
 const gameLinePattern = /^([A-Z]{2,4})\s+@\s+([A-Z]{2,4})\s+(.+)$/;
 const marketNames = new Set([
   "Moneyline",
+  "3-Way",
   "Spread",
   "Total",
+  "Goals",
+  "Best Bets,Total",
+  "Best Bets,Spread",
   "Game Prop",
   "Total Home Runs",
   "Total Hits",

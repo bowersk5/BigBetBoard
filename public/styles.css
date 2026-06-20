@@ -540,6 +540,7 @@ body.parlay-open {
   font-weight: 600;
   letter-spacing: 0.1em;
   text-decoration: none;
+  white-space: nowrap;
   transition: background 0.2s, color 0.2s;
 }
 .sport-tab:hover { color: var(--text); background: var(--hover-bg); }

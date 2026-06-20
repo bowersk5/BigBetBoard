@@ -121,7 +121,7 @@ function wrapExpandedPage(game, html) {
 
 /**
  * Read public/index.html and patch asset paths + sport-specific content
- * for pages served from a subdirectory (e.g. /nba/, /nhl/).
+ * for pages served from a subdirectory (e.g. /world-cup/).
  * On the local dev server there are no pre-built sport subpages, so we
  * generate the patched HTML on the fly — the same transformations that
  * generateStaticData.js applies at build time.
@@ -140,8 +140,7 @@ async function sportPageHtml(sport) {
     .replace(/src="app\.js"/, `src="../app.js"`)
     .replace(/href="https:\/\/www\.covers\.com\/picks\/mlb"/, `href="${sourceUrl}"`)
     .replace(/href="\.\/"/, `href="../"`)
-    .replace(/href="nba\/"/, `href="../nba/"`)
-    .replace(/href="nhl\/"/, `href="../nhl/"`);
+    .replace(/href="world-cup\/"/, `href="../world-cup/"`);
 }
 
 async function serveStatic(pathname, res) {

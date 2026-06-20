@@ -9,8 +9,7 @@ const state = {
 
 const sports = {
   mlb: { label: "MLB", sourceUrl: "https://www.covers.com/picks/mlb" },
-  nba: { label: "NBA", sourceUrl: "https://www.covers.com/picks/nba" },
-  nhl: { label: "NHL", sourceUrl: "https://www.covers.com/picks/nhl" }
+  "world-cup": { label: "2026 World Cup", sourceUrl: "https://www.covers.com/picks/world-cup" }
 };
 
 const STALE_THRESHOLD_HOURS = 10;
@@ -352,7 +351,7 @@ function staticPicksUrl(cacheBust = "") {
 function siteRoot() {
   const { protocol, host, pathname } = window.location;
   const parts = pathname.split("/").filter(Boolean);
-  const sportSegments = new Set(["mlb", "nba", "nhl"]);
+  const sportSegments = new Set(["mlb", "world-cup"]);
   const rootParts = parts.filter((p) => !sportSegments.has(p));
   const rootPath = rootParts.length ? `/${rootParts.join("/")}/` : "/";
   return `${protocol}//${host}${rootPath}`;
@@ -368,15 +367,20 @@ function setLoading(isLoading) {
 function consensusSummary(data, picksData = null) {
   const sources = (data.sources || []).filter((s) => !s.error && s.picks > 0);
   const names = sources.map((s) => s.name).join(", ");
+  const unavailable = (data.sources || []).filter((s) => !s.error && s.picks === 0);
+  const unavailableNote = unavailable.length
+    ? ` ${unavailable.map((s) => s.name).join(", ")} currently ${unavailable.length === 1 ? "has" : "have"} no public selections.`
+    : "";
   const listedPicks = picksData?.counts?.expertPicks;
-  const parsedPicks = picksData?.counts?.parsedPicks ?? data.counts?.picks ?? 0;
+  const coversPicks = picksData?.counts?.parsedPicks ?? 0;
+  const normalizedPicks = data.counts?.picks ?? coversPicks;
   const sportLabel = data.sportLabel || sports[state.sport].label;
 
-  if (listedPicks && listedPicks !== parsedPicks) {
-    return `${listedPicks} ${sportLabel} expert picks listed on Covers; ${parsedPicks} currently available for consensus cards across ${names || "available sources"}.`;
+  if (listedPicks && listedPicks !== coversPicks) {
+    return `${listedPicks} ${sportLabel} expert picks listed on Covers (${coversPicks} parsed); ${normalizedPicks} normalized picks across ${names || "available sources"}.${unavailableNote}`;
   }
 
-  return `${parsedPicks} ${sportLabel} expert picks across ${names || "available sources"}.`;
+  return `${normalizedPicks} normalized ${sportLabel} picks across ${names || "available sources"}.${unavailableNote}`;
 }
 
 function sampleExamples(examples = []) {
@@ -419,10 +423,10 @@ function escapeHtml(value) {
 
 function currentSport() {
   const pathParts = window.location.pathname.split("/").filter(Boolean);
-  const sportFromPath = pathParts.find((part) => ["mlb", "nba", "nhl"].includes(part));
+  const sportFromPath = pathParts.find((part) => ["mlb", "world-cup"].includes(part));
   if (sportFromPath) return sportFromPath;
   const querySport = new URLSearchParams(window.location.search).get("sport");
-  if (["mlb", "nba", "nhl"].includes(querySport)) return querySport;
+  if (["mlb", "world-cup"].includes(querySport)) return querySport;
   return "mlb";
 }
 
