@@ -162,14 +162,13 @@ function renderMarketFilters() {
 // Render the visible consensus cards.
 
 function renderConsensus() {
-  const filtered = state.consensus
-    .filter((p) => p.market === state.activeMarket)
-    .filter((p) => p.sourceCount > 1 || state.consensus.filter((x) => x.sourceCount > 1).length === 0)
-    .slice(0, 12);
+  const hasAgreement = state.consensus.some((p) => p.sourceCount > 1);
+  const marketPicks = state.consensus.filter((p) => p.market === state.activeMarket);
+  const filtered = sortByStartTime(
+    marketPicks.filter((p) => p.sourceCount > 1 || !hasAgreement)
+  );
 
-  const fallback = state.consensus
-    .filter((p) => p.market === state.activeMarket)
-    .slice(0, 12);
+  const fallback = sortByStartTime(marketPicks);
 
   const picks = filtered.length ? filtered : fallback;
 
@@ -237,6 +236,79 @@ function renderConsensus() {
 }
 
 // Keep the parlay slip in sync with selected picks.
+
+function sortByStartTime(picks) {
+  return [...picks].sort((a, b) => {
+    const timeDiff = startTimeMillis(a.startsAt) - startTimeMillis(b.startsAt);
+    if (timeDiff !== 0) return timeDiff;
+    return (b.confidence || 0) - (a.confidence || 0) ||
+      (b.pickCount || 0) - (a.pickCount || 0) ||
+      `${a.selection || ""}`.localeCompare(`${b.selection || ""}`);
+  });
+}
+
+function startTimeMillis(value) {
+  if (!value) return Number.POSITIVE_INFINITY;
+
+  const parsed = Date.parse(value);
+  if (!Number.isNaN(parsed)) return parsed;
+
+  const displayMatch = `${value}`.match(/(?:[A-Za-z]{3,9},\s*)?([A-Za-z]{3,9})\s+(\d{1,2})\s*•?\s*(\d{1,2}):(\d{2})\s*(AM|PM)\s*ET/i);
+  if (!displayMatch) return Number.POSITIVE_INFINITY;
+
+  const [, monthName, dayValue, hourValue, minuteValue, meridiem] = displayMatch;
+  const monthIndex = monthIndexFromName(monthName);
+  if (monthIndex < 0) return Number.POSITIVE_INFINITY;
+
+  const now = new Date();
+  let year = now.getFullYear();
+  const day = Number(dayValue);
+  let hour = Number(hourValue) % 12;
+  if (meridiem.toUpperCase() === "PM") hour += 12;
+  const minute = Number(minuteValue);
+
+  let timestamp = easternTimeToUtc(year, monthIndex, day, hour, minute);
+  const sevenDays = 7 * 24 * 60 * 60 * 1000;
+  const sixMonths = 183 * 24 * 60 * 60 * 1000;
+  if (timestamp < now.getTime() - sevenDays) {
+    timestamp = easternTimeToUtc(year + 1, monthIndex, day, hour, minute);
+  } else if (timestamp > now.getTime() + sixMonths) {
+    timestamp = easternTimeToUtc(year - 1, monthIndex, day, hour, minute);
+  }
+  return timestamp;
+}
+
+function monthIndexFromName(monthName) {
+  return ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
+    .indexOf(monthName.slice(0, 3).toLowerCase());
+}
+
+function easternTimeToUtc(year, monthIndex, day, hour, minute) {
+  let timestamp = Date.UTC(year, monthIndex, day, hour, minute);
+  for (let i = 0; i < 2; i += 1) {
+    timestamp = Date.UTC(year, monthIndex, day, hour, minute) - timeZoneOffset(timestamp, "America/New_York");
+  }
+  return timestamp;
+}
+
+function timeZoneOffset(timestamp, timeZone) {
+  try {
+    const parts = new Intl.DateTimeFormat("en-US", {
+      timeZone,
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hourCycle: "h23"
+    }).formatToParts(new Date(timestamp));
+    const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+    return Date.UTC(values.year, Number(values.month) - 1, values.day, values.hour, values.minute, values.second) - timestamp;
+  } catch {
+    return 0;
+  }
+}
 
 function toggleParlay(pick) {
   const idx = state.parlay.findIndex((p) => p.key === pick.key);
