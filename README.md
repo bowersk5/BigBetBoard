@@ -15,7 +15,7 @@ The production site is generated into `public/` and deployed through GitHub Page
 - Light and dark themes saved in local storage.
 - A stale-data warning after generated data is more than 10 hours old.
 
-There is no combined **All** market view. The first available market opens automatically, and each market displays every available card for that market. Source-pick totals in `consensus.json` describe the ingestion pool, not the number of cards displayed at once.
+There is no combined **All** market view. The first available market opens automatically, and each market displays every upcoming card for that market. Source-pick totals in `consensus.json` describe the ingestion pool, not the number of cards displayed at once.
 
 ## Sports and Sources
 
@@ -117,7 +117,7 @@ Normalized picks sharing the same matchup, market, and selection become one cons
 2. Agreement across unique experts.
 3. A small recency bonus for picks published within four hours.
 
-When a market contains cross-source agreement, the UI prioritizes those entries. If none agree, it falls back to the highest-ranked single-source entries. Visible cards are listed by game start time.
+When a market contains cross-source agreement, the UI prioritizes those entries. If none agree, it falls back to the highest-ranked single-source entries. Visible cards are listed by game start time and are removed once that start time passes.
 
 ## Generated Data
 

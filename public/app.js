@@ -4,7 +4,8 @@ const state = {
   activeMarket: "",
   // Each parlay item stores: key, selection, matchup, market, and odds.
   parlay: [],
-  theme: currentTheme()
+  theme: currentTheme(),
+  expiryTimer: null
 };
 
 const sports = {
@@ -16,6 +17,7 @@ const sports = {
 const sportSlugs = new Set(Object.keys(sports));
 
 const STALE_THRESHOLD_HOURS = 10;
+const MAX_TIMEOUT_MS = 2_147_483_647;
 
 const els = {
   refreshButton: document.querySelector("#refreshButton"),
@@ -135,7 +137,8 @@ function checkStale(generatedAt) {
 const MARKET_ORDER = ["Moneyline", "Total", "Spread", "Prop", "Parlay"];
 
 function availableMarkets() {
-  const seen = new Set(state.consensus.map((p) => p.market));
+  const now = Date.now();
+  const seen = new Set(state.consensus.filter((p) => isUnstartedPick(p, now)).map((p) => p.market));
   return MARKET_ORDER.filter((market) => seen.has(market));
 }
 
@@ -165,8 +168,10 @@ function renderMarketFilters() {
 // Render the visible consensus cards.
 
 function renderConsensus() {
-  const hasAgreement = state.consensus.some((p) => p.sourceCount > 1);
-  const marketPicks = state.consensus.filter((p) => p.market === state.activeMarket);
+  const now = Date.now();
+  const currentPicks = state.consensus.filter((p) => isUnstartedPick(p, now));
+  const hasAgreement = currentPicks.some((p) => p.sourceCount > 1);
+  const marketPicks = currentPicks.filter((p) => p.market === state.activeMarket);
   const filtered = sortByStartTime(
     marketPicks.filter((p) => p.sourceCount > 1 || !hasAgreement)
   );
@@ -177,6 +182,7 @@ function renderConsensus() {
 
   els.consensusList.innerHTML = "";
   els.pickCount.textContent = picks.length;
+  scheduleNextExpiry();
 
   if (!picks.length) {
     els.consensusList.innerHTML = '<div class="empty">No consensus picks available right now.</div>';
@@ -248,6 +254,31 @@ function sortByStartTime(picks) {
       (b.pickCount || 0) - (a.pickCount || 0) ||
       `${a.selection || ""}`.localeCompare(`${b.selection || ""}`);
   });
+}
+
+function isUnstartedPick(pick, now = Date.now()) {
+  return startTimeMillis(pick.startsAt) > now;
+}
+
+function scheduleNextExpiry() {
+  if (state.expiryTimer) {
+    clearTimeout(state.expiryTimer);
+    state.expiryTimer = null;
+  }
+
+  const now = Date.now();
+  const nextStart = state.consensus
+    .map((pick) => startTimeMillis(pick.startsAt))
+    .filter((timestamp) => Number.isFinite(timestamp) && timestamp > now)
+    .sort((a, b) => a - b)[0];
+
+  if (!nextStart) return;
+
+  state.expiryTimer = setTimeout(() => {
+    renderMarketFilters();
+    renderConsensus();
+    renderParlayDrawer();
+  }, Math.min(Math.max(0, nextStart - now + 1000), MAX_TIMEOUT_MS));
 }
 
 function startTimeMillis(value) {
