@@ -1,3 +1,11 @@
+const sports = {
+  mlb: { label: "MLB", sourceUrl: "https://www.covers.com/picks/mlb" },
+  nfl: { label: "NFL", sourceUrl: "https://www.covers.com/picks/nfl" },
+  "world-cup": { label: "2026 World Cup", sourceUrl: "https://www.covers.com/picks/world-cup" }
+};
+
+const sportSlugs = new Set(Object.keys(sports));
+
 const state = {
   sport: currentSport(),
   consensus: [],
@@ -7,14 +15,6 @@ const state = {
   theme: currentTheme(),
   expiryTimer: null
 };
-
-const sports = {
-  mlb: { label: "MLB", sourceUrl: "https://www.covers.com/picks/mlb" },
-  nfl: { label: "NFL", sourceUrl: "https://www.covers.com/picks/nfl" },
-  "world-cup": { label: "2026 World Cup", sourceUrl: "https://www.covers.com/picks/world-cup" }
-};
-
-const sportSlugs = new Set(Object.keys(sports));
 
 const STALE_THRESHOLD_HOURS = 10;
 const MAX_TIMEOUT_MS = 2_147_483_647;
@@ -137,9 +137,12 @@ function checkStale(generatedAt) {
 const MARKET_ORDER = ["Moneyline", "Total", "Spread", "Prop", "Parlay"];
 
 function availableMarkets() {
-  const now = Date.now();
-  const seen = new Set(state.consensus.filter((p) => isUnstartedPick(p, now)).map((p) => p.market));
-  return MARKET_ORDER.filter((market) => seen.has(market));
+  const seen = new Set(visibleConsensusPicks().map((p) => p.market || "Other"));
+  const ordered = MARKET_ORDER.filter((market) => seen.has(market));
+  const remaining = [...seen]
+    .filter((market) => !MARKET_ORDER.includes(market))
+    .sort((a, b) => a.localeCompare(b));
+  return [...ordered, ...remaining];
 }
 
 function renderMarketFilters() {
@@ -168,10 +171,9 @@ function renderMarketFilters() {
 // Render the visible consensus cards.
 
 function renderConsensus() {
-  const now = Date.now();
-  const currentPicks = state.consensus.filter((p) => isUnstartedPick(p, now));
-  const hasAgreement = currentPicks.some((p) => p.sourceCount > 1);
-  const marketPicks = currentPicks.filter((p) => p.market === state.activeMarket);
+  const visiblePicks = visibleConsensusPicks();
+  const hasAgreement = visiblePicks.some((p) => p.sourceCount > 1);
+  const marketPicks = visiblePicks.filter((p) => (p.market || "Other") === state.activeMarket);
   const filtered = sortByStartTime(
     marketPicks.filter((p) => p.sourceCount > 1 || !hasAgreement)
   );
@@ -254,6 +256,10 @@ function sortByStartTime(picks) {
       (b.pickCount || 0) - (a.pickCount || 0) ||
       `${a.selection || ""}`.localeCompare(`${b.selection || ""}`);
   });
+}
+
+function visibleConsensusPicks() {
+  return state.consensus.filter((pick) => isUnstartedPick(pick));
 }
 
 function isUnstartedPick(pick, now = Date.now()) {

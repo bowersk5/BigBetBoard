@@ -20,6 +20,7 @@ const mimeTypes = {
   ".js": "text/javascript; charset=utf-8",
   ".json": "application/json; charset=utf-8"
 };
+const noStoreHeaders = { "cache-control": "no-store" };
 
 const sportSlugs = new Set(Object.keys(sports));
 
@@ -153,7 +154,7 @@ async function serveStatic(pathname, res) {
   if (pathname === "/") {
     try {
       const body = await readFile(join(publicDir, "index.html"));
-      res.writeHead(200, { "content-type": mimeTypes[".html"] });
+      res.writeHead(200, { "content-type": mimeTypes[".html"], ...noStoreHeaders });
       res.end(body);
     } catch {
       res.writeHead(404, { "content-type": "text/plain; charset=utf-8" });
@@ -167,7 +168,7 @@ async function serveStatic(pathname, res) {
     try {
       const slug = pathname.replace(/^\/|\/$/g, "");
       const body = await sportPageHtml(slug);
-      res.writeHead(200, { "content-type": mimeTypes[".html"] });
+      res.writeHead(200, { "content-type": mimeTypes[".html"], ...noStoreHeaders });
       res.end(body);
     } catch {
       res.writeHead(404, { "content-type": "text/plain; charset=utf-8" });
@@ -188,7 +189,10 @@ async function serveStatic(pathname, res) {
 
   try {
     const body = await readFile(filePath);
-    res.writeHead(200, { "content-type": mimeTypes[extname(filePath)] || "application/octet-stream" });
+    res.writeHead(200, {
+      "content-type": mimeTypes[extname(filePath)] || "application/octet-stream",
+      ...noStoreHeaders
+    });
     res.end(body);
   } catch {
     res.writeHead(404, { "content-type": "text/plain; charset=utf-8" });
