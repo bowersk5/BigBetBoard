@@ -94,6 +94,20 @@ test("normalizes World Cup three-way winners and compact totals", () => {
   assert.equal(total?.key, "SWE @ NED|Total|Over 2.5");
 });
 
+test("uses NFL-specific team names when normalizing football picks", () => {
+  const pick = normalizePick({
+    matchup: "NYJ @ BUF",
+    market: "Point Spread",
+    selection: "New York Jets +2.5",
+    sport: "nfl"
+  });
+
+  assert.equal(pick?.matchup, "NYJ @ BUF");
+  assert.equal(pick?.market, "Spread");
+  assert.equal(pick?.selection, "NYJ +2.5");
+  assert.equal(pick?.key, "NYJ @ BUF|Spread|NYJ +2.5");
+});
+
 test("parses Pickswise streamed pick rows when __NEXT_DATA__ is absent", () => {
   const flight = `42:["$","tbody",null,{"children":[${[
     pickswiseFlightRow("418", "LAD vs CWS", "Run Line - Los Angeles Dodgers -1.5", "-125"),

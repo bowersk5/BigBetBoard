@@ -23,6 +23,17 @@ export const sports = {
       { id: "polymarket", name: "Polymarket", url: "https://polymarket.com/sports/world-cup/games", parser: parsePolymarketSource },
       { id: "sportsline", name: "SportsLine", url: "https://www.sportsline.com/fifa-wc/picks/experts/", parser: parseSportsLineSource, minExpectedPicks: 0 }
     ]
+  },
+  nfl: {
+    id: "nfl",
+    label: "NFL",
+    minExpectedPicks: 0,
+    sources: [
+      { id: "covers",    name: "Covers",        url: "https://www.covers.com/picks/nfl",         parser: parseCoversSource },
+      { id: "pickswise", name: "Pickswise",      url: "https://www.pickswise.com/nfl/picks/",     parser: parsePickswiseSource },
+      { id: "action",    name: "Action Network", url: "https://www.actionnetwork.com/nfl/picks/", parser: parseActionSource },
+      { id: "thelines",  name: "The Lines",      url: "https://www.thelines.com/picks/nfl/",      parser: parseTheLinesSource }
+    ]
   }
 };
 
@@ -53,6 +64,7 @@ const teamAliases = {
 // These aliases only apply within one sport.
 const sportTeamAliases = {
   mlb: { CHI: "CHC", LA: "LAD", NO: "NOP", NY: "NYY" },
+  nfl: { ARZ: "ARI", JAC: "JAX", LA: "LAR", WSH: "WAS" },
   "world-cup": {
     CVI: "CPV", CUR: "CUW", IRI: "IRN", NLD: "NED", URY: "URU"
   }
@@ -93,6 +105,20 @@ const teamNameAliases = [
   ["türkiye", "TUR"], ["turkiye", "TUR"], ["turkey", "TUR"],
   ["paraguay", "PAR"], ["brazil", "BRA"], ["haiti", "HAI"]
 ];
+
+const sportTeamNameAliases = {
+  nfl: [
+    ["cardinals", "ARI"], ["falcons", "ATL"], ["ravens", "BAL"], ["bills", "BUF"],
+    ["panthers", "CAR"], ["bears", "CHI"], ["bengals", "CIN"], ["browns", "CLE"],
+    ["cowboys", "DAL"], ["broncos", "DEN"], ["lions", "DET"], ["packers", "GB"],
+    ["texans", "HOU"], ["colts", "IND"], ["jaguars", "JAX"], ["chiefs", "KC"],
+    ["raiders", "LV"], ["chargers", "LAC"], ["rams", "LAR"], ["dolphins", "MIA"],
+    ["vikings", "MIN"], ["patriots", "NE"], ["saints", "NO"], ["giants", "NYG"],
+    ["jets", "NYJ"], ["eagles", "PHI"], ["steelers", "PIT"], ["49ers", "SF"],
+    ["niners", "SF"], ["seahawks", "SEA"], ["buccaneers", "TB"], ["bucs", "TB"],
+    ["titans", "TEN"], ["commanders", "WAS"]
+  ]
+};
 
 export async function fetchMlbConsensus({ coversHtml } = {}) {
   return fetchConsensus({ sport: "mlb", coversHtml });
@@ -409,8 +435,8 @@ function parsePolymarketSource(html, config) {
 
     const teamMatch = title.match(/^(.+?)\s+vs\.?\s+(.+)$/i);
     if (!teamMatch) continue;
-    const home = teamFromName(teamMatch[1]);
-    const away = teamFromName(teamMatch[2]);
+    const home = teamFromName(teamMatch[1], config.id);
+    const away = teamFromName(teamMatch[2], config.id);
     if (!home || !away) continue;
 
     const moneyline = outcomes.slice(0, 3).map((outcome, outcomeIndex) => ({
@@ -709,7 +735,8 @@ function isRecentTheLinesArticle(title, href, sport) {
     // Also accept generic pick URLs when the title names the sport.
     if (!hrefLower.includes("/picks/")) return false;
     const sportKeywords = {
-      mlb: ["mlb", "baseball"]
+      mlb: ["mlb", "baseball"],
+      nfl: ["nfl", "football"]
     };
     if (!sportKeywords[sport]?.some((kw) => lower.includes(kw))) return false;
   }
@@ -743,8 +770,8 @@ function extractTheLinesPickFromTitle(title, sport) {
     const namePairPattern = /\b(\w[\w\s]+?)\s+(?:vs?\.?|@)\s+(\w[\w\s]+?)\b(?:\s+(?:Picks?|Predictions?|Best Bet))/i;
     const nameMatch = title.match(namePairPattern);
     if (nameMatch) {
-      away = teamFromName(nameMatch[1]) || nameMatch[1].trim().toUpperCase().slice(0, 3);
-      home = teamFromName(nameMatch[2]) || nameMatch[2].trim().toUpperCase().slice(0, 3);
+      away = teamFromName(nameMatch[1], sport) || nameMatch[1].trim().toUpperCase().slice(0, 3);
+      home = teamFromName(nameMatch[2], sport) || nameMatch[2].trim().toUpperCase().slice(0, 3);
     }
   }
 
@@ -861,7 +888,7 @@ function sideFromSelection(selection, type = "", away, home, sport = "") {
   const explicit = selection.match(/\b([A-Z]{2,4})\b/)?.[1];
   const normalized = normalizeTeamAbbr(explicit, sport);
   if ([away, home].includes(normalized)) return normalized;
-  return teamFromName(selection);
+  return teamFromName(selection, sport);
 }
 
 function normalizeMatchup(matchup = "", away, home, sport = "") {
@@ -879,8 +906,10 @@ function normalizeTeamAbbr(value = "", sport = "") {
   return (sport && sportTeamAliases[sport]?.[base]) || base;
 }
 
-function teamFromName(value = "") {
+function teamFromName(value = "", sport = "") {
   const lower = value.toLowerCase();
+  const sportFound = sportTeamNameAliases[sport]?.find(([name]) => lower.includes(name));
+  if (sportFound) return sportFound[1];
   const found = teamNameAliases.find(([name]) => lower.includes(name));
   return found ? found[1] : "";
 }

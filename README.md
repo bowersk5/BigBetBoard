@@ -1,12 +1,12 @@
 # Daily Expert Picks Board
 
-A zero-dependency Node.js dashboard that gathers public betting picks, normalizes them into a shared format, and highlights agreement between sources for MLB and the 2026 World Cup.
+A zero-dependency Node.js dashboard that gathers public betting picks, normalizes them into a shared format, and highlights agreement between sources for MLB, NFL, and the 2026 World Cup.
 
 The production site is generated into `public/` and deployed through GitHub Pages. The local server uses the same frontend while providing live API endpoints for refreshing source data.
 
 ## Features
 
-- Separate MLB and 2026 World Cup pages.
+- Separate MLB, NFL, and 2026 World Cup pages.
 - Consensus cards grouped by matchup, market, and selection.
 - Market views for Moneyline, Total, Spread, Prop, and Parlay when those markets are available. Baseball run lines are normalized into Spread.
 - Game start times when supplied by a source.
@@ -27,6 +27,13 @@ Source configuration and parsers live in `src/consensus.js`.
 - [Pickswise](https://www.pickswise.com/mlb/picks/)
 - [Action Network](https://www.actionnetwork.com/mlb/picks/)
 - [The Lines](https://www.thelines.com/picks/mlb/)
+
+### NFL
+
+- [Covers](https://www.covers.com/picks/nfl)
+- [Pickswise](https://www.pickswise.com/nfl/picks/)
+- [Action Network](https://www.actionnetwork.com/nfl/picks/)
+- [The Lines](https://www.thelines.com/picks/nfl/)
 
 ### 2026 World Cup
 
@@ -67,10 +74,13 @@ PORT=4000 npm start
 | Route | Description |
 | --- | --- |
 | `/` | MLB dashboard |
+| `/nfl/` | NFL dashboard |
 | `/world-cup/` | 2026 World Cup dashboard |
 | `/api/picks?sport=mlb` | Live Covers MLB payload |
+| `/api/picks?sport=nfl` | Live Covers NFL payload |
 | `/api/picks?sport=world-cup` | Live Covers World Cup payload |
 | `/api/consensus?sport=mlb` | Live multi-source MLB consensus |
+| `/api/consensus?sport=nfl` | Live multi-source NFL consensus |
 | `/api/consensus?sport=world-cup` | Live multi-source World Cup consensus |
 
 Add `refresh=1` to an API URL to bypass the local server's daily in-memory cache.
@@ -116,12 +126,15 @@ When a market contains cross-source agreement, the UI prioritizes those entries.
 ```text
 public/data/picks.json
 public/data/consensus.json
+public/data/nfl/picks.json
+public/data/nfl/consensus.json
 public/data/world-cup/picks.json
 public/data/world-cup/consensus.json
+public/nfl/index.html
 public/world-cup/index.html
 ```
 
-The root data files belong to MLB. World Cup output lives under `public/data/world-cup/`.
+The root data files belong to MLB. Other sport output lives under `public/data/<sport>/`.
 
 ### `picks.json`
 
@@ -155,7 +168,7 @@ The multi-source payload contains:
 
 These aggregate counts describe processed data. They are not intended to equal the number of visible cards in one selected market.
 
-Generated data and the World Cup subpage are ignored by Git because CI rebuilds them for deployment. The retired `history/` snapshot workflow must not be reintroduced unless archival output becomes an explicit requirement.
+Generated data and sport subpages are ignored by Git because CI rebuilds them for deployment. The retired `history/` snapshot workflow must not be reintroduced unless archival output becomes an explicit requirement.
 
 ## Project Layout
 

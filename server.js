@@ -140,7 +140,9 @@ async function sportPageHtml(sport) {
     .replace(/src="app\.js"/, `src="../app.js"`)
     .replace(/href="https:\/\/www\.covers\.com\/picks\/mlb"/, `href="${sourceUrl}"`)
     .replace(/href="\.\/"/, `href="../"`)
-    .replace(/href="world-cup\/"/, `href="../world-cup/"`);
+    .replace(/href="([a-z0-9-]+)\/"/g, (match, slug) =>
+      sports[slug] ? `href="../${slug}/"` : match
+    );
 }
 
 async function serveStatic(pathname, res) {

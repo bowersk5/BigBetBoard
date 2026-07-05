@@ -9,8 +9,11 @@ const state = {
 
 const sports = {
   mlb: { label: "MLB", sourceUrl: "https://www.covers.com/picks/mlb" },
+  nfl: { label: "NFL", sourceUrl: "https://www.covers.com/picks/nfl" },
   "world-cup": { label: "2026 World Cup", sourceUrl: "https://www.covers.com/picks/world-cup" }
 };
+
+const sportSlugs = new Set(Object.keys(sports));
 
 const STALE_THRESHOLD_HOURS = 10;
 
@@ -425,8 +428,7 @@ function staticPicksUrl(cacheBust = "") {
 function siteRoot() {
   const { protocol, host, pathname } = window.location;
   const parts = pathname.split("/").filter(Boolean);
-  const sportSegments = new Set(["mlb", "world-cup"]);
-  const rootParts = parts.filter((p) => !sportSegments.has(p));
+  const rootParts = parts.filter((p) => !sportSlugs.has(p));
   const rootPath = rootParts.length ? `/${rootParts.join("/")}/` : "/";
   return `${protocol}//${host}${rootPath}`;
 }
@@ -490,10 +492,10 @@ function escapeHtml(value) {
 
 function currentSport() {
   const pathParts = window.location.pathname.split("/").filter(Boolean);
-  const sportFromPath = pathParts.find((part) => ["mlb", "world-cup"].includes(part));
+  const sportFromPath = pathParts.find((part) => sportSlugs.has(part));
   if (sportFromPath) return sportFromPath;
   const querySport = new URLSearchParams(window.location.search).get("sport");
-  if (["mlb", "world-cup"].includes(querySport)) return querySport;
+  if (sportSlugs.has(querySport)) return querySport;
   return "mlb";
 }
 
