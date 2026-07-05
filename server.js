@@ -8,7 +8,10 @@ import { fetchHtml } from "./src/utils.js";
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 const publicDir = join(__dirname, "public");
-const port = Number(process.env.PORT || 3000);
+const DEFAULT_PORT = 3000;
+const PORT_RETRY_LIMIT = 10;
+const preferredPort = Number(process.env.PORT || DEFAULT_PORT);
+const useExactPort = Boolean(process.env.PORT);
 const cache = new Map();
 
 const mimeTypes = {
@@ -193,7 +196,7 @@ async function serveStatic(pathname, res) {
   }
 }
 
-const server = createServer(async (req, res) => {
+const handleRequest = async (req, res) => {
   const url = new URL(req.url, `http://${req.headers.host}`);
   const sport = sportConfig(url.searchParams.get("sport") || url.pathname.replace(/^\/|\/$/g, "")).id;
 
@@ -235,8 +238,35 @@ const server = createServer(async (req, res) => {
   }
 
   await serveStatic(url.pathname, res);
-});
+};
 
-server.listen(port, () => {
-  console.log(`Daily Expert Picks is running at http://localhost:${port}`);
-});
+function listen(port) {
+  const server = createServer(handleRequest);
+
+  server.once("error", (error) => {
+    if (error.code !== "EADDRINUSE") {
+      console.error(error);
+      process.exit(1);
+    }
+
+    if (useExactPort) {
+      console.error(`Port ${port} is already in use. Stop that process or run with a different PORT value.`);
+      process.exit(1);
+    }
+
+    const nextPort = port + 1;
+    if (nextPort > preferredPort + PORT_RETRY_LIMIT) {
+      console.error(`Ports ${preferredPort}-${preferredPort + PORT_RETRY_LIMIT} are already in use.`);
+      process.exit(1);
+    }
+
+    console.warn(`Port ${port} is already in use; trying ${nextPort}...`);
+    listen(nextPort);
+  });
+
+  server.listen(port, () => {
+    console.log(`Daily Expert Picks is running at http://localhost:${port}`);
+  });
+}
+
+listen(preferredPort);
