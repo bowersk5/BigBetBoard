@@ -73,32 +73,3 @@ test("filters out picks made days ago", () => {
   assert.equal(result.counts.parsedPicks, 0, "stale picks should not be parsed as current picks");
   assert.equal(result.counts.games, 0, "game with only stale picks should be dropped");
 });
-
-test("preserves Covers listed pick counts when some cards are hidden", () => {
-  const html = `
-    <html><head><title>Free World Cup Picks</title></head><body>
-      <h1>WORLD-CUP Picks</h1>
-      <p>Free World Cup Expert and Computer Picks For Every Game June 20, 2026</p>
-      <div>SWE @ NED Sat, Jun 20 • 1:00 PM ET</div>
-      <div>13 Expert Picks 6 Computer Picks</div>
-      <div>Goals</div>
-      <div>Tijjani Reijnders o0.5 Goals (+398)</div>
-      <div>Best Odds</div>
-      <div>o0.5 +398</div>
-      <div>Pick made: an hour ago</div>
-      <div>Sam Farley</div>
-      <div>Betting Analyst</div>
-      <div>Analysis</div>
-      <p>Reijnders is dangerous arriving late in the box.</p>
-      <div>View 19 Picks</div>
-      <h2>What are Covers’ World Cup Free picks and predictions?</h2>
-    </body></html>
-  `;
-
-  const result = parseCoversPicks(html, { sport: "world-cup", sourceUrl: "https://www.covers.com/picks/world-cup" });
-
-  assert.equal(result.counts.picks, 13);
-  assert.equal(result.counts.expertPicks, 13);
-  assert.equal(result.counts.parsedPicks, 1);
-  assert.equal(result.counts.computerPicks, 6);
-});

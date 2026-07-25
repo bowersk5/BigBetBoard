@@ -39,25 +39,6 @@ test("groups normalized picks by matchup, market, and selection", () => {
   assert.equal(consensus[1].sourceCount, 1);
 });
 
-test("normalizes World Cup goals markets as props", () => {
-  const pick = normalizePick({
-    matchup: "SWE @ NED",
-    startsAt: "Sat, Jun 20 • 1:00 PM ET",
-    market: "Goals",
-    selection: "Tijjani Reijnders o0.5 Goals (+398)",
-    odds: "o0.5 +398",
-    expert: "Sam Farley",
-    made: "yesterday",
-    sport: "world-cup"
-  });
-
-  assert.ok(pick);
-  assert.equal(pick.matchup, "SWE @ NED");
-  assert.equal(pick.market, "Prop");
-  assert.equal(pick.selection, "Tijjani Reijnders o0.5 Goals");
-  assert.equal(pick.key, "SWE @ NED|Prop|tijjani reijnders o0.5 goals");
-});
-
 test("keeps Covers parlay cards as consensus picks", () => {
   const pick = normalizePick({
     matchup: "NY @ SA",
@@ -74,24 +55,6 @@ test("keeps Covers parlay cards as consensus picks", () => {
     pick.selection,
     "3 LEG PARLAY SA Moneyline Victor Wembanyama o28.5 Points Scored Victor Wembanyama o11.5 Total Rebounds"
   );
-});
-
-test("normalizes World Cup three-way winners and compact totals", () => {
-  const winner = normalizePick({
-    matchup: "SWE @ NED",
-    market: "3-Way",
-    selection: "NED (-137)",
-    sport: "world-cup"
-  });
-  const total = normalizePick({
-    matchup: "SWE @ NED",
-    market: "Best Bets,Total",
-    selection: "Total o2.5 (-120)",
-    sport: "world-cup"
-  });
-
-  assert.equal(winner?.key, "SWE @ NED|Moneyline|NED");
-  assert.equal(total?.key, "SWE @ NED|Total|Over 2.5");
 });
 
 test("uses NFL-specific team names when normalizing football picks", () => {
@@ -123,100 +86,6 @@ test("parses Pickswise streamed pick rows when __NEXT_DATA__ is absent", () => {
   assert.equal(picks[0].selection, "LAD -1.5");
   assert.equal(picks[0].odds, "-125");
   assert.equal(picks[1].selection, "ARI Moneyline");
-});
-
-test("reverses Pickswise World Cup home-vs-away rows", () => {
-  const flight = `42:["$","tbody",null,{"children":[${pickswiseFlightRow(
-    "526",
-    "NED vs SWE",
-    "Over 2.5",
-    "+100"
-  )}]}]`;
-  const html = `<script type="application/ld+json">${JSON.stringify({
-    "@type": "SportsEvent",
-    awayTeam: { name: "SWE" },
-    homeTeam: { name: "NED" },
-    startDate: "2026-06-20T17:00:00Z"
-  })}</script><script>self.__next_f.push([1,${JSON.stringify(flight)}])</script>`;
-  const config = sports["world-cup"];
-  const source = config.sources.find((item) => item.id === "pickswise");
-  const [pick] = source.parser(html, config);
-
-  assert.equal(pick.matchup, "SWE @ NED");
-  assert.equal(pick.startsAt, "2026-06-20T17:00:00Z");
-  assert.equal(pick.key, "SWE @ NED|Total|Over 2.5");
-});
-
-test("parses Polymarket's highest World Cup match-result probability", () => {
-  const event = {
-    "@type": "Event",
-    name: "Netherlands vs. Sweden",
-    startDate: "2026-06-20T17:00:00.000Z"
-  };
-  const outcome = (label, cents) =>
-    `<span class="opacity-70 whitespace-nowrap">${label}</span><span class="ml-1 text-sm">${cents}¢</span>`;
-  const html = [
-    `<script type="application/ld+json">${JSON.stringify({
-      "@type": "CollectionPage",
-      mainEntity: { itemListElement: [{ item: event }] }
-    })}</script>`,
-    '<a href="/sports/world-cup/fifwc-nld-swe-2026-06-20"><span class="sr-only">Netherlands vs. Sweden</span></a>',
-    outcome("NLD", 57), outcome("Draw", 24), outcome("SWE", 21)
-  ].join("");
-  const config = sports["world-cup"];
-  const source = config.sources.find((item) => item.id === "polymarket");
-  const [pick] = source.parser(html, config);
-
-  assert.equal(pick.matchup, "SWE @ NED");
-  assert.equal(pick.selection, "NED Moneyline");
-  assert.equal(pick.odds, "-133");
-  assert.equal(pick.startsAt, event.startDate);
-});
-
-test("parses public SportsLine picks and skips subscriber-locked cards", () => {
-  const game = {
-    awayTeam: { abbrev: "SWE" },
-    homeTeam: { abbrev: "NED" },
-    scheduledTime: "2026-06-20T17:00:00.000Z"
-  };
-  const publicPick = {
-    locked: false,
-    createdAt: "2026-06-20T01:42:38.165Z",
-    writeup: "Both teams can contribute to a high-scoring match.",
-    expert: { firstName: "Brad", lastName: "Thomas" },
-    game,
-    selection: {
-      label: "Over 2.5 -110",
-      marketType: "OVER_UNDER",
-      odds: -110,
-      side: null,
-      value: 2.5
-    }
-  };
-  const lockedPick = {
-    ...publicPick,
-    locked: true,
-    selection: { ...publicPick.selection, label: "Subscribers Only", odds: null, value: null }
-  };
-  const data = {
-    props: {
-      pageProps: {
-        expertPicksContainerProps: {
-          data: { expertPicks: { edges: [{ node: publicPick }, { node: lockedPick }] } }
-        }
-      }
-    }
-  };
-  const html = `<script id="__NEXT_DATA__" type="application/json">${JSON.stringify(data)}</script>`;
-  const config = sports["world-cup"];
-  const source = config.sources.find((item) => item.id === "sportsline");
-  const picks = source.parser(html, config);
-
-  assert.equal(picks.length, 1);
-  assert.equal(picks[0].matchup, "SWE @ NED");
-  assert.equal(picks[0].selection, "Over 2.5");
-  assert.equal(picks[0].expert, "Brad Thomas");
-  assert.equal(picks[0].odds, "-110");
 });
 
 function pickswiseFlightRow(id, matchup, selection, odds) {

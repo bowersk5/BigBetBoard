@@ -1,7 +1,6 @@
 const sports = {
   mlb: { label: "MLB", sourceUrl: "https://www.covers.com/picks/mlb" },
-  nfl: { label: "NFL", sourceUrl: "https://www.covers.com/picks/nfl" },
-  "world-cup": { label: "2026 World Cup", sourceUrl: "https://www.covers.com/picks/world-cup" }
+  nfl: { label: "NFL", sourceUrl: "https://www.covers.com/picks/nfl" }
 };
 
 const sportSlugs = new Set(Object.keys(sports));

@@ -125,7 +125,7 @@ function wrapExpandedPage(game, html) {
 
 /**
  * Read public/index.html and patch asset paths + sport-specific content
- * for pages served from a subdirectory (e.g. /world-cup/).
+ * for pages served from a subdirectory (e.g. /nfl/).
  * On the local dev server there are no pre-built sport subpages, so we
  * generate the patched HTML on the fly — the same transformations that
  * generateStaticData.js applies at build time.

@@ -16,7 +16,7 @@ async function main() {
     await writeSportData(config, sportDir);
   }
 
-  // Write sport pages so GitHub Pages can serve /world-cup/.
+  // Write sport pages so GitHub Pages can serve supported sport routes.
   for (const config of Object.values(sports)) {
     if (config.id !== "mlb") {
       await writeSportHtml(config);
@@ -71,8 +71,7 @@ async function writeSportHtml(config) {
     .replace(/href="styles\.css"/, `href="../styles.css"`)
     .replace(/src="app\.js"/, `src="../app.js"`)
     .replace(/href="https:\/\/www\.covers\.com\/picks\/mlb"/, `href="${sourceUrl}"`)
-    .replace(/href="\.\/"/, `href="../"`)
-    .replace(/href="world-cup\/"/, `href="../world-cup/"`);
+    .replace(/href="\.\/"/, `href="../"`);
 
   const outFile = join(sportDir, "index.html");
   await writeFile(outFile, patched);

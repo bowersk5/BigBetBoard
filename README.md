@@ -1,12 +1,12 @@
 # Daily Expert Picks Board
 
-A zero-dependency Node.js dashboard that gathers public betting picks, normalizes them into a shared format, and highlights agreement between sources for MLB, NFL, and the 2026 World Cup.
+A zero-dependency Node.js dashboard that gathers public betting picks, normalizes them into a shared format, and highlights agreement between sources for MLB and NFL.
 
 The production site is generated into `public/` and deployed through GitHub Pages. The local server uses the same frontend while providing live API endpoints for refreshing source data.
 
 ## Features
 
-- Separate MLB, NFL, and 2026 World Cup pages.
+- Separate MLB and NFL pages.
 - Consensus cards grouped by matchup, market, and selection.
 - Market views for Moneyline, Total, Spread, Prop, and Parlay when those markets are available. Baseball run lines are normalized into Spread.
 - Game start times when supplied by a source.
@@ -35,16 +35,7 @@ Source configuration and parsers live in `src/consensus.js`.
 - [Action Network](https://www.actionnetwork.com/nfl/picks/)
 - [The Lines](https://www.thelines.com/picks/nfl/)
 
-### 2026 World Cup
-
-- [Covers](https://www.covers.com/picks/world-cup)
-- [Pickswise](https://www.pickswise.com/world-cup/picks/)
-- [Polymarket](https://polymarket.com/sports/world-cup/games)
-- [SportsLine](https://www.sportsline.com/fifa-wc/picks/experts/)
-
 Covers also supplies each sport's standalone `picks.json` payload. When a Covers page links to expanded matchup picks, the build follows those pages and merges their cards into the league-page results.
-
-Polymarket contributes the highest current match-result probability for each World Cup game. SportsLine contributes only selections revealed in its public payload; subscriber-locked picks are never inferred or reproduced.
 
 ## Requirements
 
@@ -75,18 +66,15 @@ PORT=4000 npm start
 | --- | --- |
 | `/` | MLB dashboard |
 | `/nfl/` | NFL dashboard |
-| `/world-cup/` | 2026 World Cup dashboard |
 | `/api/picks?sport=mlb` | Live Covers MLB payload |
 | `/api/picks?sport=nfl` | Live Covers NFL payload |
-| `/api/picks?sport=world-cup` | Live Covers World Cup payload |
 | `/api/consensus?sport=mlb` | Live multi-source MLB consensus |
 | `/api/consensus?sport=nfl` | Live multi-source NFL consensus |
-| `/api/consensus?sport=world-cup` | Live multi-source World Cup consensus |
 
 Add `refresh=1` to an API URL to bypass the local server's daily in-memory cache.
 
 ```text
-/api/consensus?sport=world-cup&refresh=1
+/api/consensus?sport=nfl&refresh=1
 ```
 
 ## npm Scripts
@@ -128,10 +116,7 @@ public/data/picks.json
 public/data/consensus.json
 public/data/nfl/picks.json
 public/data/nfl/consensus.json
-public/data/world-cup/picks.json
-public/data/world-cup/consensus.json
 public/nfl/index.html
-public/world-cup/index.html
 ```
 
 The root data files belong to MLB. Other sport output lives under `public/data/<sport>/`.

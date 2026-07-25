@@ -16,7 +16,7 @@ async function main() {
     await writeSportData(config, sportDir);
   }
 
-  // Write sport pages so GitHub Pages can serve /world-cup/.
+  // Write sport pages so GitHub Pages can serve supported sport routes.
   for (const config of Object.values(sports)) {
     if (config.id !== "mlb") {
       await writeSportHtml(config);

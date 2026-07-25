@@ -13,17 +13,6 @@ export const sports = {
       { id: "thelines",  name: "The Lines",     url: "https://www.thelines.com/picks/mlb/",      parser: parseTheLinesSource }
     ]
   },
-  "world-cup": {
-    id: "world-cup",
-    label: "2026 World Cup",
-    minExpectedPicks: 1,
-    sources: [
-      { id: "covers",     name: "Covers",     url: "https://www.covers.com/picks/world-cup",        parser: parseCoversSource },
-      { id: "pickswise",  name: "Pickswise",  url: "https://www.pickswise.com/world-cup/picks/",    parser: parsePickswiseSource },
-      { id: "polymarket", name: "Polymarket", url: "https://polymarket.com/sports/world-cup/games", parser: parsePolymarketSource },
-      { id: "sportsline", name: "SportsLine", url: "https://www.sportsline.com/fifa-wc/picks/experts/", parser: parseSportsLineSource, minExpectedPicks: 0 }
-    ]
-  },
   nfl: {
     id: "nfl",
     label: "NFL",
@@ -65,9 +54,6 @@ const teamAliases = {
 const sportTeamAliases = {
   mlb: { CHI: "CHC", LA: "LAD", NO: "NOP", NY: "NYY" },
   nfl: { ARZ: "ARI", JAC: "JAX", LA: "LAR", WSH: "WAS" },
-  "world-cup": {
-    CVI: "CPV", CUR: "CUW", IRI: "IRN", NLD: "NED", URY: "URU"
-  }
 };
 
 const teamNameAliases = [
@@ -94,16 +80,7 @@ const teamNameAliases = [
   ["devils", "NJD"], ["islanders", "NYI"], ["rangers", "NYR"], ["senators", "OTT"],
   ["flyers", "PHI"], ["penguins", "PIT"], ["sharks", "SJ"], ["kraken", "SEA"],
   ["blues", "STL"], ["lightning", "TB"], ["maple leafs", "TOR"], ["canucks", "VAN"],
-  ["golden knights", "VGK"], ["capitals", "WAS"], ["jets", "WPG"],
-  ["netherlands", "NED"], ["sweden", "SWE"], ["germany", "GER"],
-  ["ivory coast", "CIV"], ["côte d'ivoire", "CIV"], ["cote d'ivoire", "CIV"],
-  ["ecuador", "ECU"], ["curaçao", "CUW"], ["curacao", "CUW"],
-  ["tunisia", "TUN"], ["japan", "JPN"], ["spain", "ESP"],
-  ["saudi arabia", "KSA"], ["belgium", "BEL"], ["ir iran", "IRN"],
-  ["iran", "IRN"], ["uruguay", "URU"], ["cabo verde", "CPV"],
-  ["cape verde", "CPV"], ["new zealand", "NZL"], ["egypt", "EGY"],
-  ["türkiye", "TUR"], ["turkiye", "TUR"], ["turkey", "TUR"],
-  ["paraguay", "PAR"], ["brazil", "BRA"], ["haiti", "HAI"]
+  ["golden knights", "VGK"], ["capitals", "WAS"], ["jets", "WPG"]
 ];
 
 const sportTeamNameAliases = {
@@ -367,9 +344,7 @@ function parsePickswiseFlightRows(html, config) {
   let match;
   while ((match = rowPattern.exec(flight)) !== null) {
     const [, first, second, selection, odds] = match;
-    // Pickswise's World Cup table renders the home team first ("NED vs SWE"),
-    // while the rest of the app stores matchups as away @ home.
-    const [away, home] = config.id === "world-cup" ? [second, first] : [first, second];
+    const [away, home] = [first, second];
     const key = `${away}|${home}|${selection}|${odds}`;
     if (seen.has(key)) continue;
     seen.add(key);
@@ -407,161 +382,6 @@ function pickswiseStartTimes(html, sport) {
     }
   }
   return result;
-}
-
-// Polymarket source parser.
-//
-// The World Cup games page renders each matchup card with three moneyline
-// probabilities (home, draw, away). Treat the highest current probability as
-// Polymarket's pick and convert the probability to display-only American odds.
-function parsePolymarketSource(html, config) {
-  const eventPattern = /<a[^>]+href="(\/sports\/world-cup\/fifwc-[^"]+)"[^>]*><span class="sr-only">([^<]+)<\/span><\/a>/gi;
-  const events = [...html.matchAll(eventPattern)];
-  const startsAtByTitle = polymarketStartTimes(html);
-  const picks = [];
-  const seen = new Set();
-
-  for (let index = 0; index < events.length; index += 1) {
-    const event = events[index];
-    const href = event[1];
-    const title = cleanText(event[2]).replace(/\.$/, "");
-    if (seen.has(href)) continue;
-    seen.add(href);
-
-    const blockEnd = events[index + 1]?.index ?? html.length;
-    const block = html.slice(event.index, blockEnd);
-    const outcomes = uniquePolymarketOutcomes(block);
-    if (outcomes.length < 3) continue;
-
-    const teamMatch = title.match(/^(.+?)\s+vs\.?\s+(.+)$/i);
-    if (!teamMatch) continue;
-    const home = teamFromName(teamMatch[1], config.id);
-    const away = teamFromName(teamMatch[2], config.id);
-    if (!home || !away) continue;
-
-    const moneyline = outcomes.slice(0, 3).map((outcome, outcomeIndex) => ({
-      ...outcome,
-      side: outcomeIndex === 0 ? home : outcomeIndex === 1 ? "DRAW" : away
-    }));
-    const leader = moneyline.reduce((best, outcome) => outcome.probability > best.probability ? outcome : best);
-    const pick = normalizePick({
-      matchup: `${away} @ ${home}`,
-      away,
-      home,
-      startsAt: startsAtByTitle.get(title) || "",
-      market: "Moneyline",
-      selection: leader.side,
-      odds: probabilityToAmerican(leader.probability),
-      expert: "Market consensus",
-      analysis: `Polymarket's highest implied match-result probability is ${leader.label} at ${Math.round(leader.probability * 100)}%.`,
-      sport: config.id
-    });
-    if (pick) picks.push(pick);
-  }
-
-  return picks;
-}
-
-function uniquePolymarketOutcomes(block) {
-  const pattern = /<span class="opacity-70[^>]*>([^<]+)<\/span><span[^>]*class="ml-1 text-sm">([\d.]+)¢<\/span>/gi;
-  const outcomes = [];
-  const labels = new Set();
-  let match;
-  while ((match = pattern.exec(block)) !== null) {
-    const label = cleanText(match[1]);
-    if (labels.has(label)) continue;
-    labels.add(label);
-    outcomes.push({ label, probability: Number(match[2]) / 100 });
-  }
-  return outcomes;
-}
-
-function polymarketStartTimes(html) {
-  const result = new Map();
-  const scripts = html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/gi);
-  for (const match of scripts) {
-    try {
-      const data = JSON.parse(decodeEntities(match[1]));
-      const items = data?.mainEntity?.itemListElement || [];
-      for (const entry of items) {
-        const event = entry?.item;
-        if (event?.name && event?.startDate) {
-          result.set(cleanText(event.name).replace(/\.$/, ""), event.startDate);
-        }
-      }
-    } catch {
-      // Ignore unrelated or malformed structured-data blocks.
-    }
-  }
-  return result;
-}
-
-function probabilityToAmerican(probability) {
-  if (!Number.isFinite(probability) || probability <= 0 || probability >= 1) return "";
-  const odds = probability >= 0.5
-    ? -Math.round((100 * probability) / (1 - probability))
-    : Math.round((100 * (1 - probability)) / probability);
-  return formatAmericanOdds(odds);
-}
-
-// SportsLine source parser.
-//
-// SportsLine serializes its expert-pick cards in __NEXT_DATA__. Upcoming picks
-// can be subscriber-locked; only ingest selections the public payload actually
-// reveals. Locked cards still remain visible on SportsLine but are intentionally
-// not guessed or reconstructed here.
-function parseSportsLineSource(html, config) {
-  const data = readNextData(html);
-  const edges = data?.props?.pageProps?.expertPicksContainerProps?.data?.expertPicks?.edges || [];
-  const picks = [];
-
-  for (const edge of edges) {
-    const pick = edge?.node;
-    const game = pick?.game;
-    const selection = pick?.selection;
-    if (!pick || pick.locked || !game || !selection || selection.label === "Subscribers Only") continue;
-
-    const away = normalizeTeamAbbr(game.awayTeam?.abbrev, config.id);
-    const home = normalizeTeamAbbr(game.homeTeam?.abbrev, config.id);
-    const market = sportsLineMarket(selection.marketType);
-    const selectionText = sportsLineSelection(selection, away, home);
-    const expert = [pick.expert?.firstName, pick.expert?.lastName].filter(Boolean).join(" ");
-    const normalized = normalizePick({
-      matchup: `${away} @ ${home}`,
-      away,
-      home,
-      startsAt: game.scheduledTime,
-      market,
-      selection: selectionText,
-      odds: selection.odds,
-      expert: expert || "SportsLine expert",
-      analysis: pick.writeup || "",
-      made: pick.createdAt || "",
-      sport: config.id
-    });
-    if (normalized) picks.push(normalized);
-  }
-
-  return picks;
-}
-
-function sportsLineMarket(marketType = "") {
-  if (marketType === "MONEY_LINE") return "Moneyline";
-  if (marketType === "POINT_SPREAD") return "Spread";
-  if (marketType === "OVER_UNDER") return "Total";
-  return cleanText(marketType.replaceAll("_", " "));
-}
-
-function sportsLineSelection(selection, away, home) {
-  if (selection.marketType === "MONEY_LINE") {
-    return selection.side === "AWAY" ? away : selection.side === "HOME" ? home : selection.label;
-  }
-  if (selection.marketType === "POINT_SPREAD") {
-    const side = selection.side === "AWAY" ? away : selection.side === "HOME" ? home : "";
-    const line = signedLine(selection.value);
-    return side && line ? `${side} ${line}` : selection.label;
-  }
-  return selection.label;
 }
 
 function pickswiseMarketFromSelection(selection = "") {
