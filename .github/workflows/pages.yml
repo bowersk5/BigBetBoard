@@ -3,10 +3,9 @@ name: Deploy GitHub Pages
 on:
   workflow_dispatch:
   schedule:
-    # Morning run: 2:30 PM UTC = 10:30 AM ET — catches picks published before noon
-    - cron: "30 14 * * *"
-    # Evening run: 10:00 PM UTC = 6:00 PM ET — catches afternoon/early-evening game picks
-    - cron: "0 22 * * *"
+    # Hourly observations from 10:17–23:17 UTC. This is 6:17 AM–7:17 PM EDT
+    # (one hour later in EST) and gives first-seen posting times one-hour precision.
+    - cron: "17 10-23 * * *"
   push:
     branches:
       - main
@@ -33,11 +32,25 @@ jobs:
         with:
           node-version: 22
 
+      - name: Restore posting-time observations
+        uses: actions/cache/restore@v4
+        with:
+          path: .tracking/posting-times.json
+          key: posting-times-${{ github.ref_name }}-${{ github.run_id }}
+          restore-keys: |
+            posting-times-${{ github.ref_name }}-
+
       - name: Test
         run: npm test
 
       - name: Generate daily picks
         run: npm run build:pages
+
+      - name: Save posting-time observations
+        uses: actions/cache/save@v4
+        with:
+          path: .tracking/posting-times.json
+          key: posting-times-${{ github.ref_name }}-${{ github.run_id }}
 
       - name: Configure Pages
         uses: actions/configure-pages@v5

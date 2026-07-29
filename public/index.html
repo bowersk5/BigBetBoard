@@ -146,29 +146,15 @@
     </aside>
 
     <template id="consensusTemplate">
-      <article class="consensus-card">
-        <div class="consensus-card__header">
-          <span class="badge badge--market market"></span>
-          <span class="consensus-agree">
-            <span class="agree-num agreement"></span>
-            <span class="agree-label">sources</span>
-          </span>
+      <article class="consensus-card consensus-game-card">
+        <div class="consensus-game-card__header">
+          <div>
+            <h3 class="consensus-game-matchup matchup"></h3>
+            <p class="consensus-start-time start-time" hidden></p>
+          </div>
+          <span class="game-pick-total"></span>
         </div>
-        <h3 class="consensus-selection selection"></h3>
-        <p class="consensus-matchup matchup"></p>
-        <p class="consensus-start-time start-time" hidden></p>
-        <div class="consensus-meta">
-          <span class="consensus-sources source-list"></span>
-          <span class="consensus-experts">
-            <strong class="pick-count"></strong> experts
-          </span>
-        </div>
-        <p class="consensus-examples example-list"></p>
-        <p class="full-analysis" hidden></p>
-        <div class="consensus-actions">
-          <button class="expand-analysis text-btn" hidden>Read analysis ↓</button>
-          <button class="add-parlay-btn parlay-add-btn">+ Parlay</button>
-        </div>
+        <div class="consensus-game-picks"></div>
       </article>
     </template>
 

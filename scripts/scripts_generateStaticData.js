@@ -3,18 +3,26 @@ import { join } from "node:path";
 import { parseCoversPicks } from "../src/coversParser.js";
 import { fetchConsensus, sports } from "../src/consensus.js";
 import { fetchHtml } from "../src/utils.js";
+import { buildPostingTimeReport, trackPostingTimes } from "../src/postingTimes.js";
 
 const publicDir = join(process.cwd(), "public");
 const outputDir = join(publicDir, "data");
+const trackingFile = join(process.cwd(), ".tracking", "posting-times.json");
+const postingTimesFile = join(outputDir, "posting-times.json");
 
 async function main() {
   await mkdir(outputDir, { recursive: true });
+  let trackingHistory = await readTrackingHistory();
 
   for (const config of Object.values(sports)) {
     const sportDir = config.id === "mlb" ? outputDir : join(outputDir, config.id);
     await mkdir(sportDir, { recursive: true });
-    await writeSportData(config, sportDir);
+    trackingHistory = await writeSportData(config, sportDir, trackingHistory);
   }
+
+  await mkdir(join(process.cwd(), ".tracking"), { recursive: true });
+  await writeFile(trackingFile, `${JSON.stringify(trackingHistory, null, 2)}\n`);
+  await writeFile(postingTimesFile, `${JSON.stringify(buildPostingTimeReport(trackingHistory), null, 2)}\n`);
 
   // Write sport pages so GitHub Pages can serve supported sport routes.
   for (const config of Object.values(sports)) {
@@ -24,7 +32,7 @@ async function main() {
   }
 }
 
-async function writeSportData(config, sportDir) {
+async function writeSportData(config, sportDir, trackingHistory) {
   const coversSource = config.sources.find((source) => source.id === "covers");
   const outputFile = join(sportDir, "picks.json");
   const consensusFile = join(sportDir, "consensus.json");
@@ -49,9 +57,20 @@ async function writeSportData(config, sportDir) {
     const consensus = await fetchConsensus({ sport: config.id, coversHtml: html });
     await writeFile(consensusFile, `${JSON.stringify(consensus, null, 2)}\n`);
     console.log(`Wrote ${consensus.counts.consensus} ${config.label} consensus groups to ${consensusFile}`);
+    return trackPostingTimes(trackingHistory, { sport: config.id, sources: consensus.sources });
   } catch (error) {
     console.error(`${config.label} consensus fetch failed — writing empty placeholder:`, error.message);
     await writeFile(consensusFile, `${JSON.stringify(emptyConsensus(config), null, 2)}\n`);
+    return trackingHistory;
+  }
+}
+
+async function readTrackingHistory() {
+  try {
+    return JSON.parse(await readFile(trackingFile, "utf8"));
+  } catch (error) {
+    if (error.code === "ENOENT") return { version: 1, observations: {} };
+    throw error;
   }
 }
 

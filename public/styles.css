@@ -1577,6 +1577,76 @@ body {
   box-shadow: inset 0 0 0 2px var(--gold), 0 1rem 3rem var(--shadow-soft);
 }
 
+.consensus-game-card {
+  grid-column: span 1;
+  min-height: auto;
+}
+
+.consensus-game-card.has-multiple-picks {
+  grid-column: span 2;
+}
+
+.consensus-game-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.consensus-game-matchup {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.consensus-game-card .consensus-start-time {
+  margin: 0.4rem 0 0;
+}
+
+.game-pick-total {
+  flex: 0 0 auto;
+  padding: 0.35rem 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.consensus-game-picks {
+  display: grid;
+  gap: 1rem;
+}
+
+.consensus-game-pick {
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.consensus-game-pick:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.consensus-game-pick .consensus-card__header {
+  margin-bottom: 1rem;
+}
+
+.consensus-game-pick .consensus-selection {
+  margin-bottom: 0.7rem;
+}
+
+.consensus-game-pick .consensus-meta {
+  margin-top: 0;
+}
+
 .consensus-card__header { margin-bottom: 2rem; }
 .agree-num { font-size: 2rem; font-weight: 900; }
 
@@ -1622,6 +1692,7 @@ body {
   .consensus-stack,
   .pick-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .header-inner { align-items: flex-start; }
+  .consensus-game-card.has-multiple-picks { grid-column: span 2; }
 }
 
 @media (max-width: 736px) {
@@ -1639,5 +1710,6 @@ body {
   .pick-grid { grid-template-columns: 1fr; }
   .section-title { font-size: 2.4rem; }
   .consensus-card { min-height: 17rem; padding: 1.5rem; }
+  .consensus-game-card.has-multiple-picks { grid-column: span 1; }
   .theme-toggle__text { display: none; }
 }

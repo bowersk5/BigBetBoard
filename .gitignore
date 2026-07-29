@@ -5,6 +5,7 @@ npm-debug.log*
 # Generated data (rebuilt by CI each day; committing these just creates noise)
 public/data/picks.json
 public/data/consensus.json
+public/data/posting-times.json
 public/data/nfl/
 public/data/world-cup/
 
@@ -14,6 +15,7 @@ public/world-cup/
 
 # Retired archive output
 history/
+.tracking/
 
 # Environment
 .env

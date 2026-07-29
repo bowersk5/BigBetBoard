@@ -153,6 +153,12 @@ The multi-source payload contains:
 
 These aggregate counts describe processed data. They are not intended to equal the number of visible cards in one selected market.
 
+### `posting-times.json`
+
+`/data/posting-times.json` reports the typical posting time for each source and sport in Eastern Time. It records a pick when it is first seen by a scheduled build, retains 120 days of observations, and labels whether a result is based on an explicit source publish time (currently available from Covers) or first observation. Scheduled builds check hourly from 10:17–23:17 UTC, so first-seen results are precise to roughly one hour.
+
+The observation store is preserved between GitHub Actions runs with a workflow cache; it is operational tracking rather than the retired public `history/` archive.
+
 Generated data and sport subpages are ignored by Git because CI rebuilds them for deployment. The retired `history/` snapshot workflow must not be reintroduced unless archival output becomes an explicit requirement.
 
 ## Project Layout
@@ -191,8 +197,7 @@ Generated data and sport subpages are ignored by Git because CI rebuilds them fo
 
 - On pushes to `main` or `master`.
 - On manual `workflow_dispatch` runs.
-- Daily at `2:30 PM UTC` / `10:30 AM ET`.
-- Daily at `10:00 PM UTC` / `6:00 PM ET`.
+- Hourly at `:17` from `10:17–23:17 UTC` (6:17 AM–7:17 PM EDT; one hour later during EST).
 
 The workflow uses Node 22, runs the test suite, generates fresh static data, uploads `public/`, and deploys it to GitHub Pages.
 

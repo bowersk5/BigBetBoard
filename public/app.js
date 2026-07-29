@@ -190,59 +190,83 @@ function renderConsensus() {
     return;
   }
 
-  picks.forEach((pick, i) => {
+  const games = groupPicksByGame(picks);
+
+  games.forEach((game, i) => {
     const node = els.consensusTemplate.content.cloneNode(true);
     const card = node.querySelector(".consensus-card");
-    const market = pick.market || "Other";
     card.style.animationDelay = `${i * 40}ms`;
-    card.setAttribute("data-market", market);
+    card.setAttribute("data-market", game.picks[0].market || "Other");
+    card.classList.toggle("has-multiple-picks", game.picks.length > 1);
+    card.classList.toggle("in-parlay", game.picks.some((pick) => state.parlay.some((p) => p.key === pick.key)));
 
-    // Mark picks that are already in the parlay slip.
-    const inParlay = state.parlay.some((p) => p.key === pick.key);
-    card.classList.toggle("in-parlay", inParlay);
-
-    node.querySelector(".market").textContent = market;
-    node.querySelector(".agreement").textContent = pick.agreement;
-    node.querySelector(".selection").textContent = pick.selection;
-    node.querySelector(".matchup").textContent = pick.matchup;
+    node.querySelector(".matchup").textContent = game.matchup;
     const startTime = node.querySelector(".start-time");
     if (startTime) {
-      const formattedStart = formatStartTime(pick.startsAt);
+      const formattedStart = formatStartTime(game.startsAt);
       startTime.textContent = formattedStart ? `Starts ${formattedStart}` : "";
       startTime.hidden = !formattedStart;
     }
-    node.querySelector(".source-count") && (node.querySelector(".source-count").textContent = pick.sourceCount);
-    node.querySelector(".pick-count").textContent = pick.pickCount;
-    node.querySelector(".source-list").textContent = pick.sources.map((s) => s.name).join(" · ");
-    node.querySelector(".example-list").textContent = sampleExamples(pick.examples);
+    node.querySelector(".game-pick-total").textContent = `${game.picks.length} ${game.picks.length === 1 ? "pick" : "picks"}`;
 
-    // Let users expand the first available analysis note.
-    const fullAnalysis = pick.examples?.find((e) => e.analysis)?.analysis || "";
-    const expandBtn = node.querySelector(".expand-analysis");
-    const fullBlock = node.querySelector(".full-analysis");
-
-    if (fullAnalysis && expandBtn && fullBlock) {
-      fullBlock.textContent = fullAnalysis;
-      expandBtn.hidden = false;
-      expandBtn.addEventListener("click", () => {
-        const open = fullBlock.hidden === false;
-        fullBlock.hidden = open;
-        expandBtn.textContent = open ? "Read analysis ↓" : "Close ↑";
-      });
-    } else if (expandBtn) {
-      expandBtn.hidden = true;
-    }
-
-    // Add or remove this pick from the parlay slip.
-    const parlayBtn = node.querySelector(".add-parlay-btn");
-    if (parlayBtn) {
-      parlayBtn.textContent = inParlay ? "− Remove" : "+ Parlay";
-      parlayBtn.classList.toggle("in-parlay", inParlay);
-      parlayBtn.addEventListener("click", () => toggleParlay(pick));
-    }
+    const picksContainer = node.querySelector(".consensus-game-picks");
+    game.picks.forEach((pick) => picksContainer.append(createPickRow(pick)));
 
     els.consensusList.append(node);
   });
+}
+
+function groupPicksByGame(picks) {
+  const games = new Map();
+  picks.forEach((pick) => {
+    const matchup = pick.matchup || "Matchup unavailable";
+    const key = `${matchup}|${pick.startsAt || ""}`;
+    if (!games.has(key)) games.set(key, { matchup, startsAt: pick.startsAt, picks: [] });
+    games.get(key).picks.push(pick);
+  });
+  return [...games.values()];
+}
+
+function createPickRow(pick) {
+  const row = document.createElement("section");
+  const market = pick.market || "Other";
+  const inParlay = state.parlay.some((p) => p.key === pick.key);
+  row.className = "consensus-game-pick";
+  row.setAttribute("data-market", market);
+  row.innerHTML = `
+    <div class="consensus-card__header">
+      <span class="badge badge--market">${escapeHtml(market)}</span>
+      <span class="consensus-agree"><span class="agree-num">${escapeHtml(pick.agreement)}</span><span class="agree-label">sources</span></span>
+    </div>
+    <h4 class="consensus-selection">${escapeHtml(pick.selection)}</h4>
+    <div class="consensus-meta">
+      <span class="consensus-sources">${escapeHtml(pick.sources.map((source) => source.name).join(" · "))}</span>
+      <span class="consensus-experts"><strong>${escapeHtml(pick.pickCount)}</strong> experts</span>
+    </div>
+    <p class="consensus-examples">${escapeHtml(sampleExamples(pick.examples))}</p>
+    <p class="full-analysis" hidden></p>
+    <div class="consensus-actions">
+      <button class="expand-analysis text-btn" hidden>Read analysis ↓</button>
+      <button class="add-parlay-btn parlay-add-btn">${inParlay ? "− Remove" : "+ Parlay"}</button>
+    </div>`;
+
+  const fullAnalysis = pick.examples?.find((example) => example.analysis)?.analysis || "";
+  const expandBtn = row.querySelector(".expand-analysis");
+  const fullBlock = row.querySelector(".full-analysis");
+  if (fullAnalysis) {
+    fullBlock.textContent = fullAnalysis;
+    expandBtn.hidden = false;
+    expandBtn.addEventListener("click", () => {
+      const open = fullBlock.hidden === false;
+      fullBlock.hidden = open;
+      expandBtn.textContent = open ? "Read analysis ↓" : "Close ↑";
+    });
+  }
+
+  const parlayBtn = row.querySelector(".add-parlay-btn");
+  parlayBtn.classList.toggle("in-parlay", inParlay);
+  parlayBtn.addEventListener("click", () => toggleParlay(pick));
+  return row;
 }
 
 // Keep the parlay slip in sync with selected picks.
