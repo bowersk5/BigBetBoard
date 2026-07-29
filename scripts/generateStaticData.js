@@ -64,7 +64,7 @@ async function writeSportData(config, sportDir, trackingHistory) {
         console.warn(`[health] ${config.label}/${source.name}: ${source.warning}`);
       }
     }
-    return trackPostingTimes(trackingHistory, { sport: config.id, sources: consensus.sources });
+    return trackPostingTimes(trackingHistory, { sport: config.id, picks: consensus.picks });
   } catch (error) {
     console.error(`${config.label} consensus fetch failed — writing empty placeholder:`, error.message);
     await writeFile(consensusFile, `${JSON.stringify(emptyConsensus(config), null, 2)}\n`);

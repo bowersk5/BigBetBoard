@@ -23,6 +23,18 @@ export const sports = {
       { id: "action",    name: "Action Network", url: "https://www.actionnetwork.com/nfl/picks/", parser: parseActionSource },
       { id: "thelines",  name: "The Lines",      url: "https://www.thelines.com/picks/nfl/",      parser: parseTheLinesSource }
     ]
+  },
+  ncaaf: {
+    id: "ncaaf",
+    label: "College Football",
+    minExpectedPicks: 0,
+    pickswisePath: "/college-football/picks/",
+    sources: [
+      { id: "covers",    name: "Covers",         url: "https://www.covers.com/picks/ncaaf",                parser: parseCoversSource },
+      { id: "pickswise", name: "Pickswise",      url: "https://www.pickswise.com/college-football/picks/", parser: parsePickswiseSource },
+      { id: "action",    name: "Action Network", url: "https://www.actionnetwork.com/ncaaf/picks/",         parser: parseActionSource },
+      { id: "thelines",  name: "The Lines",      url: "https://www.thelines.com/college-football/",         parser: parseTheLinesSource }
+    ]
   }
 };
 
@@ -289,7 +301,7 @@ function parsePickswiseSource(html, config) {
     return picks;
   }
 
-  const records = probePickswisePaths(data, config.id);
+  const records = probePickswisePaths(data, config);
 
   if (records.length === 0) {
     const picks = parsePickswiseFlightRows(html, config);
@@ -394,7 +406,8 @@ function pickswiseMarketFromSelection(selection = "") {
 
 function pickswiseHasNoPicks(html, sport) {
   const label = sportConfig(sport).label;
-  const noPicksPattern = new RegExp(`no\\s+(?:${label}|National \\w+(?: \\w+)*)\\s+Picks`, "i");
+  const ncaafLabel = sport === "ncaaf" ? "|NCAA(?: Men's)? Football" : "";
+  const noPicksPattern = new RegExp(`no\\s+(?:${label}${ncaafLabel}|National \\w+(?: \\w+)*)\\s+(?:Picks|Best Bets)`, "i");
   return noPicksPattern.test(`${stripHtml(html)} ${readNextFlightPayload(html)}`);
 }
 
@@ -418,8 +431,9 @@ function readNextFlightPayload(html) {
  * Try known __NEXT_DATA__ paths for Pickswise pick data.
  * Returns the first non-empty array of game records found, or [].
  */
-function probePickswisePaths(data, sport) {
-  const path = `/${sport}/picks/`;
+function probePickswisePaths(data, config) {
+  const sport = config.id;
+  const path = config.pickswisePath || `/${sport}/picks/`;
   const pp = data?.props?.pageProps;
 
   // Each candidate is either an array of picks or an object keyed by page path.
@@ -550,13 +564,15 @@ function isRecentTheLinesArticle(title, href, sport) {
   const lower = title.toLowerCase();
   const hrefLower = href.toLowerCase();
 
+  const sourcePath = sport === "ncaaf" ? "/college-football/" : "";
   // Prefer the correct sport's picks page.
-  if (!hrefLower.includes(`/picks/${sport}/`) && !hrefLower.includes(`/${sport}/picks/`)) {
+  if (!hrefLower.includes(`/picks/${sport}/`) && !hrefLower.includes(`/${sport}/picks/`) && !(sourcePath && hrefLower.includes(sourcePath))) {
     // Also accept generic pick URLs when the title names the sport.
     if (!hrefLower.includes("/picks/")) return false;
     const sportKeywords = {
       mlb: ["mlb", "baseball"],
-      nfl: ["nfl", "football"]
+      nfl: ["nfl", "football"],
+      ncaaf: ["ncaaf", "college football"]
     };
     if (!sportKeywords[sport]?.some((kw) => lower.includes(kw))) return false;
   }

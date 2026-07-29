@@ -71,6 +71,15 @@ test("uses NFL-specific team names when normalizing football picks", () => {
   assert.equal(pick?.key, "NYJ @ BUF|Spread|NYJ +2.5");
 });
 
+test("configures college football with the active source routes", () => {
+  const ncaaf = sports.ncaaf;
+
+  assert.equal(ncaaf.label, "College Football");
+  assert.equal(ncaaf.sources.length, 4);
+  assert.equal(ncaaf.sources.find((source) => source.id === "covers")?.url, "https://www.covers.com/picks/ncaaf");
+  assert.equal(ncaaf.sources.find((source) => source.id === "pickswise")?.url, "https://www.pickswise.com/college-football/picks/");
+});
+
 test("parses Pickswise streamed pick rows when __NEXT_DATA__ is absent", () => {
   const flight = `42:["$","tbody",null,{"children":[${[
     pickswiseFlightRow("418", "LAD vs CWS", "Run Line - Los Angeles Dodgers -1.5", "-125"),

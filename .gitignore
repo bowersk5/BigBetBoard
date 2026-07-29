@@ -7,10 +7,12 @@ public/data/picks.json
 public/data/consensus.json
 public/data/posting-times.json
 public/data/nfl/
+public/data/ncaaf/
 public/data/world-cup/
 
 # Generated sport subdirectory pages (built by scripts/generateStaticData.js)
 public/nfl/
+public/ncaaf/
 public/world-cup/
 
 # Retired archive output

@@ -1,12 +1,12 @@
 # Daily Expert Picks Board
 
-A zero-dependency Node.js dashboard that gathers public betting picks, normalizes them into a shared format, and highlights agreement between sources for MLB and NFL.
+A zero-dependency Node.js dashboard that gathers public betting picks, normalizes them into a shared format, and highlights agreement between sources for MLB, NFL, and college football.
 
 The production site is generated into `public/` and deployed through GitHub Pages. The local server uses the same frontend while providing live API endpoints for refreshing source data.
 
 ## Features
 
-- Separate MLB and NFL pages.
+- Separate MLB, NFL, and college-football pages.
 - Consensus cards grouped by matchup, market, and selection.
 - Market views for Moneyline, Total, Spread, Prop, and Parlay when those markets are available. Baseball run lines are normalized into Spread.
 - Game start times when supplied by a source.
@@ -34,6 +34,13 @@ Source configuration and parsers live in `src/consensus.js`.
 - [Pickswise](https://www.pickswise.com/nfl/picks/)
 - [Action Network](https://www.actionnetwork.com/nfl/picks/)
 - [The Lines](https://www.thelines.com/picks/nfl/)
+
+### College Football (NCAAF)
+
+- [Covers](https://www.covers.com/picks/ncaaf)
+- [Pickswise](https://www.pickswise.com/college-football/picks/)
+- [Action Network](https://www.actionnetwork.com/ncaaf/picks/)
+- [The Lines](https://www.thelines.com/college-football/)
 
 Covers also supplies each sport's standalone `picks.json` payload. When a Covers page links to expanded matchup picks, the build follows those pages and merges their cards into the league-page results.
 
@@ -66,10 +73,13 @@ PORT=4000 npm start
 | --- | --- |
 | `/` | MLB dashboard |
 | `/nfl/` | NFL dashboard |
+| `/ncaaf/` | College Football dashboard |
 | `/api/picks?sport=mlb` | Live Covers MLB payload |
 | `/api/picks?sport=nfl` | Live Covers NFL payload |
+| `/api/picks?sport=ncaaf` | Live Covers College Football payload |
 | `/api/consensus?sport=mlb` | Live multi-source MLB consensus |
 | `/api/consensus?sport=nfl` | Live multi-source NFL consensus |
+| `/api/consensus?sport=ncaaf` | Live multi-source College Football consensus |
 
 Add `refresh=1` to an API URL to bypass the local server's daily in-memory cache.
 
@@ -117,6 +127,9 @@ public/data/consensus.json
 public/data/nfl/picks.json
 public/data/nfl/consensus.json
 public/nfl/index.html
+public/data/ncaaf/picks.json
+public/data/ncaaf/consensus.json
+public/ncaaf/index.html
 ```
 
 The root data files belong to MLB. Other sport output lives under `public/data/<sport>/`.

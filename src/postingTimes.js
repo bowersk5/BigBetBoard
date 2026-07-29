@@ -7,35 +7,33 @@ const DEFAULT_RETENTION_DAYS = 120;
  * comparable signal across every source. A Covers relative "made" value is
  * retained separately when it can be converted to an approximate timestamp.
  */
-export function trackPostingTimes(history, { sport, sources, observedAt = new Date() }) {
+export function trackPostingTimes(history, { sport, picks = [], observedAt = new Date() }) {
   const now = new Date(observedAt).toISOString();
   const existing = history?.observations && typeof history.observations === "object"
     ? history.observations
     : {};
   const observations = { ...existing };
 
-  for (const source of sources) {
-    if (source.error) continue;
-    for (const pick of source.picks || []) {
-      const id = observationId(sport, source.id, pick);
-      const previous = observations[id];
-      const sourcePublishedAt = relativePublishedAt(pick.made, observedAt);
-      observations[id] = previous
-        ? { ...previous, lastSeenAt: now, seenCount: (previous.seenCount || 1) + 1, startsAt: pick.startsAt || previous.startsAt || "" }
-        : {
-            sport,
-            sourceId: source.id,
-            source: source.name,
-            matchup: pick.matchup || "",
-            selection: pick.selection || "",
-            expert: pick.expert || "",
-            startsAt: pick.startsAt || "",
-            firstSeenAt: now,
-            lastSeenAt: now,
-            seenCount: 1,
-            ...(sourcePublishedAt ? { sourcePublishedAt } : {})
-          };
-    }
+  for (const pick of picks) {
+    if (!pick.sourceId) continue;
+    const id = observationId(sport, pick.sourceId, pick);
+    const previous = observations[id];
+    const sourcePublishedAt = relativePublishedAt(pick.made, observedAt);
+    observations[id] = previous
+      ? { ...previous, lastSeenAt: now, seenCount: (previous.seenCount || 1) + 1, startsAt: pick.startsAt || previous.startsAt || "" }
+      : {
+          sport,
+          sourceId: pick.sourceId,
+          source: pick.source,
+          matchup: pick.matchup || "",
+          selection: pick.selection || "",
+          expert: pick.expert || "",
+          startsAt: pick.startsAt || "",
+          firstSeenAt: now,
+          lastSeenAt: now,
+          seenCount: 1,
+          ...(sourcePublishedAt ? { sourcePublishedAt } : {})
+        };
   }
 
   const cutoff = new Date(observedAt).getTime() - DEFAULT_RETENTION_DAYS * 86_400_000;
