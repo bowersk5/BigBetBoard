@@ -40,7 +40,6 @@ Source configuration and parsers live in `src/consensus.js`.
 - [Covers](https://www.covers.com/picks/ncaaf)
 - [Pickswise](https://www.pickswise.com/college-football/picks/)
 - [Action Network](https://www.actionnetwork.com/ncaaf/picks/)
-- [The Lines](https://www.thelines.com/college-football/)
 
 Covers also supplies each sport's standalone `picks.json` payload. When a Covers page links to expanded matchup picks, the build follows those pages and merges their cards into the league-page results.
 

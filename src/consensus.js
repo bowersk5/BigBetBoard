@@ -32,8 +32,7 @@ export const sports = {
     sources: [
       { id: "covers",    name: "Covers",         url: "https://www.covers.com/picks/ncaaf",                parser: parseCoversSource },
       { id: "pickswise", name: "Pickswise",      url: "https://www.pickswise.com/college-football/picks/", parser: parsePickswiseSource },
-      { id: "action",    name: "Action Network", url: "https://www.actionnetwork.com/ncaaf/picks/",         parser: parseActionSource },
-      { id: "thelines",  name: "The Lines",      url: "https://www.thelines.com/college-football/",         parser: parseTheLinesSource }
+      { id: "action",    name: "Action Network", url: "https://www.actionnetwork.com/ncaaf/picks/",         parser: parseActionSource }
     ]
   }
 };
@@ -564,15 +563,13 @@ function isRecentTheLinesArticle(title, href, sport) {
   const lower = title.toLowerCase();
   const hrefLower = href.toLowerCase();
 
-  const sourcePath = sport === "ncaaf" ? "/college-football/" : "";
   // Prefer the correct sport's picks page.
-  if (!hrefLower.includes(`/picks/${sport}/`) && !hrefLower.includes(`/${sport}/picks/`) && !(sourcePath && hrefLower.includes(sourcePath))) {
+  if (!hrefLower.includes(`/picks/${sport}/`) && !hrefLower.includes(`/${sport}/picks/`)) {
     // Also accept generic pick URLs when the title names the sport.
     if (!hrefLower.includes("/picks/")) return false;
     const sportKeywords = {
       mlb: ["mlb", "baseball"],
-      nfl: ["nfl", "football"],
-      ncaaf: ["ncaaf", "college football"]
+      nfl: ["nfl", "football"]
     };
     if (!sportKeywords[sport]?.some((kw) => lower.includes(kw))) return false;
   }
@@ -671,6 +668,7 @@ function normalizeMarket(market = "", selection = "", type = "") {
   const value = `${market} ${selection} ${type}`.toLowerCase();
   if (value.includes("parlay")) return "Parlay";
   if (value.includes("money") || value.includes("ml_") || value.includes("3-way")) return "Moneyline";
+  if (/\b(?:f5|first\s*5(?:\s+innings?)?)\s*[+-]\d/.test(value)) return "Spread";
   if (value.includes("run line") || value.includes("spread") || value.includes("puck line")) return "Spread";
   if (value.includes("prop") || value.includes("custom") ||
       /total (?:points|rebounds|assists|threes|steals|blocks|turnovers|bases|hits|strikeouts|saves)|points scored/i.test(value) ||

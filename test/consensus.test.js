@@ -71,11 +71,24 @@ test("uses NFL-specific team names when normalizing football picks", () => {
   assert.equal(pick?.key, "NYJ @ BUF|Spread|NYJ +2.5");
 });
 
+test("normalizes first-five run lines into the Spread market", () => {
+  const pick = normalizePick({
+    matchup: "KC @ MIN",
+    market: "Minnesota Twins F5 -0.5",
+    selection: "Minnesota Twins F5 -0.5",
+    sport: "mlb"
+  });
+
+  assert.equal(pick?.market, "Spread");
+  assert.equal(pick?.selection, "MIN -0.5");
+  assert.equal(pick?.key, "KC @ MIN|Spread|MIN -0.5");
+});
+
 test("configures college football with the active source routes", () => {
   const ncaaf = sports.ncaaf;
 
   assert.equal(ncaaf.label, "College Football");
-  assert.equal(ncaaf.sources.length, 4);
+  assert.equal(ncaaf.sources.length, 3);
   assert.equal(ncaaf.sources.find((source) => source.id === "covers")?.url, "https://www.covers.com/picks/ncaaf");
   assert.equal(ncaaf.sources.find((source) => source.id === "pickswise")?.url, "https://www.pickswise.com/college-football/picks/");
 });
