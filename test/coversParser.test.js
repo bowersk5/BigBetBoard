@@ -73,3 +73,29 @@ test("filters out picks made days ago", () => {
   assert.equal(result.counts.parsedPicks, 0, "stale picks should not be parsed as current picks");
   assert.equal(result.counts.games, 0, "game with only stale picks should be dropped");
 });
+
+test("recognizes NFL player-prop market headings in Covers fallback markup", () => {
+  const html = `
+    <html><body>
+      <h1>NFL Picks</h1>
+      <p>Get free expert and computer NFL picks for every game.</p>
+      <div>BUF @ KC Sun, Sep 13 • 4:25 PM ET</div>
+      <div>1 Expert Picks 8 Computer Picks</div>
+      <div>Passing Yards</div>
+      <div>Josh Allen Over 249.5</div>
+      <div>Best Odds</div>
+      <div>-110</div>
+      <div>Pick made: 6 minutes ago</div>
+      <div>Alex Smith</div>
+      <div>Betting Analyst</div>
+      <div>Analysis</div>
+      <p>Allen should be busy through the air.</p>
+      <div>Read Full Analysis</div>
+      <h2>What are Covers' NFL Free picks and predictions?</h2>
+    </body></html>
+  `;
+
+  const result = parseCoversPicks(html, { sport: "nfl" });
+  assert.equal(result.picks[0].market, "Passing Yards");
+  assert.equal(result.picks[0].selection, "Josh Allen Over 249.5");
+});

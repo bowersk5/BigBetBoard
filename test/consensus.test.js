@@ -84,6 +84,37 @@ test("normalizes first-five run lines into the Spread market", () => {
   assert.equal(pick?.key, "KC @ MIN|Spread|MIN -0.5");
 });
 
+test("puts MLB and NFL player markets in the Player Props view", () => {
+  const mlb = normalizePick({
+    matchup: "BOS @ NYY",
+    market: "Pitcher Strikeouts",
+    selection: "Garrett Crochet Over 6.5",
+    sport: "mlb"
+  });
+  const nfl = normalizePick({
+    matchup: "BUF @ KC",
+    market: "Passing Yards",
+    selection: "Josh Allen Over 249.5",
+    sport: "nfl"
+  });
+
+  assert.equal(mlb?.market, "Player Props");
+  assert.equal(mlb?.key, "BOS @ NYY|Player Props|garrett crochet over 6.5");
+  assert.equal(nfl?.market, "Player Props");
+  assert.equal(nfl?.key, "BUF @ KC|Player Props|josh allen over 249.5");
+});
+
+test("keeps game props out of the Player Props view", () => {
+  const pick = normalizePick({
+    matchup: "BUF @ KC",
+    market: "Game Prop",
+    selection: "First score will be a touchdown",
+    sport: "nfl"
+  });
+
+  assert.equal(pick?.market, "Prop");
+});
+
 test("configures college football with the active source routes", () => {
   const ncaaf = sports.ncaaf;
 

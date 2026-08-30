@@ -646,7 +646,7 @@ export function normalizePick(raw) {
   const sport = raw.sport || "";
   const matchup = normalizeMatchup(raw.matchup, raw.away, raw.home, sport);
   const [away, home] = matchup.split(" @ ");
-  const market = normalizeMarket(raw.market, raw.selection, raw.type);
+  const market = normalizeMarket(raw.market, raw.selection, raw.type, sport);
   const normalized = normalizeSelection({ ...raw, market, away, home });
 
   if (!away || !home || !market || !normalized) return null;
@@ -664,12 +664,13 @@ export function normalizePick(raw) {
   };
 }
 
-function normalizeMarket(market = "", selection = "", type = "") {
+function normalizeMarket(market = "", selection = "", type = "", sport = "") {
   const value = `${market} ${selection} ${type}`.toLowerCase();
   if (value.includes("parlay")) return "Parlay";
   if (value.includes("money") || value.includes("ml_") || value.includes("3-way")) return "Moneyline";
   if (/\b(?:f5|first\s*5(?:\s+innings?)?)\s*[+-]\d/.test(value)) return "Spread";
   if (value.includes("run line") || value.includes("spread") || value.includes("puck line")) return "Spread";
+  if (isPlayerProp(market, selection, type, sport)) return "Player Props";
   if (value.includes("prop") || value.includes("custom") ||
       /total (?:points|rebounds|assists|threes|steals|blocks|turnovers|bases|hits|strikeouts|saves)|points scored/i.test(value) ||
       /to hit|hits|rbi|home runs|earned runs|strikeouts|ks|points|rebounds|assists|goals|shots|saves|anytime goal/i.test(value)) {
@@ -677,6 +678,24 @@ function normalizeMarket(market = "", selection = "", type = "") {
   }
   if (value.includes("total") || value.includes("over") || value.includes("under")) return "Total";
   return cleanText(market) || "Other";
+}
+
+/**
+ * Keep player markets distinct from game props. Source sites do not use one
+ * consistent name for these markets, so use the market label first and fall
+ * back to a player-name/stat combination in the pick text.
+ */
+function isPlayerProp(market = "", selection = "", type = "", sport = "") {
+  if (!/^(?:mlb|nfl)$/.test(sport) || /game\s+prop/i.test(market)) return false;
+
+  const marketText = cleanText(`${market} ${type}`).toLowerCase();
+  const selectionText = cleanText(selection);
+  const playerStat = sport === "mlb"
+    ? /\b(?:home runs?|hits?(?: allowed)?|total bases|runs(?: scored)?|runs batted in|rbi|stolen bases?|pitcher strikeouts?|strikeouts?|outs recorded|earned runs? allowed|walks(?: allowed)?|singles|doubles|triples)\b/i
+    : /\b(?:passing (?:yards|touchdowns?|attempts|completions)|rushing (?:yards|attempts|touchdowns?)|receiving (?:yards|touchdowns?)|receptions?|anytime touchdown(?: scorer)?|first touchdown(?: scorer)?|last touchdown(?: scorer)?|interceptions? thrown|longest (?:pass|rush|reception)|kicking points)\b/i;
+
+  if (playerStat.test(marketText)) return true;
+  return playerStat.test(selectionText) && /\b[A-Z][a-z]+\s+[A-Z][a-z]+\b/.test(selectionText);
 }
 
 function normalizeSelection(raw) {

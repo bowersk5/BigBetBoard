@@ -11,6 +11,7 @@ const marketNames = new Set([
   "Best Bets,Spread",
   "Game Prop",
   "Total Home Runs",
+  "Home Runs",
   "Total Hits",
   "Total Bases",
   "Total Strikeouts",
@@ -30,6 +31,23 @@ const marketNames = new Set([
   "Points",
   "Rebounds",
   "Assists",
+  "Passing Yards",
+  "Passing Touchdowns",
+  "Passing Attempts",
+  "Passing Completions",
+  "Interceptions Thrown",
+  "Rushing Yards",
+  "Rushing Attempts",
+  "Rushing Touchdowns",
+  "Receiving Yards",
+  "Receiving Touchdowns",
+  "Receptions",
+  "Anytime Touchdown",
+  "First Touchdown",
+  "Longest Pass",
+  "Longest Rush",
+  "Longest Reception",
+  "Kicking Points",
   "Shots on Goal"
 ]);
 
@@ -85,7 +103,7 @@ export function parseCoversPicks(html, { sport = "mlb", sourceUrl = `https://www
       continue;
     }
 
-    if (!currentGame || !marketNames.has(line)) {
+    if (!currentGame || !isMarketName(line)) {
       continue;
     }
 
@@ -357,11 +375,22 @@ function readPick(lines, startIndex, game) {
 function findNextBoundary(lines, fromIndex) {
   for (let index = fromIndex; index < lines.length; index += 1) {
     const line = cleanLine(lines[index]);
-    if (line.match(gameLinePattern) || line.match(/^View \d+ Picks?$/) || marketNames.has(line)) {
+    if (line.match(gameLinePattern) || line.match(/^View \d+ Picks?$/) || isMarketName(line)) {
       return index;
     }
   }
   return lines.length;
+}
+
+function isMarketName(line) {
+  if (marketNames.has(line)) return true;
+
+  // Covers adds and renames player-prop labels regularly. These headings are
+  // only used by the text fallback parser; card markup reads the exact market
+  // name from data-pick-types.
+  return /^(?:player )?(?:passing|rushing|receiving) (?:yards|attempts|completions|touchdowns?|longest (?:pass|rush|reception))$/i.test(line) ||
+    /^(?:anytime|first|last) touchdown(?: scorer)?$/i.test(line) ||
+    /^(?:home runs?|hits?(?: allowed)?|total bases|runs(?: scored)?|runs batted in|rbi|stolen bases?|pitcher strikeouts?|strikeouts?|outs recorded|earned runs? allowed|walks(?: allowed)?|singles|doubles|triples)$/i.test(line);
 }
 
 function readAnalyst(block, pickMadeIndex) {

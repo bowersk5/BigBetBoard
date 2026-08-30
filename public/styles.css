@@ -626,6 +626,7 @@ body.parlay-open {
 .consensus-card[data-market="Run Line"]::before,
 .consensus-card[data-market="Spread"]::before   { background: var(--rl); }
 .consensus-card[data-market="Prop"]::before,
+.consensus-card[data-market="Player Props"]::before,
 .consensus-card[data-market="Game Prop"]::before { background: var(--prop); }
 
 .consensus-card:hover {
@@ -1056,6 +1057,7 @@ body.parlay-open {
 .pick-card[data-market="Run Line"] .pick-card__accent,
 .pick-card[data-market="Spread"] .pick-card__accent    { background: var(--rl); }
 .pick-card[data-market="Prop"] .pick-card__accent,
+.pick-card[data-market="Player Props"] .pick-card__accent,
 .pick-card[data-market="Game Prop"] .pick-card__accent { background: var(--prop); }
 
 .pick-card[data-market="Moneyline"]:hover  { box-shadow: 0 20px 60px var(--shadow-soft), 0 0 30px rgba(74,222,128,0.06); }
@@ -1063,6 +1065,7 @@ body.parlay-open {
 .pick-card[data-market="Run Line"]:hover,
 .pick-card[data-market="Spread"]:hover     { box-shadow: 0 20px 60px var(--shadow-soft), 0 0 30px rgba(96,165,250,0.06); }
 .pick-card[data-market="Prop"]:hover,
+.pick-card[data-market="Player Props"]:hover,
 .pick-card[data-market="Game Prop"]:hover  { box-shadow: 0 20px 60px var(--shadow-soft), 0 0 30px rgba(192,132,252,0.06); }
 
 .pick-card__inner {
@@ -1167,8 +1170,10 @@ body.parlay-open {
   color: var(--rl); background: var(--rl-dim); border-color: var(--rl-border);
 }
 .pick-card[data-market="Prop"] .badge--market,
+.pick-card[data-market="Player Props"] .badge--market,
 .pick-card[data-market="Game Prop"] .badge--market,
 .consensus-card[data-market="Prop"] .badge--market,
+.consensus-card[data-market="Player Props"] .badge--market,
 .consensus-card[data-market="Game Prop"] .badge--market {
   color: var(--prop); background: var(--prop-dim); border-color: var(--prop-border);
 }
