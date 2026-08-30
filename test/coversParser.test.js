@@ -74,6 +74,25 @@ test("filters out picks made days ago", () => {
   assert.equal(result.counts.games, 0, "game with only stale picks should be dropped");
 });
 
+test("filters out picks made weeks or months ago", () => {
+  const html = `
+    <html><body>
+      <h1>MLB Picks</h1>
+      <p>Get free expert and computer MLB picks for every game.</p>
+      <div>TB @ NYY Tue, Sep 22 • 1:05 PM ET</div>
+      <div>2 Expert Picks 8 Computer Picks</div>
+      <div>Moneyline</div><div>TB (+115)</div><div>Best Odds</div><div>+110</div>
+      <div>Pick made: 3 weeks ago</div><div>Aisha Quinones</div><div>Betting Analyst</div>
+      <div>Moneyline</div><div>NYY (-135)</div><div>Best Odds</div><div>-130</div>
+      <div>Pick made: 2 months ago</div><div>Alex Smith</div><div>Betting Analyst</div>
+      <h2>What are Covers' MLB Free picks and predictions?</h2>
+    </body></html>
+  `;
+
+  const result = parseCoversMlbPicks(html);
+  assert.equal(result.counts.parsedPicks, 0);
+});
+
 test("recognizes NFL player-prop market headings in Covers fallback markup", () => {
   const html = `
     <html><body>

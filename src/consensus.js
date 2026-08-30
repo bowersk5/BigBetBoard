@@ -142,7 +142,10 @@ export async function fetchConsensus({ sport = defaultSport, coversHtml } = {}) 
   });
 
   const allPicks = sourceResults.flatMap((source) => source.picks);
-  const consensus = buildConsensus(allPicks, { totalSources: config.sources.length });
+  // A source that failed or has no selections cannot agree with a pick. Do not
+  // count it in the displayed agreement denominator.
+  const activeSources = sourceResults.filter((source) => !source.error && source.picks.length > 0);
+  const consensus = buildConsensus(allPicks, { totalSources: activeSources.length });
 
   return {
     sport: config.id,
@@ -158,7 +161,7 @@ export async function fetchConsensus({ sport = defaultSport, coversHtml } = {}) 
     consensus,
     counts: {
       sources: sourceResults.length,
-      activeSources: sourceResults.filter((s) => !s.error && s.picks.length > 0).length,
+      activeSources: activeSources.length,
       picks: allPicks.length,
       consensus: consensus.length
     }
@@ -651,17 +654,79 @@ export function normalizePick(raw) {
 
   if (!away || !home || !market || !normalized) return null;
 
+  const eventKey = canonicalEventKey(matchup, raw.startsAt);
+
   return {
     matchup,
     startsAt: raw.startsAt || "",
+    eventKey,
     market,
     selection: normalized.label,
     odds: normalizeOdds(raw.odds),
     expert: raw.expert || "",
     analysis: raw.analysis || "",
     made: raw.made || "",
-    key: `${matchup}|${market}|${normalized.key}`
+    key: `${eventKey}|${market}|${normalized.key}`
   };
+}
+
+/**
+ * Match sources by the event they describe, not only by the team pairing.
+ * This prevents two games in a doubleheader from becoming one consensus card.
+ * Sources without a usable start time intentionally do not join a timed game:
+ * a missed agreement is safer than assigning a pick to the wrong game.
+ */
+function canonicalEventKey(matchup, startsAt) {
+  const timestamp = startTimeMillis(startsAt);
+  if (!Number.isFinite(timestamp)) return matchup;
+  return `${matchup}|${new Date(timestamp).toISOString().slice(0, 16)}`;
+}
+
+function startTimeMillis(value) {
+  if (!value) return NaN;
+
+  const parsed = Date.parse(value);
+  if (!Number.isNaN(parsed)) return parsed;
+
+  const match = `${value}`.match(/(?:[A-Za-z]{3,9},\s*)?([A-Za-z]{3,9})\s+(\d{1,2})\s*•?\s*(\d{1,2}):(\d{2})\s*(AM|PM)\s*ET/i);
+  if (!match) return NaN;
+
+  const month = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
+    .indexOf(match[1].slice(0, 3).toLowerCase());
+  if (month < 0) return NaN;
+
+  let hour = Number(match[3]) % 12;
+  if (match[5].toUpperCase() === "PM") hour += 12;
+  const now = new Date();
+  const year = now.getFullYear();
+  let timestamp = easternTimeToUtc(year, month, Number(match[2]), hour, Number(match[4]));
+  const sixMonths = 183 * 86_400_000;
+  if (timestamp < now.getTime() - 7 * 86_400_000) {
+    timestamp = easternTimeToUtc(year + 1, month, Number(match[2]), hour, Number(match[4]));
+  } else if (timestamp > now.getTime() + sixMonths) {
+    timestamp = easternTimeToUtc(year - 1, month, Number(match[2]), hour, Number(match[4]));
+  }
+  return timestamp;
+}
+
+function easternTimeToUtc(year, month, day, hour, minute) {
+  let timestamp = Date.UTC(year, month, day, hour, minute);
+  for (let index = 0; index < 2; index += 1) {
+    const parts = new Intl.DateTimeFormat("en-US", {
+      timeZone: "America/New_York",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hourCycle: "h23"
+    }).formatToParts(new Date(timestamp));
+    const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+    const offset = Date.UTC(values.year, Number(values.month) - 1, values.day, values.hour, values.minute, values.second) - timestamp;
+    timestamp = Date.UTC(year, month, day, hour, minute) - offset;
+  }
+  return timestamp;
 }
 
 function normalizeMarket(market = "", selection = "", type = "", sport = "") {

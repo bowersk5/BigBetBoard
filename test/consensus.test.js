@@ -39,6 +39,55 @@ test("groups normalized picks by matchup, market, and selection", () => {
   assert.equal(consensus[1].sourceCount, 1);
 });
 
+test("keeps doubleheader games separate while grouping equivalent start times", () => {
+  const earlyCovers = normalizePick({
+    matchup: "BOS @ NYY",
+    startsAt: "Sat, Aug 29 • 1:05 PM ET",
+    market: "Moneyline",
+    selection: "New York Yankees",
+    sport: "mlb"
+  });
+  const earlyPickswise = normalizePick({
+    matchup: "BOS @ NYY",
+    startsAt: "2026-08-29T17:05:00Z",
+    market: "Moneyline",
+    selection: "NYY",
+    sport: "mlb"
+  });
+  const lateCovers = normalizePick({
+    matchup: "BOS @ NYY",
+    startsAt: "Sat, Aug 29 • 7:15 PM ET",
+    market: "Moneyline",
+    selection: "New York Yankees",
+    sport: "mlb"
+  });
+
+  const consensus = buildConsensus([
+    { ...earlyCovers, sourceId: "covers", source: "Covers", expert: "A" },
+    { ...earlyPickswise, sourceId: "pickswise", source: "Pickswise", expert: "Pickswise" },
+    { ...lateCovers, sourceId: "covers", source: "Covers", expert: "B" }
+  ], { totalSources: 2 });
+
+  assert.equal(consensus.length, 2);
+  assert.equal(consensus[0].sourceCount, 2);
+  assert.equal(consensus[0].agreement, "2/2");
+  assert.equal(consensus[1].sourceCount, 1);
+});
+
+test("uses active-source count for the agreement denominator", () => {
+  const consensus = buildConsensus([{
+    key: "DET @ CHW|2026-08-30T18:10|Moneyline|CHW",
+    matchup: "DET @ CHW",
+    market: "Moneyline",
+    selection: "CHW Moneyline",
+    sourceId: "covers",
+    source: "Covers",
+    expert: "Analyst"
+  }], { totalSources: 3 });
+
+  assert.equal(consensus[0].agreement, "1/3");
+});
+
 test("keeps Covers parlay cards as consensus picks", () => {
   const pick = normalizePick({
     matchup: "NY @ SA",

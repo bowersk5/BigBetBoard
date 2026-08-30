@@ -152,10 +152,14 @@ function renderMarketFilters() {
     state.activeMarket = markets[0] || "";
   }
 
-  els.marketFilters.innerHTML = markets.map((m) => {
-    const active = state.activeMarket === m ? " is-active" : "";
-    return `<button class="market-filter-btn${active}" data-market="${m}">${m}</button>`;
-  }).join("");
+  els.marketFilters.replaceChildren(...markets.map((market) => {
+    const button = document.createElement("button");
+    button.className = "market-filter-btn";
+    button.classList.toggle("is-active", state.activeMarket === market);
+    button.dataset.market = market;
+    button.textContent = market;
+    return button;
+  }));
 
   els.marketFilters.querySelectorAll("[data-market]").forEach((btn) => {
     btn.addEventListener("click", () => {

@@ -67,7 +67,7 @@ export function buildPostingTimeReport(history, { generatedAt = new Date(), time
       source: entries[0].source,
       timeBasis: basis,
       sampleCount: minutes.length,
-      averagePostingTimeET: formatMinutes(average(minutes)),
+      averagePostingTimeET: formatMinutes(averageClockMinutes(minutes)),
       firstObservedAt: entries.reduce((earliest, entry) => !earliest || entry.firstSeenAt < earliest ? entry.firstSeenAt : earliest, ""),
       lastObservedAt: entries.reduce((latest, entry) => !latest || entry.lastSeenAt > latest ? entry.lastSeenAt : latest, "")
     };
@@ -99,8 +99,14 @@ function minutesInZone(timestamp, timeZone) {
   return Number(values.hour) * 60 + Number(values.minute);
 }
 
-function average(values) {
-  return values.length ? values.reduce((total, value) => total + value, 0) / values.length : NaN;
+function averageClockMinutes(values) {
+  if (!values.length) return NaN;
+  const radiansPerMinute = (2 * Math.PI) / 1_440;
+  const sin = values.reduce((total, value) => total + Math.sin(value * radiansPerMinute), 0);
+  const cos = values.reduce((total, value) => total + Math.cos(value * radiansPerMinute), 0);
+  let angle = Math.atan2(sin, cos);
+  if (angle < 0) angle += 2 * Math.PI;
+  return angle / radiansPerMinute;
 }
 
 function formatMinutes(value) {

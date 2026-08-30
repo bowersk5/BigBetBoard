@@ -163,11 +163,31 @@ function sumListedPicks(games, key, fallback) {
   return total || fallback;
 }
 
-/** Keep only picks from a human expert published today (not days ago). */
+/** Keep only current human-expert picks published on the current Eastern day. */
 function isTodayExpertPick(pick) {
-  return Boolean(pick.analyst) &&
-    pick.source === "Covers" &&
-    !/\d+\s+days?\s+ago/i.test(pick.made || "");
+  if (!pick.analyst || pick.source !== "Covers") return false;
+
+  const made = `${pick.made || ""}`.trim();
+  const age = made.match(/^(?:about\s+)?(?:(\d+)|an?|a)\s+(minute|hour|day|week|month|year)s?\s+ago$/i);
+  // Keep unknown formats rather than silently suppressing a source after a
+  // markup change. Recognized day-or-older values are definitely stale.
+  if (!age) return true;
+  const amount = Number(age[1] || 1);
+  const unit = age[2].toLowerCase();
+  if (["day", "week", "month", "year"].includes(unit)) return false;
+
+  const milliseconds = amount * (unit === "hour" ? 3_600_000 : 60_000);
+  const publishedAt = new Date(Date.now() - milliseconds);
+  return easternDateKey(publishedAt) === easternDateKey(new Date());
+}
+
+function easternDateKey(date) {
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/New_York",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit"
+  }).format(date);
 }
 
 function parseCardMarkup(html, sport) {

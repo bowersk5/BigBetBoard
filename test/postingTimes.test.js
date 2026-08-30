@@ -32,3 +32,19 @@ test("uses Covers relative publish time when all source samples provide it", () 
   assert.equal(report.sources[0].timeBasis, "source-published");
   assert.equal(report.sources[0].averagePostingTimeET, "9:30 AM");
 });
+
+test("averages posting times across midnight", () => {
+  const history = trackPostingTimes({ observations: {} }, {
+    sport: "mlb",
+    observedAt: "2026-01-02T04:55:00.000Z",
+    picks: [{ sourceId: "x", source: "X", matchup: "A @ B", market: "Moneyline", selection: "A", expert: "One" }]
+  });
+  const updated = trackPostingTimes(history, {
+    sport: "mlb",
+    observedAt: "2026-01-03T05:05:00.000Z",
+    picks: [{ sourceId: "x", source: "X", matchup: "C @ D", market: "Moneyline", selection: "C", expert: "Two" }]
+  });
+
+  const report = buildPostingTimeReport(updated, { generatedAt: "2026-01-03T05:05:00.000Z" });
+  assert.equal(report.sources[0].averagePostingTimeET, "12:00 AM");
+});
