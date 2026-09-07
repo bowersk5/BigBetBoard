@@ -39,7 +39,13 @@ test("groups normalized picks by matchup, market, and selection", () => {
   assert.equal(consensus[1].sourceCount, 1);
 });
 
-test("keeps doubleheader games separate while grouping equivalent start times", () => {
+test("keeps doubleheader games separate while grouping equivalent start times", (t) => {
+  // The "Aug 29" fixtures below have no year, so startTimeMillis() infers one
+  // from the current clock. Freeze "now" to a date near Aug 29, 2026 so the
+  // inferred year always matches the explicit 2026 ISO fixture, regardless of
+  // what day this suite actually runs on.
+  t.mock.timers.enable({ apis: ["Date"], now: new Date("2026-08-29T12:00:00Z") });
+
   const earlyCovers = normalizePick({
     matchup: "BOS @ NYY",
     startsAt: "Sat, Aug 29 • 1:05 PM ET",
