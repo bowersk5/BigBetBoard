@@ -1,4 +1,4 @@
-# Daily Expert Picks Board
+# BigBetBoard
 
 A zero-dependency Node.js dashboard that gathers public betting picks, normalizes them into a shared format, and highlights agreement between sources for MLB, NFL, and college football.
 
@@ -187,10 +187,12 @@ Generated data and sport subpages are ignored by Git because CI rebuilds them fo
 ├── src/
 │   ├── consensus.js
 │   ├── coversParser.js
+│   ├── postingTimes.js
 │   └── utils.js
 ├── test/
 │   ├── consensus.test.js
-│   └── coversParser.test.js
+│   ├── coversParser.test.js
+│   └── postingTimes.test.js
 ├── package.json
 └── server.js
 ```
@@ -200,6 +202,7 @@ Generated data and sport subpages are ignored by Git because CI rebuilds them fo
 - `scripts/generateStaticData.js` fetches sources and produces deployable static files.
 - `src/consensus.js` defines sports, source parsers, normalization, and consensus ranking.
 - `src/coversParser.js` handles Covers league and expanded matchup markup.
+- `src/postingTimes.js` tracks first-seen posting-time observations per source and sport.
 - `src/utils.js` provides shared HTML and network helpers.
 - `server.js` serves static assets and the local live-data APIs.
 
