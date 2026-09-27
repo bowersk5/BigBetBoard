@@ -46,7 +46,7 @@ Covers also supplies each sport's standalone `picks.json` payload. When a Covers
 ## Requirements
 
 - Node.js 20 or newer.
-- No dependency installation is required; the project uses Node built-ins and native `fetch`.
+- No dependency installation is required to run the app; it uses Node built-ins and native `fetch`. ESLint is an optional dev-only tool (see `npm run lint` below) and is the only thing in this project that needs `npm install`.
 
 ## Local Development
 
@@ -94,6 +94,7 @@ Add `refresh=1` to an API URL to bypass the local server's daily in-memory cache
 | `npm run build:pages` | Fetch sources and generate the static GitHub Pages output |
 | `npm start` | Start the local server |
 | `npm run dev` | Start the local server with Node watch mode |
+| `npm run lint` | Lint the codebase with ESLint (run `npm install` first) |
 
 ## How Consensus Works
 

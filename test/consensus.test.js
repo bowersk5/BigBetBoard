@@ -196,6 +196,118 @@ test("parses Pickswise streamed pick rows when __NEXT_DATA__ is absent", () => {
   assert.equal(picks[1].selection, "ARI Moneyline");
 });
 
+test("parses Action Network expert profiles from __NEXT_DATA__", () => {
+  const nextData = {
+    props: {
+      pageProps: {
+        initialExpertsResponse: {
+          response: {
+            profiles: [
+              {
+                name: "Jane Somebody",
+                picks: [
+                  {
+                    game: {
+                      teams: [{ id: 1, abbr: "BOS" }, { id: 2, abbr: "NYY" }],
+                      away_team_id: 1,
+                      home_team_id: 2,
+                      start_time: "2026-09-01T23:05:00Z"
+                    },
+                    starts_at: "2026-09-01T23:05:00Z",
+                    type: "moneyline",
+                    play: "New York Yankees Moneyline",
+                    odds: -135,
+                    meta: { note: "Yankees are rolling." }
+                  }
+                ]
+              },
+              {
+                // No name supplied — the parser should fall back to a default label.
+                picks: [
+                  {
+                    game: {
+                      teams: [{ id: 1, abbr: "BOS" }, { id: 2, abbr: "NYY" }],
+                      away_team_id: 1,
+                      home_team_id: 2,
+                      start_time: "2026-09-01T23:05:00Z"
+                    },
+                    type: "total",
+                    play: "Over 8.5",
+                    odds: -110,
+                    value: 8.5
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    }
+  };
+  const html = `<script id="__NEXT_DATA__" type="application/json">${JSON.stringify(nextData)}</script>`;
+  const action = sports.mlb.sources.find((source) => source.id === "action");
+  const picks = action.parser(html, sports.mlb);
+
+  assert.equal(picks.length, 2);
+  assert.equal(picks[0].matchup, "BOS @ NYY");
+  assert.equal(picks[0].market, "Moneyline");
+  assert.equal(picks[0].selection, "NYY Moneyline");
+  assert.equal(picks[0].odds, "-135");
+  assert.equal(picks[0].expert, "Jane Somebody");
+  assert.equal(picks[0].analysis, "Yankees are rolling.");
+  assert.equal(picks[1].market, "Total");
+  assert.equal(picks[1].selection, "Over 8.5");
+  assert.equal(picks[1].expert, "Action expert");
+});
+
+test("returns no picks when Action Network markup has no expert profiles", () => {
+  const html = `<script id="__NEXT_DATA__" type="application/json">${JSON.stringify({ props: { pageProps: {} } })}</script>`;
+  const action = sports.mlb.sources.find((source) => source.id === "action");
+
+  assert.deepEqual(action.parser(html, sports.mlb), []);
+  assert.deepEqual(action.parser("<html><body>No data here</body></html>", sports.mlb), []);
+});
+
+test("extracts a pick from a standard The Lines article title", () => {
+  const html = `
+    <html><body>
+      <h2 class="entry-title">
+        <a href="https://www.thelines.com/picks/mlb/nyy-vs-bos-pick/">NYY vs BOS Pick: Over 8.5 (-110) | MLB Best Bet</a>
+      </h2>
+    </body></html>
+  `;
+  const thelines = sports.mlb.sources.find((source) => source.id === "thelines");
+  const picks = thelines.parser(html, sports.mlb);
+
+  assert.equal(picks.length, 1);
+  assert.equal(picks[0].matchup, "NYY @ BOS");
+  assert.equal(picks[0].market, "Total");
+  assert.equal(picks[0].selection, "Over 8.5");
+  assert.equal(picks[0].odds, "-110");
+  assert.equal(picks[0].expert, "The Lines");
+});
+
+test("falls back to scanning plain links when The Lines title markup changes", () => {
+  const html = `
+    <html><body>
+      <a href="https://www.thelines.com/picks/mlb/nyy-vs-bos-pick/" class="td-image-wrap">NYY vs BOS Pick: Over 8.5 (-110) | MLB Best Bet</a>
+    </body></html>
+  `;
+  const thelines = sports.mlb.sources.find((source) => source.id === "thelines");
+  const picks = thelines.parser(html, sports.mlb);
+
+  assert.equal(picks.length, 1);
+  assert.equal(picks[0].matchup, "NYY @ BOS");
+  assert.equal(picks[0].selection, "Over 8.5");
+});
+
+test("returns no picks when The Lines page has no matching article links", () => {
+  const html = "<html><body><p>Nothing relevant here.</p></body></html>";
+  const thelines = sports.mlb.sources.find((source) => source.id === "thelines");
+
+  assert.deepEqual(thelines.parser(html, sports.mlb), []);
+});
+
 function pickswiseFlightRow(id, matchup, selection, odds) {
   return [
     `["$","tr","${id}",{"className":"border-t border-border odd:bg-white even:bg-gray-light-bg","children":[`,

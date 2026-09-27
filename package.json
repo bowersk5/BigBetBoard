@@ -1,15 +1,21 @@
 {
-  "name": "covers-daily-mlb-picks",
+  "name": "bigbetboard",
   "version": "1.0.0",
-  "description": "Daily MLB picks dashboard sourced from Covers.",
+  "description": "A zero-dependency dashboard that compares public betting picks across sources for MLB, NFL, and college football.",
   "type": "module",
   "scripts": {
     "build:pages": "node scripts/generateStaticData.js",
     "start": "node server.js",
     "dev": "node --watch server.js",
-    "test": "node --test"
+    "test": "node --test",
+    "lint": "eslint ."
   },
   "engines": {
     "node": ">=20"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.11.0",
+    "globals": "^17.12.0"
   }
 }

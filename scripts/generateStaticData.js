@@ -4,6 +4,7 @@ import { parseCoversPicks } from "../src/coversParser.js";
 import { fetchConsensus, sports } from "../src/consensus.js";
 import { fetchHtml } from "../src/utils.js";
 import { buildPostingTimeReport, trackPostingTimes } from "../src/postingTimes.js";
+import { patchSportPageHtml } from "../src/sportPageHtml.js";
 
 const publicDir = join(process.cwd(), "public");
 const outputDir = join(publicDir, "data");
@@ -119,19 +120,7 @@ async function writeSportHtml(config) {
   const sportDir = join(publicDir, config.id);
   await mkdir(sportDir, { recursive: true });
 
-  const label = config.label;
-  const sourceUrl = config.sources.find((s) => s.id === "covers")?.url || `https://www.covers.com/picks/${config.id}`;
-
-  const patched = rootHtml
-    .replace(/<title>Daily Expert MLB Board<\/title>/, `<title>Daily Expert ${label} Board</title>`)
-    .replace(/Expert MLB Board/, `Expert ${label} Board`)
-    .replace(/href="styles\.css"/, `href="../styles.css"`)
-    .replace(/src="app\.js"/, `src="../app.js"`)
-    .replace(/href="https:\/\/www\.covers\.com\/picks\/mlb"/, `href="${sourceUrl}"`)
-    .replace(/href="\.\/"/, `href="../"`)
-    .replace(/href="([a-z0-9-]+)\/"/g, (match, slug) =>
-      sports[slug] ? `href="../${slug}/"` : match
-    );
+  const patched = patchSportPageHtml(rootHtml, config, sports);
 
   const outFile = join(sportDir, "index.html");
   await writeFile(outFile, patched);

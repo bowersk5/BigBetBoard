@@ -1,5 +1,6 @@
 import { parseCoversPicks } from "./coversParser.js";
 import { decodeEntities, fetchHtml } from "./utils.js";
+import { startTimeMillis } from "../public/timeUtils.js";
 
 export const sports = {
   mlb: {
@@ -680,53 +681,6 @@ function canonicalEventKey(matchup, startsAt) {
   const timestamp = startTimeMillis(startsAt);
   if (!Number.isFinite(timestamp)) return matchup;
   return `${matchup}|${new Date(timestamp).toISOString().slice(0, 16)}`;
-}
-
-function startTimeMillis(value) {
-  if (!value) return NaN;
-
-  const parsed = Date.parse(value);
-  if (!Number.isNaN(parsed)) return parsed;
-
-  const match = `${value}`.match(/(?:[A-Za-z]{3,9},\s*)?([A-Za-z]{3,9})\s+(\d{1,2})\s*•?\s*(\d{1,2}):(\d{2})\s*(AM|PM)\s*ET/i);
-  if (!match) return NaN;
-
-  const month = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
-    .indexOf(match[1].slice(0, 3).toLowerCase());
-  if (month < 0) return NaN;
-
-  let hour = Number(match[3]) % 12;
-  if (match[5].toUpperCase() === "PM") hour += 12;
-  const now = new Date();
-  const year = now.getFullYear();
-  let timestamp = easternTimeToUtc(year, month, Number(match[2]), hour, Number(match[4]));
-  const sixMonths = 183 * 86_400_000;
-  if (timestamp < now.getTime() - 7 * 86_400_000) {
-    timestamp = easternTimeToUtc(year + 1, month, Number(match[2]), hour, Number(match[4]));
-  } else if (timestamp > now.getTime() + sixMonths) {
-    timestamp = easternTimeToUtc(year - 1, month, Number(match[2]), hour, Number(match[4]));
-  }
-  return timestamp;
-}
-
-function easternTimeToUtc(year, month, day, hour, minute) {
-  let timestamp = Date.UTC(year, month, day, hour, minute);
-  for (let index = 0; index < 2; index += 1) {
-    const parts = new Intl.DateTimeFormat("en-US", {
-      timeZone: "America/New_York",
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-      hourCycle: "h23"
-    }).formatToParts(new Date(timestamp));
-    const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
-    const offset = Date.UTC(values.year, Number(values.month) - 1, values.day, values.hour, values.minute, values.second) - timestamp;
-    timestamp = Date.UTC(year, month, day, hour, minute) - offset;
-  }
-  return timestamp;
 }
 
 function normalizeMarket(market = "", selection = "", type = "", sport = "") {

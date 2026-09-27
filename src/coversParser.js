@@ -302,7 +302,7 @@ function parsePickCard(block, game) {
     return line !== market && !teams.has(line) && line !== "Bet now" && !line.startsWith("Projection ");
   });
   const odds = bestOddsIndex >= 0 ? lines[bestOddsIndex + 1] || "" : "";
-  const analyst = readAuthor(block, lines);
+  const analyst = readAuthor(block);
   const analysis = readCardAnalysis(block);
   const selection = selectionLines.join(" ").trim();
 
@@ -324,7 +324,7 @@ function parsePickCard(block, game) {
   };
 }
 
-function readAuthor(block, lines) {
+function readAuthor(block) {
   const profile = block.match(/profile-card[\s\S]*?<a[^>]*>([\s\S]*?)<\/a>[\s\S]*?Betting Analyst/i);
   if (profile) {
     return cleanLine(profile[1].replace(/<[^>]+>/g, " "));

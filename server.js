@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 import { parseCoversPicks } from "./src/coversParser.js";
 import { fetchConsensus, sportConfig, sports } from "./src/consensus.js";
 import { fetchHtml } from "./src/utils.js";
+import { patchSportPageHtml } from "./src/sportPageHtml.js";
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 const publicDir = join(__dirname, "public");
@@ -132,21 +133,7 @@ function wrapExpandedPage(game, html) {
  */
 async function sportPageHtml(sport) {
   const rootHtml = await readFile(join(publicDir, "index.html"), "utf8");
-  const config = sportConfig(sport);
-  const label = config.label;
-  const sourceUrl = config.sources.find((s) => s.id === "covers")?.url ||
-    `https://www.covers.com/picks/${config.id}`;
-
-  return rootHtml
-    .replace(/<title>Daily Expert MLB Board<\/title>/, `<title>Daily Expert ${label} Board</title>`)
-    .replace(/Expert MLB Board/, `Expert ${label} Board`)
-    .replace(/href="styles\.css"/, `href="../styles.css"`)
-    .replace(/src="app\.js"/, `src="../app.js"`)
-    .replace(/href="https:\/\/www\.covers\.com\/picks\/mlb"/, `href="${sourceUrl}"`)
-    .replace(/href="\.\/"/, `href="../"`)
-    .replace(/href="([a-z0-9-]+)\/"/g, (match, slug) =>
-      sports[slug] ? `href="../${slug}/"` : match
-    );
+  return patchSportPageHtml(rootHtml, sportConfig(sport), sports);
 }
 
 async function serveStatic(pathname, res) {
@@ -177,7 +164,12 @@ async function serveStatic(pathname, res) {
     return;
   }
 
-  // Serve static files from public/.
+  // Serve static files from public/. Two independent checks guard against
+  // path traversal (e.g. "/../server.js"): normalize() collapses ".." segments
+  // within the path, and stripping any that remain at the very start handles
+  // a request path that tries to climb above the root. The startsWith(publicDir)
+  // check below is the actual guarantee — it catches anything that gets this
+  // far and still resolves outside public/, regardless of how it got there.
   const safePath = normalize(pathname).replace(/^(\.\.[/\\])+/, "");
   const filePath = join(publicDir, safePath);
 
