@@ -139,7 +139,7 @@ test("normalizes first-five run lines into the Spread market", () => {
   assert.equal(pick?.key, "KC @ MIN|Spread|MIN -0.5");
 });
 
-test("puts MLB and NFL player markets in the Player Props view", () => {
+test("puts MLB, NFL, and NHL player markets in the Player Props view", () => {
   const mlb = normalizePick({
     matchup: "BOS @ NYY",
     market: "Pitcher Strikeouts",
@@ -152,11 +152,19 @@ test("puts MLB and NFL player markets in the Player Props view", () => {
     selection: "Josh Allen Over 249.5",
     sport: "nfl"
   });
+  const nhl = normalizePick({
+    matchup: "NYR @ BOS",
+    market: "Shots on Goal",
+    selection: "Artemi Panarin Over 3.5",
+    sport: "nhl"
+  });
 
   assert.equal(mlb?.market, "Player Props");
   assert.equal(mlb?.key, "BOS @ NYY|Player Props|garrett crochet over 6.5");
   assert.equal(nfl?.market, "Player Props");
   assert.equal(nfl?.key, "BUF @ KC|Player Props|josh allen over 249.5");
+  assert.equal(nhl?.market, "Player Props");
+  assert.equal(nhl?.key, "NYR @ BOS|Player Props|artemi panarin over 3.5");
 });
 
 test("keeps game props out of the Player Props view", () => {
@@ -177,6 +185,15 @@ test("configures college football with the active source routes", () => {
   assert.equal(ncaaf.sources.length, 3);
   assert.equal(ncaaf.sources.find((source) => source.id === "covers")?.url, "https://www.covers.com/picks/ncaaf");
   assert.equal(ncaaf.sources.find((source) => source.id === "pickswise")?.url, "https://www.pickswise.com/college-football/picks/");
+});
+
+test("configures NHL with the active source routes", () => {
+  const nhl = sports.nhl;
+
+  assert.equal(nhl.label, "NHL");
+  assert.equal(nhl.sources.length, 4);
+  assert.equal(nhl.sources.find((source) => source.id === "covers")?.url, "https://www.covers.com/picks/nhl");
+  assert.equal(nhl.sources.find((source) => source.id === "pickswise")?.url, "https://www.pickswise.com/nhl/picks/");
 });
 
 test("parses Pickswise streamed pick rows when __NEXT_DATA__ is absent", () => {

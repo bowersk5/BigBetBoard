@@ -3,6 +3,7 @@ import { startTimeMillis as parseStartTimeMillis } from "./timeUtils.js";
 const sports = {
   mlb: { label: "MLB", sourceUrl: "https://www.covers.com/picks/mlb" },
   nfl: { label: "NFL", sourceUrl: "https://www.covers.com/picks/nfl" },
+  nhl: { label: "NHL", sourceUrl: "https://www.covers.com/picks/nhl" },
   ncaaf: { label: "College Football", sourceUrl: "https://www.covers.com/picks/ncaaf" }
 };
 

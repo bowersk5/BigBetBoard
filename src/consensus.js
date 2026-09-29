@@ -25,6 +25,17 @@ export const sports = {
       { id: "thelines",  name: "The Lines",      url: "https://www.thelines.com/picks/nfl/",      parser: parseTheLinesSource }
     ]
   },
+  nhl: {
+    id: "nhl",
+    label: "NHL",
+    minExpectedPicks: 0,
+    sources: [
+      { id: "covers",    name: "Covers",         url: "https://www.covers.com/picks/nhl",         parser: parseCoversSource },
+      { id: "pickswise", name: "Pickswise",      url: "https://www.pickswise.com/nhl/picks/",      parser: parsePickswiseSource },
+      { id: "action",    name: "Action Network", url: "https://www.actionnetwork.com/nhl/picks/",  parser: parseActionSource },
+      { id: "thelines",  name: "The Lines",      url: "https://www.thelines.com/picks/nhl/",       parser: parseTheLinesSource }
+    ]
+  },
   ncaaf: {
     id: "ncaaf",
     label: "College Football",
@@ -705,13 +716,15 @@ function normalizeMarket(market = "", selection = "", type = "", sport = "") {
  * back to a player-name/stat combination in the pick text.
  */
 function isPlayerProp(market = "", selection = "", type = "", sport = "") {
-  if (!/^(?:mlb|nfl)$/.test(sport) || /game\s+prop/i.test(market)) return false;
+  if (!/^(?:mlb|nfl|nhl)$/.test(sport) || /game\s+prop/i.test(market)) return false;
 
   const marketText = cleanText(`${market} ${type}`).toLowerCase();
   const selectionText = cleanText(selection);
   const playerStat = sport === "mlb"
     ? /\b(?:home runs?|hits?(?: allowed)?|total bases|runs(?: scored)?|runs batted in|rbi|stolen bases?|pitcher strikeouts?|strikeouts?|outs recorded|earned runs? allowed|walks(?: allowed)?|singles|doubles|triples)\b/i
-    : /\b(?:passing (?:yards|touchdowns?|attempts|completions)|rushing (?:yards|attempts|touchdowns?)|receiving (?:yards|touchdowns?)|receptions?|anytime touchdown(?: scorer)?|first touchdown(?: scorer)?|last touchdown(?: scorer)?|interceptions? thrown|longest (?:pass|rush|reception)|kicking points)\b/i;
+    : sport === "nfl"
+      ? /\b(?:passing (?:yards|touchdowns?|attempts|completions)|rushing (?:yards|attempts|touchdowns?)|receiving (?:yards|touchdowns?)|receptions?|anytime touchdown(?: scorer)?|first touchdown(?: scorer)?|last touchdown(?: scorer)?|interceptions? thrown|longest (?:pass|rush|reception)|kicking points)\b/i
+      : /\b(?:goals?|assists?|points?|shots?(?: on goal)?|saves?|power play points?|blocked shots?|hits?|faceoffs? won|penalty minutes)\b/i;
 
   if (playerStat.test(marketText)) return true;
   return playerStat.test(selectionText) && /\b[A-Z][a-z]+\s+[A-Z][a-z]+\b/.test(selectionText);

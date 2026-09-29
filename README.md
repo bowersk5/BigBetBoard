@@ -1,14 +1,14 @@
 # BigBetBoard
 
-A zero-dependency Node.js dashboard that gathers public betting picks, normalizes them into a shared format, and highlights agreement between sources for MLB, NFL, and college football.
+A zero-dependency Node.js dashboard that gathers public betting picks, normalizes them into a shared format, and highlights agreement between sources for MLB, NFL, NHL, and college football.
 
 The production site is generated into `public/` and deployed through GitHub Pages. The local server uses the same frontend while providing live API endpoints for refreshing source data.
 
 ## Features
 
-- Separate MLB, NFL, and college-football pages.
+- Separate MLB, NFL, NHL, and college-football pages.
 - Consensus cards grouped by matchup, market, and selection.
-- Market views for Moneyline, Total, Spread, Player Props, Prop, and Parlay when those markets are available. MLB and NFL player props have their own view; baseball run lines are normalized into Spread.
+- Market views for Moneyline, Total, Spread, Player Props, Prop, and Parlay when those markets are available. MLB, NFL, and NHL player props have their own view; baseball run lines are normalized into Spread.
 - Game start times when supplied by a source.
 - Source agreement, expert counts, odds samples, and expandable analysis.
 - A collapsible parlay slip with combined American odds and estimated payout.
@@ -34,6 +34,13 @@ Source configuration and parsers live in `src/consensus.js`.
 - [Pickswise](https://www.pickswise.com/nfl/picks/)
 - [Action Network](https://www.actionnetwork.com/nfl/picks/)
 - [The Lines](https://www.thelines.com/picks/nfl/)
+
+### NHL
+
+- [Covers](https://www.covers.com/picks/nhl)
+- [Pickswise](https://www.pickswise.com/nhl/picks/)
+- [Action Network](https://www.actionnetwork.com/nhl/picks/)
+- [The Lines](https://www.thelines.com/picks/nhl/)
 
 ### College Football (NCAAF)
 
@@ -72,12 +79,15 @@ PORT=4000 npm start
 | --- | --- |
 | `/` | MLB dashboard |
 | `/nfl/` | NFL dashboard |
+| `/nhl/` | NHL dashboard |
 | `/ncaaf/` | College Football dashboard |
 | `/api/picks?sport=mlb` | Live Covers MLB payload |
 | `/api/picks?sport=nfl` | Live Covers NFL payload |
+| `/api/picks?sport=nhl` | Live Covers NHL payload |
 | `/api/picks?sport=ncaaf` | Live Covers College Football payload |
 | `/api/consensus?sport=mlb` | Live multi-source MLB consensus |
 | `/api/consensus?sport=nfl` | Live multi-source NFL consensus |
+| `/api/consensus?sport=nhl` | Live multi-source NHL consensus |
 | `/api/consensus?sport=ncaaf` | Live multi-source College Football consensus |
 
 Add `refresh=1` to an API URL to bypass the local server's daily in-memory cache.
@@ -127,6 +137,9 @@ public/data/consensus.json
 public/data/nfl/picks.json
 public/data/nfl/consensus.json
 public/nfl/index.html
+public/data/nhl/picks.json
+public/data/nhl/consensus.json
+public/nhl/index.html
 public/data/ncaaf/picks.json
 public/data/ncaaf/consensus.json
 public/ncaaf/index.html
