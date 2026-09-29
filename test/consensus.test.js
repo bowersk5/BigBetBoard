@@ -182,18 +182,69 @@ test("configures college football with the active source routes", () => {
   const ncaaf = sports.ncaaf;
 
   assert.equal(ncaaf.label, "College Football");
-  assert.equal(ncaaf.sources.length, 3);
+  assert.equal(ncaaf.sources.length, 5);
   assert.equal(ncaaf.sources.find((source) => source.id === "covers")?.url, "https://www.covers.com/picks/ncaaf");
   assert.equal(ncaaf.sources.find((source) => source.id === "pickswise")?.url, "https://www.pickswise.com/college-football/picks/");
+  assert.equal(ncaaf.sources.find((source) => source.id === "bettingpros")?.url, "https://www.bettingpros.com/");
+  assert.equal(ncaaf.sources.find((source) => source.id === "boydsbets")?.url, "https://www.boydsbets.com/free-sports-picks/");
 });
 
 test("configures NHL with the active source routes", () => {
   const nhl = sports.nhl;
 
   assert.equal(nhl.label, "NHL");
-  assert.equal(nhl.sources.length, 4);
+  assert.equal(nhl.sources.length, 5);
   assert.equal(nhl.sources.find((source) => source.id === "covers")?.url, "https://www.covers.com/picks/nhl");
   assert.equal(nhl.sources.find((source) => source.id === "pickswise")?.url, "https://www.pickswise.com/nhl/picks/");
+});
+
+test("configures the requested NFL sources", () => {
+  const nfl = sports.nfl;
+
+  assert.equal(nfl.sources.find((source) => source.id === "bettingpros")?.url, "https://www.bettingpros.com/");
+  assert.equal(nfl.sources.find((source) => source.id === "wagertalk")?.url, "https://www.wagertalk.com/free-sports-picks/nfl");
+  assert.equal(nfl.sources.find((source) => source.id === "boydsbets")?.url, "https://www.boydsbets.com/free-sports-picks/");
+});
+
+test("parses WagerTalk free-pick cards", () => {
+  const html = `
+    <main>
+      <div class="pro-card d-flex flex-column">
+        <h2><a href="/profile/teddy">Teddy Covers</a></h2>
+        <div class="content-event">(257) Arizona Cardinals at (258) New York Giants: Moneyline</div>
+        <div class="content-date">October 4, 2026 1:00 PM EDT</div>
+        <div class="content-play">Arizona Cardinals -115</div>
+        <p class="article-short-desc"><p>Take Arizona on the moneyline.</p></p>
+        <p class="r-date">Released/revised 4 hour(s) ago</p>
+      </div>
+    </main>
+  `;
+  const wagertalk = sports.nfl.sources.find((source) => source.id === "wagertalk");
+  const picks = wagertalk.parser(html, sports.nfl);
+
+  assert.equal(picks.length, 1);
+  assert.equal(picks[0].matchup, "ARI @ NYG");
+  assert.equal(picks[0].market, "Moneyline");
+  assert.equal(picks[0].selection, "ARI Moneyline");
+  assert.equal(picks[0].odds, "-115");
+  assert.equal(picks[0].expert, "Teddy Covers");
+});
+
+test("parses a Boyd's Bets table row with a named matchup", () => {
+  const html = `
+    <table><tr>
+      <td><a>Jimmy Boyd</a></td><td>NFL</td><td>Seahawks -7 -110</td>
+      <td>Seattle Seahawks at Arizona Cardinals: take Seattle to cover.</td>
+    </tr></table>
+  `;
+  const boyds = sports.nfl.sources.find((source) => source.id === "boydsbets");
+  const picks = boyds.parser(html, sports.nfl);
+
+  assert.equal(picks.length, 1);
+  assert.equal(picks[0].matchup, "SEA @ ARI");
+  assert.equal(picks[0].market, "Spread");
+  assert.equal(picks[0].selection, "SEA -7");
+  assert.equal(picks[0].odds, "-110");
 });
 
 test("parses Pickswise streamed pick rows when __NEXT_DATA__ is absent", () => {

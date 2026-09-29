@@ -11,7 +11,9 @@ export const sports = {
       { id: "covers",    name: "Covers",       url: "https://www.covers.com/picks/mlb",         parser: parseCoversSource },
       { id: "pickswise", name: "Pickswise",     url: "https://www.pickswise.com/mlb/picks/",     parser: parsePickswiseSource },
       { id: "action",    name: "Action Network",url: "https://www.actionnetwork.com/mlb/picks/", parser: parseActionSource },
-      { id: "thelines",  name: "The Lines",     url: "https://www.thelines.com/picks/mlb/",      parser: parseTheLinesSource }
+      { id: "thelines",  name: "The Lines",     url: "https://www.thelines.com/picks/mlb/",      parser: parseTheLinesSource },
+      { id: "bettingpros", name: "BettingPros",  url: "https://www.bettingpros.com/",             parser: parseBettingProsSource, minExpectedPicks: 0 },
+      { id: "boydsbets", name: "Boyd's Bets",    url: "https://www.boydsbets.com/free-sports-picks/", parser: parseBoydsBetsSource, minExpectedPicks: 0 }
     ]
   },
   nfl: {
@@ -22,7 +24,10 @@ export const sports = {
       { id: "covers",    name: "Covers",        url: "https://www.covers.com/picks/nfl",         parser: parseCoversSource },
       { id: "pickswise", name: "Pickswise",      url: "https://www.pickswise.com/nfl/picks/",     parser: parsePickswiseSource },
       { id: "action",    name: "Action Network", url: "https://www.actionnetwork.com/nfl/picks/", parser: parseActionSource },
-      { id: "thelines",  name: "The Lines",      url: "https://www.thelines.com/picks/nfl/",      parser: parseTheLinesSource }
+      { id: "thelines",  name: "The Lines",      url: "https://www.thelines.com/picks/nfl/",      parser: parseTheLinesSource },
+      { id: "bettingpros", name: "BettingPros",   url: "https://www.bettingpros.com/",             parser: parseBettingProsSource, minExpectedPicks: 0 },
+      { id: "wagertalk", name: "WagerTalk",       url: "https://www.wagertalk.com/free-sports-picks/nfl", parser: parseWagerTalkSource, minExpectedPicks: 0 },
+      { id: "boydsbets", name: "Boyd's Bets",     url: "https://www.boydsbets.com/free-sports-picks/", parser: parseBoydsBetsSource, minExpectedPicks: 0 }
     ]
   },
   nhl: {
@@ -33,7 +38,8 @@ export const sports = {
       { id: "covers",    name: "Covers",         url: "https://www.covers.com/picks/nhl",         parser: parseCoversSource },
       { id: "pickswise", name: "Pickswise",      url: "https://www.pickswise.com/nhl/picks/",      parser: parsePickswiseSource },
       { id: "action",    name: "Action Network", url: "https://www.actionnetwork.com/nhl/picks/",  parser: parseActionSource },
-      { id: "thelines",  name: "The Lines",      url: "https://www.thelines.com/picks/nhl/",       parser: parseTheLinesSource }
+      { id: "thelines",  name: "The Lines",      url: "https://www.thelines.com/picks/nhl/",       parser: parseTheLinesSource },
+      { id: "boydsbets", name: "Boyd's Bets",     url: "https://www.boydsbets.com/free-sports-picks/", parser: parseBoydsBetsSource, minExpectedPicks: 0 }
     ]
   },
   ncaaf: {
@@ -44,7 +50,9 @@ export const sports = {
     sources: [
       { id: "covers",    name: "Covers",         url: "https://www.covers.com/picks/ncaaf",                parser: parseCoversSource },
       { id: "pickswise", name: "Pickswise",      url: "https://www.pickswise.com/college-football/picks/", parser: parsePickswiseSource },
-      { id: "action",    name: "Action Network", url: "https://www.actionnetwork.com/ncaaf/picks/",         parser: parseActionSource }
+      { id: "action",    name: "Action Network", url: "https://www.actionnetwork.com/ncaaf/picks/",         parser: parseActionSource },
+      { id: "bettingpros", name: "BettingPros",   url: "https://www.bettingpros.com/",                      parser: parseBettingProsSource, minExpectedPicks: 0 },
+      { id: "boydsbets", name: "Boyd's Bets",     url: "https://www.boydsbets.com/free-sports-picks/",      parser: parseBoydsBetsSource, minExpectedPicks: 0 }
     ]
   }
 };
@@ -511,6 +519,133 @@ function parseActionSource(html, config) {
   }
 
   return picks.filter(Boolean);
+}
+
+// BettingPros' supplied landing page is intentionally kept as the source URL.
+// Its public content is editorial and changes shape frequently; only accept
+// explicitly labelled pick cards so headlines and promotion copy never become
+// false consensus selections.
+function parseBettingProsSource(html, config) {
+  const picks = [];
+  const cardPattern = /<[^>]+data-(?:bet|pick)-matchup=["']([^"']+)["'][^>]*data-(?:bet|pick)-selection=["']([^"']+)["'][^>]*>([\s\S]*?)<\/[^>]+>/gi;
+  let match;
+
+  while ((match = cardPattern.exec(html)) !== null) {
+    const [, matchup, selection, content] = match;
+    const pick = normalizePick({
+      matchup: cleanText(matchup),
+      market: cleanText(content),
+      selection: cleanText(selection),
+      odds: extractOddsFromText(content),
+      expert: "BettingPros",
+      analysis: stripHtml(content),
+      sport: config.id
+    });
+    if (pick) picks.push(pick);
+  }
+
+  return picks;
+}
+
+// WagerTalk renders each free selection as a self-contained pro card.  The
+// event label gives us both the matchup and market, while the play label holds
+// the actual side/total and odds.
+function parseWagerTalkSource(html, config) {
+  const picks = [];
+  const cards = html.match(/<div class="pro-card\b[\s\S]*?(?=<div class="pro-card\b|<\/main>)/gi) || [];
+
+  for (const card of cards) {
+    const expert = cleanText(card.match(/<h2[^>]*>[\s\S]*?<a[^>]*>([\s\S]*?)<\/a>/i)?.[1] || "WagerTalk expert");
+    const event = cleanText(card.match(/class="content-event"[^>]*>([\s\S]*?)<\/div>/i)?.[1]);
+    const startsAt = cleanText(card.match(/class="content-date"[^>]*>([\s\S]*?)<\/div>/i)?.[1]);
+    const selection = cleanText(card.match(/class="content-play"[^>]*>([\s\S]*?)<\/div>/i)?.[1]);
+    const analysis = stripHtml(card.match(/class="article-short-desc"[^>]*>([\s\S]*?)<\/p>\s*<p class="r-date"/i)?.[1] || "");
+    const made = cleanText(card.match(/class="r-date"[^>]*>([\s\S]*?)<\/p>/i)?.[1]);
+    const matchup = matchupFromEvent(event, config.id);
+
+    if (!matchup || !selection) continue;
+    const pick = normalizePick({
+      matchup,
+      startsAt,
+      market: event.split(":").slice(1).join(":").trim(),
+      selection,
+      odds: extractOddsFromText(selection),
+      expert,
+      analysis,
+      made,
+      sport: config.id
+    });
+    if (pick) picks.push(pick);
+  }
+
+  return picks;
+}
+
+// Boyd's uses a daily table shared by several sports.  Only accept rows whose
+// sport column matches the active page and whose analysis names both teams.
+function parseBoydsBetsSource(html, config) {
+  const sportLabels = {
+    mlb: ["MLB"],
+    nfl: ["NFL"],
+    nhl: ["NHL"],
+    ncaaf: ["NCAA-F", "NCAAF", "College Football"]
+  }[config.id] || [];
+  const picks = [];
+  const rows = html.match(/<tr\b[\s\S]*?<\/tr>/gi) || [];
+
+  for (const row of rows) {
+    const cells = [...row.matchAll(/<td\b[^>]*>([\s\S]*?)<\/td>/gi)].map((match) => stripHtml(match[1]));
+    const sportIndex = cells.findIndex((cell) => sportLabels.includes(cell));
+    if (sportIndex < 1 || !cells[sportIndex + 1]) continue;
+
+    const expert = cells[sportIndex - 1];
+    const selection = cells[sportIndex + 1];
+    const analysisLink = row.match(/analysis(\d+)/i)?.[1];
+    const hiddenAnalysis = analysisLink
+      ? html.match(new RegExp(`<tr\\b[^>]*id=["']analysis${analysisLink}["'][^>]*>([\\s\\S]*?)<\\/tr>`, "i"))?.[1] || ""
+      : "";
+    const analysis = cleanText(`${cells.slice(sportIndex + 2).join(" ")} ${stripHtml(hiddenAnalysis)}`);
+    const matchup = matchupFromText(`${selection} ${analysis}`, config.id);
+    if (!matchup) continue;
+
+    const pick = normalizePick({
+      matchup,
+      market: marketFromSelection(selection),
+      selection,
+      odds: extractOddsFromText(selection),
+      expert,
+      analysis,
+      sport: config.id
+    });
+    if (pick) picks.push(pick);
+  }
+
+  return picks;
+}
+
+function matchupFromEvent(event, sport) {
+  const eventWithoutRotationNumbers = cleanText(event).replace(/\(\d+\)\s*/g, "");
+  const match = eventWithoutRotationNumbers.match(/^(.+?)\s+(?:at|@)\s+(.+?)(?::|$)/i);
+  if (!match) return "";
+  const away = teamFromName(match[1], sport);
+  const home = teamFromName(match[2], sport);
+  return away && home ? `${away} @ ${home}` : "";
+}
+
+function matchupFromText(text, sport) {
+  const match = cleanText(text).match(/(.{2,60}?)\s+(?:at|@|vs\.?|\/)\s+(.{2,60}?)(?=[,.!;:]|\b(?:over|under|pick|play|for|on)\b|$)/i);
+  if (!match) return "";
+  const away = teamFromName(match[1], sport);
+  const home = teamFromName(match[2], sport);
+  return away && home ? `${away} @ ${home}` : "";
+}
+
+function marketFromSelection(selection) {
+  if (/\b(?:over|under)\s*\d/i.test(selection)) return "Total";
+  // A spread normally has both its point line and American odds, whereas a
+  // moneyline has only the odds (for example, "Yankees -125").
+  if (/(?:^|\s)[+-]\d{1,2}(?:\.\d+)?\s+[+-]\d{3,4}\b/.test(selection)) return "Spread";
+  return "Moneyline";
 }
 
 // The Lines source parser.

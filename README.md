@@ -27,6 +27,8 @@ Source configuration and parsers live in `src/consensus.js`.
 - [Pickswise](https://www.pickswise.com/mlb/picks/)
 - [Action Network](https://www.actionnetwork.com/mlb/picks/)
 - [The Lines](https://www.thelines.com/picks/mlb/)
+- [BettingPros](https://www.bettingpros.com/)
+- [Boyd's Bets](https://www.boydsbets.com/free-sports-picks/)
 
 ### NFL
 
@@ -34,6 +36,9 @@ Source configuration and parsers live in `src/consensus.js`.
 - [Pickswise](https://www.pickswise.com/nfl/picks/)
 - [Action Network](https://www.actionnetwork.com/nfl/picks/)
 - [The Lines](https://www.thelines.com/picks/nfl/)
+- [BettingPros](https://www.bettingpros.com/)
+- [WagerTalk](https://www.wagertalk.com/free-sports-picks/nfl)
+- [Boyd's Bets](https://www.boydsbets.com/free-sports-picks/)
 
 ### NHL
 
@@ -41,12 +46,15 @@ Source configuration and parsers live in `src/consensus.js`.
 - [Pickswise](https://www.pickswise.com/nhl/picks/)
 - [Action Network](https://www.actionnetwork.com/nhl/picks/)
 - [The Lines](https://www.thelines.com/picks/nhl/)
+- [Boyd's Bets](https://www.boydsbets.com/free-sports-picks/)
 
 ### College Football (NCAAF)
 
 - [Covers](https://www.covers.com/picks/ncaaf)
 - [Pickswise](https://www.pickswise.com/college-football/picks/)
 - [Action Network](https://www.actionnetwork.com/ncaaf/picks/)
+- [BettingPros](https://www.bettingpros.com/)
+- [Boyd's Bets](https://www.boydsbets.com/free-sports-picks/)
 
 Covers also supplies each sport's standalone `picks.json` payload. When a Covers page links to expanded matchup picks, the build follows those pages and merges their cards into the league-page results.
 
