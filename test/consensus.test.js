@@ -182,10 +182,11 @@ test("configures college football with the active source routes", () => {
   const ncaaf = sports.ncaaf;
 
   assert.equal(ncaaf.label, "College Football");
-  assert.equal(ncaaf.sources.length, 5);
+  assert.equal(ncaaf.sources.length, 6);
   assert.equal(ncaaf.sources.find((source) => source.id === "covers")?.url, "https://www.covers.com/picks/ncaaf");
   assert.equal(ncaaf.sources.find((source) => source.id === "pickswise")?.url, "https://www.pickswise.com/college-football/picks/");
   assert.equal(ncaaf.sources.find((source) => source.id === "bettingpros")?.url, "https://www.bettingpros.com/");
+  assert.equal(ncaaf.sources.find((source) => source.id === "wagertalk")?.url, "https://www.wagertalk.com/free-sports-picks/college-football");
   assert.equal(ncaaf.sources.find((source) => source.id === "boydsbets")?.url, "https://www.boydsbets.com/free-sports-picks/");
 });
 
@@ -193,9 +194,10 @@ test("configures NHL with the active source routes", () => {
   const nhl = sports.nhl;
 
   assert.equal(nhl.label, "NHL");
-  assert.equal(nhl.sources.length, 5);
+  assert.equal(nhl.sources.length, 6);
   assert.equal(nhl.sources.find((source) => source.id === "covers")?.url, "https://www.covers.com/picks/nhl");
   assert.equal(nhl.sources.find((source) => source.id === "pickswise")?.url, "https://www.pickswise.com/nhl/picks/");
+  assert.equal(nhl.sources.find((source) => source.id === "wagertalk")?.url, "https://www.wagertalk.com/free-sports-picks/nhl");
 });
 
 test("configures the requested NFL sources", () => {
@@ -204,6 +206,7 @@ test("configures the requested NFL sources", () => {
   assert.equal(nfl.sources.find((source) => source.id === "bettingpros")?.url, "https://www.bettingpros.com/");
   assert.equal(nfl.sources.find((source) => source.id === "wagertalk")?.url, "https://www.wagertalk.com/free-sports-picks/nfl");
   assert.equal(nfl.sources.find((source) => source.id === "boydsbets")?.url, "https://www.boydsbets.com/free-sports-picks/");
+  assert.equal(sports.mlb.sources.find((source) => source.id === "wagertalk")?.url, "https://www.wagertalk.com/free-sports-picks/mlb");
 });
 
 test("parses WagerTalk free-pick cards", () => {

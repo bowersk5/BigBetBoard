@@ -13,6 +13,7 @@ export const sports = {
       { id: "action",    name: "Action Network",url: "https://www.actionnetwork.com/mlb/picks/", parser: parseActionSource },
       { id: "thelines",  name: "The Lines",     url: "https://www.thelines.com/picks/mlb/",      parser: parseTheLinesSource },
       { id: "bettingpros", name: "BettingPros",  url: "https://www.bettingpros.com/",             parser: parseBettingProsSource, minExpectedPicks: 0 },
+      { id: "wagertalk", name: "WagerTalk",      url: "https://www.wagertalk.com/free-sports-picks/mlb", parser: parseWagerTalkSource, minExpectedPicks: 0 },
       { id: "boydsbets", name: "Boyd's Bets",    url: "https://www.boydsbets.com/free-sports-picks/", parser: parseBoydsBetsSource, minExpectedPicks: 0 }
     ]
   },
@@ -39,6 +40,7 @@ export const sports = {
       { id: "pickswise", name: "Pickswise",      url: "https://www.pickswise.com/nhl/picks/",      parser: parsePickswiseSource },
       { id: "action",    name: "Action Network", url: "https://www.actionnetwork.com/nhl/picks/",  parser: parseActionSource },
       { id: "thelines",  name: "The Lines",      url: "https://www.thelines.com/picks/nhl/",       parser: parseTheLinesSource },
+      { id: "wagertalk", name: "WagerTalk",      url: "https://www.wagertalk.com/free-sports-picks/nhl", parser: parseWagerTalkSource, minExpectedPicks: 0 },
       { id: "boydsbets", name: "Boyd's Bets",     url: "https://www.boydsbets.com/free-sports-picks/", parser: parseBoydsBetsSource, minExpectedPicks: 0 }
     ]
   },
@@ -52,6 +54,7 @@ export const sports = {
       { id: "pickswise", name: "Pickswise",      url: "https://www.pickswise.com/college-football/picks/", parser: parsePickswiseSource },
       { id: "action",    name: "Action Network", url: "https://www.actionnetwork.com/ncaaf/picks/",         parser: parseActionSource },
       { id: "bettingpros", name: "BettingPros",   url: "https://www.bettingpros.com/",                      parser: parseBettingProsSource, minExpectedPicks: 0 },
+      { id: "wagertalk", name: "WagerTalk",       url: "https://www.wagertalk.com/free-sports-picks/college-football", parser: parseWagerTalkSource, minExpectedPicks: 0 },
       { id: "boydsbets", name: "Boyd's Bets",     url: "https://www.boydsbets.com/free-sports-picks/",      parser: parseBoydsBetsSource, minExpectedPicks: 0 }
     ]
   }
@@ -627,9 +630,16 @@ function matchupFromEvent(event, sport) {
   const eventWithoutRotationNumbers = cleanText(event).replace(/\(\d+\)\s*/g, "");
   const match = eventWithoutRotationNumbers.match(/^(.+?)\s+(?:at|@)\s+(.+?)(?::|$)/i);
   if (!match) return "";
-  const away = teamFromName(match[1], sport);
-  const home = teamFromName(match[2], sport);
+  const away = teamFromEventLabel(match[1], sport);
+  const home = teamFromEventLabel(match[2], sport);
   return away && home ? `${away} @ ${home}` : "";
+}
+
+function teamFromEventLabel(label, sport) {
+  const namedTeam = teamFromName(label, sport);
+  if (namedTeam) return namedTeam;
+  const abbreviation = cleanText(label).match(/^[A-Z]{2,4}$/)?.[0] || "";
+  return abbreviation ? normalizeTeamAbbr(abbreviation, sport) : "";
 }
 
 function matchupFromText(text, sport) {

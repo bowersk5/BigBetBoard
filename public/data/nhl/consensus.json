@@ -1,0 +1,1561 @@
+{
+  "sport": "nhl",
+  "sportLabel": "NHL",
+  "generatedAt": "2026-09-29T23:21:44.050Z",
+  "sources": [
+    {
+      "id": "covers",
+      "name": "Covers",
+      "url": "https://www.covers.com/picks/nhl",
+      "error": null,
+      "warning": null,
+      "picks": 12
+    },
+    {
+      "id": "pickswise",
+      "name": "Pickswise",
+      "url": "https://www.pickswise.com/nhl/picks/",
+      "error": null,
+      "warning": null,
+      "picks": 5
+    },
+    {
+      "id": "action",
+      "name": "Action Network",
+      "url": "https://www.actionnetwork.com/nhl/picks/",
+      "error": null,
+      "warning": null,
+      "picks": 19
+    },
+    {
+      "id": "thelines",
+      "name": "The Lines",
+      "url": "https://www.thelines.com/picks/nhl/",
+      "error": "https://www.thelines.com/picks/nhl/ returned 404 ",
+      "warning": null,
+      "picks": 0
+    },
+    {
+      "id": "boydsbets",
+      "name": "Boyd's Bets",
+      "url": "https://www.boydsbets.com/free-sports-picks/",
+      "error": null,
+      "warning": null,
+      "picks": 0
+    }
+  ],
+  "picks": [
+    {
+      "matchup": "VAN @ EDM",
+      "startsAt": "Tue, Sep 29 • 10:00 PM ET",
+      "eventKey": "VAN @ EDM|2026-09-30T02:00",
+      "market": "Player Props",
+      "selection": "Leon Draisaitl o0.5 Goals Scored",
+      "odds": "o0.5 +100",
+      "expert": "Neil Parker",
+      "analysis": "Draisaitl to score is in play to +100 because he's scored the third-most goals in the NHL over the past three years, and the Canucks allowed the most goals per 60 minutes and sixth-most expected goals per 60 last year. Additionally, I particularly value No. 29 projecting to jump the board with superstar Connor McDavid at five-on-five in the season opener because the duo have been on the ice for a monster 7.69 goals per 60 minutes over the past two years.",
+      "made": "8 hours ago",
+      "key": "VAN @ EDM|2026-09-30T02:00|Player Props|leon draisaitl o0.5 goals scored",
+      "sourceId": "covers",
+      "source": "Covers",
+      "url": "https://www.covers.com/picks/nhl"
+    },
+    {
+      "matchup": "VAN @ EDM",
+      "startsAt": "Tue, Sep 29 • 10:00 PM ET",
+      "eventKey": "VAN @ EDM|2026-09-30T02:00",
+      "market": "Player Props",
+      "selection": "Vasily Podkolzin o0.5 Points",
+      "odds": "o0.5 -135",
+      "expert": "Neil Parker",
+      "analysis": "Podkolzin is set up to succeed with a top-line gig jumping the boards with superstars Connor McDavid and Leon Draisaitl, and the Canucks allowed the most goals per 60 minutes and sixth-most expected goals per 60 last year, too. So, with the McDavid-Draisaitl duo being on the ice for 7.69 goals per 60 minutes over the past two years, I like the Russian winger to find the scoresheet against his former team in the season opener down to -115.",
+      "made": "9 hours ago",
+      "key": "VAN @ EDM|2026-09-30T02:00|Player Props|vasily podkolzin o0.5 points",
+      "sourceId": "covers",
+      "source": "Covers",
+      "url": "https://www.covers.com/picks/nhl"
+    },
+    {
+      "matchup": "VAN @ EDM",
+      "startsAt": "Tue, Sep 29 • 10:00 PM ET",
+      "eventKey": "VAN @ EDM|2026-09-30T02:00",
+      "market": "Total",
+      "selection": "Under 6.5",
+      "odds": "u6.5 -104",
+      "expert": "Neil Parker",
+      "analysis": "This Under 6.5 is in play to -110 because the Oilers are commited to improved defense and allowed just 0.91 goals per 60 minutes while surrendering the eighth-fewest high-danger scoring chances per 60 at five-on-five during the preseason. Edmonton was already a possession monster with a fifth-ranked Corsi For percentage at five-on-five across the past three years, and Vancouver scored the fewest goals per 60 minutes while generating the fifth-fewest expected goals per 60 at 5-on-5 last season.",
+      "made": "9 hours ago",
+      "key": "VAN @ EDM|2026-09-30T02:00|Total|Under 6.5",
+      "sourceId": "covers",
+      "source": "Covers",
+      "url": "https://www.covers.com/picks/nhl"
+    },
+    {
+      "matchup": "VAN @ EDM",
+      "startsAt": "Tue, Sep 29 • 10:00 PM ET",
+      "eventKey": "VAN @ EDM|2026-09-30T02:00",
+      "market": "Player Props",
+      "selection": "Leon Draisaitl o0.5 Goals Scored",
+      "odds": "o0.5 +100",
+      "expert": "Todd Cordell",
+      "analysis": "I’d back Leon Draisaitl to find the back of the net to 54%.",
+      "made": "11 hours ago",
+      "key": "VAN @ EDM|2026-09-30T02:00|Player Props|leon draisaitl o0.5 goals scored",
+      "sourceId": "covers",
+      "source": "Covers",
+      "url": "https://www.covers.com/picks/nhl"
+    },
+    {
+      "matchup": "VAN @ EDM",
+      "startsAt": "Tue, Sep 29 • 10:00 PM ET",
+      "eventKey": "VAN @ EDM|2026-09-30T02:00",
+      "market": "Moneyline",
+      "selection": "VAN Moneyline",
+      "odds": "+250",
+      "expert": "Josh Inglis",
+      "analysis": "The preseason is a mess, with guys who have played more than 100 games in their careers allowed to play in only two preseason games. This is going to lead to some sloppy early hockey, and that puts the value on the dogs — and no one is bigger than Vancouver. The Oilers were the same price against Vancouver last year near the end of the season, when Edmonton was playing its best hockey. There are worries about Tristan Jarry in net for Edmonton, as he is not even an average NHL goalie. There is also a system change with the home team, as new head coach Mike Babcock and his extra luggage are now in charge behind the bench. This is a young Vancouver team that might be in better shape for Game No. 1 than a veteran-heavy Edmonton squad, and these 3x MLs are very appetizing this week.",
+      "made": "yesterday",
+      "key": "VAN @ EDM|2026-09-30T02:00|Moneyline|VAN",
+      "sourceId": "covers",
+      "source": "Covers",
+      "url": "https://www.covers.com/picks/nhl"
+    },
+    {
+      "matchup": "VAN @ EDM",
+      "startsAt": "Tue, Sep 29 • 10:00 PM ET",
+      "eventKey": "VAN @ EDM|2026-09-30T02:00",
+      "market": "Parlay",
+      "selection": "3 LEG PARLAY u6.5 Total Vasily Podkolzin o0.5 Points Points",
+      "odds": "",
+      "expert": "Neil Parker",
+      "analysis": "Edmonton has topped Vancouver in seven of their past nine meetings, and the Oilers are going to be improved on defense with Mike Babcock behind the bench. Edmonton was already a possession monster with a fifth-ranked Corsi For percentage at five-on-five across the past three years, and the Oilers also ranked second in expected goals percentage to reinforce their consistent ability to tilt the ice in their favor. Turning to Podkolzin, he's set to jump the boards with superstars Connor McDavid and Leon Draisaitl, and the go-to duo have been on the ice for a monster 7.69 goals per 60 minutes over the past two years.",
+      "made": "9 hours ago",
+      "key": "VAN @ EDM|2026-09-30T02:00|Parlay|3 leg parlay u6.5 total vasily podkolzin o0.5 points points",
+      "sourceId": "covers",
+      "source": "Covers",
+      "url": "https://www.covers.com/picks/nhl"
+    },
+    {
+      "matchup": "CHI @ VGK",
+      "startsAt": "Tue, Sep 29 • 10:30 PM ET",
+      "eventKey": "CHI @ VGK|2026-09-30T02:30",
+      "market": "Player Props",
+      "selection": "Jack Eichel o0.5 Goals Scored",
+      "odds": "o0.5 +170",
+      "expert": "Quinn Allen",
+      "analysis": "Play up to 42%. Jack Eichel remains one of Vegas’ premier scoring threats after netting 27 goals last season. At home, he generated 72 individual scoring chances and 25 high-danger opportunities at five-on-five. Against a Chicago defense that struggled to suppress offense, Eichel should get several quality looks.",
+      "made": "8 hours ago",
+      "key": "CHI @ VGK|2026-09-30T02:30|Player Props|jack eichel o0.5 goals scored",
+      "sourceId": "covers",
+      "source": "Covers",
+      "url": "https://www.covers.com/picks/nhl"
+    },
+    {
+      "matchup": "CHI @ VGK",
+      "startsAt": "Tue, Sep 29 • 10:30 PM ET",
+      "eventKey": "CHI @ VGK|2026-09-30T02:30",
+      "market": "Player Props",
+      "selection": "Patrick Kane o0.5 Points",
+      "odds": "o0.5 -109",
+      "expert": "Quinn Allen",
+      "analysis": "Play up to 58%. Patrick Kane should have a major offensive role with Connor Bedard sidelined. He produced 57 points in 67 games last season and is expected to skate on Chicago’s top line while also working on PP1. That usage gives the veteran multiple paths to record a point in the opener.",
+      "made": "8 hours ago",
+      "key": "CHI @ VGK|2026-09-30T02:30|Player Props|patrick kane o0.5 points",
+      "sourceId": "covers",
+      "source": "Covers",
+      "url": "https://www.covers.com/picks/nhl"
+    },
+    {
+      "matchup": "CHI @ VGK",
+      "startsAt": "Tue, Sep 29 • 10:30 PM ET",
+      "eventKey": "CHI @ VGK|2026-09-30T02:30",
+      "market": "Spread",
+      "selection": "VGK -1.5",
+      "odds": "-1.5 +105",
+      "expert": "Quinn Allen",
+      "analysis": "Play up to 52%. Vegas has a clear talent edge at home against a Chicago team opening the season without Connor Bedard. The Blackhawks ranked near the bottom of the NHL in both scoring and goals allowed last year, while Vegas posted a +24 goal differential at T-Mobile Arena. A multi-goal win is very realistic.",
+      "made": "8 hours ago",
+      "key": "CHI @ VGK|2026-09-30T02:30|Spread|VGK -1.5",
+      "sourceId": "covers",
+      "source": "Covers",
+      "url": "https://www.covers.com/picks/nhl"
+    },
+    {
+      "matchup": "CHI @ VGK",
+      "startsAt": "Tue, Sep 29 • 10:30 PM ET",
+      "eventKey": "CHI @ VGK|2026-09-30T02:30",
+      "market": "Prop",
+      "selection": "o2.5 Team Total",
+      "odds": "o2.5 +116",
+      "expert": "Josh Inglis",
+      "analysis": "Connor Bedard is out, but there is still plenty of young scoring in this Chicago lineup against a Vegas team that is likely not strong in net with Carter Hart and may not be as motivated after a long Stanley Cup Final run that ended in the middle of June. The Hawks have legit scoring rookies on both of their top lines in Anton Frondell and Roman Kantserov. Frondell has a terrifying shot after seeing it at the World Juniors and World Hockey Championships, where he scored six goals in 11 games. He is 4.3x to score and is a look for sure. The exciting one, and one that might be flying under the radar, is Kantserov, who is playing on the top line and PP1. He scored 36 goals in 63 games in the KHL last year at age 21 and has shorter odds to win the Calder than Frondell, who already has 12 NHL games under his belt at 19 years old. The value on opening night is with the dogs.",
+      "made": "yesterday",
+      "key": "CHI @ VGK|2026-09-30T02:30|Prop|o2.5 team total",
+      "sourceId": "covers",
+      "source": "Covers",
+      "url": "https://www.covers.com/picks/nhl"
+    },
+    {
+      "matchup": "CHI @ VGK",
+      "startsAt": "Tue, Sep 29 • 10:30 PM ET",
+      "eventKey": "CHI @ VGK|2026-09-30T02:30",
+      "market": "Parlay",
+      "selection": "3 LEG PARLAY VEG -1.5 o5.5 Total Jack Eichel o3.5 Shots On Goal Shots On Goal",
+      "odds": "",
+      "expert": "Quinn Allen",
+      "analysis": "This combo fits the expected game script. Chicago struggled defensively last season, while Vegas has enough firepower to do most of the scoring itself. Jack Eichel also averaged 3.91 shots per game at home, giving his 3.5 SOG leg a strong foundation in a favorable matchup.",
+      "made": "8 hours ago",
+      "key": "CHI @ VGK|2026-09-30T02:30|Parlay|3 leg parlay veg -1.5 o5.5 total jack eichel o3.5 shots on goal shots on goal",
+      "sourceId": "covers",
+      "source": "Covers",
+      "url": "https://www.covers.com/picks/nhl"
+    },
+    {
+      "matchup": "LA @ COL",
+      "startsAt": "Wed, Sep 30 • 10:00 PM ET",
+      "eventKey": "LA @ COL|2026-10-01T02:00",
+      "market": "Moneyline",
+      "selection": "COL Moneyline",
+      "odds": "-180",
+      "expert": "Neil Parker",
+      "analysis": "Colorado holds a huge home-ice advantage in the altitude at Ball Arena, and in particular, the Avalanche’s speed will be a nightmare for the Kings. Colorado paced the NHL in speed bursts over 20 mph per game, while Los Angeles ranked 17th, after all. Additionally, the Kings allowed the third most expected goals per 60 minutes at five-on-five during exhibition play. Of course, the Avs also went 26-9-6 at home with a second-ranked 58.0 Corsi For percentage at five-on-five last year.",
+      "made": "3 hours ago",
+      "key": "LA @ COL|2026-10-01T02:00|Moneyline|COL",
+      "sourceId": "covers",
+      "source": "Covers",
+      "url": "https://www.covers.com/picks/nhl"
+    },
+    {
+      "matchup": "FLA @ CAR",
+      "startsAt": "2026-09-29T21:00:00Z",
+      "eventKey": "FLA @ CAR|2026-09-29T21:00",
+      "market": "Total",
+      "selection": "Under 6.5",
+      "odds": "-120",
+      "expert": "Pickswise",
+      "analysis": "Under 6.5",
+      "made": "",
+      "key": "FLA @ CAR|2026-09-29T21:00|Total|Under 6.5",
+      "sourceId": "pickswise",
+      "source": "Pickswise",
+      "url": "https://www.pickswise.com/nhl/picks/"
+    },
+    {
+      "matchup": "MTL @ TOR",
+      "startsAt": "2026-09-29T23:00:00Z",
+      "eventKey": "MTL @ TOR|2026-09-29T23:00",
+      "market": "Moneyline",
+      "selection": "TOR Moneyline",
+      "odds": "-115",
+      "expert": "Pickswise",
+      "analysis": "Moneyline - Toronto Maple Leafs",
+      "made": "",
+      "key": "MTL @ TOR|2026-09-29T23:00|Moneyline|TOR",
+      "sourceId": "pickswise",
+      "source": "Pickswise",
+      "url": "https://www.pickswise.com/nhl/picks/"
+    },
+    {
+      "matchup": "NYR @ BOS",
+      "startsAt": "2026-09-30T00:00:00Z",
+      "eventKey": "NYR @ BOS|2026-09-30T00:00",
+      "market": "Moneyline",
+      "selection": "BOS Moneyline",
+      "odds": "-110",
+      "expert": "Pickswise",
+      "analysis": "Moneyline - Boston Bruins",
+      "made": "",
+      "key": "NYR @ BOS|2026-09-30T00:00|Moneyline|BOS",
+      "sourceId": "pickswise",
+      "source": "Pickswise",
+      "url": "https://www.pickswise.com/nhl/picks/"
+    },
+    {
+      "matchup": "VAN @ EDM",
+      "startsAt": "2026-09-30T02:00:00Z",
+      "eventKey": "VAN @ EDM|2026-09-30T02:00",
+      "market": "Total",
+      "selection": "Over 6.5",
+      "odds": "+111",
+      "expert": "Pickswise",
+      "analysis": "Over 6.5",
+      "made": "",
+      "key": "VAN @ EDM|2026-09-30T02:00|Total|Over 6.5",
+      "sourceId": "pickswise",
+      "source": "Pickswise",
+      "url": "https://www.pickswise.com/nhl/picks/"
+    },
+    {
+      "matchup": "CHI @ VGK",
+      "startsAt": "2026-09-30T02:30:00Z",
+      "eventKey": "CHI @ VGK|2026-09-30T02:30",
+      "market": "Total",
+      "selection": "Over 5.5",
+      "odds": "-135",
+      "expert": "Pickswise",
+      "analysis": "Over 5.5",
+      "made": "",
+      "key": "CHI @ VGK|2026-09-30T02:30|Total|Over 5.5",
+      "sourceId": "pickswise",
+      "source": "Pickswise",
+      "url": "https://www.pickswise.com/nhl/picks/"
+    },
+    {
+      "matchup": "FLA @ CAR",
+      "startsAt": "2026-09-29T21:00:00.000Z",
+      "eventKey": "FLA @ CAR|2026-09-29T21:00",
+      "market": "Total",
+      "selection": "Over 6.5",
+      "odds": "+108",
+      "expert": "Tyler Shoemaker",
+      "analysis": "Testing NHL model",
+      "made": "",
+      "key": "FLA @ CAR|2026-09-29T21:00|Total|Over 6.5",
+      "sourceId": "action",
+      "source": "Action Network",
+      "url": "https://www.actionnetwork.com/nhl/picks/"
+    },
+    {
+      "matchup": "FLA @ CAR",
+      "startsAt": "2026-09-29T21:00:00.000Z",
+      "eventKey": "FLA @ CAR|2026-09-29T21:00",
+      "market": "Moneyline",
+      "selection": "CAR Moneyline",
+      "odds": "-130",
+      "expert": "Tyler Shoemaker",
+      "analysis": "Testing NHL model",
+      "made": "",
+      "key": "FLA @ CAR|2026-09-29T21:00|Moneyline|CAR",
+      "sourceId": "action",
+      "source": "Action Network",
+      "url": "https://www.actionnetwork.com/nhl/picks/"
+    },
+    {
+      "matchup": "FLA @ CAR",
+      "startsAt": "2026-09-29T21:00:00.000Z",
+      "eventKey": "FLA @ CAR|2026-09-29T21:00",
+      "market": "Total",
+      "selection": "Over 4.5",
+      "odds": "-110",
+      "expert": "Sandy Plashkes",
+      "analysis": "",
+      "made": "",
+      "key": "FLA @ CAR|2026-09-29T21:00|Total|Over 4.5",
+      "sourceId": "action",
+      "source": "Action Network",
+      "url": "https://www.actionnetwork.com/nhl/picks/"
+    },
+    {
+      "matchup": "FLA @ CAR",
+      "startsAt": "2026-09-29T21:00:00.000Z",
+      "eventKey": "FLA @ CAR|2026-09-29T21:00",
+      "market": "Moneyline",
+      "selection": "FLA Moneyline",
+      "odds": "+111",
+      "expert": "Brian Bitler",
+      "analysis": "",
+      "made": "",
+      "key": "FLA @ CAR|2026-09-29T21:00|Moneyline|FLA",
+      "sourceId": "action",
+      "source": "Action Network",
+      "url": "https://www.actionnetwork.com/nhl/picks/"
+    },
+    {
+      "matchup": "FLA @ CAR",
+      "startsAt": "2026-09-29T21:00:00.000Z",
+      "eventKey": "FLA @ CAR|2026-09-29T21:00",
+      "market": "Total",
+      "selection": "Under 6.5",
+      "odds": "-128",
+      "expert": "Austin Pendergrass",
+      "analysis": "",
+      "made": "",
+      "key": "FLA @ CAR|2026-09-29T21:00|Total|Under 6.5",
+      "sourceId": "action",
+      "source": "Action Network",
+      "url": "https://www.actionnetwork.com/nhl/picks/"
+    },
+    {
+      "matchup": "FLA @ CAR",
+      "startsAt": "2026-09-29T21:00:00.000Z",
+      "eventKey": "FLA @ CAR|2026-09-29T21:00",
+      "market": "Spread",
+      "selection": "CAR -1.5",
+      "odds": "+190",
+      "expert": "Topper",
+      "analysis": "Games 1 and 2\nOverall:  138-193-0,42% (ROI:24%)\nSeason:0-0-0, 0% (ROI: 0%)\n\n #TSA",
+      "made": "",
+      "key": "FLA @ CAR|2026-09-29T21:00|Spread|CAR -1.5",
+      "sourceId": "action",
+      "source": "Action Network",
+      "url": "https://www.actionnetwork.com/nhl/picks/"
+    },
+    {
+      "matchup": "FLA @ CAR",
+      "startsAt": "2026-09-29T21:00:00.000Z",
+      "eventKey": "FLA @ CAR|2026-09-29T21:00",
+      "market": "Prop",
+      "selection": "S.Jones u1.5 SOG",
+      "odds": "+100",
+      "expert": "Dana Forden",
+      "analysis": "Last season in his first full season with the Panthers he went under this line in 29/52 games, and this is the worst matchup in the league for him. The Hurricanes have allowed the fewest shots against in both of the last 2 seasons, and they are especially stingy vs opposing D, who have only averaged 76% of their normal shots vs of them during that time. The game is also in Carolina.",
+      "made": "",
+      "key": "FLA @ CAR|2026-09-29T21:00|Prop|s.jones u1.5 sog",
+      "sourceId": "action",
+      "source": "Action Network",
+      "url": "https://www.actionnetwork.com/nhl/picks/"
+    },
+    {
+      "matchup": "FLA @ CAR",
+      "startsAt": "2026-09-29T21:00:00.000Z",
+      "eventKey": "FLA @ CAR|2026-09-29T21:00",
+      "market": "Prop",
+      "selection": "S.Bennett u2.5 SOG",
+      "odds": "-160",
+      "expert": "Dana Forden",
+      "analysis": "",
+      "made": "",
+      "key": "FLA @ CAR|2026-09-29T21:00|Prop|s.bennett u2.5 sog",
+      "sourceId": "action",
+      "source": "Action Network",
+      "url": "https://www.actionnetwork.com/nhl/picks/"
+    },
+    {
+      "matchup": "FLA @ CAR",
+      "startsAt": "2026-09-29T21:00:00.000Z",
+      "eventKey": "FLA @ CAR|2026-09-29T21:00",
+      "market": "Prop",
+      "selection": "J.Staal u1.5 SOG",
+      "odds": "+115",
+      "expert": "Dana Forden",
+      "analysis": "Staal is a 38 year old coming off back to back seasons where he averaged 1.43 shots a game, and he has a tough matchup vs a strong team. During those 2 years he was under this line in 86/150 games for 57.3% of the time. The Panthers had a season from hell last year and still limited opposing forwards shots 8% better than the average team.",
+      "made": "",
+      "key": "FLA @ CAR|2026-09-29T21:00|Prop|j.staal u1.5 sog",
+      "sourceId": "action",
+      "source": "Action Network",
+      "url": "https://www.actionnetwork.com/nhl/picks/"
+    },
+    {
+      "matchup": "FLA @ CAR",
+      "startsAt": "2026-09-29T21:00:00.000Z",
+      "eventKey": "FLA @ CAR|2026-09-29T21:00",
+      "market": "Total",
+      "selection": "Under 6.5",
+      "odds": "-111",
+      "expert": "tonysartori99",
+      "analysis": "",
+      "made": "",
+      "key": "FLA @ CAR|2026-09-29T21:00|Total|Under 6.5",
+      "sourceId": "action",
+      "source": "Action Network",
+      "url": "https://www.actionnetwork.com/nhl/picks/"
+    },
+    {
+      "matchup": "MTL @ TOR",
+      "startsAt": "2026-09-29T23:00:00.000Z",
+      "eventKey": "MTL @ TOR|2026-09-29T23:00",
+      "market": "Player Props",
+      "selection": "W.Nylander To Record 3+ Shots on Goal Yes",
+      "odds": "-105",
+      "expert": "Nick Martin",
+      "analysis": "",
+      "made": "",
+      "key": "MTL @ TOR|2026-09-29T23:00|Player Props|w.nylander to record 3+ shots on goal yes",
+      "sourceId": "action",
+      "source": "Action Network",
+      "url": "https://www.actionnetwork.com/nhl/picks/"
+    },
+    {
+      "matchup": "MTL @ TOR",
+      "startsAt": "2026-09-29T23:00:00.000Z",
+      "eventKey": "MTL @ TOR|2026-09-29T23:00",
+      "market": "Moneyline",
+      "selection": "MTL Moneyline",
+      "odds": "-102",
+      "expert": "Wags Wins",
+      "analysis": "",
+      "made": "",
+      "key": "MTL @ TOR|2026-09-29T23:00|Moneyline|MTL",
+      "sourceId": "action",
+      "source": "Action Network",
+      "url": "https://www.actionnetwork.com/nhl/picks/"
+    },
+    {
+      "matchup": "MTL @ TOR",
+      "startsAt": "2026-09-29T23:00:00.000Z",
+      "eventKey": "MTL @ TOR|2026-09-29T23:00",
+      "market": "Total",
+      "selection": "Over 6.5",
+      "odds": "+100",
+      "expert": "Stefano Fusaro",
+      "analysis": "",
+      "made": "",
+      "key": "MTL @ TOR|2026-09-29T23:00|Total|Over 6.5",
+      "sourceId": "action",
+      "source": "Action Network",
+      "url": "https://www.actionnetwork.com/nhl/picks/"
+    },
+    {
+      "matchup": "NYR @ BOS",
+      "startsAt": "2026-09-30T00:00:00.000Z",
+      "eventKey": "NYR @ BOS|2026-09-30T00:00",
+      "market": "Moneyline",
+      "selection": "BOS Moneyline",
+      "odds": "-110",
+      "expert": "Adam Kaufman",
+      "analysis": "",
+      "made": "",
+      "key": "NYR @ BOS|2026-09-30T00:00|Moneyline|BOS",
+      "sourceId": "action",
+      "source": "Action Network",
+      "url": "https://www.actionnetwork.com/nhl/picks/"
+    },
+    {
+      "matchup": "NYR @ BOS",
+      "startsAt": "2026-09-30T00:00:00.000Z",
+      "eventKey": "NYR @ BOS|2026-09-30T00:00",
+      "market": "Moneyline",
+      "selection": "NYR Moneyline",
+      "odds": "-105",
+      "expert": "Nick Griffith",
+      "analysis": "",
+      "made": "",
+      "key": "NYR @ BOS|2026-09-30T00:00|Moneyline|NYR",
+      "sourceId": "action",
+      "source": "Action Network",
+      "url": "https://www.actionnetwork.com/nhl/picks/"
+    },
+    {
+      "matchup": "NYR @ BOS",
+      "startsAt": "2026-09-30T00:00:00.000Z",
+      "eventKey": "NYR @ BOS|2026-09-30T00:00",
+      "market": "Moneyline",
+      "selection": "NYR Moneyline",
+      "odds": "-105",
+      "expert": "Scott Rickenbach",
+      "analysis": "",
+      "made": "",
+      "key": "NYR @ BOS|2026-09-30T00:00|Moneyline|NYR",
+      "sourceId": "action",
+      "source": "Action Network",
+      "url": "https://www.actionnetwork.com/nhl/picks/"
+    },
+    {
+      "matchup": "VAN @ EDM",
+      "startsAt": "2026-09-30T02:00:00.000Z",
+      "eventKey": "VAN @ EDM|2026-09-30T02:00",
+      "market": "Total",
+      "selection": "Under 6.5",
+      "odds": "+145",
+      "expert": "Doug Ziefel",
+      "analysis": "Boost ",
+      "made": "",
+      "key": "VAN @ EDM|2026-09-30T02:00|Total|Under 6.5",
+      "sourceId": "action",
+      "source": "Action Network",
+      "url": "https://www.actionnetwork.com/nhl/picks/"
+    },
+    {
+      "matchup": "VAN @ EDM",
+      "startsAt": "2026-09-30T02:00:00.000Z",
+      "eventKey": "VAN @ EDM|2026-09-30T02:00",
+      "market": "Total",
+      "selection": "Over 6.5",
+      "odds": "-115",
+      "expert": "Alex Hinton",
+      "analysis": "",
+      "made": "",
+      "key": "VAN @ EDM|2026-09-30T02:00|Total|Over 6.5",
+      "sourceId": "action",
+      "source": "Action Network",
+      "url": "https://www.actionnetwork.com/nhl/picks/"
+    },
+    {
+      "matchup": "CHI @ VGK",
+      "startsAt": "2026-09-30T02:30:00.000Z",
+      "eventKey": "CHI @ VGK|2026-09-30T02:30",
+      "market": "Total",
+      "selection": "Under 6",
+      "odds": "-110",
+      "expert": "Greg Liodice",
+      "analysis": "",
+      "made": "",
+      "key": "CHI @ VGK|2026-09-30T02:30|Total|Under 6",
+      "sourceId": "action",
+      "source": "Action Network",
+      "url": "https://www.actionnetwork.com/nhl/picks/"
+    }
+  ],
+  "consensus": [
+    {
+      "key": "FLA @ CAR|2026-09-29T21:00|Total|Under 6.5",
+      "matchup": "FLA @ CAR",
+      "startsAt": "2026-09-29T21:00:00Z",
+      "market": "Total",
+      "selection": "Under 6.5",
+      "sourceCount": 2,
+      "pickCount": 3,
+      "sources": [
+        {
+          "id": "pickswise",
+          "name": "Pickswise"
+        },
+        {
+          "id": "action",
+          "name": "Action Network"
+        }
+      ],
+      "experts": [
+        "Pickswise:Pickswise",
+        "Action Network:Austin Pendergrass",
+        "Action Network:tonysartori99"
+      ],
+      "odds": [
+        "-120",
+        "-128",
+        "-111"
+      ],
+      "examples": [
+        {
+          "source": "Pickswise",
+          "expert": "Pickswise",
+          "odds": "-120",
+          "analysis": "Under 6.5"
+        },
+        {
+          "source": "Action Network",
+          "expert": "Austin Pendergrass",
+          "odds": "-128",
+          "analysis": ""
+        },
+        {
+          "source": "Action Network",
+          "expert": "tonysartori99",
+          "odds": "-111",
+          "analysis": ""
+        }
+      ],
+      "agreement": "2/3",
+      "confidence": 430
+    },
+    {
+      "key": "NYR @ BOS|2026-09-30T00:00|Moneyline|BOS",
+      "matchup": "NYR @ BOS",
+      "startsAt": "2026-09-30T00:00:00Z",
+      "market": "Moneyline",
+      "selection": "BOS Moneyline",
+      "sourceCount": 2,
+      "pickCount": 2,
+      "sources": [
+        {
+          "id": "pickswise",
+          "name": "Pickswise"
+        },
+        {
+          "id": "action",
+          "name": "Action Network"
+        }
+      ],
+      "experts": [
+        "Pickswise:Pickswise",
+        "Action Network:Adam Kaufman"
+      ],
+      "odds": [
+        "-110"
+      ],
+      "examples": [
+        {
+          "source": "Pickswise",
+          "expert": "Pickswise",
+          "odds": "-110",
+          "analysis": "Moneyline - Boston Bruins"
+        },
+        {
+          "source": "Action Network",
+          "expert": "Adam Kaufman",
+          "odds": "-110",
+          "analysis": ""
+        }
+      ],
+      "agreement": "2/3",
+      "confidence": 420
+    },
+    {
+      "key": "VAN @ EDM|2026-09-30T02:00|Total|Over 6.5",
+      "matchup": "VAN @ EDM",
+      "startsAt": "2026-09-30T02:00:00Z",
+      "market": "Total",
+      "selection": "Over 6.5",
+      "sourceCount": 2,
+      "pickCount": 2,
+      "sources": [
+        {
+          "id": "pickswise",
+          "name": "Pickswise"
+        },
+        {
+          "id": "action",
+          "name": "Action Network"
+        }
+      ],
+      "experts": [
+        "Pickswise:Pickswise",
+        "Action Network:Alex Hinton"
+      ],
+      "odds": [
+        "+111",
+        "-115"
+      ],
+      "examples": [
+        {
+          "source": "Pickswise",
+          "expert": "Pickswise",
+          "odds": "+111",
+          "analysis": "Over 6.5"
+        },
+        {
+          "source": "Action Network",
+          "expert": "Alex Hinton",
+          "odds": "-115",
+          "analysis": ""
+        }
+      ],
+      "agreement": "2/3",
+      "confidence": 420
+    },
+    {
+      "key": "VAN @ EDM|2026-09-30T02:00|Total|Under 6.5",
+      "matchup": "VAN @ EDM",
+      "startsAt": "Tue, Sep 29 • 10:00 PM ET",
+      "market": "Total",
+      "selection": "Under 6.5",
+      "sourceCount": 2,
+      "pickCount": 2,
+      "sources": [
+        {
+          "id": "covers",
+          "name": "Covers"
+        },
+        {
+          "id": "action",
+          "name": "Action Network"
+        }
+      ],
+      "experts": [
+        "Covers:Neil Parker",
+        "Action Network:Doug Ziefel"
+      ],
+      "odds": [
+        "u6.5 -104",
+        "+145"
+      ],
+      "examples": [
+        {
+          "source": "Covers",
+          "expert": "Neil Parker",
+          "odds": "u6.5 -104",
+          "analysis": "This Under 6.5 is in play to -110 because the Oilers are commited to improved defense and allowed just 0.91 goals per 60 minutes while surrendering the eighth-fewest high-danger scoring chances per 60 at five-on-five during the preseason. Edmonton was already a possession monster with a fifth-ranked Corsi For percentage at five-on-five across the past three years, and Vancouver scored the fewest goals per 60 minutes while generating the fifth-fewest expected goals per 60 at 5-on-5 last season."
+        },
+        {
+          "source": "Action Network",
+          "expert": "Doug Ziefel",
+          "odds": "+145",
+          "analysis": "Boost "
+        }
+      ],
+      "agreement": "2/3",
+      "confidence": 420
+    },
+    {
+      "key": "LA @ COL|2026-10-01T02:00|Moneyline|COL",
+      "matchup": "LA @ COL",
+      "startsAt": "Wed, Sep 30 • 10:00 PM ET",
+      "market": "Moneyline",
+      "selection": "COL Moneyline",
+      "sourceCount": 1,
+      "pickCount": 1,
+      "sources": [
+        {
+          "id": "covers",
+          "name": "Covers"
+        }
+      ],
+      "experts": [
+        "Covers:Neil Parker"
+      ],
+      "odds": [
+        "-180"
+      ],
+      "examples": [
+        {
+          "source": "Covers",
+          "expert": "Neil Parker",
+          "odds": "-180",
+          "analysis": "Colorado holds a huge home-ice advantage in the altitude at Ball Arena, and in particular, the Avalanche’s speed will be a nightmare for the Kings. Colorado paced the NHL in speed bursts over 20 mph per game, while Los Angeles ranked 17th, after all. Additionally, the Kings allowed the third most expected goals per 60 minutes at five-on-five during exhibition play. Of course, the Avs also went 26-9-6 at home with a second-ranked 58.0 Corsi For percentage at five-on-five last year."
+        }
+      ],
+      "agreement": "1/3",
+      "confidence": 260
+    },
+    {
+      "key": "VAN @ EDM|2026-09-30T02:00|Player Props|leon draisaitl o0.5 goals scored",
+      "matchup": "VAN @ EDM",
+      "startsAt": "Tue, Sep 29 • 10:00 PM ET",
+      "market": "Player Props",
+      "selection": "Leon Draisaitl o0.5 Goals Scored",
+      "sourceCount": 1,
+      "pickCount": 2,
+      "sources": [
+        {
+          "id": "covers",
+          "name": "Covers"
+        }
+      ],
+      "experts": [
+        "Covers:Neil Parker",
+        "Covers:Todd Cordell"
+      ],
+      "odds": [
+        "o0.5 +100"
+      ],
+      "examples": [
+        {
+          "source": "Covers",
+          "expert": "Neil Parker",
+          "odds": "o0.5 +100",
+          "analysis": "Draisaitl to score is in play to +100 because he's scored the third-most goals in the NHL over the past three years, and the Canucks allowed the most goals per 60 minutes and sixth-most expected goals per 60 last year. Additionally, I particularly value No. 29 projecting to jump the board with superstar Connor McDavid at five-on-five in the season opener because the duo have been on the ice for a monster 7.69 goals per 60 minutes over the past two years."
+        },
+        {
+          "source": "Covers",
+          "expert": "Todd Cordell",
+          "odds": "o0.5 +100",
+          "analysis": "I’d back Leon Draisaitl to find the back of the net to 54%."
+        }
+      ],
+      "agreement": "1/3",
+      "confidence": 220
+    },
+    {
+      "key": "NYR @ BOS|2026-09-30T00:00|Moneyline|NYR",
+      "matchup": "NYR @ BOS",
+      "startsAt": "2026-09-30T00:00:00.000Z",
+      "market": "Moneyline",
+      "selection": "NYR Moneyline",
+      "sourceCount": 1,
+      "pickCount": 2,
+      "sources": [
+        {
+          "id": "action",
+          "name": "Action Network"
+        }
+      ],
+      "experts": [
+        "Action Network:Nick Griffith",
+        "Action Network:Scott Rickenbach"
+      ],
+      "odds": [
+        "-105"
+      ],
+      "examples": [
+        {
+          "source": "Action Network",
+          "expert": "Nick Griffith",
+          "odds": "-105",
+          "analysis": ""
+        },
+        {
+          "source": "Action Network",
+          "expert": "Scott Rickenbach",
+          "odds": "-105",
+          "analysis": ""
+        }
+      ],
+      "agreement": "1/3",
+      "confidence": 220
+    },
+    {
+      "key": "VAN @ EDM|2026-09-30T02:00|Parlay|3 leg parlay u6.5 total vasily podkolzin o0.5 points points",
+      "matchup": "VAN @ EDM",
+      "startsAt": "Tue, Sep 29 • 10:00 PM ET",
+      "market": "Parlay",
+      "selection": "3 LEG PARLAY u6.5 Total Vasily Podkolzin o0.5 Points Points",
+      "sourceCount": 1,
+      "pickCount": 1,
+      "sources": [
+        {
+          "id": "covers",
+          "name": "Covers"
+        }
+      ],
+      "experts": [
+        "Covers:Neil Parker"
+      ],
+      "odds": [],
+      "examples": [
+        {
+          "source": "Covers",
+          "expert": "Neil Parker",
+          "odds": "",
+          "analysis": "Edmonton has topped Vancouver in seven of their past nine meetings, and the Oilers are going to be improved on defense with Mike Babcock behind the bench. Edmonton was already a possession monster with a fifth-ranked Corsi For percentage at five-on-five across the past three years, and the Oilers also ranked second in expected goals percentage to reinforce their consistent ability to tilt the ice in their favor. Turning to Podkolzin, he's set to jump the boards with superstars Connor McDavid and Leon Draisaitl, and the go-to duo have been on the ice for a monster 7.69 goals per 60 minutes over the past two years."
+        }
+      ],
+      "agreement": "1/3",
+      "confidence": 210
+    },
+    {
+      "key": "CHI @ VGK|2026-09-30T02:30|Parlay|3 leg parlay veg -1.5 o5.5 total jack eichel o3.5 shots on goal shots on goal",
+      "matchup": "CHI @ VGK",
+      "startsAt": "Tue, Sep 29 • 10:30 PM ET",
+      "market": "Parlay",
+      "selection": "3 LEG PARLAY VEG -1.5 o5.5 Total Jack Eichel o3.5 Shots On Goal Shots On Goal",
+      "sourceCount": 1,
+      "pickCount": 1,
+      "sources": [
+        {
+          "id": "covers",
+          "name": "Covers"
+        }
+      ],
+      "experts": [
+        "Covers:Quinn Allen"
+      ],
+      "odds": [],
+      "examples": [
+        {
+          "source": "Covers",
+          "expert": "Quinn Allen",
+          "odds": "",
+          "analysis": "This combo fits the expected game script. Chicago struggled defensively last season, while Vegas has enough firepower to do most of the scoring itself. Jack Eichel also averaged 3.91 shots per game at home, giving his 3.5 SOG leg a strong foundation in a favorable matchup."
+        }
+      ],
+      "agreement": "1/3",
+      "confidence": 210
+    },
+    {
+      "key": "FLA @ CAR|2026-09-29T21:00|Spread|CAR -1.5",
+      "matchup": "FLA @ CAR",
+      "startsAt": "2026-09-29T21:00:00.000Z",
+      "market": "Spread",
+      "selection": "CAR -1.5",
+      "sourceCount": 1,
+      "pickCount": 1,
+      "sources": [
+        {
+          "id": "action",
+          "name": "Action Network"
+        }
+      ],
+      "experts": [
+        "Action Network:Topper"
+      ],
+      "odds": [
+        "+190"
+      ],
+      "examples": [
+        {
+          "source": "Action Network",
+          "expert": "Topper",
+          "odds": "+190",
+          "analysis": "Games 1 and 2\nOverall:  138-193-0,42% (ROI:24%)\nSeason:0-0-0, 0% (ROI: 0%)\n\n #TSA"
+        }
+      ],
+      "agreement": "1/3",
+      "confidence": 210
+    },
+    {
+      "key": "FLA @ CAR|2026-09-29T21:00|Moneyline|CAR",
+      "matchup": "FLA @ CAR",
+      "startsAt": "2026-09-29T21:00:00.000Z",
+      "market": "Moneyline",
+      "selection": "CAR Moneyline",
+      "sourceCount": 1,
+      "pickCount": 1,
+      "sources": [
+        {
+          "id": "action",
+          "name": "Action Network"
+        }
+      ],
+      "experts": [
+        "Action Network:Tyler Shoemaker"
+      ],
+      "odds": [
+        "-130"
+      ],
+      "examples": [
+        {
+          "source": "Action Network",
+          "expert": "Tyler Shoemaker",
+          "odds": "-130",
+          "analysis": "Testing NHL model"
+        }
+      ],
+      "agreement": "1/3",
+      "confidence": 210
+    },
+    {
+      "key": "FLA @ CAR|2026-09-29T21:00|Moneyline|FLA",
+      "matchup": "FLA @ CAR",
+      "startsAt": "2026-09-29T21:00:00.000Z",
+      "market": "Moneyline",
+      "selection": "FLA Moneyline",
+      "sourceCount": 1,
+      "pickCount": 1,
+      "sources": [
+        {
+          "id": "action",
+          "name": "Action Network"
+        }
+      ],
+      "experts": [
+        "Action Network:Brian Bitler"
+      ],
+      "odds": [
+        "+111"
+      ],
+      "examples": [
+        {
+          "source": "Action Network",
+          "expert": "Brian Bitler",
+          "odds": "+111",
+          "analysis": ""
+        }
+      ],
+      "agreement": "1/3",
+      "confidence": 210
+    },
+    {
+      "key": "FLA @ CAR|2026-09-29T21:00|Prop|j.staal u1.5 sog",
+      "matchup": "FLA @ CAR",
+      "startsAt": "2026-09-29T21:00:00.000Z",
+      "market": "Prop",
+      "selection": "J.Staal u1.5 SOG",
+      "sourceCount": 1,
+      "pickCount": 1,
+      "sources": [
+        {
+          "id": "action",
+          "name": "Action Network"
+        }
+      ],
+      "experts": [
+        "Action Network:Dana Forden"
+      ],
+      "odds": [
+        "+115"
+      ],
+      "examples": [
+        {
+          "source": "Action Network",
+          "expert": "Dana Forden",
+          "odds": "+115",
+          "analysis": "Staal is a 38 year old coming off back to back seasons where he averaged 1.43 shots a game, and he has a tough matchup vs a strong team. During those 2 years he was under this line in 86/150 games for 57.3% of the time. The Panthers had a season from hell last year and still limited opposing forwards shots 8% better than the average team."
+        }
+      ],
+      "agreement": "1/3",
+      "confidence": 210
+    },
+    {
+      "key": "CHI @ VGK|2026-09-30T02:30|Player Props|jack eichel o0.5 goals scored",
+      "matchup": "CHI @ VGK",
+      "startsAt": "Tue, Sep 29 • 10:30 PM ET",
+      "market": "Player Props",
+      "selection": "Jack Eichel o0.5 Goals Scored",
+      "sourceCount": 1,
+      "pickCount": 1,
+      "sources": [
+        {
+          "id": "covers",
+          "name": "Covers"
+        }
+      ],
+      "experts": [
+        "Covers:Quinn Allen"
+      ],
+      "odds": [
+        "o0.5 +170"
+      ],
+      "examples": [
+        {
+          "source": "Covers",
+          "expert": "Quinn Allen",
+          "odds": "o0.5 +170",
+          "analysis": "Play up to 42%. Jack Eichel remains one of Vegas’ premier scoring threats after netting 27 goals last season. At home, he generated 72 individual scoring chances and 25 high-danger opportunities at five-on-five. Against a Chicago defense that struggled to suppress offense, Eichel should get several quality looks."
+        }
+      ],
+      "agreement": "1/3",
+      "confidence": 210
+    },
+    {
+      "key": "MTL @ TOR|2026-09-29T23:00|Moneyline|MTL",
+      "matchup": "MTL @ TOR",
+      "startsAt": "2026-09-29T23:00:00.000Z",
+      "market": "Moneyline",
+      "selection": "MTL Moneyline",
+      "sourceCount": 1,
+      "pickCount": 1,
+      "sources": [
+        {
+          "id": "action",
+          "name": "Action Network"
+        }
+      ],
+      "experts": [
+        "Action Network:Wags Wins"
+      ],
+      "odds": [
+        "-102"
+      ],
+      "examples": [
+        {
+          "source": "Action Network",
+          "expert": "Wags Wins",
+          "odds": "-102",
+          "analysis": ""
+        }
+      ],
+      "agreement": "1/3",
+      "confidence": 210
+    },
+    {
+      "key": "CHI @ VGK|2026-09-30T02:30|Prop|o2.5 team total",
+      "matchup": "CHI @ VGK",
+      "startsAt": "Tue, Sep 29 • 10:30 PM ET",
+      "market": "Prop",
+      "selection": "o2.5 Team Total",
+      "sourceCount": 1,
+      "pickCount": 1,
+      "sources": [
+        {
+          "id": "covers",
+          "name": "Covers"
+        }
+      ],
+      "experts": [
+        "Covers:Josh Inglis"
+      ],
+      "odds": [
+        "o2.5 +116"
+      ],
+      "examples": [
+        {
+          "source": "Covers",
+          "expert": "Josh Inglis",
+          "odds": "o2.5 +116",
+          "analysis": "Connor Bedard is out, but there is still plenty of young scoring in this Chicago lineup against a Vegas team that is likely not strong in net with Carter Hart and may not be as motivated after a long Stanley Cup Final run that ended in the middle of June. The Hawks have legit scoring rookies on both of their top lines in Anton Frondell and Roman Kantserov. Frondell has a terrifying shot after seeing it at the World Juniors and World Hockey Championships, where he scored six goals in 11 games. He is 4.3x to score and is a look for sure. The exciting one, and one that might be flying under the radar, is Kantserov, who is playing on the top line and PP1. He scored 36 goals in 63 games in the KHL last year at age 21 and has shorter odds to win the Calder than Frondell, who already has 12 NHL games under his belt at 19 years old. The value on opening night is with the dogs."
+        }
+      ],
+      "agreement": "1/3",
+      "confidence": 210
+    },
+    {
+      "key": "FLA @ CAR|2026-09-29T21:00|Total|Over 4.5",
+      "matchup": "FLA @ CAR",
+      "startsAt": "2026-09-29T21:00:00.000Z",
+      "market": "Total",
+      "selection": "Over 4.5",
+      "sourceCount": 1,
+      "pickCount": 1,
+      "sources": [
+        {
+          "id": "action",
+          "name": "Action Network"
+        }
+      ],
+      "experts": [
+        "Action Network:Sandy Plashkes"
+      ],
+      "odds": [
+        "-110"
+      ],
+      "examples": [
+        {
+          "source": "Action Network",
+          "expert": "Sandy Plashkes",
+          "odds": "-110",
+          "analysis": ""
+        }
+      ],
+      "agreement": "1/3",
+      "confidence": 210
+    },
+    {
+      "key": "CHI @ VGK|2026-09-30T02:30|Total|Over 5.5",
+      "matchup": "CHI @ VGK",
+      "startsAt": "2026-09-30T02:30:00Z",
+      "market": "Total",
+      "selection": "Over 5.5",
+      "sourceCount": 1,
+      "pickCount": 1,
+      "sources": [
+        {
+          "id": "pickswise",
+          "name": "Pickswise"
+        }
+      ],
+      "experts": [
+        "Pickswise:Pickswise"
+      ],
+      "odds": [
+        "-135"
+      ],
+      "examples": [
+        {
+          "source": "Pickswise",
+          "expert": "Pickswise",
+          "odds": "-135",
+          "analysis": "Over 5.5"
+        }
+      ],
+      "agreement": "1/3",
+      "confidence": 210
+    },
+    {
+      "key": "FLA @ CAR|2026-09-29T21:00|Total|Over 6.5",
+      "matchup": "FLA @ CAR",
+      "startsAt": "2026-09-29T21:00:00.000Z",
+      "market": "Total",
+      "selection": "Over 6.5",
+      "sourceCount": 1,
+      "pickCount": 1,
+      "sources": [
+        {
+          "id": "action",
+          "name": "Action Network"
+        }
+      ],
+      "experts": [
+        "Action Network:Tyler Shoemaker"
+      ],
+      "odds": [
+        "+108"
+      ],
+      "examples": [
+        {
+          "source": "Action Network",
+          "expert": "Tyler Shoemaker",
+          "odds": "+108",
+          "analysis": "Testing NHL model"
+        }
+      ],
+      "agreement": "1/3",
+      "confidence": 210
+    },
+    {
+      "key": "MTL @ TOR|2026-09-29T23:00|Total|Over 6.5",
+      "matchup": "MTL @ TOR",
+      "startsAt": "2026-09-29T23:00:00.000Z",
+      "market": "Total",
+      "selection": "Over 6.5",
+      "sourceCount": 1,
+      "pickCount": 1,
+      "sources": [
+        {
+          "id": "action",
+          "name": "Action Network"
+        }
+      ],
+      "experts": [
+        "Action Network:Stefano Fusaro"
+      ],
+      "odds": [
+        "+100"
+      ],
+      "examples": [
+        {
+          "source": "Action Network",
+          "expert": "Stefano Fusaro",
+          "odds": "+100",
+          "analysis": ""
+        }
+      ],
+      "agreement": "1/3",
+      "confidence": 210
+    },
+    {
+      "key": "CHI @ VGK|2026-09-30T02:30|Player Props|patrick kane o0.5 points",
+      "matchup": "CHI @ VGK",
+      "startsAt": "Tue, Sep 29 • 10:30 PM ET",
+      "market": "Player Props",
+      "selection": "Patrick Kane o0.5 Points",
+      "sourceCount": 1,
+      "pickCount": 1,
+      "sources": [
+        {
+          "id": "covers",
+          "name": "Covers"
+        }
+      ],
+      "experts": [
+        "Covers:Quinn Allen"
+      ],
+      "odds": [
+        "o0.5 -109"
+      ],
+      "examples": [
+        {
+          "source": "Covers",
+          "expert": "Quinn Allen",
+          "odds": "o0.5 -109",
+          "analysis": "Play up to 58%. Patrick Kane should have a major offensive role with Connor Bedard sidelined. He produced 57 points in 67 games last season and is expected to skate on Chicago’s top line while also working on PP1. That usage gives the veteran multiple paths to record a point in the opener."
+        }
+      ],
+      "agreement": "1/3",
+      "confidence": 210
+    },
+    {
+      "key": "FLA @ CAR|2026-09-29T21:00|Prop|s.bennett u2.5 sog",
+      "matchup": "FLA @ CAR",
+      "startsAt": "2026-09-29T21:00:00.000Z",
+      "market": "Prop",
+      "selection": "S.Bennett u2.5 SOG",
+      "sourceCount": 1,
+      "pickCount": 1,
+      "sources": [
+        {
+          "id": "action",
+          "name": "Action Network"
+        }
+      ],
+      "experts": [
+        "Action Network:Dana Forden"
+      ],
+      "odds": [
+        "-160"
+      ],
+      "examples": [
+        {
+          "source": "Action Network",
+          "expert": "Dana Forden",
+          "odds": "-160",
+          "analysis": ""
+        }
+      ],
+      "agreement": "1/3",
+      "confidence": 210
+    },
+    {
+      "key": "FLA @ CAR|2026-09-29T21:00|Prop|s.jones u1.5 sog",
+      "matchup": "FLA @ CAR",
+      "startsAt": "2026-09-29T21:00:00.000Z",
+      "market": "Prop",
+      "selection": "S.Jones u1.5 SOG",
+      "sourceCount": 1,
+      "pickCount": 1,
+      "sources": [
+        {
+          "id": "action",
+          "name": "Action Network"
+        }
+      ],
+      "experts": [
+        "Action Network:Dana Forden"
+      ],
+      "odds": [
+        "+100"
+      ],
+      "examples": [
+        {
+          "source": "Action Network",
+          "expert": "Dana Forden",
+          "odds": "+100",
+          "analysis": "Last season in his first full season with the Panthers he went under this line in 29/52 games, and this is the worst matchup in the league for him. The Hurricanes have allowed the fewest shots against in both of the last 2 seasons, and they are especially stingy vs opposing D, who have only averaged 76% of their normal shots vs of them during that time. The game is also in Carolina."
+        }
+      ],
+      "agreement": "1/3",
+      "confidence": 210
+    },
+    {
+      "key": "MTL @ TOR|2026-09-29T23:00|Moneyline|TOR",
+      "matchup": "MTL @ TOR",
+      "startsAt": "2026-09-29T23:00:00Z",
+      "market": "Moneyline",
+      "selection": "TOR Moneyline",
+      "sourceCount": 1,
+      "pickCount": 1,
+      "sources": [
+        {
+          "id": "pickswise",
+          "name": "Pickswise"
+        }
+      ],
+      "experts": [
+        "Pickswise:Pickswise"
+      ],
+      "odds": [
+        "-115"
+      ],
+      "examples": [
+        {
+          "source": "Pickswise",
+          "expert": "Pickswise",
+          "odds": "-115",
+          "analysis": "Moneyline - Toronto Maple Leafs"
+        }
+      ],
+      "agreement": "1/3",
+      "confidence": 210
+    },
+    {
+      "key": "CHI @ VGK|2026-09-30T02:30|Total|Under 6",
+      "matchup": "CHI @ VGK",
+      "startsAt": "2026-09-30T02:30:00.000Z",
+      "market": "Total",
+      "selection": "Under 6",
+      "sourceCount": 1,
+      "pickCount": 1,
+      "sources": [
+        {
+          "id": "action",
+          "name": "Action Network"
+        }
+      ],
+      "experts": [
+        "Action Network:Greg Liodice"
+      ],
+      "odds": [
+        "-110"
+      ],
+      "examples": [
+        {
+          "source": "Action Network",
+          "expert": "Greg Liodice",
+          "odds": "-110",
+          "analysis": ""
+        }
+      ],
+      "agreement": "1/3",
+      "confidence": 210
+    },
+    {
+      "key": "VAN @ EDM|2026-09-30T02:00|Moneyline|VAN",
+      "matchup": "VAN @ EDM",
+      "startsAt": "Tue, Sep 29 • 10:00 PM ET",
+      "market": "Moneyline",
+      "selection": "VAN Moneyline",
+      "sourceCount": 1,
+      "pickCount": 1,
+      "sources": [
+        {
+          "id": "covers",
+          "name": "Covers"
+        }
+      ],
+      "experts": [
+        "Covers:Josh Inglis"
+      ],
+      "odds": [
+        "+250"
+      ],
+      "examples": [
+        {
+          "source": "Covers",
+          "expert": "Josh Inglis",
+          "odds": "+250",
+          "analysis": "The preseason is a mess, with guys who have played more than 100 games in their careers allowed to play in only two preseason games. This is going to lead to some sloppy early hockey, and that puts the value on the dogs — and no one is bigger than Vancouver. The Oilers were the same price against Vancouver last year near the end of the season, when Edmonton was playing its best hockey. There are worries about Tristan Jarry in net for Edmonton, as he is not even an average NHL goalie. There is also a system change with the home team, as new head coach Mike Babcock and his extra luggage are now in charge behind the bench. This is a young Vancouver team that might be in better shape for Game No. 1 than a veteran-heavy Edmonton squad, and these 3x MLs are very appetizing this week."
+        }
+      ],
+      "agreement": "1/3",
+      "confidence": 210
+    },
+    {
+      "key": "VAN @ EDM|2026-09-30T02:00|Player Props|vasily podkolzin o0.5 points",
+      "matchup": "VAN @ EDM",
+      "startsAt": "Tue, Sep 29 • 10:00 PM ET",
+      "market": "Player Props",
+      "selection": "Vasily Podkolzin o0.5 Points",
+      "sourceCount": 1,
+      "pickCount": 1,
+      "sources": [
+        {
+          "id": "covers",
+          "name": "Covers"
+        }
+      ],
+      "experts": [
+        "Covers:Neil Parker"
+      ],
+      "odds": [
+        "o0.5 -135"
+      ],
+      "examples": [
+        {
+          "source": "Covers",
+          "expert": "Neil Parker",
+          "odds": "o0.5 -135",
+          "analysis": "Podkolzin is set up to succeed with a top-line gig jumping the boards with superstars Connor McDavid and Leon Draisaitl, and the Canucks allowed the most goals per 60 minutes and sixth-most expected goals per 60 last year, too. So, with the McDavid-Draisaitl duo being on the ice for 7.69 goals per 60 minutes over the past two years, I like the Russian winger to find the scoresheet against his former team in the season opener down to -115."
+        }
+      ],
+      "agreement": "1/3",
+      "confidence": 210
+    },
+    {
+      "key": "CHI @ VGK|2026-09-30T02:30|Spread|VGK -1.5",
+      "matchup": "CHI @ VGK",
+      "startsAt": "Tue, Sep 29 • 10:30 PM ET",
+      "market": "Spread",
+      "selection": "VGK -1.5",
+      "sourceCount": 1,
+      "pickCount": 1,
+      "sources": [
+        {
+          "id": "covers",
+          "name": "Covers"
+        }
+      ],
+      "experts": [
+        "Covers:Quinn Allen"
+      ],
+      "odds": [
+        "-1.5 +105"
+      ],
+      "examples": [
+        {
+          "source": "Covers",
+          "expert": "Quinn Allen",
+          "odds": "-1.5 +105",
+          "analysis": "Play up to 52%. Vegas has a clear talent edge at home against a Chicago team opening the season without Connor Bedard. The Blackhawks ranked near the bottom of the NHL in both scoring and goals allowed last year, while Vegas posted a +24 goal differential at T-Mobile Arena. A multi-goal win is very realistic."
+        }
+      ],
+      "agreement": "1/3",
+      "confidence": 210
+    },
+    {
+      "key": "MTL @ TOR|2026-09-29T23:00|Player Props|w.nylander to record 3+ shots on goal yes",
+      "matchup": "MTL @ TOR",
+      "startsAt": "2026-09-29T23:00:00.000Z",
+      "market": "Player Props",
+      "selection": "W.Nylander To Record 3+ Shots on Goal Yes",
+      "sourceCount": 1,
+      "pickCount": 1,
+      "sources": [
+        {
+          "id": "action",
+          "name": "Action Network"
+        }
+      ],
+      "experts": [
+        "Action Network:Nick Martin"
+      ],
+      "odds": [
+        "-105"
+      ],
+      "examples": [
+        {
+          "source": "Action Network",
+          "expert": "Nick Martin",
+          "odds": "-105",
+          "analysis": ""
+        }
+      ],
+      "agreement": "1/3",
+      "confidence": 210
+    }
+  ],
+  "counts": {
+    "sources": 5,
+    "activeSources": 3,
+    "picks": 36,
+    "consensus": 29
+  }
+}
